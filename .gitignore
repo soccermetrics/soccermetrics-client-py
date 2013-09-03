@@ -1,0 +1,5 @@
+.env
+build/
+*env/
+*.py[co]
+*.*~
