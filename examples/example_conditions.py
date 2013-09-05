@@ -29,6 +29,7 @@ sorted_matches = sorted(matches, key=lambda k: k['match_date'])
 #
 # Match date and kickoff time are in the match information record, but
 # temperatures are in the match condition record.
+print "Match Date,Kickoff Time,Kickoff Temp"
 for match in sorted_matches:
-    condition = client.match.conditions.get(match=match['id'])
-    print match['match_date'], match['kickoff_time'], condition['kickoff_temp']
+    condition = client.link.get(match['link']['conditions'])
+    print "%s,%s,%2.1f" % (match['match_date'], match['kickoff_time'], condition['kickoff_temp'])
