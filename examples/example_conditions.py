@@ -21,7 +21,7 @@ matches = client.match.information.get(home_team_name="Everton") + \
 
 # Results from the API are unsorted, so sort the results by match date.
 # You can also sort by matchday but not all matches are played in order.
-sorted_matches = sorted(matches, key=lambda k: k['match_date'])
+sorted_matches = sorted(matches, key=lambda k: k.match_date)
 
 # Now we can iterate over the sorted match list (and make sure you are
 # sorting over the sorted match list!)  For every match record, retrieve
@@ -31,5 +31,5 @@ sorted_matches = sorted(matches, key=lambda k: k['match_date'])
 # temperatures are in the match condition record.
 print "Match Date,Kickoff Time,Kickoff Temp"
 for match in sorted_matches:
-    condition = client.link.get(match['link']['conditions'])
-    print "%s,%s,%2.1f" % (match['match_date'], match['kickoff_time'], condition['kickoff_temp'])
+    condition = client.link.get(match.link.conditions)
+    print "%s,%s,%2.1f" % (match.match_date, match.kickoff_time, condition.kickoff_temp)

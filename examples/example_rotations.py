@@ -22,7 +22,7 @@ STARTING_XI = 11
 #   (2) We sort the results by match date.
 matches = client.match.information.get(home_team_name="Liverpool") + \
           client.match.information.get(away_team_name="Liverpool")
-sorted_matches = sorted(matches, key=lambda k: k['match_date'])
+sorted_matches = sorted(matches, key=lambda k: k.match_date)
 
 starters = []
 rotation_list = []
@@ -30,17 +30,17 @@ for match in sorted_matches:
     # Get all starting lineup information for Liverpool's matches.  We are interested
     # in just the starting players for Liverpool, so we make player_team = 'Liverpool'
     # and set is_starting to True.
-    lineup_data = client.link.get(match['link']['lineups'],
+    lineup_data = client.link.get(match.link.lineups),
         player_team_name="Liverpool",is_starting=True)
-    player_list = [x['player'] for x in lineup_data]
+    player_list = [x.player for x in lineup_data]
     starters.append(player_list)
     # After the first match, compute the number of players who are in the current
     # lineup and the previous one.  Subtract that number from STARTING_XI to
     # get the number of squad rotations.
     if len(starters) > 1:
         num_no_changes = len(set(starters[-2]).intersection(starters[-1]))
-        rotation_list.append(dict(date=match['match_date'],
-            matchday=match['matchday'],
+        rotation_list.append(dict(date=match.match_date,
+            matchday=match.matchday,
             rotations=STARTING_XI-num_no_changes))
 
 # Display the rotation history and a running total of squad rotations.
