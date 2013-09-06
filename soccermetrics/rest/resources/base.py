@@ -1,4 +1,5 @@
 from itertools import chain
+from easydict import EasyDict
 import requests
 
 from soccermetrics import SoccermetricsRestException
@@ -27,7 +28,7 @@ class Resource(object):
 
         if resp.status_code == 200:
             result = resp.json()['result']
-            return result[0] if len(result) == 1 else result
+            return EasyDict(result[0]) if len(result) == 1 else EasyDict(result)
         else:
             raise SoccermetricsRestException(resp.status_code,resp.url)
 
@@ -40,7 +41,7 @@ class Resource(object):
         resp = requests.head(uri,params=self.auth)
 
         if resp.status_code < 400:
-            return resp.headers
+            return EasyDict(resp.headers)
         else:
             raise SoccermetricsRestException(resp.status_code,resp.url)
 
@@ -55,8 +56,8 @@ class Resource(object):
         resp = requests.options(uri,params=self.auth)
 
         if resp.status_code == 200:
-            return dict(headers=resp.headers,
-                    data=resp.json()['result']['data'])
+            return EasyDict(dict(headers=resp.headers,
+                                 data=resp.json()['result']['data']))
         else:
             raise SoccermetricsRestException(resp.status_code,resp.url)
 
