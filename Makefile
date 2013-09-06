@@ -1,10 +1,10 @@
-.PHONY clean cenv install
+.PHONY clean venv install
 
-cenv:
-	virtualenv cenv
+venv:
+	virtualenv venv
 
-install: cenv
-	. cenv/bin/activate; pip install -r requirements.txt
+install: venv
+	. venv/bin/activate; pip install -r requirements.txt; python setup.py install
 
 clean:
-	rm -rf cenv/
+	rm -rf venv/
