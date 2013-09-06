@@ -1,8 +1,8 @@
 from itertools import chain
 import requests
 
-from apiclient import SoccermetricsRestException
-from apiclient import __api_version__ as API_VERSION
+from soccermetrics import SoccermetricsRestException
+from soccermetrics import __api_version__ as API_VERSION
 
 class Resource(object):
     """

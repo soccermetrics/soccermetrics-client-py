@@ -1,13 +1,13 @@
 import os
 
-from apiclient import SoccermetricsException
-from apiclient.rest.resources import Root
-from apiclient.rest.resources import Link
-from apiclient.rest.resources import Validation
-from apiclient.rest.resources import Personnel
-from apiclient.rest.resources import Match
-from apiclient.rest.resources import MatchEvents
-from apiclient.rest.resources import MatchStatistics
+from soccermetrics import SoccermetricsException
+from soccermetrics.rest.resources import Root
+from soccermetrics.rest.resources import Link
+from soccermetrics.rest.resources import Validation
+from soccermetrics.rest.resources import Personnel
+from soccermetrics.rest.resources import Match
+from soccermetrics.rest.resources import MatchEvents
+from soccermetrics.rest.resources import MatchStatistics
 
 def find_credentials():
     """

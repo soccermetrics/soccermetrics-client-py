@@ -4,7 +4,7 @@
 # of Everton's matches.
 #
 
-from apiclient.rest import SoccermetricsRestClient
+from soccermetrics.rest import SoccermetricsRestClient
 
 # Create a SoccermetricsRestClient object.  This call assumes that
 # SOCCERMETRICS_APP_ID and SOCCERMETRICS_APP_KEY are in your environment

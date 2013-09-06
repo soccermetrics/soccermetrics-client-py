@@ -1,4 +1,4 @@
-from apiclient.rest.resources import Resource
+from soccermetrics.rest.resources import Resource
 
 class Root(Resource):
     """Service root endpoint."""
