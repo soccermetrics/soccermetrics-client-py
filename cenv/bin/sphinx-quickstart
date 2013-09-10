@@ -1,0 +1,10 @@
+#!/home/howard/research/soccermetrics/REST/mcfc-client/cenv/bin/python
+# EASY-INSTALL-ENTRY-SCRIPT: 'Sphinx==1.2b1','console_scripts','sphinx-quickstart'
+__requires__ = 'Sphinx==1.2b1'
+import sys
+from pkg_resources import load_entry_point
+
+if __name__ == '__main__':
+    sys.exit(
+        load_entry_point('Sphinx==1.2b1', 'console_scripts', 'sphinx-quickstart')()
+    )
