@@ -1,0 +1,6 @@
+.env
+build/
+*env/
+*.py[co]
+*.~
+sphinx-setup.txt
