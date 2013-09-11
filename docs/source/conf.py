@@ -107,14 +107,14 @@ html_theme_path = sphinx_bootstrap_theme.get_html_theme_path()
 
 # The name for this set of Sphinx documents.  If None, it defaults to
 # "<project> v<release> documentation".
-#html_title = None
+html_title = "Soccermetrics API Python Client Documentation"
 
 # A shorter title for the navigation bar.  Default is the same as html_title.
-#html_short_title = None
+html_short_title = "API Python Client"
 
 # The name of an image file (relative to this directory) to place at the top
 # of the sidebar.
-html_logo = 'api_static/img/Logo.png'
+html_logo = 'srstatic/img/Logo.png'
 
 # The name of an image file (within the static path) to use as favicon of the
 # docs.  This file should be a Windows icon file (.ico) being 16x16 or 32x32
@@ -162,14 +162,14 @@ html_show_sourcelink = False
 # Theme options
 html_theme_options = {
     # Navigation bar title. (Default: ``project`` value)
-    'navbar_title': "FMRD-Summary",
+    'navbar_title': "API Python Client",
 
     # Tab name for entire site. (Default: "Site")
     'navbar_site_name': "Docs",
 
     # A list of tuples containing pages to link to.  The value should
     # be in the form [(name, page), ..]
-    'navbar_links': [('Examples', 'examples/main'), ('Libraries', 'libraries')],
+    'navbar_links': [],
 
     # Global TOC depth for "site" navbar tab. (Default: 1)
     # Switching to -1 shows all levels.
