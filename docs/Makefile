@@ -182,7 +182,7 @@ gh-pages:
 	rm -rf build _sources _static
 	git checkout master $(GH_PAGES_SOURCES)
 	git reset HEAD
-	make html
+	make -f docs/Makefile html
 	mv -fv build/html/* ./
 	rm -rf $(GH_PAGES_SOURCES) build
 	git add -A
