@@ -1,0 +1,8 @@
+.navbar-inner {
+    min-height: 95px;
+}
+
+section {
+    padding-top: 15px;
+    margin-top: -15px;
+}
