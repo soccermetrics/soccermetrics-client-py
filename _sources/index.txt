@@ -12,7 +12,9 @@ Contents:
 
    installation
    started
-
+   guide
+   reference
+   support
 
 Indices and tables
 ==================
