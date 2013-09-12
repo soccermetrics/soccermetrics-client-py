@@ -7,7 +7,12 @@ from soccermetrics import __api_version__ as API_VERSION
 
 class Resource(object):
     """
-    Represents a REST resource.
+    Represents a REST resource.  Sets high-level endpoint for API.
+
+    :param base_uri: Base URI of API.
+    :type base_uri: string
+    :param auth: Authentication credential.
+    :type auth: tuple
     """
     def __init__(self, base_uri, auth):
         self.base_uri = base_uri
@@ -18,6 +23,13 @@ class Resource(object):
     def get(self, uid=None, **kwargs):
         """
         Retrieves a representation of REST resource.
+
+        :param uid: Unique ID of API resource representation.
+        :type uid: integer
+        :param kwargs: Collection of query parameters.
+        :type kwargs: dict
+        :returns: Resource representation.
+        :rtype: ``EasyDict`` object.
         """
         uri = "%s%s/%d" % (self.base_uri, self.endpoint, uid) if uid else \
             "%s%s" % (self.base_uri, self.endpoint)
@@ -35,6 +47,9 @@ class Resource(object):
     def head(self):
         """
         Retrieves header data of REST resource.
+
+        :returns: Header data.
+        :rtype: ``EasyDict`` object.
         """
         uri = "%s%s" % (self.base_uri, self.endpoint)
 
@@ -47,9 +62,15 @@ class Resource(object):
 
     def options(self):
         """
-        Retrieves documentation of REST resource representation.
+        Retrieves documentation of REST resource.
+
+        If the status code is 200 (OK), returns the documentation.  Otherwise,
+        returns an error.
 
         Link resources are not included in the documentation.
+
+        :returns: Resource documentation data.
+        :rtype: ``EasyDict`` object.
         """
         uri = "%s%s" % (self.base_uri, self.endpoint)
 
@@ -65,18 +86,60 @@ class Resource(object):
 class Link(Resource):
     """
     Access to linked resources, can also access any API endpoint.
+
+    Derived from :class:`Resource`.
     """
     def __init__(self, base_uri, auth):
+        """
+        Constructor of Link class.
+
+        :param base_uri: Base URI of API.
+        :type base_uri: string
+        :param auth: Authentication credential.
+        :type auth: tuple
+        """
         super(Link, self).__init__(base_uri, auth)
 
     def get(self, uri, **kwargs):
+        """
+        Returns a representation of the REST resource.
+
+        Derived from :func:`Resource.get`.
+
+        :param uri: URI of REST resource, relative to base URI.
+        :type uri: string
+        :param kwargs: Collection of query parameters.
+        :type kwargs: dict
+        :returns: Resource representation.
+        :rtype: ``EasyDict`` object.
+        """
         self.endpoint = uri
         return super(Link, self).get(**kwargs)
 
     def head(self, uri):
+        """
+        Retrieves header data of REST resource.
+
+        Derived from :func:`Resource.head`.
+
+        :param uri: URI of REST resource, relative to base URI.
+        :type uri: string
+        :returns: Header data.
+        :rtype: ``EasyDict`` object.
+        """
         self.endpoint = uri
         return super(Link, self).head()
 
     def options(self, uri):
+        """
+        Retrieves documentation of REST resource representation.
+
+        Derived from :func:`Resource.options`.
+
+        :param uri: URI of REST resource, relative to base URI.
+        :type uri: string
+        :returns: Resource documentation data.
+        :rtype: ``EasyDict`` object.
+        """
         self.endpoint = uri
         return super(Link, self).options()

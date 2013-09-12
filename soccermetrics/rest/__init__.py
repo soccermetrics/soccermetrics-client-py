@@ -12,6 +12,12 @@ from soccermetrics.rest.resources import MatchStatistics
 def find_credentials():
     """
     Search for API credentials in current environment.
+
+    Looks for ``SOCCERMETRICS_APP_ID`` and ``SOCCERMETRICS_APP_KEY``
+    among the environment variables.  Returns a KeyError if
+    either variable is not present in the environment.
+
+    :returns: (account, api_key) or (None, None)
     """
     try:
         account = os.environ["SOCCERMETRICS_APP_ID"]
@@ -21,8 +27,12 @@ def find_credentials():
         return None, None
 
 class SoccermetricsRestClient(object):
-    """
-    A client for accessing the Soccermetrics REST API.
+    """A client object for accessing the Soccermetrics REST API.
+
+    :param account: Soccermetrics API Application ID.
+    :type account: string or None
+    :param api_key: Soccermetrics API Application key.
+    :type api_key: string or None
     """
     def __init__(self, account=None, api_key=None,
         base_uri="http://api-summary.soccermetrics.net"):
