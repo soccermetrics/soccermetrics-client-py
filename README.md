@@ -66,8 +66,8 @@ These get passed to the constructor or via environment variables.
 ```python
 from soccermetrics.rest import SoccermetricsRestClient
 
-appID = "ab01234c56"
-appKey = "abcd9876efab5432cdef1012abcd3456"
+appID = "f53baabb"
+appKey = "demo1234567890demo1234567890"
 
 client = SoccermetricsRestClient(account=appID,api_key=appKey)
 ```
@@ -90,8 +90,8 @@ client = SoccermetricsRestClient()
 ```python
 from soccermetrics.rest import SoccermetricsRestClient
 
-appID = "ab01234c56"
-appKey = "abcd9876efab5432cdef1012abcd3456"
+appID = "f53baabb"
+appKey = "demo1234567890demo1234567890"
 client = SoccermetricsRestClient()
 
 match = client.match.information.get(home_team_name="Everton",
@@ -108,8 +108,8 @@ for datum in lineup_data:
 ```python
 from soccermetrics.rest import SoccermetricsRestClient
 
-appID = "ab01234c56"
-appKey = "abcd9876efab5432cdef1012abcd3456"
+appID = "f53baabb"
+appKey = "demo1234567890demo1234567890"
 client = SoccermetricsRestClient()
 
 player = client.players.get(full_name=u'Robin van Persie')
@@ -122,5 +122,4 @@ penalties = client.link.get(player.link.events.penalties,outcome_type="Goal")
 # Learn More
 
 * [Link to API documentation](http://soccermetrics.github.io/fmrd-summary-api).
-
-* Link to full client documentation here.
+* [Link to full client documentation here](http://soccermetrics.github.io/soccermetrics-client-py).
