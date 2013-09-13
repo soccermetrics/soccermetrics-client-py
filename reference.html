@@ -83,7 +83,7 @@
 <li class="toctree-l1"><a class="reference internal" href="guide.html">User Guide</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">API Reference</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#module-soccermetrics.rest">Client Object</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-soccermetrics.rest.resources">Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#resources">Resources</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-soccermetrics">Exceptions</a></li>
 </ul>
 </li>
@@ -96,7 +96,16 @@
   <ul class="dropdown-menu localtoc"><ul>
 <li><a class="reference internal" href="#">API Reference</a><ul>
 <li><a class="reference internal" href="#module-soccermetrics.rest">Client Object</a></li>
-<li><a class="reference internal" href="#module-soccermetrics.rest.resources">Resources</a></li>
+<li><a class="reference internal" href="#resources">Resources</a><ul>
+<li><a class="reference internal" href="#module-soccermetrics.rest.resources.base">Base Classes</a></li>
+<li><a class="reference internal" href="#service-root">Service Root</a></li>
+<li><a class="reference internal" href="#validation-resources">Validation Resources</a></li>
+<li><a class="reference internal" href="#personnel-resources">Personnel Resources</a></li>
+<li><a class="reference internal" href="#match-resources">Match Resources</a></li>
+<li><a class="reference internal" href="#match-event-resources">Match Event Resources</a></li>
+<li><a class="reference internal" href="#match-statistic-resources">Match Statistic Resources</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#module-soccermetrics">Exceptions</a></li>
 </ul>
 </li>
@@ -177,8 +186,176 @@ either variable is not present in the environment.</p>
 </dd></dl>
 
 </div>
-<div class="section" id="module-soccermetrics.rest.resources">
-<span id="resources"></span><span id="ref-resources"></span><h2>Resources<a class="headerlink" href="#module-soccermetrics.rest.resources" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="resources">
+<span id="ref-resources"></span><h2>Resources<a class="headerlink" href="#resources" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-soccermetrics.rest.resources.base">
+<span id="base-classes"></span><h3>Base Classes<a class="headerlink" href="#module-soccermetrics.rest.resources.base" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="soccermetrics.rest.resources.base.Link">
+<em class="property">class </em><tt class="descclassname">soccermetrics.rest.resources.base.</tt><tt class="descname">Link</tt><big>(</big><em>base_uri</em>, <em>auth</em><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/base.html#Link"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.base.Link" title="Permalink to this definition">¶</a></dt>
+<dd><p>Access to linked resources, can also access any API endpoint.</p>
+<p>Derived from <a class="reference internal" href="#soccermetrics.rest.resources.base.Resource" title="soccermetrics.rest.resources.base.Resource"><tt class="xref py py-class docutils literal"><span class="pre">Resource</span></tt></a>.</p>
+<dl class="method">
+<dt id="soccermetrics.rest.resources.base.Link.get">
+<tt class="descname">get</tt><big>(</big><em>uri</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/base.html#Link.get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.base.Link.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a representation of the REST resource.</p>
+<p>Derived from <a class="reference internal" href="#soccermetrics.rest.resources.base.Resource.get" title="soccermetrics.rest.resources.base.Resource.get"><tt class="xref py py-func docutils literal"><span class="pre">Resource.get()</span></tt></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>uri</strong> (<em>string</em>) &#8211; URI of REST resource, relative to base URI.</li>
+<li><strong>kwargs</strong> (<em>dict</em>) &#8211; Collection of query parameters.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Resource representation.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><tt class="docutils literal"><span class="pre">EasyDict</span></tt> object.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="soccermetrics.rest.resources.base.Link.head">
+<tt class="descname">head</tt><big>(</big><em>uri</em><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/base.html#Link.head"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.base.Link.head" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieves header data of REST resource.</p>
+<p>Derived from <a class="reference internal" href="#soccermetrics.rest.resources.base.Resource.head" title="soccermetrics.rest.resources.base.Resource.head"><tt class="xref py py-func docutils literal"><span class="pre">Resource.head()</span></tt></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>uri</strong> (<em>string</em>) &#8211; URI of REST resource, relative to base URI.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Header data.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><tt class="docutils literal"><span class="pre">EasyDict</span></tt> object.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="soccermetrics.rest.resources.base.Link.options">
+<tt class="descname">options</tt><big>(</big><em>uri</em><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/base.html#Link.options"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.base.Link.options" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieves documentation of REST resource representation.</p>
+<p>Derived from <a class="reference internal" href="#soccermetrics.rest.resources.base.Resource.options" title="soccermetrics.rest.resources.base.Resource.options"><tt class="xref py py-func docutils literal"><span class="pre">Resource.options()</span></tt></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>uri</strong> (<em>string</em>) &#8211; URI of REST resource, relative to base URI.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Resource documentation data.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><tt class="docutils literal"><span class="pre">EasyDict</span></tt> object.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="soccermetrics.rest.resources.base.Resource">
+<em class="property">class </em><tt class="descclassname">soccermetrics.rest.resources.base.</tt><tt class="descname">Resource</tt><big>(</big><em>base_uri</em>, <em>auth</em><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/base.html#Resource"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.base.Resource" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represents a REST resource.  Sets high-level endpoint for API.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>base_uri</strong> (<em>string</em>) &#8211; Base URI of API.</li>
+<li><strong>auth</strong> (<em>tuple</em>) &#8211; Authentication credential.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="soccermetrics.rest.resources.base.Resource.get">
+<tt class="descname">get</tt><big>(</big><em>uid=None</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/base.html#Resource.get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.base.Resource.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieves a representation of REST resource.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>uid</strong> (<em>integer</em>) &#8211; Unique ID of API resource representation.</li>
+<li><strong>kwargs</strong> (<em>dict</em>) &#8211; Collection of query parameters.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Resource representation.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><tt class="docutils literal"><span class="pre">EasyDict</span></tt> object.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="soccermetrics.rest.resources.base.Resource.head">
+<tt class="descname">head</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/base.html#Resource.head"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.base.Resource.head" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieves header data of REST resource.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Header data.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><tt class="docutils literal"><span class="pre">EasyDict</span></tt> object.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="soccermetrics.rest.resources.base.Resource.options">
+<tt class="descname">options</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/base.html#Resource.options"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.base.Resource.options" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieves documentation of REST resource.</p>
+<p>If the status code is 200 (OK), returns the documentation.  Otherwise,
+returns an error.</p>
+<p>Link resources are not included in the documentation.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Resource documentation data.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><tt class="docutils literal"><span class="pre">EasyDict</span></tt> object.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="service-root">
+<h3>Service Root<a class="headerlink" href="#service-root" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="validation-resources">
+<h3>Validation Resources<a class="headerlink" href="#validation-resources" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="personnel-resources">
+<h3>Personnel Resources<a class="headerlink" href="#personnel-resources" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="match-resources">
+<h3>Match Resources<a class="headerlink" href="#match-resources" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="match-event-resources">
+<h3>Match Event Resources<a class="headerlink" href="#match-event-resources" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="match-statistic-resources">
+<h3>Match Statistic Resources<a class="headerlink" href="#match-statistic-resources" title="Permalink to this headline">¶</a></h3>
+</div>
 </div>
 <div class="section" id="module-soccermetrics">
 <span id="exceptions"></span><span id="ref-exceptions"></span><h2>Exceptions<a class="headerlink" href="#module-soccermetrics" title="Permalink to this headline">¶</a></h2>

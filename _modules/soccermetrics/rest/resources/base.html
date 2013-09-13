@@ -1,0 +1,296 @@
+
+
+  
+ 
+  
+ 
+
+
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>soccermetrics.rest.resources.base &mdash; Soccermetrics API Python Client Documentation</title>
+    
+    <link rel="stylesheet" href="../../../../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../srstatic/css/custom-styles.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootswatch/3.0.0/cosmo/bootstrap.min.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../',
+        VERSION:     '0.5',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../_static/js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="../../../../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../../../../_static/bootstrap-3.0.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../../../_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="Soccermetrics API Python Client Documentation" href="../../../../index.html" />
+    <link rel="up" title="soccermetrics.rest" href="../../rest.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body>
+
+  <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../../../index.html">API Python Client</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.5</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            <li class="divider-vertical"></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a href="../../../../index.html"
+     class="dropdown-toggle"
+     data-toggle="dropdown">Docs <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+    ><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../installation.html#virtual-environment-install">Virtual Environment Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../installation.html#system-wide-install">System-Wide Install</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../started.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../started.html#api-credentials">API Credentials</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reference.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../reference.html#module-soccermetrics.rest">Client Object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../reference.html#resources">Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../reference.html#module-soccermetrics">Exceptions</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"></ul>
+</li>
+              
+            
+            
+              
+                
+              
+            
+            
+            
+            
+              <li></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="span12">
+      
+  <h1>Source code for soccermetrics.rest.resources.base</h1><div class="highlight"><pre>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">chain</span>
+<span class="kn">from</span> <span class="nn">easydict</span> <span class="kn">import</span> <span class="n">EasyDict</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="kn">from</span> <span class="nn">soccermetrics</span> <span class="kn">import</span> <span class="n">SoccermetricsRestException</span>
+<span class="kn">from</span> <span class="nn">soccermetrics</span> <span class="kn">import</span> <span class="n">__api_version__</span> <span class="k">as</span> <span class="n">API_VERSION</span>
+
+<div class="viewcode-block" id="Resource"><a class="viewcode-back" href="../../../../reference.html#soccermetrics.rest.resources.base.Resource">[docs]</a><span class="k">class</span> <span class="nc">Resource</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Represents a REST resource.  Sets high-level endpoint for API.</span>
+
+<span class="sd">    :param base_uri: Base URI of API.</span>
+<span class="sd">    :type base_uri: string</span>
+<span class="sd">    :param auth: Authentication credential.</span>
+<span class="sd">    :type auth: tuple</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">base_uri</span> <span class="o">=</span> <span class="n">base_uri</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">auth</span> <span class="o">=</span> <span class="n">auth</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">endpoint</span> <span class="o">=</span> <span class="s">&quot;/</span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">API_VERSION</span>
+
+<div class="viewcode-block" id="Resource.get"><a class="viewcode-back" href="../../../../reference.html#soccermetrics.rest.resources.base.Resource.get">[docs]</a>    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">uid</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieves a representation of REST resource.</span>
+
+<span class="sd">        :param uid: Unique ID of API resource representation.</span>
+<span class="sd">        :type uid: integer</span>
+<span class="sd">        :param kwargs: Collection of query parameters.</span>
+<span class="sd">        :type kwargs: dict</span>
+<span class="sd">        :returns: Resource representation.</span>
+<span class="sd">        :rtype: ``EasyDict`` object.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">uri</span> <span class="o">=</span> <span class="s">&quot;</span><span class="si">%s%s</span><span class="s">/</span><span class="si">%d</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">base_uri</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">uid</span><span class="p">)</span> <span class="k">if</span> <span class="n">uid</span> <span class="k">else</span> \
+            <span class="s">&quot;</span><span class="si">%s%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">base_uri</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">endpoint</span><span class="p">)</span>
+
+        <span class="n">full_param_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">chain</span><span class="p">(</span><span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">auth</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span>
+
+        <span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">uri</span><span class="p">,</span><span class="n">params</span><span class="o">=</span><span class="n">full_param_dict</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">resp</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">resp</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s">&#39;result&#39;</span><span class="p">]</span>
+            <span class="k">return</span> <span class="n">EasyDict</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span> <span class="k">else</span> <span class="n">EasyDict</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">SoccermetricsRestException</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span><span class="n">resp</span><span class="o">.</span><span class="n">url</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Resource.head"><a class="viewcode-back" href="../../../../reference.html#soccermetrics.rest.resources.base.Resource.head">[docs]</a>    <span class="k">def</span> <span class="nf">head</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieves header data of REST resource.</span>
+
+<span class="sd">        :returns: Header data.</span>
+<span class="sd">        :rtype: ``EasyDict`` object.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">uri</span> <span class="o">=</span> <span class="s">&quot;</span><span class="si">%s%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">base_uri</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">endpoint</span><span class="p">)</span>
+
+        <span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">uri</span><span class="p">,</span><span class="n">params</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">auth</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">resp</span><span class="o">.</span><span class="n">status_code</span> <span class="o">&lt;</span> <span class="mi">400</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">EasyDict</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">headers</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">SoccermetricsRestException</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span><span class="n">resp</span><span class="o">.</span><span class="n">url</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Resource.options"><a class="viewcode-back" href="../../../../reference.html#soccermetrics.rest.resources.base.Resource.options">[docs]</a>    <span class="k">def</span> <span class="nf">options</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieves documentation of REST resource.</span>
+
+<span class="sd">        If the status code is 200 (OK), returns the documentation.  Otherwise,</span>
+<span class="sd">        returns an error.</span>
+
+<span class="sd">        Link resources are not included in the documentation.</span>
+
+<span class="sd">        :returns: Resource documentation data.</span>
+<span class="sd">        :rtype: ``EasyDict`` object.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">uri</span> <span class="o">=</span> <span class="s">&quot;</span><span class="si">%s%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">base_uri</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">endpoint</span><span class="p">)</span>
+
+        <span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">options</span><span class="p">(</span><span class="n">uri</span><span class="p">,</span><span class="n">params</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">auth</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">resp</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">EasyDict</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">headers</span><span class="o">=</span><span class="n">resp</span><span class="o">.</span><span class="n">headers</span><span class="p">,</span>
+                                 <span class="n">data</span><span class="o">=</span><span class="n">resp</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s">&#39;result&#39;</span><span class="p">][</span><span class="s">&#39;data&#39;</span><span class="p">]))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">SoccermetricsRestException</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span><span class="n">resp</span><span class="o">.</span><span class="n">url</span><span class="p">)</span>
+
+</div></div>
+<div class="viewcode-block" id="Link"><a class="viewcode-back" href="../../../../reference.html#soccermetrics.rest.resources.base.Link">[docs]</a><span class="k">class</span> <span class="nc">Link</span><span class="p">(</span><span class="n">Resource</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Access to linked resources, can also access any API endpoint.</span>
+
+<span class="sd">    Derived from :class:`Resource`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Constructor of Link class.</span>
+
+<span class="sd">        :param base_uri: Base URI of API.</span>
+<span class="sd">        :type base_uri: string</span>
+<span class="sd">        :param auth: Authentication credential.</span>
+<span class="sd">        :type auth: tuple</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Link</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Link.get"><a class="viewcode-back" href="../../../../reference.html#soccermetrics.rest.resources.base.Link.get">[docs]</a>    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">uri</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns a representation of the REST resource.</span>
+
+<span class="sd">        Derived from :func:`Resource.get`.</span>
+
+<span class="sd">        :param uri: URI of REST resource, relative to base URI.</span>
+<span class="sd">        :type uri: string</span>
+<span class="sd">        :param kwargs: Collection of query parameters.</span>
+<span class="sd">        :type kwargs: dict</span>
+<span class="sd">        :returns: Resource representation.</span>
+<span class="sd">        :rtype: ``EasyDict`` object.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">endpoint</span> <span class="o">=</span> <span class="n">uri</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">Link</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Link.head"><a class="viewcode-back" href="../../../../reference.html#soccermetrics.rest.resources.base.Link.head">[docs]</a>    <span class="k">def</span> <span class="nf">head</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">uri</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieves header data of REST resource.</span>
+
+<span class="sd">        Derived from :func:`Resource.head`.</span>
+
+<span class="sd">        :param uri: URI of REST resource, relative to base URI.</span>
+<span class="sd">        :type uri: string</span>
+<span class="sd">        :returns: Header data.</span>
+<span class="sd">        :rtype: ``EasyDict`` object.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">endpoint</span> <span class="o">=</span> <span class="n">uri</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">Link</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</div>
+<div class="viewcode-block" id="Link.options"><a class="viewcode-back" href="../../../../reference.html#soccermetrics.rest.resources.base.Link.options">[docs]</a>    <span class="k">def</span> <span class="nf">options</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">uri</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieves documentation of REST resource representation.</span>
+
+<span class="sd">        Derived from :func:`Resource.options`.</span>
+
+<span class="sd">        :param uri: URI of REST resource, relative to base URI.</span>
+<span class="sd">        :type uri: string</span>
+<span class="sd">        :returns: Resource documentation data.</span>
+<span class="sd">        :rtype: ``EasyDict`` object.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">endpoint</span> <span class="o">=</span> <span class="n">uri</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">Link</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">options</span><span class="p">()</span></div></div>
+</pre></div>
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2013, Soccermetrics Research, LLC.<br/>
+      Last updated on Sep 13, 2013.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2b1.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
