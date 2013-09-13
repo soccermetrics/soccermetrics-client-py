@@ -81,7 +81,12 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="guide.html">User Guide</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">API Reference</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-soccermetrics.rest">Client Object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-soccermetrics.rest.resources">Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-soccermetrics">Exceptions</a></li>
+</ul>
+</li>
 </ul>
 </ul>
 </li>
@@ -89,7 +94,12 @@
                 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Page <b class="caret"></b></a>
   <ul class="dropdown-menu localtoc"><ul>
-<li><a class="reference internal" href="#">API Reference</a></li>
+<li><a class="reference internal" href="#">API Reference</a><ul>
+<li><a class="reference internal" href="#module-soccermetrics.rest">Client Object</a></li>
+<li><a class="reference internal" href="#module-soccermetrics.rest.resources">Resources</a></li>
+<li><a class="reference internal" href="#module-soccermetrics">Exceptions</a></li>
+</ul>
+</li>
 </ul>
 </ul>
 </li>
@@ -127,8 +137,51 @@
   <div class="row">
     <div class="span12">
       
-  <div class="section" id="module-soccermetrics">
-<span id="api-reference"></span><span id="reference"></span><h1>API Reference<a class="headerlink" href="#module-soccermetrics" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="api-reference">
+<span id="reference"></span><h1>API Reference<a class="headerlink" href="#api-reference" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-soccermetrics.rest">
+<span id="client-object"></span><span id="ref-client-obj"></span><h2>Client Object<a class="headerlink" href="#module-soccermetrics.rest" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="soccermetrics.rest.SoccermetricsRestClient">
+<em class="property">class </em><tt class="descclassname">soccermetrics.rest.</tt><tt class="descname">SoccermetricsRestClient</tt><big>(</big><em>account=None</em>, <em>api_key=None</em>, <em>base_uri='http://api-summary.soccermetrics.net'</em><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest.html#SoccermetricsRestClient"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.SoccermetricsRestClient" title="Permalink to this definition">¶</a></dt>
+<dd><p>A client object for accessing the Soccermetrics REST API.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>account</strong> (<em>string or None</em>) &#8211; Soccermetrics API Application ID.</li>
+<li><strong>api_key</strong> (<em>string or None</em>) &#8211; Soccermetrics API Application key.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="soccermetrics.rest.find_credentials">
+<tt class="descclassname">soccermetrics.rest.</tt><tt class="descname">find_credentials</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest.html#find_credentials"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.find_credentials" title="Permalink to this definition">¶</a></dt>
+<dd><p>Search for API credentials in current environment.</p>
+<p>Looks for <tt class="docutils literal"><span class="pre">SOCCERMETRICS_APP_ID</span></tt> and <tt class="docutils literal"><span class="pre">SOCCERMETRICS_APP_KEY</span></tt>
+among the environment variables.  Returns a KeyError if
+either variable is not present in the environment.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">(account, api_key) or (None, None)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-soccermetrics.rest.resources">
+<span id="resources"></span><span id="ref-resources"></span><h2>Resources<a class="headerlink" href="#module-soccermetrics.rest.resources" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-soccermetrics">
+<span id="exceptions"></span><span id="ref-exceptions"></span><h2>Exceptions<a class="headerlink" href="#module-soccermetrics" title="Permalink to this headline">¶</a></h2>
 <dl class="exception">
 <dt id="soccermetrics.SoccermetricsException">
 <em class="property">exception </em><tt class="descclassname">soccermetrics.</tt><tt class="descname">SoccermetricsException</tt><a class="reference internal" href="_modules/soccermetrics.html#SoccermetricsException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.SoccermetricsException" title="Permalink to this definition">¶</a></dt>
@@ -141,6 +194,7 @@
 <dd><p>Custom exception for Soccermetrics REST API errors.</p>
 </dd></dl>
 
+</div>
 </div>
 
 
