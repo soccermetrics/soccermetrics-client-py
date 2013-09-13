@@ -25,37 +25,37 @@ Base Classes
 Service Root
 ^^^^^^^^^^^^
 
-.. automodule:: soccermetrics.rest.resource.service_root
+.. automodule:: soccermetrics.rest.resources.service_root
     :members:
 
 Validation Resources
 ^^^^^^^^^^^^^^^^^^^^
 
-.. automodule:: soccermetrics.rest.resource.validation
+.. automodule:: soccermetrics.rest.resources.validation
     :members:
 
 Personnel Resources
 ^^^^^^^^^^^^^^^^^^^
 
-.. automodule:: soccermetrics.rest.resource.personnel
+.. automodule:: soccermetrics.rest.resources.personnel
     :members:
 
 Match Resources
 ^^^^^^^^^^^^^^^
 
-.. automodule:: soccermetrics.rest.resource.match
+.. automodule:: soccermetrics.rest.resources.match
     :members:
 
 Match Event Resources
 ^^^^^^^^^^^^^^^^^^^^^
 
-.. automodule:: soccermetrics.rest.resource.events
+.. automodule:: soccermetrics.rest.resources.events
     :members:
 
 Match Statistic Resources
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. automodule:: soccermetrics.rest.resource.statistics
+.. automodule:: soccermetrics.rest.resources.statistics
     :members:
 
 .. _ref-exceptions:
