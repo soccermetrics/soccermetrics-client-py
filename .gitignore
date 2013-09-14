@@ -1,4 +1,5 @@
 .env
+.coverage
 build/
 *env/
 *.egg-info
