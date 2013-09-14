@@ -1,6 +1,7 @@
 .env
 build/
 *env/
+*.egg-info
 *.py[co]
 *.*~
 sphinx-setup.txt
