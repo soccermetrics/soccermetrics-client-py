@@ -38,7 +38,7 @@ class SoccermetricsRestClient(object):
         base_uri="http://api-summary.soccermetrics.net"):
         super(SoccermetricsRestClient, self).__init__()
 
-        if not account or api_key:
+        if not (account or api_key):
             account, api_key = find_credentials()
             if not (account and api_key):
                 raise SoccermetricsException("""
@@ -46,7 +46,7 @@ Soccermetrics API could not find your credentials.  Pass them into
 the SoccermetricsRestClient like this:
 
     client = SoccermetricsRestClient(account='xxxxxxxxxxx',
-                              key='yyyyyyyyyyyyyyyyy')
+                              api_key='yyyyyyyyyyyyyyyyy')
 
 Or, add your credentials to your shell environment. From the terminal, run
 
