@@ -54,7 +54,7 @@ Or, add your credentials to your shell environment. From the terminal, run
     echo "export SOCCERMETRICS_APP_KEY=yyyyyyyyyyyyyyyyy" >> ~/.bashrc
 
 and be sure to replace the values for the application ID and auth key with the
-values from your Soccermetrics API Account at http://soccermetrics.3scale.net
+values from your Soccermetrics API Account at http://soccermetrics.3scale.net.
 """)
 
         auth = {'app_id': account, 'app_key': api_key}
