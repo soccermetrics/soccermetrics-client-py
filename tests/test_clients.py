@@ -6,6 +6,9 @@ from soccermetrics import SoccermetricsException
 from soccermetrics.rest import SoccermetricsRestClient, find_credentials
 
 class NoCredentialsTest(unittest.TestCase):
+    """
+    Test outcome of find_credentials() given absence of environment variables.
+    """
 
     def setUp(self):
         if environ.has_key('SOCCERMETRICS_APP_KEY'):
@@ -19,6 +22,9 @@ class NoCredentialsTest(unittest.TestCase):
         self.assertEqual(api_key,None)
 
 class PartialCredentialsTest(unittest.TestCase):
+    """
+    Test outcome of find_credentials() given partial presence of environment variables.
+    """
 
     def setUp(self):
         environ['SOCCERMETRICS_APP_KEY'] = 'AUTH_TOKEN'
@@ -31,6 +37,9 @@ class PartialCredentialsTest(unittest.TestCase):
         self.assertEqual(api_key,None)
 
 class FullCredentialsTest(unittest.TestCase):
+    """
+    Test outcome of find_credentials() given presence of environment variables.
+    """
 
     def setUp(self):
         environ['SOCCERMETRICS_APP_KEY'] = 'AUTH_TOKEN'
@@ -42,6 +51,9 @@ class FullCredentialsTest(unittest.TestCase):
         self.assertEqual(api_key,'AUTH_TOKEN')
 
 class RestClientTest(unittest.TestCase):
+    """
+    Test for successful connection to SoccermetricsRestClient.
+    """
 
     def setUp(self):
         if environ.has_key('SOCCERMETRICS_APP_KEY'):
@@ -57,6 +69,9 @@ class RestClientTest(unittest.TestCase):
         self.assertIsInstance(self.client, SoccermetricsRestClient)
 
 class RestClientAttributeTest(unittest.TestCase):
+    """
+    Test for presence of attributes in SoccermetricsRestClient object.
+    """
 
     def setUp(self):
         self.client = SoccermetricsRestClient(account="APP_ID",api_key="APP_KEY")
@@ -118,5 +133,3 @@ class RestClientAttributeTest(unittest.TestCase):
         self.assertIsInstance(self.client.stats,
             soccermetrics.rest.resources.MatchStatistics)
 
-if __name__ == '__main__':
-    unittest.main()
