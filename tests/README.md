@@ -1,14 +1,28 @@
-FMRD-Summary-Client Unit Tests
-==============================
+Soccermetrics-Client-Py Unit Tests
+==================================
 
-This directory will contain unit tests for the FMRD-Summary API client.
+This directory contains unit tests for the Soccermetrics API client.
 
 Setup
 -----
 
-Instructions for setup will be here.
+From root directory of the repository:
+
+    $ python setup.py develop
+    $ pip install -r tests/requirements.txt
 
 Run Tests
 ---------
 
-Instructions for running tests will be here.
+From root directory of the repository:
+
+    $ nosetests -v tests/
+    
+Test Coverage Reports
+---------------------
+
+We use `coverage` to create coverage reports for the package.
+
+From root directory of the repository:
+
+    $ nosetests -v --with-coverage --cover-package=soccermetrics tests/
