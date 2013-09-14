@@ -1,4 +1,4 @@
-.PHONY clean venv install test test-install coverage
+.PHONY: clean venv install test test-install coverage
 
 venv:
 	virtualenv venv
