@@ -4,7 +4,7 @@ class MatchResource(Resource):
     """
     Represents a Match REST resource (/matches endpoints).
 
-    Derived from :class:`Resource`.
+    Derived from :class:`resources.Resource`.
     """
     def __init__(self, base_uri, auth):
         """
@@ -92,7 +92,7 @@ class MatchConditions(MatchResource):
     """
     Access to Match Conditions resources (/matches/conditions resource).
 
-    Derived from :class:`MatchConditions`.
+    Derived from :class:`MatchResource`.
     """
     def __init__(self, base_uri, auth):
         super(MatchConditions, self).__init__(base_uri,auth)
@@ -103,7 +103,7 @@ class MatchLineups(MatchResource):
     """
     Access to Match Lineups resources (/matches/lineups resource).
 
-    Derived from :class:`MatchLineups`.
+    Derived from :class:`MatchResource`.
     """
     def __init__(self, base_uri, auth):
         super(MatchLineups, self).__init__(base_uri,auth)
