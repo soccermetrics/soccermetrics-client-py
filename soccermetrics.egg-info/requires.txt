@@ -1,3 +1,0 @@
-requests >= 1.2.3
-easydict >= 1.4
-unittest2
