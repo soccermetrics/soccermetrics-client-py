@@ -154,6 +154,18 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Retrieves a representation of REST resource.</span>
 
+<span class="sd">        The response is an object with the following attributes:</span>
+
+<span class="sd">        +------------+-----------------------+</span>
+<span class="sd">        | Attribute  | Description           |</span>
+<span class="sd">        +============+=======================+</span>
+<span class="sd">        | headers    | Response headers      |</span>
+<span class="sd">        +------------+-----------------------+</span>
+<span class="sd">        | meta       | Response meta-data    |</span>
+<span class="sd">        +------------+-----------------------+</span>
+<span class="sd">        | data       | Response data         |</span>
+<span class="sd">        +------------+-----------------------+</span>
+
 <span class="sd">        :param uid: Unique ID of API resource representation.</span>
 <span class="sd">        :type uid: integer</span>
 <span class="sd">        :param kwargs: Collection of query parameters.</span>
@@ -169,14 +181,24 @@
         <span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">uri</span><span class="p">,</span><span class="n">params</span><span class="o">=</span><span class="n">full_param_dict</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">resp</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
-            <span class="n">result</span> <span class="o">=</span> <span class="n">resp</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s">&#39;result&#39;</span><span class="p">]</span>
-            <span class="k">return</span> <span class="n">EasyDict</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span> <span class="k">else</span> <span class="n">EasyDict</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+            <span class="n">jresp</span> <span class="o">=</span> <span class="n">resp</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">EasyDict</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">headers</span><span class="o">=</span><span class="n">resp</span><span class="o">.</span><span class="n">headers</span><span class="p">,</span>
+                                 <span class="n">meta</span><span class="o">=</span><span class="n">jresp</span><span class="p">[</span><span class="s">&#39;meta&#39;</span><span class="p">],</span>
+                                 <span class="n">data</span><span class="o">=</span><span class="n">jresp</span><span class="p">[</span><span class="s">&#39;result&#39;</span><span class="p">]))</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">SoccermetricsRestException</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span><span class="n">resp</span><span class="o">.</span><span class="n">url</span><span class="p">)</span>
 </div>
 <div class="viewcode-block" id="Resource.head"><a class="viewcode-back" href="../../../../reference.html#soccermetrics.rest.resources.base.Resource.head">[docs]</a>    <span class="k">def</span> <span class="nf">head</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Retrieves header data of REST resource.</span>
+
+<span class="sd">        The response is an object with the following attribute:</span>
+
+<span class="sd">        +------------+-----------------------+</span>
+<span class="sd">        | Attribute  | Description           |</span>
+<span class="sd">        +============+=======================+</span>
+<span class="sd">        | headers    | Response headers      |</span>
+<span class="sd">        +------------+-----------------------+</span>
 
 <span class="sd">        :returns: Header data.</span>
 <span class="sd">        :rtype: ``EasyDict`` object.</span>
@@ -186,7 +208,7 @@
         <span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">uri</span><span class="p">,</span><span class="n">params</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">auth</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">resp</span><span class="o">.</span><span class="n">status_code</span> <span class="o">&lt;</span> <span class="mi">400</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">EasyDict</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">headers</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">EasyDict</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">headers</span><span class="o">=</span><span class="n">resp</span><span class="o">.</span><span class="n">headers</span><span class="p">))</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">SoccermetricsRestException</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span><span class="n">resp</span><span class="o">.</span><span class="n">url</span><span class="p">)</span>
 </div>
@@ -196,6 +218,16 @@
 
 <span class="sd">        If the status code is 200 (OK), returns the documentation.  Otherwise,</span>
 <span class="sd">        returns an error.</span>
+
+<span class="sd">        The response is an object with the following attributes:</span>
+
+<span class="sd">        +------------+------------------------+</span>
+<span class="sd">        | Attribute  | Description            |</span>
+<span class="sd">        +============+========================+</span>
+<span class="sd">        | headers    | Response headers       |</span>
+<span class="sd">        +------------+------------------------+</span>
+<span class="sd">        | data       | Resource documentation |</span>
+<span class="sd">        +------------+------------------------+</span>
 
 <span class="sd">        Link resources are not included in the documentation.</span>
 
@@ -207,8 +239,10 @@
         <span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">options</span><span class="p">(</span><span class="n">uri</span><span class="p">,</span><span class="n">params</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">auth</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">resp</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+            <span class="n">jresp</span> <span class="o">=</span> <span class="n">resp</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
             <span class="k">return</span> <span class="n">EasyDict</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">headers</span><span class="o">=</span><span class="n">resp</span><span class="o">.</span><span class="n">headers</span><span class="p">,</span>
-                                 <span class="n">data</span><span class="o">=</span><span class="n">resp</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s">&#39;result&#39;</span><span class="p">][</span><span class="s">&#39;data&#39;</span><span class="p">]))</span>
+                                 <span class="n">meta</span><span class="o">=</span><span class="n">jresp</span><span class="p">[</span><span class="s">&#39;meta&#39;</span><span class="p">],</span>
+                                 <span class="n">data</span><span class="o">=</span><span class="n">jresp</span><span class="p">[</span><span class="s">&#39;result&#39;</span><span class="p">]))</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">SoccermetricsRestException</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span><span class="n">resp</span><span class="o">.</span><span class="n">url</span><span class="p">)</span>
 
@@ -287,7 +321,7 @@
     </p>
     <p>
         &copy; Copyright 2013, Soccermetrics Research, LLC.<br/>
-      Last updated on Sep 13, 2013.<br/>
+      Last updated on Sep 16, 2013.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2b1.<br/>
     </p>
   </div>

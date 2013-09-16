@@ -280,6 +280,29 @@ either variable is not present in the environment.</p>
 <dt id="soccermetrics.rest.resources.base.Resource.get">
 <tt class="descname">get</tt><big>(</big><em>uid=None</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/base.html#Resource.get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.base.Resource.get" title="Permalink to this definition">¶</a></dt>
 <dd><p>Retrieves a representation of REST resource.</p>
+<p>The response is an object with the following attributes:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="34%" />
+<col width="66%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Attribute</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>headers</td>
+<td>Response headers</td>
+</tr>
+<tr class="row-odd"><td>meta</td>
+<td>Response meta-data</td>
+</tr>
+<tr class="row-even"><td>data</td>
+<td>Response data</td>
+</tr>
+</tbody>
+</table>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -304,6 +327,23 @@ either variable is not present in the environment.</p>
 <dt id="soccermetrics.rest.resources.base.Resource.head">
 <tt class="descname">head</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/base.html#Resource.head"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.base.Resource.head" title="Permalink to this definition">¶</a></dt>
 <dd><p>Retrieves header data of REST resource.</p>
+<p>The response is an object with the following attribute:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="34%" />
+<col width="66%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Attribute</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>headers</td>
+<td>Response headers</td>
+</tr>
+</tbody>
+</table>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -322,6 +362,26 @@ either variable is not present in the environment.</p>
 <dd><p>Retrieves documentation of REST resource.</p>
 <p>If the status code is 200 (OK), returns the documentation.  Otherwise,
 returns an error.</p>
+<p>The response is an object with the following attributes:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="33%" />
+<col width="67%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Attribute</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>headers</td>
+<td>Response headers</td>
+</tr>
+<tr class="row-odd"><td>data</td>
+<td>Resource documentation</td>
+</tr>
+</tbody>
+</table>
 <p>Link resources are not included in the documentation.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -364,7 +424,7 @@ returns an error.</p>
 <dt id="soccermetrics.rest.resources.personnel.Personnel">
 <em class="property">class </em><tt class="descclassname">soccermetrics.rest.resources.personnel.</tt><tt class="descname">Personnel</tt><big>(</big><em>resource</em>, <em>base_uri</em>, <em>auth</em><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/personnel.html#Personnel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.personnel.Personnel" title="Permalink to this definition">¶</a></dt>
 <dd><p>Represents a Personnel REST resource (/personnel endpoint).</p>
-<p>Derived from <tt class="xref py py-class docutils literal"><span class="pre">base.Resource</span></tt>.</p>
+<p>Derived from <tt class="xref py py-class docutils literal"><span class="pre">Resource</span></tt>.</p>
 </dd></dl>
 
 </div>
@@ -423,7 +483,7 @@ returns an error.</p>
 <dt id="soccermetrics.rest.resources.match.MatchResource">
 <em class="property">class </em><tt class="descclassname">soccermetrics.rest.resources.match.</tt><tt class="descname">MatchResource</tt><big>(</big><em>base_uri</em>, <em>auth</em><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/match.html#MatchResource"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.match.MatchResource" title="Permalink to this definition">¶</a></dt>
 <dd><p>Represents a Match REST resource (/matches endpoints).</p>
-<p>Derived from <tt class="xref py py-class docutils literal"><span class="pre">base.Resource</span></tt>.</p>
+<p>Derived from <tt class="xref py py-class docutils literal"><span class="pre">Resource</span></tt>.</p>
 <dl class="method">
 <dt id="soccermetrics.rest.resources.match.MatchResource.EndpointURI">
 <tt class="descname">EndpointURI</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/match.html#MatchResource.EndpointURI"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.match.MatchResource.EndpointURI" title="Permalink to this definition">¶</a></dt>
@@ -899,7 +959,7 @@ returns an error.</p>
     </p>
     <p>
         &copy; Copyright 2013, Soccermetrics Research, LLC.<br/>
-      Last updated on Sep 13, 2013.<br/>
+      Last updated on Sep 16, 2013.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2b1.<br/>
     </p>
   </div>
