@@ -24,6 +24,18 @@ class Resource(object):
         """
         Retrieves a representation of REST resource.
 
+        The response is an object with the following attributes:
+
+        +------------+-----------------------+
+        | Attribute  | Description           |
+        +============+=======================+
+        | headers    | Response headers      |
+        +------------+-----------------------+
+        | meta       | Response meta-data    |
+        +------------+-----------------------+
+        | data       | Response data         |
+        +------------+-----------------------+
+
         :param uid: Unique ID of API resource representation.
         :type uid: integer
         :param kwargs: Collection of query parameters.
@@ -39,14 +51,24 @@ class Resource(object):
         resp = requests.get(uri,params=full_param_dict)
 
         if resp.status_code == 200:
-            result = resp.json()['result']
-            return EasyDict(result[0]) if len(result) == 1 else EasyDict(result)
+            jresp = resp.json()
+            return EasyDict(dict(headers=resp.headers,
+                                 meta=jresp['meta'],
+                                 data=jresp['result']))
         else:
             raise SoccermetricsRestException(resp.status_code,resp.url)
 
     def head(self):
         """
         Retrieves header data of REST resource.
+
+        The response is an object with the following attribute:
+
+        +------------+-----------------------+
+        | Attribute  | Description           |
+        +============+=======================+
+        | headers    | Response headers      |
+        +------------+-----------------------+
 
         :returns: Header data.
         :rtype: ``EasyDict`` object.
@@ -56,7 +78,7 @@ class Resource(object):
         resp = requests.head(uri,params=self.auth)
 
         if resp.status_code < 400:
-            return EasyDict(resp.headers)
+            return EasyDict(dict(headers=resp.headers))
         else:
             raise SoccermetricsRestException(resp.status_code,resp.url)
 
@@ -66,6 +88,16 @@ class Resource(object):
 
         If the status code is 200 (OK), returns the documentation.  Otherwise,
         returns an error.
+
+        The response is an object with the following attributes:
+
+        +------------+------------------------+
+        | Attribute  | Description            |
+        +============+========================+
+        | headers    | Response headers       |
+        +------------+------------------------+
+        | data       | Resource documentation |
+        +------------+------------------------+
 
         Link resources are not included in the documentation.
 
@@ -77,8 +109,10 @@ class Resource(object):
         resp = requests.options(uri,params=self.auth)
 
         if resp.status_code == 200:
+            jresp = resp.json()
             return EasyDict(dict(headers=resp.headers,
-                                 data=resp.json()['result']['data']))
+                                 meta=jresp['meta'],
+                                 data=jresp['result']))
         else:
             raise SoccermetricsRestException(resp.status_code,resp.url)
 
