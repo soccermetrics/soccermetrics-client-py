@@ -4,7 +4,7 @@ class Personnel(Resource):
     """
     Represents a Personnel REST resource (/personnel endpoint).
 
-    Derived from :class:`base.Resource`.
+    Derived from :class:`Resource`.
     """
     def __init__(self, resource, base_uri, auth):
         """

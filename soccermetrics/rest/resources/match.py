@@ -4,7 +4,7 @@ class MatchResource(Resource):
     """
     Represents a Match REST resource (/matches endpoints).
 
-    Derived from :class:`base.Resource`.
+    Derived from :class:`Resource`.
     """
     def __init__(self, base_uri, auth):
         """
