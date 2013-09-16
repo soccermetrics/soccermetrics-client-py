@@ -1,5 +1,5 @@
-Soccermetrics-Client-Py Unit Tests
-==================================
+API Client Unit Tests
+=====================
 
 This directory contains unit tests for the Soccermetrics API client.
 
@@ -17,7 +17,7 @@ Run Tests
 From root directory of the repository:
 
     $ nosetests -v tests/
-    
+
 Test Coverage Reports
 ---------------------
 
