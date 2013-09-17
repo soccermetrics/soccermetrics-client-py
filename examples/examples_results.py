@@ -3,6 +3,7 @@
 # Create a full-time result list for matches in a matchday.
 #
 
+import sys
 from soccermetrics.rest import SoccermetricsRestClient
 
 # A closure that we've written to page through the resource
@@ -24,8 +25,16 @@ if __name__ == "__main__":
     # variables, which we recommend.
     client = SoccermetricsRestClient()
 
-    # We will publish the match fixtures for matchdays 2-4.
-    for day in range(2,5):
+    # Get starting and ending matchdays from command-line arguments.
+    # Both numbers must be entered.
+    if len(sys.argv) != 3:
+        sys.stderr.write("Usage: python %s <matchday_start> <matchday_end>" % sys.argv[0])
+        raise SystemExit(1)
+    matchday_start = int(sys.argv[1])
+    matchday_end = int(sys.argv[2])
+
+    # We will publish the match fixtures for the matchday range.
+    for day in range(matchday_start,matchday_end+1):
 
         # Get match info data from all matches associated with a matchday.  We
         # will make use of the sorting functionality in the Soccermetrics API.
@@ -44,11 +53,11 @@ if __name__ == "__main__":
                 goals = client.link.get(match.link.events.goals,scoring_team_name=team).data
                 pens = client.link.get(match.link.events.penalties,player_team_name=team,
                                        outcome_type="Goal").data
-                    
+
                 match_goals.append(len(goals)+len(pens))
-            
-            print "Matchday %02s %s %s %30s %d-%d %-30s" % (match.matchday, 
-                match.match_date, match.kickoff_time, match.home_team_name, 
+
+            print "Matchday %02s %s %s %30s %d-%d %-30s" % (match.matchday,
+                match.match_date, match.kickoff_time, match.home_team_name,
                 match_goals[0],match_goals[1],match.away_team_name)
-        # A newline to separate the matchdays.        
+        # A newline to separate the matchdays.
         print

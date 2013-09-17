@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-# Create a statistical record of a referee's performance, 
+# Create a statistical record of a referee's performance,
 # from time added on to cards shown to fouls called.
 #
 
@@ -24,15 +24,15 @@ if __name__ == "__main__":
     # SOCCERMETRICS_APP_ID and SOCCERMETRICS_APP_KEY are in your environment
     # variables, which we recommend.
     client = SoccermetricsRestClient()
-    
+
     # Get data for one referee.
     referee = client.referees.get(full_name="Howard Webb").data[0]
-    
+
     # get list of matches that referee directed
     matches = []
-    for page in iter(client.link.get(referee.link.matches)):
+    for page in iter(client.link.get(referee.link.matches,sort="match_date")):
         matches.extend(page)
-    
+
     # iterate through matches, pull out time added on
     timeon = []
     penalties = []
@@ -40,18 +40,31 @@ if __name__ == "__main__":
     reds = []
     for match in matches:
         timeon.append(dict(first=match.firsthalf_length,second=match.secondhalf_length))
-        penalties.extend(client.link.get(match.link.events.penalties).data)
+
+        match_pens = client.link.get(match.link.events.penalties).data
+        match_yellows = []
         for page in iter(client.link.get(match.link.events.offenses,card_type="Yellow")):
-            yellows.extend(page)
-        reds.extend(client.link.get(match.link.events.offenses,card_type="Yellow/Red").data +
-                    client.link.get(match.link.events.offenses,card_type="Red").data)
+            match_yellows.extend(page)
+        match_2ndyellows = client.link.get(match.link.events.offenses,card_type="Yellow/Red").data
+        match_reds = client.link.get(match.link.events.offenses,card_type="Red").data
+
+        penalties.extend(match_pens)
+        yellows.extend(match_yellows)
+        reds.extend(match_2ndyellows + match_reds)
+
+        print """Matchday %s: %s v %s: Penalties %d Yellow %d Yellow/Red %d Red %d  1st Half %d  2nd Half %d""" % (match.matchday,
+                    match.home_team_name, match.away_team_name, len(match_pens),
+                    len(match_yellows), len(match_2ndyellows), len(match_reds),
+                    match.firsthalf_length, match.secondhalf_length)
 
     dict2list = lambda vec,k: [x[k] for x in vec]
-    
-    first_half_avg = sum(dict2list(timeon,'first'))/len(dict2list(timeon,'first'))
-    second_half_avg = sum(dict2list(timeon,'second'))/len(dict2list(timeon,'second'))
-    
-    foul_list = set(dict2list(yellows,'foul_type'))
-    
-    print foul_list
+
+    foul_list = set(dict2list(yellows,'foul_type')+dict2list(reds,'foul_type'))
+
+    print "Foul Type\tYellows\tReds"
+    for foul in foul_list:
+        print "%30s\t%2d\t%2d" % (foul,
+            sum([1 for x in yellows if x['foul_type'] == foul]),
+            sum([1 for x in reds if x['foul_type'] == foul]))
+
 
