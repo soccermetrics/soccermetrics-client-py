@@ -154,6 +154,85 @@
 <dt id="soccermetrics.rest.SoccermetricsRestClient">
 <em class="property">class </em><tt class="descclassname">soccermetrics.rest.</tt><tt class="descname">SoccermetricsRestClient</tt><big>(</big><em>account=None</em>, <em>api_key=None</em>, <em>base_uri='http://api-summary.soccermetrics.net'</em><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest.html#SoccermetricsRestClient"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.SoccermetricsRestClient" title="Permalink to this definition">¶</a></dt>
 <dd><p>A client object for accessing the Soccermetrics REST API.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="44%" />
+<col width="56%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Attribute</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>root</td>
+<td>Service root</td>
+</tr>
+<tr class="row-odd"><td>link</td>
+<td>Link to resources</td>
+</tr>
+<tr class="row-even"><td>confederations</td>
+<td>Confederations</td>
+</tr>
+<tr class="row-odd"><td>countries</td>
+<td>Countries</td>
+</tr>
+<tr class="row-even"><td>seasons</td>
+<td>Seasons</td>
+</tr>
+<tr class="row-odd"><td>teams</td>
+<td>Teams</td>
+</tr>
+<tr class="row-even"><td>venues</td>
+<td>Venues</td>
+</tr>
+<tr class="row-odd"><td>persons</td>
+<td>Persons</td>
+</tr>
+<tr class="row-even"><td>positions</td>
+<td>Positions</td>
+</tr>
+<tr class="row-odd"><td>fouls</td>
+<td>Fouls</td>
+</tr>
+<tr class="row-even"><td>cards</td>
+<td>Cards</td>
+</tr>
+<tr class="row-odd"><td>bodyparts</td>
+<td>Body parts</td>
+</tr>
+<tr class="row-even"><td>shotevents</td>
+<td>Shot events</td>
+</tr>
+<tr class="row-odd"><td>penalty_outcomes</td>
+<td>Penalty outcomes</td>
+</tr>
+<tr class="row-even"><td>weather</td>
+<td>Weather conditions</td>
+</tr>
+<tr class="row-odd"><td>surfaces</td>
+<td>Surfaces</td>
+</tr>
+<tr class="row-even"><td>players</td>
+<td>Players</td>
+</tr>
+<tr class="row-odd"><td>managers</td>
+<td>Managers</td>
+</tr>
+<tr class="row-even"><td>referees</td>
+<td>Referees</td>
+</tr>
+<tr class="row-odd"><td>match</td>
+<td>Match resources</td>
+</tr>
+<tr class="row-even"><td>events</td>
+<td>Match event resources</td>
+</tr>
+<tr class="row-odd"><td>stats</td>
+<td>Match stat resources</td>
+</tr>
+</tbody>
+</table>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -462,7 +541,7 @@ returns an error.</p>
 <dt id="soccermetrics.rest.resources.match.MatchConditions">
 <em class="property">class </em><tt class="descclassname">soccermetrics.rest.resources.match.</tt><tt class="descname">MatchConditions</tt><big>(</big><em>base_uri</em>, <em>auth</em><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/match.html#MatchConditions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.match.MatchConditions" title="Permalink to this definition">¶</a></dt>
 <dd><p>Access to Match Conditions resources (/matches/conditions resource).</p>
-<p>Derived from <a class="reference internal" href="#soccermetrics.rest.resources.match.MatchConditions" title="soccermetrics.rest.resources.match.MatchConditions"><tt class="xref py py-class docutils literal"><span class="pre">MatchConditions</span></tt></a>.</p>
+<p>Derived from <a class="reference internal" href="#soccermetrics.rest.resources.match.MatchResource" title="soccermetrics.rest.resources.match.MatchResource"><tt class="xref py py-class docutils literal"><span class="pre">MatchResource</span></tt></a>.</p>
 </dd></dl>
 
 <dl class="class">
@@ -476,14 +555,14 @@ returns an error.</p>
 <dt id="soccermetrics.rest.resources.match.MatchLineups">
 <em class="property">class </em><tt class="descclassname">soccermetrics.rest.resources.match.</tt><tt class="descname">MatchLineups</tt><big>(</big><em>base_uri</em>, <em>auth</em><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/match.html#MatchLineups"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.match.MatchLineups" title="Permalink to this definition">¶</a></dt>
 <dd><p>Access to Match Lineups resources (/matches/lineups resource).</p>
-<p>Derived from <a class="reference internal" href="#soccermetrics.rest.resources.match.MatchLineups" title="soccermetrics.rest.resources.match.MatchLineups"><tt class="xref py py-class docutils literal"><span class="pre">MatchLineups</span></tt></a>.</p>
+<p>Derived from <a class="reference internal" href="#soccermetrics.rest.resources.match.MatchResource" title="soccermetrics.rest.resources.match.MatchResource"><tt class="xref py py-class docutils literal"><span class="pre">MatchResource</span></tt></a>.</p>
 </dd></dl>
 
 <dl class="class">
 <dt id="soccermetrics.rest.resources.match.MatchResource">
 <em class="property">class </em><tt class="descclassname">soccermetrics.rest.resources.match.</tt><tt class="descname">MatchResource</tt><big>(</big><em>base_uri</em>, <em>auth</em><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/match.html#MatchResource"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.match.MatchResource" title="Permalink to this definition">¶</a></dt>
 <dd><p>Represents a Match REST resource (/matches endpoints).</p>
-<p>Derived from <tt class="xref py py-class docutils literal"><span class="pre">Resource</span></tt>.</p>
+<p>Derived from <tt class="xref py py-class docutils literal"><span class="pre">resources.Resource</span></tt>.</p>
 <dl class="method">
 <dt id="soccermetrics.rest.resources.match.MatchResource.EndpointURI">
 <tt class="descname">EndpointURI</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/match.html#MatchResource.EndpointURI"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.match.MatchResource.EndpointURI" title="Permalink to this definition">¶</a></dt>
@@ -959,7 +1038,7 @@ returns an error.</p>
     </p>
     <p>
         &copy; Copyright 2013, Soccermetrics Research, LLC.<br/>
-      Last updated on Sep 16, 2013.<br/>
+      Last updated on Sep 17, 2013.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2b1.<br/>
     </p>
   </div>
