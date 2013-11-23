@@ -209,22 +209,22 @@ class Response(Resource):
     @property
     def page(self):
         """Current page property"""
-        return self._meta.page
+        return self._meta.page if self._meta else 0
 
     @property
     def pages(self):
         """Total pages property"""
-        return self._meta.total_pages
+        return self._meta.total_pages if self._meta else 0
 
     @property
     def records_page(self):
         """Records per page property"""
-        return self._meta.records
+        return self._meta.records if self._meta else 0
 
     @property
     def records(self):
         """Total records property"""
-        return self._meta.total_records
+        return self._meta.total_records if self._meta else 0
 
     def first(self):
         """Go to first page of API response"""
