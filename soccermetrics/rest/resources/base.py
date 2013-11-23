@@ -194,14 +194,14 @@ class Response(Resource):
         jresp = resp.json()
         self._meta = EasyDict(jresp['meta'])
         self.headers = EasyDict(resp.headers)
-        self.response = EasyDict(dict(data=jresp['result']))
+        self.data = [EasyDict(rec) for rec in jresp['result']]
 
     def _iter(self):
         """Custom iterator to retrieve all data from API response"""
         resp = self
         while True:
-            yield (resp.response.data)
-            if not resp._meta.next:
+            yield (resp.data)
+            if not resp._meta or not resp._meta.next:
                 raise StopIteration
             else:
                 resp = resp.next()
