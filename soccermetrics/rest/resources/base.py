@@ -228,27 +228,32 @@ class Response(Resource):
 
     def first(self):
         """Go to first page of API response"""
-        self.endpoint = self._meta.first
-        return super(Response, self).get()
+        if self._meta:
+            self.endpoint = self._meta.first
+            return super(Response, self).get()
+        else:
+            return None
 
     def next(self):
         """Go to next page of API response"""
-        if self._meta.next:
+        if self._meta and self._meta.next:
             self.endpoint = self._meta.next
             return super(Response, self).get()
         return None
 
     def prev(self):
         """Go to previous page of API response"""
-        if self._meta.prev:
+        if self._meta and self._meta.prev:
             self.endpoint = self._meta.prev
             return super(Response, self).get()
         return None
 
     def last(self):
         """Go to last page of API response"""
-        self.endpoint = self._meta.last
-        return super(Response, self).get()
+        if self._meta:
+            self.endpoint = self._meta.last
+            return super(Response, self).get()
+        return None
 
     def all(self):
         """Retrieve all data of API response"""
