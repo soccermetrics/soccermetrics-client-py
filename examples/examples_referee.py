@@ -6,18 +6,6 @@
 
 from soccermetrics.rest import SoccermetricsRestClient
 
-# A closure that we've written to page through the resource
-# representation.  We'll add the functionality in a future
-# release of the client so that you won't have to write this,
-# but we want to make sure you can run this example now.
-def iter(resp):
-    while True:
-        yield (resp.data)
-        if not resp.meta or not resp.meta.next:
-            raise StopIteration
-        else:
-            resp = client.link.get(resp.meta.next)
-
 if __name__ == "__main__":
 
     # Create a SoccermetricsRestClient object.  This call assumes that
@@ -29,24 +17,21 @@ if __name__ == "__main__":
     referee = client.referees.get(full_name="Howard Webb").data[0]
 
     # get list of matches that referee directed
-    matches = []
-    for page in iter(client.link.get(referee.link.matches,sort="match_date")):
-        matches.extend(page)
+    matches = client.link.get(referee.link.matches,sort="match_date").all()
 
-    # iterate through matches, pull out time added on
-    timeon = []
+    # extract time added on
+    timeon = [dict(first=match.firsthalf_length,second=match.secondhalf_length)
+              for match in matches]
+
+    # iterate through matches
     penalties = []
     yellows = []
     reds = []
     for match in matches:
-        timeon.append(dict(first=match.firsthalf_length,second=match.secondhalf_length))
-
-        match_pens = client.link.get(match.link.events.penalties).data
-        match_yellows = []
-        for page in iter(client.link.get(match.link.events.offenses,card_type="Yellow")):
-            match_yellows.extend(page)
-        match_2ndyellows = client.link.get(match.link.events.offenses,card_type="Yellow/Red").data
-        match_reds = client.link.get(match.link.events.offenses,card_type="Red").data
+        match_pens = client.link.get(match.link.events.penalties).all()
+        match_yellows = client.link.get(match.link.events.offenses,card_type="Yellow").all()
+        match_2ndyellows = client.link.get(match.link.events.offenses,card_type="Yellow/Red").all()
+        match_reds = client.link.get(match.link.events.offenses,card_type="Red").all()
 
         penalties.extend(match_pens)
         yellows.extend(match_yellows)

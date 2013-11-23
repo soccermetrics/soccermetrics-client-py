@@ -7,18 +7,6 @@
 
 from soccermetrics.rest import SoccermetricsRestClient
 
-# A closure that we've written to page through the resource
-# representation.  We'll add the functionality in a future
-# release of the client so that you won't have to write this,
-# but we want to make sure you can run this example now.
-def iter(resp):
-    while True:
-        yield (resp.data)
-        if not resp.meta or not resp.meta.next:
-            raise StopIteration
-        else:
-            resp = client.link.get(resp.meta.next)
-
 if __name__ == "__main__":
 
     # Create a SoccermetricsRestClient object.  This call assumes that
@@ -30,12 +18,8 @@ if __name__ == "__main__":
     manager = client.managers.get(full_name=u'Roberto Mancini').data[0]
 
     # get list of matches in which manager was involved
-    hmatches = []
-    for page in iter(client.link.get(manager.link.home_matches,sort="match_date")):
-        hmatches.extend(page)
-    amatches = []
-    for page in iter(client.link.get(manager.link.away_matches,sort="match_date")):
-        amatches.extend(page)
+    hmatches = client.link.get(manager.link.home_matches,sort="match_date").all()
+    amatches = client.link.get(manager.link.away_matches,sort="match_date").all()
 
     matches = sorted(hmatches + amatches,key=lambda k: k.match_date)
 

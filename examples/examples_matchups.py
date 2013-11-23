@@ -7,18 +7,6 @@
 import sys
 from soccermetrics.rest import SoccermetricsRestClient
 
-# A generator that we've written to page through the resource
-# representation.  We'll add the functionality in a future
-# release of the client so that you won't have to write this,
-# but we want to make sure you can run this example now.
-def iter(resp):
-    while True:
-        yield (resp.data)
-        if not resp.meta.next:
-            raise StopIteration
-        else:
-            resp = client.link.get(resp.meta.next)
-
 if __name__ == "__main__":
 
     # Create a SoccermetricsRestClient object.  This call assumes that
@@ -29,7 +17,7 @@ if __name__ == "__main__":
     # Get starting and ending matchdays from command-line arguments.
     # Both numbers must be entered.
     if len(sys.argv) != 3:
-        sys.stderr.write("Usage: python %s <matchday_start> <matchday_end>" % sys.argv[0])
+        sys.stderr.write("Usage: python %s <matchday_start> <matchday_end>\n" % sys.argv[0])
         raise SystemExit(1)
     matchday_start = int(sys.argv[1])
     matchday_end = int(sys.argv[2])
@@ -39,10 +27,8 @@ if __name__ == "__main__":
 
         # Get match info data from all matches associated with a matchday.  We
         # will make use of the sorting functionality in the Soccermetrics API.
-        matches = []
-        for page in iter(client.match.information.get(matchday=day,
-                sort='match_date,kickoff_time')):
-            matches.extend(page)
+        matches = client.match.information.get(matchday=day,
+                    sort='match_date,kickoff_time').all()
 
         # Now we can iterate over the sorted match list and print information
         # associated with the match, like the date, time, the two teams, the

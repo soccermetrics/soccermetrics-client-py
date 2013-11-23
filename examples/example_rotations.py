@@ -6,18 +6,6 @@
 
 from soccermetrics.rest import SoccermetricsRestClient
 
-# A closure that we've written to page through the resource
-# representation.  We'll add the functionality in a future
-# release of the client so that you won't have to write this,
-# but we want to make sure you can run this example now.
-def iter(resp):
-    while True:
-        yield (resp.data)
-        if not resp.meta.next:
-            raise StopIteration
-        else:
-            resp = client.link.get(resp.meta.next)
-
 if __name__ == "__main__":
 
     # Create a SoccermetricsRestClient object.  This call assumes that
@@ -29,6 +17,10 @@ if __name__ == "__main__":
     # It's not necessary, but we don't like to hard-code numbers.
     STARTING_XI = 11
 
+    # Set club variable to Liverpool.  Enables reuse if we want to
+    # repeat this analysis with other clubs.
+    club_name = "Liverpool"
+
     # Get unique IDs of all of Liverpool's matches.  We want the matches in order,
     # so we do a few things:
     #   (1) We query all of Liverpool's home matches, then all of their away matches
@@ -36,9 +28,8 @@ if __name__ == "__main__":
     #   (2) We sort the results by match date.
     matches = []
     for key in ['home_team_name','away_team_name']:
-        param = {key: 'Liverpool'}
-        for page in iter(client.match.information.get(**param)):
-            matches.extend(page)
+        param = {key: club_name}
+        matches.extend(client.match.information.get(**param).all())
     sorted_matches = sorted(matches, key=lambda k: k.match_date)
 
     starters = []
@@ -47,10 +38,8 @@ if __name__ == "__main__":
         # Get all starting lineup information for Liverpool's matches.  We are interested
         # in just the starting players for Liverpool, so we make player_team = 'Liverpool'
         # and set is_starting to True.
-        lineup_data = []
-        for page in iter(client.link.get(match.link.lineups,
-                         player_team_name="Liverpool",is_starting=True)):
-            lineup_data.extend(page)
+        lineup_data = client.link.get(match.link.lineups,player_team_name=club_name,
+            is_starting=True).all()
         player_list = [x.player for x in lineup_data]
         starters.append(player_list)
         # After the first match, compute the number of players who are in the current
