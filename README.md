@@ -95,10 +95,10 @@ appKey = "demo1234567890demo1234567890"
 client = SoccermetricsRestClient()
 
 match = client.match.information.get(home_team_name="Everton",
-                                     away_team_name="Liverpool")
+                                     away_team_name="Liverpool").data[0]
 print match.matchday, match.match_date, match.kickoff_time
 
-lineup_data = client.link.get(match.link.lineups, is_starting=True)
+lineup_data = client.link.get(match.link.lineups, is_starting=True).all()
 for datum in lineup_data:
     print datum.player_name, datum.player_team_name
 ```
@@ -112,7 +112,7 @@ appID = "f53baabb"
 appKey = "demo1234567890demo1234567890"
 client = SoccermetricsRestClient()
 
-player = client.players.get(full_name=u'Robin van Persie')
+player = client.players.get(full_name=u'Robin van Persie').data[0]
 goals = client.link.get(player.link.events.goals)
 penalties = client.link.get(player.link.events.penalties,outcome_type="Goal")
 ```
