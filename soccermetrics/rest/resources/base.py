@@ -48,12 +48,14 @@ class Resource(object):
 
         full_param_dict = dict(chain(kwargs.items() + self.auth.items()))
 
-        resp = requests.get(uri,params=full_param_dict)
-
-        if resp.status_code == 200:
-            return Response(self.base_uri, self.auth, resp)
-        else:
-            raise SoccermetricsRestException(resp.status_code,resp.url)
+        try:
+            resp = requests.get(uri,params=full_param_dict)
+            if resp.status_code == 200:
+                return Response(self.base_uri, self.auth, resp)
+            else:
+                raise SoccermetricsRestException(resp.status_code,resp.url)
+        except requests.exceptions.RequestException, e:
+            raise SoccermetricsRestException(500, resp.url, msg=e)
 
     def head(self):
         """
@@ -193,6 +195,7 @@ class Response(Resource):
         super(Response, self).__init__(base_uri, auth)
         jresp = resp.json()
         self._meta = EasyDict(jresp['meta'])
+        self.status = resp.status_code
         self.headers = EasyDict(resp.headers)
         self.data = [EasyDict(rec) for rec in jresp['result']]
 
