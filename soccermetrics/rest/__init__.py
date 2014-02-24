@@ -8,6 +8,7 @@ from soccermetrics.rest.resources import Personnel
 from soccermetrics.rest.resources import Match
 from soccermetrics.rest.resources import MatchEvents
 from soccermetrics.rest.resources import MatchStatistics
+from soccermetrics.rest.resources import MatchAnalytics
 
 def find_credentials():
     """
@@ -29,53 +30,55 @@ def find_credentials():
 class SoccermetricsRestClient(object):
     """A client object for accessing the Soccermetrics REST API.
 
-    +------------------+-----------------------+
-    | Attribute        | Description           |
-    +==================+=======================+
-    | root             | Service root          |
-    +------------------+-----------------------+
-    | link             | Link to resources     |
-    +------------------+-----------------------+
-    | confederations   | Confederations        |
-    +------------------+-----------------------+
-    | countries        | Countries             |
-    +------------------+-----------------------+
-    | seasons          | Seasons               |
-    +------------------+-----------------------+
-    | teams            | Teams                 |
-    +------------------+-----------------------+
-    | venues           | Venues                |
-    +------------------+-----------------------+
-    | persons          | Persons               |
-    +------------------+-----------------------+
-    | positions        | Positions             |
-    +------------------+-----------------------+
-    | fouls            | Fouls                 |
-    +------------------+-----------------------+
-    | cards            | Cards                 |
-    +------------------+-----------------------+
-    | bodyparts        | Body parts            |
-    +------------------+-----------------------+
-    | shotevents       | Shot events           |
-    +------------------+-----------------------+
-    | penalty_outcomes | Penalty outcomes      |
-    +------------------+-----------------------+
-    | weather          | Weather conditions    |
-    +------------------+-----------------------+
-    | surfaces         | Surfaces              |
-    +------------------+-----------------------+
-    | players          | Players               |
-    +------------------+-----------------------+
-    | managers         | Managers              |
-    +------------------+-----------------------+
-    | referees         | Referees              |
-    +------------------+-----------------------+
-    | match            | Match resources       |
-    +------------------+-----------------------+
-    | events           | Match event resources |
-    +------------------+-----------------------+
-    | stats            | Match stat resources  |
-    +------------------+-----------------------+
+    +------------------+----------------------------+
+    | Attribute        | Description                |
+    +==================+============================+
+    | root             | Service root               |
+    +------------------+----------------------------+
+    | link             | Link to resources          |
+    +------------------+----------------------------+
+    | confederations   | Confederations             |
+    +------------------+----------------------------+
+    | countries        | Countries                  |
+    +------------------+----------------------------+
+    | seasons          | Seasons                    |
+    +------------------+----------------------------+
+    | teams            | Teams                      |
+    +------------------+----------------------------+
+    | venues           | Venues                     |
+    +------------------+----------------------------+
+    | persons          | Persons                    |
+    +------------------+----------------------------+
+    | positions        | Positions                  |
+    +------------------+----------------------------+
+    | fouls            | Fouls                      |
+    +------------------+----------------------------+
+    | cards            | Cards                      |
+    +------------------+----------------------------+
+    | bodyparts        | Body parts                 |
+    +------------------+----------------------------+
+    | shotevents       | Shot events                |
+    +------------------+----------------------------+
+    | penalty_outcomes | Penalty outcomes           |
+    +------------------+----------------------------+
+    | weather          | Weather conditions         |
+    +------------------+----------------------------+
+    | surfaces         | Surfaces                   |
+    +------------------+----------------------------+
+    | players          | Players                    |
+    +------------------+----------------------------+
+    | managers         | Managers                   |
+    +------------------+----------------------------+
+    | referees         | Referees                   |
+    +------------------+----------------------------+
+    | match            | Match resources            |
+    +------------------+----------------------------+
+    | events           | Match event resources      |
+    +------------------+----------------------------+
+    | stats            | Match stat resources       |
+    +------------------+----------------------------+
+    | analytics        | Match analytics resources  |
+    +------------------+----------------------------+
 
     :param account: Soccermetrics API Application ID.
     :type account: string or None
@@ -142,3 +145,6 @@ values from your Soccermetrics API Account at http://soccermetrics.3scale.net.
 
         # Match Statistics objects
         self.stats = MatchStatistics(base_uri, auth)
+
+        # Match Analytics objects
+        self.analytics = MatchAnalytics(base_uri, auth)
