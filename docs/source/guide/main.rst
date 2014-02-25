@@ -18,9 +18,6 @@ to specific resources.
    analytics
 
 
-Accessing REST Resources
-^^^^^^^^^^^^^^^^^^^^^^^^
-
 Validation Resources
 ^^^^^^^^^^^^^^^^^^^^
 
