@@ -53,7 +53,8 @@ class Resource(object):
             if resp.status_code == 200:
                 return Response(self.base_uri, self.auth, resp)
             else:
-                raise SoccermetricsRestException(resp.status_code,resp.url)
+                data = resp.json()
+                raise SoccermetricsRestException(resp.status_code,data['uri'],data['message'])
         except requests.exceptions.RequestException, e:
             raise SoccermetricsRestException(500, resp.url, msg=e)
 
