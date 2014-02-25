@@ -17,18 +17,3 @@ to specific resources.
    statistics
    analytics
 
-
-Validation Resources
-^^^^^^^^^^^^^^^^^^^^
-
-Personnel Resources
-^^^^^^^^^^^^^^^^^^^
-
-Match Event Resources
-^^^^^^^^^^^^^^^^^^^^^
-
-Player Statistical Resources
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Match Analytics Resources
-^^^^^^^^^^^^^^^^^^^^^^^^^
