@@ -24,7 +24,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '0.5',
+        VERSION:     '0.7',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -57,7 +57,7 @@
           <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="../../index.html">API Python Client</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.5</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.7</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -80,7 +80,15 @@
 <li class="toctree-l2"><a class="reference internal" href="../../started.html#api-credentials">API Credentials</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../guide/main.html">User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../guide/resources.html">Accessing Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../guide/validation.html">Validation Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../guide/personnel.html">Personnel Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../guide/events.html">Match Event Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../guide/statistics.html">Player Statistical Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../guide/analytics.html">Match Analytics Resources</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../../reference.html">API Reference</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../reference.html#module-soccermetrics.rest">Client Object</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../reference.html#resources">Resources</a></li>
@@ -138,6 +146,7 @@
 <span class="kn">from</span> <span class="nn">soccermetrics.rest.resources</span> <span class="kn">import</span> <span class="n">Match</span>
 <span class="kn">from</span> <span class="nn">soccermetrics.rest.resources</span> <span class="kn">import</span> <span class="n">MatchEvents</span>
 <span class="kn">from</span> <span class="nn">soccermetrics.rest.resources</span> <span class="kn">import</span> <span class="n">MatchStatistics</span>
+<span class="kn">from</span> <span class="nn">soccermetrics.rest.resources</span> <span class="kn">import</span> <span class="n">MatchAnalytics</span>
 
 <div class="viewcode-block" id="find_credentials"><a class="viewcode-back" href="../../reference.html#soccermetrics.rest.find_credentials">[docs]</a><span class="k">def</span> <span class="nf">find_credentials</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;</span>
@@ -159,53 +168,55 @@
 <div class="viewcode-block" id="SoccermetricsRestClient"><a class="viewcode-back" href="../../reference.html#soccermetrics.rest.SoccermetricsRestClient">[docs]</a><span class="k">class</span> <span class="nc">SoccermetricsRestClient</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;A client object for accessing the Soccermetrics REST API.</span>
 
-<span class="sd">    +------------------+-----------------------+</span>
-<span class="sd">    | Attribute        | Description           |</span>
-<span class="sd">    +==================+=======================+</span>
-<span class="sd">    | root             | Service root          |</span>
-<span class="sd">    +------------------+-----------------------+</span>
-<span class="sd">    | link             | Link to resources     |</span>
-<span class="sd">    +------------------+-----------------------+</span>
-<span class="sd">    | confederations   | Confederations        |</span>
-<span class="sd">    +------------------+-----------------------+</span>
-<span class="sd">    | countries        | Countries             |</span>
-<span class="sd">    +------------------+-----------------------+</span>
-<span class="sd">    | seasons          | Seasons               |</span>
-<span class="sd">    +------------------+-----------------------+</span>
-<span class="sd">    | teams            | Teams                 |</span>
-<span class="sd">    +------------------+-----------------------+</span>
-<span class="sd">    | venues           | Venues                |</span>
-<span class="sd">    +------------------+-----------------------+</span>
-<span class="sd">    | persons          | Persons               |</span>
-<span class="sd">    +------------------+-----------------------+</span>
-<span class="sd">    | positions        | Positions             |</span>
-<span class="sd">    +------------------+-----------------------+</span>
-<span class="sd">    | fouls            | Fouls                 |</span>
-<span class="sd">    +------------------+-----------------------+</span>
-<span class="sd">    | cards            | Cards                 |</span>
-<span class="sd">    +------------------+-----------------------+</span>
-<span class="sd">    | bodyparts        | Body parts            |</span>
-<span class="sd">    +------------------+-----------------------+</span>
-<span class="sd">    | shotevents       | Shot events           |</span>
-<span class="sd">    +------------------+-----------------------+</span>
-<span class="sd">    | penalty_outcomes | Penalty outcomes      |</span>
-<span class="sd">    +------------------+-----------------------+</span>
-<span class="sd">    | weather          | Weather conditions    |</span>
-<span class="sd">    +------------------+-----------------------+</span>
-<span class="sd">    | surfaces         | Surfaces              |</span>
-<span class="sd">    +------------------+-----------------------+</span>
-<span class="sd">    | players          | Players               |</span>
-<span class="sd">    +------------------+-----------------------+</span>
-<span class="sd">    | managers         | Managers              |</span>
-<span class="sd">    +------------------+-----------------------+</span>
-<span class="sd">    | referees         | Referees              |</span>
-<span class="sd">    +------------------+-----------------------+</span>
-<span class="sd">    | match            | Match resources       |</span>
-<span class="sd">    +------------------+-----------------------+</span>
-<span class="sd">    | events           | Match event resources |</span>
-<span class="sd">    +------------------+-----------------------+</span>
-<span class="sd">    | stats            | Match stat resources  |</span>
-<span class="sd">    +------------------+-----------------------+</span>
+<span class="sd">    +------------------+----------------------------+</span>
+<span class="sd">    | Attribute        | Description                |</span>
+<span class="sd">    +==================+============================+</span>
+<span class="sd">    | root             | Service root               |</span>
+<span class="sd">    +------------------+----------------------------+</span>
+<span class="sd">    | link             | Link to resources          |</span>
+<span class="sd">    +------------------+----------------------------+</span>
+<span class="sd">    | confederations   | Confederations             |</span>
+<span class="sd">    +------------------+----------------------------+</span>
+<span class="sd">    | countries        | Countries                  |</span>
+<span class="sd">    +------------------+----------------------------+</span>
+<span class="sd">    | seasons          | Seasons                    |</span>
+<span class="sd">    +------------------+----------------------------+</span>
+<span class="sd">    | teams            | Teams                      |</span>
+<span class="sd">    +------------------+----------------------------+</span>
+<span class="sd">    | venues           | Venues                     |</span>
+<span class="sd">    +------------------+----------------------------+</span>
+<span class="sd">    | persons          | Persons                    |</span>
+<span class="sd">    +------------------+----------------------------+</span>
+<span class="sd">    | positions        | Positions                  |</span>
+<span class="sd">    +------------------+----------------------------+</span>
+<span class="sd">    | fouls            | Fouls                      |</span>
+<span class="sd">    +------------------+----------------------------+</span>
+<span class="sd">    | cards            | Cards                      |</span>
+<span class="sd">    +------------------+----------------------------+</span>
+<span class="sd">    | bodyparts        | Body parts                 |</span>
+<span class="sd">    +------------------+----------------------------+</span>
+<span class="sd">    | shotevents       | Shot events                |</span>
+<span class="sd">    +------------------+----------------------------+</span>
+<span class="sd">    | penalty_outcomes | Penalty outcomes           |</span>
+<span class="sd">    +------------------+----------------------------+</span>
+<span class="sd">    | weather          | Weather conditions         |</span>
+<span class="sd">    +------------------+----------------------------+</span>
+<span class="sd">    | surfaces         | Surfaces                   |</span>
+<span class="sd">    +------------------+----------------------------+</span>
+<span class="sd">    | players          | Players                    |</span>
+<span class="sd">    +------------------+----------------------------+</span>
+<span class="sd">    | managers         | Managers                   |</span>
+<span class="sd">    +------------------+----------------------------+</span>
+<span class="sd">    | referees         | Referees                   |</span>
+<span class="sd">    +------------------+----------------------------+</span>
+<span class="sd">    | match            | Match resources            |</span>
+<span class="sd">    +------------------+----------------------------+</span>
+<span class="sd">    | events           | Match event resources      |</span>
+<span class="sd">    +------------------+----------------------------+</span>
+<span class="sd">    | stats            | Match stat resources       |</span>
+<span class="sd">    +------------------+----------------------------+</span>
+<span class="sd">    | analytics        | Match analytics resources  |</span>
+<span class="sd">    +------------------+----------------------------+</span>
 
 <span class="sd">    :param account: Soccermetrics API Application ID.</span>
 <span class="sd">    :type account: string or None</span>
@@ -271,7 +282,10 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">events</span> <span class="o">=</span> <span class="n">MatchEvents</span><span class="p">(</span><span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
 
         <span class="c"># Match Statistics objects</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">stats</span> <span class="o">=</span> <span class="n">MatchStatistics</span><span class="p">(</span><span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stats</span> <span class="o">=</span> <span class="n">MatchStatistics</span><span class="p">(</span><span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+
+        <span class="c"># Match Analytics objects</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">analytics</span> <span class="o">=</span> <span class="n">MatchAnalytics</span><span class="p">(</span><span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span></div>
 </pre></div>
 
     </div>
@@ -285,8 +299,8 @@
       
     </p>
     <p>
-        &copy; Copyright 2013, Soccermetrics Research, LLC.<br/>
-      Last updated on Sep 17, 2013.<br/>
+        &copy; Copyright 2013-2014, Soccermetrics Research, LLC.<br/>
+      Last updated on Feb 25, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2b1.<br/>
     </p>
   </div>

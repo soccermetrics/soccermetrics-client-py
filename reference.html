@@ -24,7 +24,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '0.5',
+        VERSION:     '0.7',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -38,7 +38,7 @@
     <script type="text/javascript" src="_static/bootstrap-3.0.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="Soccermetrics API Python Client Documentation" href="index.html" />
-    <link rel="prev" title="User Guide" href="guide.html" />
+    <link rel="prev" title="Match Analytics Resources" href="guide/analytics.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
@@ -57,7 +57,7 @@
           <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="index.html">API Python Client</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.5</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.7</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -80,7 +80,15 @@
 <li class="toctree-l2"><a class="reference internal" href="started.html#api-credentials">API Credentials</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guide/main.html">User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="guide/resources.html">Accessing Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/validation.html">Validation Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/personnel.html">Personnel Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/events.html">Match Event Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/statistics.html">Player Statistical Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/analytics.html">Match Analytics Resources</a></li>
+</ul>
+</li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">API Reference</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#module-soccermetrics.rest">Client Object</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#resources">Resources</a></li>
@@ -104,6 +112,7 @@
 <li><a class="reference internal" href="#module-soccermetrics.rest.resources.match">Match Resources</a></li>
 <li><a class="reference internal" href="#module-soccermetrics.rest.resources.events">Match Event Resources</a></li>
 <li><a class="reference internal" href="#module-soccermetrics.rest.resources.statistics">Match Statistic Resources</a></li>
+<li><a class="reference internal" href="#module-soccermetrics.rest.resources.analytics">Match Analytics Resources</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#module-soccermetrics">Exceptions</a></li>
@@ -117,8 +126,8 @@
             
               
                 
-  <li><a href="guide.html"
-         title="Previous Chapter: User Guide">&laquo; User Guide</a></li>
+  <li><a href="guide/analytics.html"
+         title="Previous Chapter: Match Analytics Resources">&laquo; Match Analytics ...</a></li>
               
             
             
@@ -156,8 +165,8 @@
 <dd><p>A client object for accessing the Soccermetrics REST API.</p>
 <table border="1" class="docutils">
 <colgroup>
-<col width="44%" />
-<col width="56%" />
+<col width="39%" />
+<col width="61%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Attribute</th>
@@ -230,6 +239,9 @@
 </tr>
 <tr class="row-odd"><td>stats</td>
 <td>Match stat resources</td>
+</tr>
+<tr class="row-even"><td>analytics</td>
+<td>Match analytics resources</td>
 </tr>
 </tbody>
 </table>
@@ -472,6 +484,67 @@ returns an error.</p>
 </tr>
 </tbody>
 </table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="soccermetrics.rest.resources.base.Response">
+<em class="property">class </em><tt class="descclassname">soccermetrics.rest.resources.base.</tt><tt class="descname">Response</tt><big>(</big><em>base_uri</em>, <em>auth</em>, <em>resp</em><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/base.html#Response"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.base.Response" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represents a REST API response object.</p>
+<p>Derived from <a class="reference internal" href="#soccermetrics.rest.resources.base.Resource" title="soccermetrics.rest.resources.base.Resource"><tt class="xref py py-class docutils literal"><span class="pre">Resource</span></tt></a>.</p>
+<dl class="method">
+<dt id="soccermetrics.rest.resources.base.Response.all">
+<tt class="descname">all</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/base.html#Response.all"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.base.Response.all" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve all data of API response</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="soccermetrics.rest.resources.base.Response.first">
+<tt class="descname">first</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/base.html#Response.first"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.base.Response.first" title="Permalink to this definition">¶</a></dt>
+<dd><p>Go to first page of API response</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="soccermetrics.rest.resources.base.Response.last">
+<tt class="descname">last</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/base.html#Response.last"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.base.Response.last" title="Permalink to this definition">¶</a></dt>
+<dd><p>Go to last page of API response</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="soccermetrics.rest.resources.base.Response.next">
+<tt class="descname">next</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/base.html#Response.next"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.base.Response.next" title="Permalink to this definition">¶</a></dt>
+<dd><p>Go to next page of API response</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="soccermetrics.rest.resources.base.Response.page">
+<tt class="descname">page</tt><a class="reference internal" href="_modules/soccermetrics/rest/resources/base.html#Response.page"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.base.Response.page" title="Permalink to this definition">¶</a></dt>
+<dd><p>Current page property</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="soccermetrics.rest.resources.base.Response.pages">
+<tt class="descname">pages</tt><a class="reference internal" href="_modules/soccermetrics/rest/resources/base.html#Response.pages"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.base.Response.pages" title="Permalink to this definition">¶</a></dt>
+<dd><p>Total pages property</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="soccermetrics.rest.resources.base.Response.prev">
+<tt class="descname">prev</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/base.html#Response.prev"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.base.Response.prev" title="Permalink to this definition">¶</a></dt>
+<dd><p>Go to previous page of API response</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="soccermetrics.rest.resources.base.Response.records">
+<tt class="descname">records</tt><a class="reference internal" href="_modules/soccermetrics/rest/resources/base.html#Response.records"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.base.Response.records" title="Permalink to this definition">¶</a></dt>
+<dd><p>Total records property</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="soccermetrics.rest.resources.base.Response.records_page">
+<tt class="descname">records_page</tt><a class="reference internal" href="_modules/soccermetrics/rest/resources/base.html#Response.records_page"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.base.Response.records_page" title="Permalink to this definition">¶</a></dt>
+<dd><p>Records per page property</p>
 </dd></dl>
 
 </dd></dl>
@@ -1007,6 +1080,117 @@ returns an error.</p>
 </dd></dl>
 
 </div>
+<div class="section" id="module-soccermetrics.rest.resources.analytics">
+<span id="match-analytics-resources"></span><h3>Match Analytics Resources<a class="headerlink" href="#module-soccermetrics.rest.resources.analytics" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="soccermetrics.rest.resources.analytics.AnalyticsResource">
+<em class="property">class </em><tt class="descclassname">soccermetrics.rest.resources.analytics.</tt><tt class="descname">AnalyticsResource</tt><big>(</big><em>resource</em>, <em>base_uri</em>, <em>auth</em><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/analytics.html#AnalyticsResource"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.analytics.AnalyticsResource" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represents an Analytics REST resource (/analytics endpoints).</p>
+<p>Derived from <tt class="xref py py-class docutils literal"><span class="pre">resources.Resource</span></tt>.</p>
+<dl class="method">
+<dt id="soccermetrics.rest.resources.analytics.AnalyticsResource.EndpointURI">
+<tt class="descname">EndpointURI</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/analytics.html#AnalyticsResource.EndpointURI"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.analytics.AnalyticsResource.EndpointURI" title="Permalink to this definition">¶</a></dt>
+<dd><p>Construct URI of Analytics REST resource.</p>
+<p>URI is of format <tt class="docutils literal"><span class="pre">/analytics/match/&lt;match&gt;/&lt;resource&gt;/</span></tt>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">URI of REST resource.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">string</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="soccermetrics.rest.resources.analytics.AnalyticsResource.get">
+<tt class="descname">get</tt><big>(</big><em>match</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/analytics.html#AnalyticsResource.get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.analytics.AnalyticsResource.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieves a representation of Analytics REST resource.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>match</strong> (<em>integer</em>) &#8211; Unique ID associated with football match.</li>
+<li><strong>kwargs</strong> (<em>dict</em>) &#8211; Collection of query parameters.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Resource representation.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">Return value of <tt class="xref py py-func docutils literal"><span class="pre">Resource.get()</span></tt>.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="soccermetrics.rest.resources.analytics.AnalyticsResource.head">
+<tt class="descname">head</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/analytics.html#AnalyticsResource.head"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.analytics.AnalyticsResource.head" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieves header data of Analytics REST resource.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Header data.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Return value of <tt class="xref py py-func docutils literal"><span class="pre">Resource.head()</span></tt>.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="soccermetrics.rest.resources.analytics.AnalyticsResource.options">
+<tt class="descname">options</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/analytics.html#AnalyticsResource.options"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.analytics.AnalyticsResource.options" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieves documentation of Analytics REST resource.</p>
+<p>If the status code is 200 (OK), returns the documentation.  Otherwise,
+returns an error.</p>
+<p>Link resources are not included in the documentation.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Resource documentation data.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Return value of <tt class="xref py py-func docutils literal"><span class="pre">Resource.options()</span></tt>.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="soccermetrics.rest.resources.analytics.MatchAnalytics">
+<em class="property">class </em><tt class="descclassname">soccermetrics.rest.resources.analytics.</tt><tt class="descname">MatchAnalytics</tt><big>(</big><em>base_uri</em>, <em>auth</em><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/analytics.html#MatchAnalytics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.analytics.MatchAnalytics" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represents a Match Analytics REST resource (/analytics/match endpoints).</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="41%" />
+<col width="59%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Attribute</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>state</td>
+<td>Match state</td>
+</tr>
+<tr class="row-odd"><td>segment</td>
+<td>Match segments</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
 </div>
 <div class="section" id="module-soccermetrics">
 <span id="exceptions"></span><span id="ref-exceptions"></span><h2>Exceptions<a class="headerlink" href="#module-soccermetrics" title="Permalink to this headline">¶</a></h2>
@@ -1037,8 +1221,8 @@ returns an error.</p>
       
     </p>
     <p>
-        &copy; Copyright 2013, Soccermetrics Research, LLC.<br/>
-      Last updated on Sep 17, 2013.<br/>
+        &copy; Copyright 2013-2014, Soccermetrics Research, LLC.<br/>
+      Last updated on Feb 25, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2b1.<br/>
     </p>
   </div>

@@ -12,7 +12,7 @@ REST API.
 
    installation
    started
-   guide
+   guide/main
    reference
 
 .. _support:

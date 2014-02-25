@@ -25,7 +25,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '0.5',
+        VERSION:     '0.7',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -57,7 +57,7 @@
           <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="index.html">API Python Client</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.5</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.7</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -80,7 +80,15 @@
 <li class="toctree-l2"><a class="reference internal" href="started.html#api-credentials">API Credentials</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guide/main.html">User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="guide/resources.html">Accessing Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/validation.html">Validation Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/personnel.html">Personnel Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/events.html">Match Event Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/statistics.html">Player Statistical Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/analytics.html">Match Analytics Resources</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="reference.html">API Reference</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="reference.html#module-soccermetrics.rest">Client Object</a></li>
 <li class="toctree-l2"><a class="reference internal" href="reference.html#resources">Resources</a></li>
@@ -131,7 +139,8 @@
 <h1 id="index">Index</h1>
 
 <div class="genindex-jumpbox">
- <a href="#C"><strong>C</strong></a>
+ <a href="#A"><strong>A</strong></a>
+ | <a href="#C"><strong>C</strong></a>
  | <a href="#D"><strong>D</strong></a>
  | <a href="#E"><strong>E</strong></a>
  | <a href="#F"><strong>F</strong></a>
@@ -139,6 +148,7 @@
  | <a href="#H"><strong>H</strong></a>
  | <a href="#L"><strong>L</strong></a>
  | <a href="#M"><strong>M</strong></a>
+ | <a href="#N"><strong>N</strong></a>
  | <a href="#O"><strong>O</strong></a>
  | <a href="#P"><strong>P</strong></a>
  | <a href="#R"><strong>R</strong></a>
@@ -147,6 +157,22 @@
  | <a href="#V"><strong>V</strong></a>
  
 </div>
+<h2 id="A">A</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="reference.html#soccermetrics.rest.resources.base.Response.all">all() (soccermetrics.rest.resources.base.Response method)</a>
+  </dt>
+
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="reference.html#soccermetrics.rest.resources.analytics.AnalyticsResource">AnalyticsResource (class in soccermetrics.rest.resources.analytics)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
 <h2 id="C">C</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%" valign="top"><dl>
@@ -171,9 +197,15 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%" valign="top"><dl>
       
-  <dt><a href="reference.html#soccermetrics.rest.resources.match.MatchResource.EndpointURI">EndpointURI() (soccermetrics.rest.resources.match.MatchResource method)</a>
+  <dt><a href="reference.html#soccermetrics.rest.resources.analytics.AnalyticsResource.EndpointURI">EndpointURI() (soccermetrics.rest.resources.analytics.AnalyticsResource method)</a>
   </dt>
 
+      <dd><dl>
+        
+  <dt><a href="reference.html#soccermetrics.rest.resources.match.MatchResource.EndpointURI">(soccermetrics.rest.resources.match.MatchResource method)</a>
+  </dt>
+
+      </dl></dd>
   </dl></td>
 </tr></table>
 
@@ -182,6 +214,10 @@
   <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="reference.html#soccermetrics.rest.find_credentials">find_credentials() (in module soccermetrics.rest)</a>
+  </dt>
+
+      
+  <dt><a href="reference.html#soccermetrics.rest.resources.base.Response.first">first() (soccermetrics.rest.resources.base.Response method)</a>
   </dt>
 
   </dl></td>
@@ -197,10 +233,14 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%" valign="top"><dl>
       
-  <dt><a href="reference.html#soccermetrics.rest.resources.base.Link.get">get() (soccermetrics.rest.resources.base.Link method)</a>
+  <dt><a href="reference.html#soccermetrics.rest.resources.analytics.AnalyticsResource.get">get() (soccermetrics.rest.resources.analytics.AnalyticsResource method)</a>
   </dt>
 
       <dd><dl>
+        
+  <dt><a href="reference.html#soccermetrics.rest.resources.base.Link.get">(soccermetrics.rest.resources.base.Link method)</a>
+  </dt>
+
         
   <dt><a href="reference.html#soccermetrics.rest.resources.base.Resource.get">(soccermetrics.rest.resources.base.Resource method)</a>
   </dt>
@@ -227,10 +267,14 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%" valign="top"><dl>
       
-  <dt><a href="reference.html#soccermetrics.rest.resources.base.Link.head">head() (soccermetrics.rest.resources.base.Link method)</a>
+  <dt><a href="reference.html#soccermetrics.rest.resources.analytics.AnalyticsResource.head">head() (soccermetrics.rest.resources.analytics.AnalyticsResource method)</a>
   </dt>
 
       <dd><dl>
+        
+  <dt><a href="reference.html#soccermetrics.rest.resources.base.Link.head">(soccermetrics.rest.resources.base.Link method)</a>
+  </dt>
+
         
   <dt><a href="reference.html#soccermetrics.rest.resources.base.Resource.head">(soccermetrics.rest.resources.base.Resource method)</a>
   </dt>
@@ -247,6 +291,12 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%" valign="top"><dl>
       
+  <dt><a href="reference.html#soccermetrics.rest.resources.base.Response.last">last() (soccermetrics.rest.resources.base.Response method)</a>
+  </dt>
+
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
   <dt><a href="reference.html#soccermetrics.rest.resources.base.Link">Link (class in soccermetrics.rest.resources.base)</a>
   </dt>
 
@@ -261,6 +311,10 @@
   </dt>
 
       
+  <dt><a href="reference.html#soccermetrics.rest.resources.analytics.MatchAnalytics">MatchAnalytics (class in soccermetrics.rest.resources.analytics)</a>
+  </dt>
+
+      
   <dt><a href="reference.html#soccermetrics.rest.resources.match.MatchConditions">MatchConditions (class in soccermetrics.rest.resources.match)</a>
   </dt>
 
@@ -272,12 +326,12 @@
   <dt><a href="reference.html#soccermetrics.rest.resources.events.MatchEvents">MatchEvents (class in soccermetrics.rest.resources.events)</a>
   </dt>
 
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="reference.html#soccermetrics.rest.resources.match.MatchInformation">MatchInformation (class in soccermetrics.rest.resources.match)</a>
   </dt>
 
-  </dl></td>
-  <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="reference.html#soccermetrics.rest.resources.match.MatchLineups">MatchLineups (class in soccermetrics.rest.resources.match)</a>
   </dt>
@@ -297,14 +351,28 @@
   </dl></td>
 </tr></table>
 
+<h2 id="N">N</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="reference.html#soccermetrics.rest.resources.base.Response.next">next() (soccermetrics.rest.resources.base.Response method)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
 <h2 id="O">O</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%" valign="top"><dl>
       
-  <dt><a href="reference.html#soccermetrics.rest.resources.base.Link.options">options() (soccermetrics.rest.resources.base.Link method)</a>
+  <dt><a href="reference.html#soccermetrics.rest.resources.analytics.AnalyticsResource.options">options() (soccermetrics.rest.resources.analytics.AnalyticsResource method)</a>
   </dt>
 
       <dd><dl>
+        
+  <dt><a href="reference.html#soccermetrics.rest.resources.base.Link.options">(soccermetrics.rest.resources.base.Link method)</a>
+  </dt>
+
         
   <dt><a href="reference.html#soccermetrics.rest.resources.base.Resource.options">(soccermetrics.rest.resources.base.Resource method)</a>
   </dt>
@@ -321,6 +389,14 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%" valign="top"><dl>
       
+  <dt><a href="reference.html#soccermetrics.rest.resources.base.Response.page">page (soccermetrics.rest.resources.base.Response attribute)</a>
+  </dt>
+
+      
+  <dt><a href="reference.html#soccermetrics.rest.resources.base.Response.pages">pages (soccermetrics.rest.resources.base.Response attribute)</a>
+  </dt>
+
+      
   <dt><a href="reference.html#soccermetrics.rest.resources.statistics.PassingStatistics">PassingStatistics (class in soccermetrics.rest.resources.statistics)</a>
   </dt>
 
@@ -330,6 +406,10 @@
   <dt><a href="reference.html#soccermetrics.rest.resources.personnel.Personnel">Personnel (class in soccermetrics.rest.resources.personnel)</a>
   </dt>
 
+      
+  <dt><a href="reference.html#soccermetrics.rest.resources.base.Response.prev">prev() (soccermetrics.rest.resources.base.Response method)</a>
+  </dt>
+
   </dl></td>
 </tr></table>
 
@@ -337,11 +417,23 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%" valign="top"><dl>
       
+  <dt><a href="reference.html#soccermetrics.rest.resources.base.Response.records">records (soccermetrics.rest.resources.base.Response attribute)</a>
+  </dt>
+
+      
+  <dt><a href="reference.html#soccermetrics.rest.resources.base.Response.records_page">records_page (soccermetrics.rest.resources.base.Response attribute)</a>
+  </dt>
+
+      
   <dt><a href="reference.html#soccermetrics.rest.resources.base.Resource">Resource (class in soccermetrics.rest.resources.base)</a>
   </dt>
 
   </dl></td>
   <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="reference.html#soccermetrics.rest.resources.base.Response">Response (class in soccermetrics.rest.resources.base)</a>
+  </dt>
+
       
   <dt><a href="reference.html#soccermetrics.rest.resources.service_root.Root">Root (class in soccermetrics.rest.resources.service_root)</a>
   </dt>
@@ -366,6 +458,10 @@
 
       
   <dt><a href="reference.html#module-soccermetrics.rest">soccermetrics.rest (module)</a>
+  </dt>
+
+      
+  <dt><a href="reference.html#module-soccermetrics.rest.resources.analytics">soccermetrics.rest.resources.analytics (module)</a>
   </dt>
 
       
@@ -446,8 +542,8 @@
       
     </p>
     <p>
-        &copy; Copyright 2013, Soccermetrics Research, LLC.<br/>
-      Last updated on Sep 17, 2013.<br/>
+        &copy; Copyright 2013-2014, Soccermetrics Research, LLC.<br/>
+      Last updated on Feb 25, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2b1.<br/>
     </p>
   </div>

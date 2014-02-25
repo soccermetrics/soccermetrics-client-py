@@ -58,6 +58,12 @@ Match Statistic Resources
 .. automodule:: soccermetrics.rest.resources.statistics
     :members:
 
+Match Analytics Resources
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. automodule:: soccermetrics.rest.resources.analytics
+    :members:
+
 .. _ref-exceptions:
 
 Exceptions

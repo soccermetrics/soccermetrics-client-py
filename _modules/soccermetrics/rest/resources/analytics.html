@@ -13,7 +13,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>soccermetrics.rest.resources.match &mdash; Soccermetrics API Python Client Documentation</title>
+    <title>soccermetrics.rest.resources.analytics &mdash; Soccermetrics API Python Client Documentation</title>
     
     <link rel="stylesheet" href="../../../../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
@@ -135,72 +135,71 @@
   <div class="row">
     <div class="span12">
       
-  <h1>Source code for soccermetrics.rest.resources.match</h1><div class="highlight"><pre>
+  <h1>Source code for soccermetrics.rest.resources.analytics</h1><div class="highlight"><pre>
 <span class="kn">from</span> <span class="nn">soccermetrics.rest.resources</span> <span class="kn">import</span> <span class="n">Resource</span>
 
-<div class="viewcode-block" id="MatchResource"><a class="viewcode-back" href="../../../../reference.html#soccermetrics.rest.resources.match.MatchResource">[docs]</a><span class="k">class</span> <span class="nc">MatchResource</span><span class="p">(</span><span class="n">Resource</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Represents a Match REST resource (/matches endpoints).</span>
+<div class="viewcode-block" id="AnalyticsResource"><a class="viewcode-back" href="../../../../reference.html#soccermetrics.rest.resources.analytics.AnalyticsResource">[docs]</a><span class="k">class</span> <span class="nc">AnalyticsResource</span><span class="p">(</span><span class="n">Resource</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Represents an Analytics REST resource (/analytics endpoints).</span>
 
 <span class="sd">    Derived from :class:`resources.Resource`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">resource</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Constructor of MatchResource class.</span>
+<span class="sd">        Constructor of AnalyticsResource class.</span>
 
+<span class="sd">        :param resource: Name of Analytics resource.</span>
+<span class="sd">        :type resource: string</span>
 <span class="sd">        :param base_uri: Base URI of API.</span>
 <span class="sd">        :type base_uri: string</span>
 <span class="sd">        :param auth: Authentication credential.</span>
 <span class="sd">        :type auth: tuple</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">MatchResource</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">base_uri</span><span class="p">,</span><span class="n">auth</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">AnalyticsResource</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">base_uri</span><span class="p">,</span><span class="n">auth</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">base_endpoint</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">endpoint</span> <span class="o">+</span> <span class="s">&quot;/matches&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">base_endpoint</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">endpoint</span> <span class="o">+</span> <span class="s">&#39;/analytics/match&#39;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">match</span> <span class="o">=</span> <span class="bp">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">resource</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">resource</span> <span class="o">=</span> <span class="n">resource</span>
 
-<div class="viewcode-block" id="MatchResource.EndpointURI"><a class="viewcode-back" href="../../../../reference.html#soccermetrics.rest.resources.match.MatchResource.EndpointURI">[docs]</a>    <span class="k">def</span> <span class="nf">EndpointURI</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="AnalyticsResource.EndpointURI"><a class="viewcode-back" href="../../../../reference.html#soccermetrics.rest.resources.analytics.AnalyticsResource.EndpointURI">[docs]</a>    <span class="k">def</span> <span class="nf">EndpointURI</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Construct URI of Match REST resource.</span>
+<span class="sd">        Construct URI of Analytics REST resource.</span>
 
-<span class="sd">        URI is of format ``/matches/&lt;match&gt;/&lt;resource&gt;/``.</span>
+<span class="sd">        URI is of format ``/analytics/match/&lt;match&gt;/&lt;resource&gt;/``.</span>
 
 <span class="sd">        :returns: URI of REST resource.</span>
 <span class="sd">        :rtype: string</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="s">&#39;/&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">base_endpoint</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">match</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">resource</span><span class="p">]</span> <span class="k">if</span> <span class="n">x</span><span class="p">)</span>
 </div>
-<div class="viewcode-block" id="MatchResource.get"><a class="viewcode-back" href="../../../../reference.html#soccermetrics.rest.resources.match.MatchResource.get">[docs]</a>    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">match</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">uid</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="AnalyticsResource.get"><a class="viewcode-back" href="../../../../reference.html#soccermetrics.rest.resources.analytics.AnalyticsResource.get">[docs]</a>    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">match</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Retrieves a representation of Match REST resource.</span>
+<span class="sd">        Retrieves a representation of Analytics REST resource.</span>
 
 <span class="sd">        :param match: Unique ID associated with football match.</span>
 <span class="sd">        :type match: integer</span>
-<span class="sd">        :param uid: Unique ID of API resource representation.</span>
-<span class="sd">        :type uid: integer</span>
 <span class="sd">        :param kwargs: Collection of query parameters.</span>
 <span class="sd">        :type kwargs: dict</span>
 <span class="sd">        :returns: Resource representation.</span>
-<span class="sd">        :rtype: Return value of :func:`MatchResource.get`.</span>
+<span class="sd">        :rtype: Return value of :func:`Resource.get`.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">match</span> <span class="o">=</span> <span class="n">match</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">endpoint</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">EndpointURI</span><span class="p">()</span>
-        <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">MatchResource</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">uid</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">AnalyticsResource</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </div>
-<div class="viewcode-block" id="MatchResource.head"><a class="viewcode-back" href="../../../../reference.html#soccermetrics.rest.resources.match.MatchResource.head">[docs]</a>    <span class="k">def</span> <span class="nf">head</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="AnalyticsResource.head"><a class="viewcode-back" href="../../../../reference.html#soccermetrics.rest.resources.analytics.AnalyticsResource.head">[docs]</a>    <span class="k">def</span> <span class="nf">head</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Retrieves header data of Match REST resource.</span>
+<span class="sd">        Retrieves header data of Analytics REST resource.</span>
 
 <span class="sd">        :returns: Header data.</span>
-<span class="sd">        :rtype: Return value of :func:`MatchResource.head`.</span>
+<span class="sd">        :rtype: Return value of :func:`Resource.head`.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">match</span> <span class="o">=</span> <span class="bp">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">endpoint</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">EndpointURI</span><span class="p">()</span>
-        <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">MatchResource</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">AnalyticsResource</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </div>
-<div class="viewcode-block" id="MatchResource.options"><a class="viewcode-back" href="../../../../reference.html#soccermetrics.rest.resources.match.MatchResource.options">[docs]</a>    <span class="k">def</span> <span class="nf">options</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="AnalyticsResource.options"><a class="viewcode-back" href="../../../../reference.html#soccermetrics.rest.resources.analytics.AnalyticsResource.options">[docs]</a>    <span class="k">def</span> <span class="nf">options</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Retrieves documentation of Match REST resource.</span>
+<span class="sd">        Retrieves documentation of Analytics REST resource.</span>
 
 <span class="sd">        If the status code is 200 (OK), returns the documentation.  Otherwise,</span>
 <span class="sd">        returns an error.</span>
@@ -208,64 +207,26 @@
 <span class="sd">        Link resources are not included in the documentation.</span>
 
 <span class="sd">        :returns: Resource documentation data.</span>
-<span class="sd">        :rtype: Return value of :func:`MatchResource.options`.</span>
+<span class="sd">        :rtype: Return value of :func:`Resource.options`.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">match</span> <span class="o">=</span> <span class="bp">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">endpoint</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">EndpointURI</span><span class="p">()</span>
-        <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">MatchResource</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">options</span><span class="p">()</span>
-
+        <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">AnalyticsResource</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">options</span><span class="p">()</span>
 </div></div>
-<div class="viewcode-block" id="MatchInformation"><a class="viewcode-back" href="../../../../reference.html#soccermetrics.rest.resources.match.MatchInformation">[docs]</a><span class="k">class</span> <span class="nc">MatchInformation</span><span class="p">(</span><span class="n">MatchResource</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Access to Match Information resources (/matches/info resource).</span>
-
-<span class="sd">    Derived from :class:`MatchResource`.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">MatchInformation</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">base_uri</span><span class="p">,</span><span class="n">auth</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">resource</span> <span class="o">=</span> <span class="s">&quot;info&quot;</span>
-
-</div>
-<div class="viewcode-block" id="MatchConditions"><a class="viewcode-back" href="../../../../reference.html#soccermetrics.rest.resources.match.MatchConditions">[docs]</a><span class="k">class</span> <span class="nc">MatchConditions</span><span class="p">(</span><span class="n">MatchResource</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Access to Match Conditions resources (/matches/conditions resource).</span>
-
-<span class="sd">    Derived from :class:`MatchResource`.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">MatchConditions</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">base_uri</span><span class="p">,</span><span class="n">auth</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">resource</span> <span class="o">=</span> <span class="s">&quot;conditions&quot;</span>
-
-</div>
-<div class="viewcode-block" id="MatchLineups"><a class="viewcode-back" href="../../../../reference.html#soccermetrics.rest.resources.match.MatchLineups">[docs]</a><span class="k">class</span> <span class="nc">MatchLineups</span><span class="p">(</span><span class="n">MatchResource</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Access to Match Lineups resources (/matches/lineups resource).</span>
-
-<span class="sd">    Derived from :class:`MatchResource`.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">MatchLineups</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">base_uri</span><span class="p">,</span><span class="n">auth</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">resource</span> <span class="o">=</span> <span class="s">&quot;lineups&quot;</span>
-
-</div>
-<div class="viewcode-block" id="Match"><a class="viewcode-back" href="../../../../reference.html#soccermetrics.rest.resources.match.Match">[docs]</a><span class="k">class</span> <span class="nc">Match</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Access to Match objects.</span>
+<div class="viewcode-block" id="MatchAnalytics"><a class="viewcode-back" href="../../../../reference.html#soccermetrics.rest.resources.analytics.MatchAnalytics">[docs]</a><span class="k">class</span> <span class="nc">MatchAnalytics</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Represents a Match Analytics REST resource (/analytics/match endpoints).</span>
 
 <span class="sd">    +----------------+-----------------------+</span>
 <span class="sd">    | Attribute      | Description           |</span>
 <span class="sd">    +================+=======================+</span>
-<span class="sd">    | information    | Match information     |</span>
+<span class="sd">    | state          | Match state           |</span>
 <span class="sd">    +----------------+-----------------------+</span>
-<span class="sd">    | lineups        | Match lineups         |</span>
-<span class="sd">    +----------------+-----------------------+</span>
-<span class="sd">    | conditions     | Match conditions      |</span>
+<span class="sd">    | segment        | Match segments        |</span>
 <span class="sd">    +----------------+-----------------------+</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">information</span> <span class="o">=</span> <span class="n">MatchInformation</span><span class="p">(</span><span class="n">base_uri</span><span class="p">,</span><span class="n">auth</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">lineups</span> <span class="o">=</span> <span class="n">MatchLineups</span><span class="p">(</span><span class="n">base_uri</span><span class="p">,</span><span class="n">auth</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">conditions</span> <span class="o">=</span> <span class="n">MatchConditions</span><span class="p">(</span><span class="n">base_uri</span><span class="p">,</span><span class="n">auth</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="n">AnalyticsResource</span><span class="p">(</span><span class="s">&quot;state&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">segment</span> <span class="o">=</span> <span class="n">AnalyticsResource</span><span class="p">(</span><span class="s">&quot;segment&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span></div>
 </pre></div>
 
     </div>
