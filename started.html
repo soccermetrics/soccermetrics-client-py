@@ -79,6 +79,8 @@
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Getting Started</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#api-credentials">API Credentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#match-information">Match Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#match-statistics">Match Statistics</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="guide/main.html">User Guide</a><ul>
@@ -105,6 +107,8 @@
   <ul class="dropdown-menu localtoc"><ul>
 <li><a class="reference internal" href="#">Getting Started</a><ul>
 <li><a class="reference internal" href="#api-credentials">API Credentials</a></li>
+<li><a class="reference internal" href="#match-information">Match Information</a></li>
+<li><a class="reference internal" href="#match-statistics">Match Statistics</a></li>
 </ul>
 </li>
 </ul>
@@ -161,10 +165,10 @@ These get passed to the constructor or via environment variables.</p>
 <span class="n">client</span> <span class="o">=</span> <span class="n">SoccermetricsRestClient</span><span class="p">(</span><span class="n">account</span><span class="o">=</span><span class="n">appID</span><span class="p">,</span><span class="n">api_key</span><span class="o">=</span><span class="n">appKey</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Copy the code snippet into a text file and run it as a Python script.  The
-code uses a live API credential for demonstration purposes.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">This is a fictitious API ID and key. We ask all interested users to request
+access to the API in order to receive credentials.</p>
 </div>
 <p>If you call <tt class="docutils literal"><span class="pre">SoccermetricsRestClient</span></tt> without any parameters, the constructor
 will look for <tt class="docutils literal"><span class="pre">SOCCERMETRICS_APP_ID</span></tt> and <tt class="docutils literal"><span class="pre">SOCCERMETRICS_APP_KEY</span></tt> variables
@@ -172,6 +176,53 @@ inside the current environment.</p>
 <p>We recommend that you keep your credentials in environment variables.
 That way you won&#8217;t have to worry about accidentally posting your credentials
 in a public place.</p>
+</div>
+<div class="section" id="match-information">
+<h2>Match Information<a class="headerlink" href="#match-information" title="Permalink to this headline">¶</a></h2>
+<p>Let&#8217;s get information from all matches for a specific matchday.  We&#8217;ll use it to
+access lineups and eventually match statistics.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">matches</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">match</span><span class="o">.</span><span class="n">information</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">matchday</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">match</span> <span class="ow">in</span> <span class="n">matches</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s">: </span><span class="si">%s</span><span class="s"> vs </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">match_date</span><span class="p">,</span> <span class="n">match</span><span class="o">.</span><span class="n">home_team_name</span><span class="p">,</span>
+                            <span class="n">match</span><span class="o">.</span><span class="n">away_team_name</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Almost all of the resources have hyperlinks that refer to related resources, so
+we can use those to access lineup data for each match.  We revise the above
+code so that we can get starting lineups:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">matches</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">match</span><span class="o">.</span><span class="n">information</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">matchday</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">match</span> <span class="ow">in</span> <span class="n">matches</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">team_name</span> <span class="ow">in</span> <span class="p">[</span><span class="n">match</span><span class="o">.</span><span class="n">home_team_name</span><span class="p">,</span> <span class="n">match</span><span class="o">.</span><span class="n">away_team_name</span><span class="p">]:</span>
+        <span class="n">lineup_data</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">link</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+            <span class="n">match</span><span class="o">.</span><span class="n">link</span><span class="o">.</span><span class="n">lineups</span><span class="p">,</span> <span class="n">player_team_name</span><span class="o">=</span><span class="n">team_name</span><span class="p">,</span>
+            <span class="n">is_starting</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+        <span class="n">starters</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">player_name</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">lineup_data</span><span class="p">]</span>
+        <span class="k">print</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s">: </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">team_name</span><span class="p">,</span> <span class="n">starters</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="match-statistics">
+<h2>Match Statistics<a class="headerlink" href="#match-statistics" title="Permalink to this headline">¶</a></h2>
+<p>We can go further and extract match statistics for each game, and create new
+types of statistics from those.  Let&#8217;s collect total shot data to develop
+Total Shot Ratios for each team.  Again we use the hyperlinks associated
+with each match to access the statistical data.  Revising the above code once more:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">ratio</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">matches</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">match</span><span class="o">.</span><span class="n">information</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">matchday</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">match</span> <span class="ow">in</span> <span class="n">matches</span><span class="p">:</span>
+    <span class="n">total_shots</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">team_name</span> <span class="ow">in</span> <span class="p">[</span><span class="n">match</span><span class="o">.</span><span class="n">home_team_name</span><span class="p">,</span> <span class="n">match</span><span class="o">.</span><span class="n">away_team_name</span><span class="p">]:</span>
+        <span class="n">shot_data</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">link</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+            <span class="n">match</span><span class="o">.</span><span class="n">link</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">shots</span><span class="o">.</span><span class="n">totals</span><span class="p">,</span> <span class="n">player_team_name</span><span class="o">=</span><span class="n">team_name</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+        <span class="n">total_shots</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">sum</span><span class="p">([</span><span class="n">x</span><span class="o">.</span><span class="n">ontarget</span><span class="o">+</span><span class="n">x</span><span class="o">.</span><span class="n">offtarget</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">shots_data</span><span class="p">]))</span>
+    <span class="n">tsr</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">k</span><span class="p">:</span> <span class="n">total_shots</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">/</span><span class="nb">float</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">total_shots</span><span class="p">))</span>
+    <span class="n">ratio</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">team</span><span class="o">=</span><span class="n">match</span><span class="o">.</span><span class="n">home_team_name</span><span class="p">,</span><span class="n">tsr</span><span class="o">=</span><span class="n">tsr</span><span class="p">(</span><span class="mi">0</span><span class="p">)))</span>
+    <span class="n">ratio</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">team</span><span class="o">=</span><span class="n">match</span><span class="o">.</span><span class="n">away_team_name</span><span class="p">,</span><span class="n">tsr</span><span class="o">=</span><span class="n">tsr</span><span class="p">(</span><span class="mi">1</span><span class="p">)))</span>
+
+<span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">ratio</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s">: </span><span class="si">%0.3f</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s">&#39;team&#39;</span><span class="p">],</span><span class="n">data</span><span class="p">[</span><span class="s">&#39;tsr&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
 </div>
 </div>
 
@@ -188,7 +239,7 @@ in a public place.</p>
     </p>
     <p>
         &copy; Copyright 2013-2014, Soccermetrics Research, LLC.<br/>
-      Last updated on Feb 25, 2014.<br/>
+      Last updated on Feb 26, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2b1.<br/>
     </p>
   </div>
