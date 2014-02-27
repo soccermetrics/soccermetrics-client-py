@@ -106,7 +106,12 @@
                 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Page <b class="caret"></b></a>
   <ul class="dropdown-menu localtoc"><ul>
-<li><a class="reference internal" href="#">Personnel Resources</a></li>
+<li><a class="reference internal" href="#">Personnel Resources</a><ul>
+<li><a class="reference internal" href="#retrieving-a-player-record">Retrieving a Player Record</a></li>
+<li><a class="reference internal" href="#retrieving-a-manager-record">Retrieving a Manager Record</a></li>
+<li><a class="reference internal" href="#retrieving-a-referee-record">Retrieving a Referee Record</a></li>
+</ul>
+</li>
 </ul>
 </ul>
 </li>
@@ -148,6 +153,57 @@
       
   <div class="section" id="personnel-resources">
 <span id="id1"></span><h1>Personnel Resources<a class="headerlink" href="#personnel-resources" title="Permalink to this headline">¶</a></h1>
+<p>For more information, consult the <a class="reference external" href="http://soccermetrics.github.io/fmrd-summary-api/resources/personnel.html">Personnel Resource</a> documentation.</p>
+<div class="section" id="retrieving-a-player-record">
+<h2>Retrieving a Player Record<a class="headerlink" href="#retrieving-a-player-record" title="Permalink to this headline">¶</a></h2>
+<p>With the client you can <tt class="docutils literal"><span class="pre">get()</span></tt> a player record and use the <tt class="docutils literal"><span class="pre">link.get()</span></tt> method
+to access linked data, such as match appearances and actions.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">soccermetrics.rest</span> <span class="kn">import</span> <span class="n">SoccermetricsRestClient</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">SoccermetricsRestClient</span><span class="p">()</span>
+
+<span class="n">rvp</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">players</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">last_name</span><span class="o">=</span><span class="s">&#39;Van Persie&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+<span class="n">rvp_matches</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">link</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">rvp</span><span class="o">.</span><span class="n">link</span><span class="o">.</span><span class="n">matches</span><span class="p">)</span>
+<span class="n">rvp_goals</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">link</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">rvp</span><span class="o">.</span><span class="n">link</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">goals</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Some players have nicknames:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">soccermetrics.rest</span> <span class="kn">import</span> <span class="n">SoccermetricsRestClient</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">SoccermetricsRestClient</span><span class="p">()</span>
+
+<span class="n">nani</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">players</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">nickname</span><span class="o">=</span><span class="s">&#39;Nani&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="retrieving-a-manager-record">
+<h2>Retrieving a Manager Record<a class="headerlink" href="#retrieving-a-manager-record" title="Permalink to this headline">¶</a></h2>
+<p>As with players you can retrieve a manager record and linked data such as
+nationality, biographical data, and home and away matches managed.  Some
+managers have nicknames (especially those who were former players), but
+that&#8217;s very rare.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">soccermetrics.rest</span> <span class="kn">import</span> <span class="n">SoccermetricsRestClient</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">SoccermetricsRestClient</span><span class="p">()</span>
+
+<span class="n">saf</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">managers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">first_name</span><span class="o">=</span><span class="s">&#39;Alex&#39;</span><span class="p">,</span><span class="n">last_name</span><span class="o">=</span><span class="s">&#39;Ferguson&#39;</span><span class="p">)</span>
+<span class="n">saf_scotland</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">link</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">saf</span><span class="o">.</span><span class="n">link</span><span class="o">.</span><span class="n">country</span><span class="p">)</span>
+<span class="n">saf_home_matches</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">link</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">saf</span><span class="o">.</span><span class="n">link</span><span class="o">.</span><span class="n">home_matches</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="retrieving-a-referee-record">
+<h2>Retrieving a Referee Record<a class="headerlink" href="#retrieving-a-referee-record" title="Permalink to this headline">¶</a></h2>
+<p>You can retrieve a referee record and data linked to it, which include
+biographical data and all matches officiated by the referee.  Referees
+aren&#8217;t considered special enough to merit nicknames (ones that you can print,
+anyway).</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">soccermetrics.rest</span> <span class="kn">import</span> <span class="n">SoccermetricsRestClient</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">SoccermetricsRestClient</span><span class="p">()</span>
+
+<span class="n">webb</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">referees</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">first_name</span><span class="o">=</span><span class="s">&#39;Howard&#39;</span><span class="p">,</span><span class="n">last_name</span><span class="o">=</span><span class="s">&#39;Webb&#39;</span><span class="p">)</span>
+<span class="n">webb_england</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">link</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">webb</span><span class="o">.</span><span class="n">link</span><span class="o">.</span><span class="n">country</span><span class="p">)</span>
+<span class="n">webb_matches</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">link</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">webb</span><span class="o">.</span><span class="n">link</span><span class="o">.</span><span class="n">matches</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
 </div>
 
 

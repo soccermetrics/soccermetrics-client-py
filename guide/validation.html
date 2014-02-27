@@ -106,7 +106,12 @@
                 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Page <b class="caret"></b></a>
   <ul class="dropdown-menu localtoc"><ul>
-<li><a class="reference internal" href="#">Validation Resources</a></li>
+<li><a class="reference internal" href="#">Validation Resources</a><ul>
+<li><a class="reference internal" href="#retrieving-resources">Retrieving Resources</a></li>
+<li><a class="reference internal" href="#retrieving-a-specific-record-in-a-resource">Retrieving a Specific Record in a Resource</a></li>
+<li><a class="reference internal" href="#retrieving-records-from-the-persons-resource">Retrieving Records from the Persons Resource</a></li>
+</ul>
+</li>
 </ul>
 </ul>
 </li>
@@ -148,6 +153,100 @@
       
   <div class="section" id="validation-resources">
 <span id="id1"></span><h1>Validation Resources<a class="headerlink" href="#validation-resources" title="Permalink to this headline">¶</a></h1>
+<p>For more information, consult the <a class="reference external" href="http://soccermetrics.github.io/fmrd-summary-api/resources/validation/main.html">Validation Resource</a> documentation.</p>
+<p>The Validation resources are used to validate data inputted into the database,
+therefore ensuring data consistency and integrity.  You might use these resources
+to populate dropdown boxes in an application or augment an API request.</p>
+<p>Validation resources are grouped into two categories: Match Overview resources,
+and Match Event resources.  However, Match Overview and Match Event resources
+are accessed in the same way.  There is also a Persons resource that supports
+all of the Personnel resources in the API.</p>
+<div class="section" id="retrieving-resources">
+<h2>Retrieving Resources<a class="headerlink" href="#retrieving-resources" title="Permalink to this headline">¶</a></h2>
+<p>To access the full representation of the Validation resource, make a <tt class="docutils literal"><span class="pre">get()</span></tt> call.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">soccermetrics.rest</span> <span class="kn">import</span> <span class="n">SoccermetricsRestClient</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">SoccermetricsRestClient</span><span class="p">()</span>
+
+<span class="n">confeds</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">confederations</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">confed</span> <span class="ow">in</span> <span class="n">confeds</span><span class="p">:</span>
+    <span class="k">print</span> <span class="n">confed</span><span class="o">.</span><span class="n">name</span>
+</pre></div>
+</div>
+<p>Results are paged, which is irrelevant for most of the Validation resources
+except the Countries resource.  If you wish to receive all of the results
+at once, use the <tt class="docutils literal"><span class="pre">all()</span></tt> method on the response.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">soccermetrics.rest</span> <span class="kn">import</span> <span class="n">SoccermetricsRestClient</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">SoccermetricsRestClient</span><span class="p">()</span>
+
+<span class="n">resp</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">countries</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+<span class="n">countries</span> <span class="o">=</span> <span class="n">resp</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="retrieving-a-specific-record-in-a-resource">
+<h2>Retrieving a Specific Record in a Resource<a class="headerlink" href="#retrieving-a-specific-record-in-a-resource" title="Permalink to this headline">¶</a></h2>
+<p>To access a specific resource, call <tt class="docutils literal"><span class="pre">get()</span></tt> with the unique ID of the record.
+You can also use the keyword <tt class="docutils literal"><span class="pre">uid</span></tt> in the function call.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">soccermetrics.rest</span> <span class="kn">import</span> <span class="n">SoccermetricsRestClient</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">SoccermetricsRestClient</span><span class="p">()</span>
+
+<span class="n">england</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">countries</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">280</span><span class="p">)</span>
+<span class="n">brazil</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">countries</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">uid</span><span class="o">=</span><span class="mi">243</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>You can also use the query parameters associated with each resource to search
+for a specific record.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">soccermetrics.rest</span> <span class="kn">import</span> <span class="n">SoccermetricsRestClient</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">SoccermetricsRestClient</span><span class="p">()</span>
+
+<span class="n">cloudy_wx</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">weather</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">desc</span><span class="o">=</span><span class="s">&#39;Cloudy&#39;</span><span class="p">)</span>
+<span class="n">grass</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">surfaces</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;Natural Grass&#39;</span><span class="p">)</span>
+<span class="n">left_foot</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">bodyparts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;Left Foot&#39;</span><span class="p">)</span>
+<span class="n">red_card</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">cards</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">desc</span><span class="o">=</span><span class="s">&#39;Red&#39;</span><span class="p">)</span>
+<span class="n">saved_penalty</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">penalty_outcomes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">desc</span><span class="o">=</span><span class="s">&#39;Saved&#39;</span><span class="p">)</span>
+<span class="n">rooney</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">persons</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">first_name</span><span class="o">=</span><span class="s">&#39;Wayne&#39;</span><span class="p">,</span> <span class="n">last_name</span><span class="o">=</span><span class="s">&#39;Rooney&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">When retrieving records with the query parameter, there
+must be an exact match.</p>
+</div>
+</div>
+<div class="section" id="retrieving-records-from-the-persons-resource">
+<h2>Retrieving Records from the Persons Resource<a class="headerlink" href="#retrieving-records-from-the-persons-resource" title="Permalink to this headline">¶</a></h2>
+<p>The <tt class="docutils literal"><span class="pre">Persons</span></tt> resource provides access to biographical and demographical data
+of all people involved with a football match, such as managers, referees, and
+players.</p>
+<p>You can retrieve all of the records using the <tt class="docutils literal"><span class="pre">get()</span></tt> method, but it is not
+recommended because of the large size of the data returned.</p>
+<p>In practice you will use the query parameters to filter the records returned by
+the resource.  Keep in mind that all of the fields are populated except for
+the <tt class="docutils literal"><span class="pre">nickname</span></tt> field, which is sometimes <tt class="docutils literal"><span class="pre">null</span></tt>.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">soccermetrics.rest</span> <span class="kn">import</span> <span class="n">SoccermetricsRestClient</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">SoccermetricsRestClient</span><span class="p">()</span>
+
+<span class="n">argentina</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">countries</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;Argentina&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">data</span>
+<span class="n">argentines</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">persons</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">country</span><span class="o">=</span><span class="n">argentina</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If you search by string, it must match <strong>exactly</strong>, including any diacritical
+markings.  So a search for <tt class="docutils literal"><span class="pre">Arsène</span> <span class="pre">Wenger</span></tt></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">soccermetrics.rest</span> <span class="kn">import</span> <span class="n">SoccermetricsRestClient</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">SoccermetricsRestClient</span><span class="p">()</span>
+
+<span class="n">wenger_ok</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">persons</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">first_name</span><span class="o">=</span><span class="s">u&#39;Arsène&#39;</span><span class="p">,</span><span class="n">last_name</span><span class="o">=</span><span class="s">u&#39;Wenger&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>will create a match, but a search for <tt class="docutils literal"><span class="pre">Arsene</span> <span class="pre">Wenger</span></tt></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">soccermetrics.rest</span> <span class="kn">import</span> <span class="n">SoccermetricsRestClient</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">SoccermetricsRestClient</span><span class="p">()</span>
+
+<span class="n">wenger_err</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">persons</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">first_name</span><span class="o">=</span><span class="s">u&#39;Arsene&#39;</span><span class="p">,</span><span class="n">last_name</span><span class="o">=</span><span class="s">u&#39;Wenger&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>will result in an <tt class="docutils literal"><span class="pre">SoccermetricsRestException</span></tt>.</p>
+</div>
 </div>
 
 
