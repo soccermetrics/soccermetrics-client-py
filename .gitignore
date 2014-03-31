@@ -1,6 +1,7 @@
 .env
 .coverage
 build/
+dist/
 *env/
 *.egg-info
 *.py[co]
