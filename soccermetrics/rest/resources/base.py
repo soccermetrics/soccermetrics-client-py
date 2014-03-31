@@ -56,7 +56,7 @@ class Resource(object):
                 data = resp.json()
                 raise SoccermetricsRestException(resp.status_code,data['uri'],data['message'])
         except requests.exceptions.RequestException, e:
-            raise SoccermetricsRestException(500, resp.url, msg=e)
+            raise SoccermetricsRestException(500, uri, msg=e)
 
     def head(self):
         """
