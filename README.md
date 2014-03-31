@@ -61,7 +61,7 @@ To start using the Soccermetrics API, create a `SoccermetricsRestClient`.
 ## API Credentials
 
 You'll need your Soccermetrics API credentials to use the `SoccermetricsRestClient`.
-These get passed to the constructor or via environment variables.
+These get passed to the constructor directly or via environment variables.
 
 ```python
 from soccermetrics.rest import SoccermetricsRestClient
@@ -118,6 +118,18 @@ penalties = client.link.get(player.link.events.penalties,outcome_type="Goal")
 ```
 
 ## Get Advanced Analytics
+
+```python
+from soccermetrics.rest import SoccermetricsRestClient
+client = SoccermetricsRestClient()
+
+match = client.match.information.get(home_team_name='Manchester United', away_team_name='Stoke City').data[0]
+
+match_state_46 = client.link.get(match.link.analytics.state,time_mins=46)
+match_state_75 = client.link.get(match.link.analytics.state,time_mins=75)
+match_state_final = client.link.get(match.link.analytics.state)
+match_segments = client.link.get(match.link.analytics.segment)
+```
 
 # Learn More
 
