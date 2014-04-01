@@ -78,14 +78,17 @@ class AnalyticsResource(Resource):
 class MatchAnalytics(object):
     """Represents a Match Analytics REST resource (/analytics/match endpoints).
 
-    +----------------+-----------------------+
-    | Attribute      | Description           |
-    +================+=======================+
-    | state          | Match state           |
-    +----------------+-----------------------+
-    | segment        | Match segments        |
-    +----------------+-----------------------+
+    +----------------+--------------------------+
+    | Attribute      | Description              |
+    +================+==========================+
+    | state          | Match state              |
+    +----------------+--------------------------+
+    | segment        | Match segments           |
+    +----------------+--------------------------+
+    | tsr            | Match Total Shots Ratio  |
+    +----------------+--------------------------+
     """
     def __init__(self, base_uri, auth):
         self.state = AnalyticsResource("state", base_uri, auth)
         self.segment = AnalyticsResource("segment", base_uri, auth)
+        self.tsr = AnalyticsResource("tsr", base_uri, auth)
