@@ -59,7 +59,7 @@ class SoccermetricsRestClient(object):
     +------------------+----------------------------+
     | shotevents       | Shot events                |
     +------------------+----------------------------+
-    | penalty_outcomes | Penalty outcomes           |
+    | penaltyOutcomes  | Penalty outcomes           |
     +------------------+----------------------------+
     | weather          | Weather conditions         |
     +------------------+----------------------------+
@@ -128,7 +128,7 @@ values from your Soccermetrics API Account at http://soccermetrics.3scale.net.
         self.cards = Validation("cards", base_uri, auth)
         self.bodyparts = Validation("bodyparts", base_uri, auth)
         self.shotevents = Validation("shotevents", base_uri, auth)
-        self.penalty_outcomes = Validation("penalty_outcomes", base_uri, auth)
+        self.penaltyOutcomes = Validation("penalty_outcomes", base_uri, auth)
         self.weather = Validation("weather", base_uri, auth)
         self.surfaces = Validation("surfaces", base_uri, auth)
 
