@@ -105,7 +105,7 @@ class RestClientAttributeTest(unittest.TestCase):
             soccermetrics.rest.resources.Validation)
         self.assertIsInstance(self.client.shotevents,
             soccermetrics.rest.resources.Validation)
-        self.assertIsInstance(self.client.penalty_outcomes,
+        self.assertIsInstance(self.client.penaltyOutcomes,
             soccermetrics.rest.resources.Validation)
         self.assertIsInstance(self.client.weather,
             soccermetrics.rest.resources.Validation)

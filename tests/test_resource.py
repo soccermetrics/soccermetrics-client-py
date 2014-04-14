@@ -3,7 +3,7 @@ import unittest
 import soccermetrics
 from soccermetrics import __api_version__
 from soccermetrics.rest import SoccermetricsRestClient
-from soccermetrics.rest.resource import Resource
+from soccermetrics.rest.resources import Resource
 
 class ResourceTest(unittest.TestCase):
 
