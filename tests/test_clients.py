@@ -11,9 +11,9 @@ class NoCredentialsTest(unittest.TestCase):
     """
 
     def setUp(self):
-        if environ.has_key('SOCCERMETRICS_APP_KEY'):
+        if 'SOCCERMETRICS_APP_KEY' in environ.keys():
             del environ['SOCCERMETRICS_APP_KEY']
-        if environ.has_key('SOCCERMETRICS_APP_ID'):
+        if 'SOCCERMETRICS_APP_ID' in environ.keys():
             del environ['SOCCERMETRICS_APP_ID']
 
     def test_no_credentials(self):
@@ -28,7 +28,7 @@ class PartialCredentialsTest(unittest.TestCase):
 
     def setUp(self):
         environ['SOCCERMETRICS_APP_KEY'] = 'AUTH_TOKEN'
-        if environ.has_key('SOCCERMETRICS_APP_ID'):
+        if 'SOCCERMETRICS_APP_ID' in environ.keys():
             del environ['SOCCERMETRICS_APP_ID']
 
     def test_partial_credentials(self):
@@ -56,9 +56,9 @@ class RestClientTest(unittest.TestCase):
     """
 
     def setUp(self):
-        if environ.has_key('SOCCERMETRICS_APP_KEY'):
+        if 'SOCCERMETRICS_APP_KEY' in environ.keys():
             del environ['SOCCERMETRICS_APP_KEY']
-        if environ.has_key('SOCCERMETRICS_APP_ID'):
+        if 'SOCCERMETRICS_APP_ID' in environ.keys():
             del environ['SOCCERMETRICS_APP_ID']
 
     def test_fail_connect(self):
