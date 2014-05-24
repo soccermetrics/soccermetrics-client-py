@@ -46,7 +46,7 @@ class Resource(object):
         uri = "%s%s/%d" % (self.base_uri, self.endpoint, uid) if uid else \
             "%s%s" % (self.base_uri, self.endpoint)
 
-        full_param_dict = dict(chain(kwargs.items() + self.auth.items()))
+        full_param_dict = dict(kwargs, **self.auth)
 
         try:
             resp = requests.get(uri,params=full_param_dict)
