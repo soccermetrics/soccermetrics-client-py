@@ -76,6 +76,9 @@ class RestClientAttributeTest(unittest.TestCase):
     def setUp(self):
         self.client = SoccermetricsRestClient(account="APP_ID",api_key="APP_KEY")
 
+    def test_https_endpoint(self):
+        self.assertTrue(self.client.root.base_uri.startswith("https"))
+
     def test_service_root(self):
         self.assertIsInstance(self.client.root, soccermetrics.rest.resources.Root)
 
