@@ -1,4 +1,4 @@
-__version_info__ = ('0','7','2')
+__version_info__ = ('0','7','3')
 __version__ = '.'.join(__version_info__)
 
 __api_version__ = 'v0'
