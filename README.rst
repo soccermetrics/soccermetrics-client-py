@@ -117,11 +117,11 @@ Get Match Information
 
     match = client.match.information.get(home_team_name="Everton",
                                          away_team_name="Liverpool").data[0]
-    print match.matchday, match.match_date, match.kickoff_time
+    print match.matchday, match.matchDate, match.kickoffTime
 
     lineup_data = client.link.get(match.link.lineups, is_starting=True).all()
     for datum in lineup_data:
-        print datum.player_name, datum.player_team_name
+        print datum.playerName, datum.playerTeamName
 
 Get Player Statistical Data
 ---------------------------
