@@ -20,7 +20,7 @@ if __name__ == "__main__":
     matches = client.link.get(referee.link.matches,sort="match_date").all()
 
     # Use lengths of match halves to create list of time added on by referee
-    timeon = [dict(first=45-match.firsthalf_length,second=45-match.secondhalf_length)
+    timeon = [dict(first=45-match.firsthalfLength,second=45-match.secondhalfLength)
               for match in matches]
 
     # Iterate over list of matches and access penalty and disciplinary events
@@ -40,22 +40,22 @@ if __name__ == "__main__":
         reds.extend(match_2ndyellows + match_reds)
 
         print """%s,%s v %s,%d,%d,%d,%d,%d,%d""" % (match.matchday,
-                    match.home_team_name, match.away_team_name, len(match_pens),
+                    match.homeTeamName, match.awayTeamName, len(match_pens),
                     len(match_yellows), len(match_2ndyellows), len(match_reds),
-                    match.firsthalf_length, match.secondhalf_length)
+                    match.firsthalfLength, match.secondhalfLength)
 
     # Create a temporary function to convert list of dictionaries to a list
     # of values associated with a key.
     dict2list = lambda vec,k: [x[k] for x in vec]
 
     # Create a unique list of fouls called by the referee.
-    foul_list = set(dict2list(yellows,'foul_type')+dict2list(reds,'foul_type'))
+    foul_list = set(dict2list(yellows,'foulType')+dict2list(reds,'foulType'))
 
     # Print list of fouls and number of yellow and red cards given for them.
     print "Foul Type,Yellows,Reds"
     for foul in foul_list:
         print "%30s,%2d,%2d" % (foul,
-            sum([1 for x in yellows if x['foul_type'] == foul]),
-            sum([1 for x in reds if x['foul_type'] == foul]))
+            sum([1 for x in yellows if x['foulType'] == foul]),
+            sum([1 for x in reds if x['foulType'] == foul]))
 
 

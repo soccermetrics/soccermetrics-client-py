@@ -29,7 +29,7 @@ if __name__ == "__main__":
 
     # Results from the API are unsorted, so sort the results by match date.
     # You can also sort by matchday but not all matches are played in order.
-    sorted_matches = sorted(matches, key=lambda k: k.match_date)
+    sorted_matches = sorted(matches, key=lambda k: k.matchDate)
 
     # Now we can iterate over the sorted match list (and make sure you are
     # sorting over the sorted match list!)  For every match record, retrieve
@@ -40,4 +40,4 @@ if __name__ == "__main__":
     print "Match Date,Kickoff Time,Kickoff Temp"
     for match in sorted_matches:
         condition = client.link.get(match.link.conditions).data[0]
-        print "%s,%s,%2.1f" % (match.match_date, match.kickoff_time, condition.kickoff_temp)
+        print "%s,%s,%2.1f" % (match.matchDate, match.kickoffTime, condition.kickoffTemp)

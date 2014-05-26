@@ -35,7 +35,7 @@ if __name__ == "__main__":
             match_goals = []
             # We use the hyperlinks in the match representation to retrieve goal and
             # penalty kick events under certain conditions.
-            for team in [match.home_team_name,match.away_team_name]:
+            for team in [match.homeTeamName,match.awayTeamName]:
                 goals = client.link.get(match.link.events.goals,scoring_team_name=team).all()
                 pens = client.link.get(match.link.events.penalties,player_team_name=team,
                                        outcome_type="Goal").all()
@@ -43,7 +43,7 @@ if __name__ == "__main__":
                 match_goals.append(len(goals)+len(pens))
 
             print "Matchday %02s %s %s %30s %d-%d %-30s" % (match.matchday,
-                match.match_date, match.kickoff_time, match.home_team_name,
-                match_goals[0],match_goals[1],match.away_team_name)
+                match.matchDate, match.kickoffTime, match.homeTeamName,
+                match_goals[0],match_goals[1],match.awayTeamName)
         # A newline to separate the matchdays.
         print

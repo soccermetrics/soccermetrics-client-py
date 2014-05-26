@@ -116,15 +116,15 @@ def calcMean(vector):
     else:
         return sum(vector)/float(len(vector))
 
-def calcPosMultiplier(position_name):
+def calcPosMultiplier(positionName):
     """Calculate point multiplier given position"""
     multiplier = 1
 
-    if position_name in forwardList:
+    if positionName in forwardList:
         multiplier = 4
-    elif position_name in midfieldList:
+    elif positionName in midfieldList:
         multiplier = 5
-    elif position_name in defensiveList:
+    elif positionName in defensiveList:
         multiplier = 6
 
     return multiplier
@@ -142,47 +142,47 @@ def calcMinutesPlayed(client, lineup, match):
     (6) Entered match and was substituted out.
     """
     # get total playing time of match
-    match_length = matchTime([match.firsthalf_length, match.secondhalf_length])
+    match_length = matchTime([match.firsthalfLength, match.secondhalfLength])
     # did player start match?
-    if lineup.is_starting:
+    if lineup.isStarting:
         # was player sent off?
         ejected = client.link.get(match.link.events.offenses,
-            player_name=lineup.player_name, card_type="Red").all() + \
+            player_name=lineup.playerName, card_type="Red").all() + \
             client.link.get(match.link.events.offenses,
-            player_name=lineup.player_name, card_type="Yellow/Red").all()
+            player_name=lineup.playerName, card_type="Yellow/Red").all()
         if ejected:
-            eject_time = (ejected[0].time_mins, ejected[0].stoppage_mins)
+            eject_time = (ejected[0].timeMins, ejected[0].stoppageMins)
             player_time = match_length.absoluteTime(eject_time)
         else:
             # was player substituted out?
             subs = client.link.get(match.link.events.substitutions,
-                out_player_name=lineup.player_name).all()
+                out_player_name=lineup.playerName).all()
             if subs:
-                subs_time = (subs[0].time_mins, subs[0].stoppage_mins)
+                subs_time = (subs[0].timeMins, subs[0].stoppageMins)
                 player_time = match_length.absoluteTime(subs_time)
             else:
                 player_time = match_length.total()
     # did player enter as substitute?
     else:
         subs = client.link.get(match.link.events.substitutions,
-            in_player_name=lineup.player_name).all()
+            in_player_name=lineup.playerName).all()
         if subs:
-            subs_time = (subs[0].time_mins, subs[0].stoppage_mins)
+            subs_time = (subs[0].timeMins, subs[0].stoppageMins)
             # was player sent off?
             ejected = client.link.get(match.link.events.offenses,
-                player_name=lineup.player_name, card_type="Red").all() + \
+                player_name=lineup.playerName, card_type="Red").all() + \
                 client.link.get(match.link.events.offenses,
-                player_name=lineup.player_name, card_type="Yellow/Red").all()
+                player_name=lineup.playerName, card_type="Yellow/Red").all()
             if ejected:
-                eject_time = (ejected[0].time_mins, ejected[0].stoppage_mins)
+                eject_time = (ejected[0].timeMins, ejected[0].stoppageMins)
                 player_time = match_length.absoluteTime(eject_time) - \
                     match_length.absoluteTime(subs_time)
             else:
                 # was sub substituted?
                 subsubs = client.link.get(match.link.events.substitutions,
-                    out_player_name=lineup.player_name).all()
+                    out_player_name=lineup.playerName).all()
                 if subsubs:
-                    subsubs_time = (subsubs[0].time_mins, subsubs[0].stoppage_mins)
+                    subsubs_time = (subsubs[0].timeMins, subsubs[0].stoppageMins)
                     player_time = match_length.absoluteTime(subsubs_time) - \
                         match_length.absoluteTime(subs_time)
                 else:
@@ -215,44 +215,44 @@ def calcGoalPoints(client, resp):
         if goals:
             goals_not_own = len([x for x in goals
                 if x.player == lineup.player
-                and x.player_team == x.scoring_team])
+                and x.playerTeam == x.scoringTeam])
             goals_own = len([x for x in goals
                 if x.player == lineup.player
-                and x.player_team != x.scoring_team])
-            return calcPosMultiplier(lineup.position_name)*goals_not_own - 2*goals_own
+                and x.playerTeam != x.scoringTeam])
+            return calcPosMultiplier(lineup.positionName)*goals_not_own - 2*goals_own
     return 0
 
 def calcGoalsAllowedPoints(client, resp):
     if resp.data:
         lineup = resp.data[0]
-        isDefPlayer = lineup.position_name in defensiveList
+        isDefPlayer = lineup.positionName in defensiveList
         match = client.link.get(lineup.link.match).data[0]
         # get goals from opposing team
-        if match.home_team_name == lineup.player_team:
-            opp_team_name = match.away_team_name
+        if match.homeTeamName == lineup.playerTeam:
+            opp_team_name = match.awayTeamName
         else:
-            opp_team_name = match.home_team_name
+            opp_team_name = match.homeTeamName
         goals = client.link.get(match.link.events.goals, scoring_team_name=opp_team_name).all()
         # if player started match...
-        if lineup.is_starting:
+        if lineup.isStarting:
             # was player sent off?
             ejected = client.link.get(match.link.events.offenses,
-                player_name=lineup.player_name, card_type="Red").all() + \
+                player_name=lineup.playerName, card_type="Red").all() + \
                 client.link.get(match.link.events.offenses,
-                player_name=lineup.player_name, card_type="Yellow/Red").all()
+                player_name=lineup.playerName, card_type="Yellow/Red").all()
             if ejected:
                 allowed_preeject = len([x for x in goals
-                    if x.time_mins < ejected[0].time_mins])
+                    if x.timeMins < ejected[0].timeMins])
                 allowed_posteject = len([x for x in goals
-                    if x.time_mins >= ejected[0].time_mins])
+                    if x.timeMins >= ejected[0].timeMins])
                 goals_allowed = allowed_preeject * isDefPlayer + allowed_posteject
             else:
                 # player not ejected -- was player substituted out?
                 subs = client.link.get(match.link.events.substitutions,
-                    out_player_name=lineup.player_name).all()
+                    out_player_name=lineup.playerName).all()
                 if subs:
                     goals_allowed = len([x for x in goals
-                        if x.time_mins < subs[0].time_mins]) * isDefPlayer
+                        if x.timeMins < subs[0].timeMins]) * isDefPlayer
                 else:
                     # player in full duration of match
                     goals_allowed = len(goals) * isDefPlayer
@@ -260,31 +260,31 @@ def calcGoalsAllowedPoints(client, resp):
         else:
             # did player join as substitute?
             subs = client.link.get(match.link.events.substitutions,
-                in_player_name=lineup.player_name).all()
+                in_player_name=lineup.playerName).all()
             if subs:
                 # was player ejected?
                 ejected = client.link.get(match.link.events.offenses,
-                    player_name=lineup.player_name, card_type="Red").all() + \
+                    player_name=lineup.playerName, card_type="Red").all() + \
                     client.link.get(match.link.events.offenses,
-                    player_name=lineup.player_name, card_type="Yellow/Red").all()
+                    player_name=lineup.playerName, card_type="Yellow/Red").all()
                 if ejected:
                     allowed_preeject = len([x for x in goals
-                        if x.time_mins >= subs[0].time_mins
-                        and x.time_mins < ejected[0].time_mins])
+                        if x.timeMins >= subs[0].timeMins
+                        and x.timeMins < ejected[0].timeMins])
                     allowed_posteject = len([x for x in goals
-                        if x.time_mins >= ejected[0].time_mins])
+                        if x.timeMins >= ejected[0].timeMins])
                     goals_allowed = allowed_preeject * isDefPlayer + allowed_posteject
                 else:
                     # sub not ejected -- was sub substituted out?
                     subsubs = client.link.get(match.link.events.substitutions,
-                        out_player_name=lineup.player_name).all()
+                        out_player_name=lineup.playerName).all()
                     if subsubs:
                         goals_allowed = len([x for x in goals
-                            if x.time_mins >= subs[0].time_mins
-                            and x.time_mins < subsubs[0].time_mins]) * isDefPlayer
+                            if x.timeMins >= subs[0].timeMins
+                            and x.timeMins < subsubs[0].timeMins]) * isDefPlayer
                     else:
                         goals_allowed = len([x for x in goals
-                            if x.time_mins >= subs[0].time_mins]) * isDefPlayer
+                            if x.timeMins >= subs[0].timeMins]) * isDefPlayer
         return int(goals_allowed*0.5)
     return 0
 
@@ -300,33 +300,33 @@ def calcCleanSheetPoints(client, resp):
     if resp.data:
         lineup = resp.data[0]
         match = client.link.get(lineup.link.match).data[0]
-        match_length = matchTime([match.firsthalf_length, match.secondhalf_length])
-        if match.home_team_name == lineup.player_team:
-            opp_team_name = match.away_team_name
+        match_length = matchTime([match.firsthalfLength, match.secondhalfLength])
+        if match.homeTeamName == lineup.playerTeam:
+            opp_team_name = match.awayTeamName
         else:
-            opp_team_name = match.home_team_name
+            opp_team_name = match.homeTeamName
         goals = client.link.get(match.link.events.goals, scoring_team_name=opp_team_name).all()
         # did player start match?
-        if lineup.is_starting:
+        if lineup.isStarting:
             # was player sent off?
             ejected = client.link.get(match.link.events.offenses,
-                player_name=lineup.player_name, card_type="Red").all() + \
+                player_name=lineup.playerName, card_type="Red").all() + \
                 client.link.get(match.link.events.offenses,
-                player_name=lineup.player_name, card_type="Yellow/Red").all()
+                player_name=lineup.playerName, card_type="Yellow/Red").all()
             if ejected:
-                eject_time = (ejected[0].time_mins, ejected[0].stoppage_mins)
+                eject_time = (ejected[0].timeMins, ejected[0].stoppageMins)
                 player_time = match_length.absoluteTime(eject_time)
                 goals_allowed = len([x for x in goals
-                    if x.time_mins <= eject_time[0]])
+                    if x.timeMins <= eject_time[0]])
             else:
                 # was player substituted out?
                 subs = client.link.get(match.link.events.substitutions,
-                    out_player_name=lineup.player_name).all()
+                    out_player_name=lineup.playerName).all()
                 if subs:
-                    subs_time = (subs[0].time_mins, subs[0].stoppage_mins)
+                    subs_time = (subs[0].timeMins, subs[0].stoppageMins)
                     player_time = match_length.absoluteTime(subs_time)
                     goals_allowed = len([x for x in goals
-                        if x.time_mins <= subs_time[0]])
+                        if x.timeMins <= subs_time[0]])
                 else:
                     # player in for full match
                     player_time = match_length.total()
@@ -334,42 +334,42 @@ def calcCleanSheetPoints(client, resp):
         else:
             # did player join as substitute?
             subs = client.link.get(match.link.events.substitutions,
-                in_player_name=lineup.player_name).all()
+                in_player_name=lineup.playerName).all()
             if subs:
-                subs_time = (subs[0].time_mins, subs[0].stoppage_mins)
+                subs_time = (subs[0].timeMins, subs[0].stoppageMins)
                 # was player sent off?
                 ejected = client.link.get(match.link.events.offenses,
-                    player_name=lineup.player_name, card_type="Red").all() + \
+                    player_name=lineup.playerName, card_type="Red").all() + \
                     client.link.get(match.link.events.offenses,
-                    player_name=lineup.player_name, card_type="Yellow/Red").all()
+                    player_name=lineup.playerName, card_type="Yellow/Red").all()
                 if ejected:
-                    eject_time = (ejected[0].time_mins, ejected[0].stoppage_mins)
+                    eject_time = (ejected[0].timeMins, ejected[0].stoppageMins)
                     player_time = match_length.absoluteTime(eject_time) - \
                         match_length.absoluteTime(subs_time)
-                    goals_allowed = len([x for x in goals if x.time_mins <= eject_time[0]]) - \
-                        len([x for x in goals if x.time_mins <= subs_time[0]])
+                    goals_allowed = len([x for x in goals if x.timeMins <= eject_time[0]]) - \
+                        len([x for x in goals if x.timeMins <= subs_time[0]])
                 else:
                     # was sub substituted out?
                     subsubs = client.link.get(match.link.events.substitutions,
-                        out_player_name=lineup.player_name).all()
+                        out_player_name=lineup.playerName).all()
                     if subsubs:
-                        subsubs_time = (subsubs[0].time_mins, subsubs[0].stoppage_mins)
+                        subsubs_time = (subsubs[0].timeMins, subsubs[0].stoppageMins)
                         player_time = match_length.absoluteTime(subsubs_time) - \
                             match_length.absoluteTime(subs_time)
                         goals_allowed = len([x for x in goals
-                            if x.time_mins >= subs[0].time_mins
-                            and x.time_mins < subsubs[0].time_mins])
+                            if x.timeMins >= subs[0].timeMins
+                            and x.timeMins < subsubs[0].timeMins])
                     else:
                         player_time = match_length.total() - match_length.absoluteTime(subs_time)
-                        goals_allowed = len([x for x in goals if x.time_mins >= subs_time[0]])
+                        goals_allowed = len([x for x in goals if x.timeMins >= subs_time[0]])
             else:
                 player_time = 0
                 goals_allowed = None
         if goals_allowed is not None:
             if goals_allowed == 0 and player_time >= 60:
-                if lineup.position_name in defensiveList:
+                if lineup.positionName in defensiveList:
                     return 4
-                elif lineup.position_name in midfieldList:
+                elif lineup.positionName in midfieldList:
                     return 1
     return 0
 
@@ -387,9 +387,9 @@ def calcPenaltyPoints(client, resp):
         match = client.link.get(lineup.link.match).data[0]
         # penalty kick misses
         pen_goals = client.link.get(match.link.events.penalties,
-            player_name=lineup.player_name).all()
+            player_name=lineup.playerName).all()
         if pen_goals:
-            pen_misses = len([x for x in pen_goals if x.outcome_type != "Goal"])
+            pen_misses = len([x for x in pen_goals if x.outcomeType != "Goal"])
         else:
             pen_misses = 0
         # penalty kick saves

@@ -22,7 +22,7 @@ if __name__ == "__main__":
     # sort by match date.
     hmatches = client.link.get(manager.link.home_matches,sort="match_date").all()
     amatches = client.link.get(manager.link.away_matches,sort="match_date").all()
-    matches = sorted(hmatches + amatches,key=lambda k: k.match_date)
+    matches = sorted(hmatches + amatches,key=lambda k: k.matchDate)
 
     # Create a list of match substitution timings
     sub_list = []
@@ -30,7 +30,7 @@ if __name__ == "__main__":
         # The team key is either home_team_name or away_team_name depending on
         # whether the manager is the home or away manager. This ternary statement
         # assigns the team key.
-        team_key = 'home_team_name' if match.home_manager_name == manager.full_name \
+        team_key = 'home_team_name' if match.homeManagerName == manager.fullName \
             else 'away_team_name'
 
         # We use the hyperlinks in the match representation to retrieve all
@@ -48,12 +48,12 @@ if __name__ == "__main__":
         # Loop over the ordered match substitution data and assign the match
         # times to the ordered keys.
         for k, sub in enumerate(subs):
-            sub_dict[subkeys[k]] = int(sub.time_mins)
+            sub_dict[subkeys[k]] = int(sub.timeMins)
 
         # This is a diagnostic to the user.  Display the matchday, the teams,
         # and the substitutions made by the manager.
-        print "Matchday %2s: %s v %s: " % (match.matchday, match.home_team_name,
-            match.away_team_name),
+        print "Matchday %2s: %s v %s: " % (match.matchday, match.homeTeamName,
+            match.awayTeamName),
         print sub_dict['first'],sub_dict['second'],sub_dict['third']
 
         # Append the substitution dictionary to the list.

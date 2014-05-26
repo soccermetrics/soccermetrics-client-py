@@ -30,7 +30,7 @@ if __name__ == "__main__":
     for key in ['home_team_name','away_team_name']:
         param = {key: club_name}
         matches.extend(client.match.information.get(**param).all())
-    sorted_matches = sorted(matches, key=lambda k: k.match_date)
+    sorted_matches = sorted(matches, key=lambda k: k.matchDate)
 
     starters = []
     rotation_list = []
@@ -47,7 +47,7 @@ if __name__ == "__main__":
         # get the number of squad rotations.
         if len(starters) > 1:
             num_no_changes = len(set(starters[-2]).intersection(starters[-1]))
-            rotation_list.append(dict(date=match.match_date,
+            rotation_list.append(dict(date=match.matchDate,
                 matchday=match.matchday,
                 rotations=STARTING_XI-num_no_changes))
 

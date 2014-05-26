@@ -17,6 +17,6 @@ if __name__ == "__main__":
 
         for goal in client.link.get(datum.link.events.goals, sort='time_mins').data:
             print "Goal scored by %s in minute %d by %s" % (
-                goal.scoring_team_name,
-                goal.time_mins,
-                client.link.get(goal.link.player).data[0].full_name)
+                goal.scoringTeamName,
+                goal.timeMins,
+                client.link.get(goal.link.player).data[0].fullName)

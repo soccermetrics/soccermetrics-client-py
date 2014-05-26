@@ -17,7 +17,7 @@ match = client.match.information.get(home_team_name=home_club,
 
 # collect name and ID of all players in lineups
 lineup = client.link.get(match[0].link.lineups).all()
-players = {x.player:x.player_name for x in lineup}
+players = {x.player:x.playerName for x in lineup}
 
 # get all segments of the match
 segments = client.link.get(match[0].link.analytics.segments).all()
@@ -27,12 +27,12 @@ segments = client.link.get(match[0].link.analytics.segments).all()
 platoon = lambda rec: ', '.join([players[_id] for _id in rec])
 
 for segment in segments:
-    if segment.start_stoppage_mins > 0:
-        match_time = "%d+%d" % (segment.start_time_mins,
-                                segment.start_stoppage_mins)
+    if segment.startStoppageMins > 0:
+        match_time = "%d+%d" % (segment.startTimeMins,
+                                segment.startStoppageMins)
     else:
-        match_time = "%d" % segment.start_time_mins
+        match_time = "%d" % segment.startTimeMins
     print "Start segment: %s" % match_time
-    print "Home Players: %s" % platoon(segment.home_players_on)
-    print "Away Players: %s" % platoon(segment.away_players_on)
+    print "Home Players: %s" % platoon(segment.homePlayersOn)
+    print "Away Players: %s" % platoon(segment.awayPlayersOn)
     print "Duration: %s mins" % segment.duration

@@ -35,8 +35,8 @@ if __name__ == "__main__":
         # venue and the referee.  We'll format the string so that it looks nice.
         for match in matches:
             print "Matchday %02s %s %s %30s v %-30s \t%s (%s)" % (match.matchday,
-                match.match_date, match.kickoff_time, match.home_team_name,
-                match.away_team_name, match.venue_name, match.referee_name)
+                match.matchDate, match.kickoffTime, match.homeTeamName,
+                match.awayTeamName, match.venueName, match.refereeName)
         # A newline to separate the matchdays.
         print
 
