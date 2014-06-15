@@ -6,10 +6,12 @@ class MatchEventResource(Resource):
 
     Derived from :class:`base.Resource`.
     """
-    def __init__(self, resource, base_uri, auth):
+    def __init__(self, play, resource, base_uri, auth):
         """
         Constructor of MatchEventResource class.
 
+        :param play: Type of teams playing in matches.
+        :type play: string
         :param resource: Name of resource.
         :type resource: string
         :param base_uri: Base URI of API.
@@ -19,37 +21,34 @@ class MatchEventResource(Resource):
         """
         super(MatchEventResource, self).__init__(base_uri,auth)
 
-        self.endpoint += "/events/%s" % resource
+        self.endpoint += "%s/events/%s" % (play, resource)
 
 
 class MatchEvents(object):
     """
     Establish access to Match Event objects (/events endpoint).
 
-    +----------------+-----------------------+
-    | Attribute      | Description           |
-    +================+=======================+
-    | goals          | Goal events           |
-    +----------------+-----------------------+
-    | penalties      | Penalty kick events   |
-    +----------------+-----------------------+
-    | offenses       | Disciplinary events   |
-    +----------------+-----------------------+
-    | substitutions  | Substitution events   |
-    +----------------+-----------------------+
+    +--------------+-----------------------+
+    | Attribute    | Description           |
+    +==============+=======================+
+    | all          | All micro events      |
+    +--------------+-----------------------+
+    | touches      | All touch events      |
+    +--------------+-----------------------+
+    | actions      | All event actions     |
+    +--------------+-----------------------+
     """
-    def __init__(self, base_uri, auth):
+    def __init__(self, play, base_uri, auth):
         """
         Constructor of MatchEvents class.
 
-        :param resource: Name of resource.
-        :type resource: string
+        :param play: Type of teams playing in matches.
+        :type play: string
         :param base_uri: Base URI of API.
         :type base_uri: string
         :param auth: Authentication credential.
         :type auth: tuple
         """
-        self.goals = MatchEventResource("goals", base_uri, auth)
-        self.penalties = MatchEventResource("penalties", base_uri, auth)
-        self.offenses = MatchEventResource("offenses", base_uri, auth)
-        self.substitutions = MatchEventResource("substitutions", base_uri, auth)
+        self.all = MatchEventResource(play, "all", base_uri, auth)
+        self.touches = MatchEventResource(play, "touches", base_uri, auth)
+        self.actions = MatchEventResource(play, "actions", base_uri, auth)

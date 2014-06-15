@@ -6,10 +6,12 @@ class MatchStatisticsResource(Resource):
 
     Derived from :class:`base.Resource`.
     """
-    def __init__(self, statistic, resource, base_uri, auth):
+    def __init__(self, play, statistic, resource, base_uri, auth):
         """
         Constructor of MatchStatisticsResource class.
 
+        :param play: Type of teams playing in matches.
+        :type play: string
         :param statistic: Statistic type.
         :type statistic: string
         :param resource: Name of resource.
@@ -21,7 +23,7 @@ class MatchStatisticsResource(Resource):
         """
         super(MatchStatisticsResource, self).__init__(base_uri,auth)
 
-        self.endpoint += "/stats/%s/%s" % (statistic, resource)
+        self.endpoint += "%s/stats/%s/%s" % (play, statistic, resource)
 
 
 class CrossingStatistics(object):
@@ -37,10 +39,12 @@ class CrossingStatistics(object):
     +----------------+-----------------------+
 
     """
-    def __init__(self, base_uri, auth):
+    def __init__(self, play, base_uri, auth):
         """
         Constructor of CrossingStatistics class.
 
+        :param play: Type of teams playing in matches.
+        :type play: string
         :param base_uri: Base URI of API.
         :type base_uri: string
         :param auth: Authentication credential.
@@ -50,8 +54,8 @@ class CrossingStatistics(object):
 
         statistic = "crosses"
 
-        self.corners = MatchStatisticsResource(statistic, "corners", base_uri, auth)
-        self.totals = MatchStatisticsResource(statistic, "totals", base_uri, auth)
+        self.corners = MatchStatisticsResource(play, statistic, "corners", base_uri, auth)
+        self.totals = MatchStatisticsResource(play, statistic, "totals", base_uri, auth)
 
 
 class DefensiveStatistics(object):
@@ -72,10 +76,12 @@ class DefensiveStatistics(object):
     | tackles        | Tackling stats             |
     +----------------+----------------------------+
     """
-    def __init__(self, base_uri, auth):
+    def __init__(self, play, base_uri, auth):
         """
         Constructor of DefensiveStatistics class.
 
+        :param play: Type of teams playing in matches.
+        :type play: string
         :param base_uri: Base URI of API.
         :type base_uri: string
         :param auth: Authentication credential.
@@ -85,11 +91,11 @@ class DefensiveStatistics(object):
 
         statistic = "defense"
 
-        self.actions = MatchStatisticsResource(statistic, "actions", base_uri, auth)
-        self.blocks = MatchStatisticsResource(statistic, "blocks", base_uri, auth)
-        self.clearances = MatchStatisticsResource(statistic, "clearances", base_uri, auth)
-        self.goalline = MatchStatisticsResource(statistic, "goalline", base_uri, auth)
-        self.tackles = MatchStatisticsResource(statistic, "tackles", base_uri, auth)
+        self.actions = MatchStatisticsResource(play, statistic, "actions", base_uri, auth)
+        self.blocks = MatchStatisticsResource(play, statistic, "blocks", base_uri, auth)
+        self.clearances = MatchStatisticsResource(play, statistic, "clearances", base_uri, auth)
+        self.goalline = MatchStatisticsResource(play, statistic, "goalline", base_uri, auth)
+        self.tackles = MatchStatisticsResource(play, statistic, "tackles", base_uri, auth)
 
 
 class FoulingStatistics(object):
@@ -104,10 +110,12 @@ class FoulingStatistics(object):
     | wins         | Foul suffered stats   |
     +--------------+-----------------------+
     """
-    def __init__(self, base_uri, auth):
+    def __init__(self, play, base_uri, auth):
         """
         Constructor of FoulingStatistics class.
 
+        :param play: Type of teams playing in matches.
+        :type play: string
         :param base_uri: Base URI of API.
         :type base_uri: string
         :param auth: Authentication credential.
@@ -117,8 +125,8 @@ class FoulingStatistics(object):
 
         statistic = "fouls"
 
-        self.cards = MatchStatisticsResource(statistic, "cards", base_uri, auth)
-        self.wins = MatchStatisticsResource(statistic, "wins", base_uri, auth)
+        self.cards = MatchStatisticsResource(play, statistic, "cards", base_uri, auth)
+        self.wins = MatchStatisticsResource(play, statistic, "wins", base_uri, auth)
 
 
 class GoalStatistics(object):
@@ -139,10 +147,12 @@ class GoalStatistics(object):
     | totals         | Total goalscoring stats    |
     +----------------+----------------------------+
     """
-    def __init__(self, base_uri, auth):
+    def __init__(self, play, base_uri, auth):
         """
         Constructor of GoalStatistics class.
 
+        :param play: Type of teams playing in matches.
+        :type play: string
         :param base_uri: Base URI of API.
         :type base_uri: string
         :param auth: Authentication credential.
@@ -152,11 +162,11 @@ class GoalStatistics(object):
 
         statistic = "goals"
 
-        self.assists = MatchStatisticsResource(statistic, "assists", base_uri, auth)
-        self.bodyparts = MatchStatisticsResource(statistic, "bodyparts", base_uri, auth)
-        self.locations = MatchStatisticsResource(statistic, "locations", base_uri, auth)
-        self.penalties = MatchStatisticsResource(statistic, "penalties", base_uri, auth)
-        self.totals = MatchStatisticsResource(statistic, "totals", base_uri, auth)
+        self.assists = MatchStatisticsResource(play, statistic, "assists", base_uri, auth)
+        self.bodyparts = MatchStatisticsResource(play, statistic, "bodyparts", base_uri, auth)
+        self.locations = MatchStatisticsResource(play, statistic, "locations", base_uri, auth)
+        self.penalties = MatchStatisticsResource(play, statistic, "penalties", base_uri, auth)
+        self.totals = MatchStatisticsResource(play, statistic, "totals", base_uri, auth)
 
 
 class GoalkeepingStatistics(object):
@@ -175,10 +185,12 @@ class GoalkeepingStatistics(object):
     | saves          | Goalkeeper saves stats     |
     +----------------+----------------------------+
     """
-    def __init__(self, base_uri, auth):
+    def __init__(self, play, base_uri, auth):
         """
         Constructor of GoalkeepingStatistics class.
 
+        :param play: Type of teams playing in matches.
+        :type play: string
         :param base_uri: Base URI of API.
         :type base_uri: string
         :param auth: Authentication credential.
@@ -188,10 +200,10 @@ class GoalkeepingStatistics(object):
 
         statistic = "goalkeeper"
 
-        self.actions = MatchStatisticsResource(statistic, "actions", base_uri, auth)
-        self.goals = MatchStatisticsResource(statistic, "goals", base_uri, auth)
-        self.shots = MatchStatisticsResource(statistic, "shots", base_uri, auth)
-        self.saves = MatchStatisticsResource(statistic, "saves", base_uri, auth)
+        self.actions = MatchStatisticsResource(play, statistic, "actions", base_uri, auth)
+        self.goals = MatchStatisticsResource(play, statistic, "goals", base_uri, auth)
+        self.shots = MatchStatisticsResource(play, statistic, "shots", base_uri, auth)
+        self.saves = MatchStatisticsResource(play, statistic, "saves", base_uri, auth)
 
 
 class PassingStatistics(object):
@@ -210,10 +222,12 @@ class PassingStatistics(object):
     | totals         | Total passing stats        |
     +----------------+----------------------------+
     """
-    def __init__(self, base_uri, auth):
+    def __init__(self, play, base_uri, auth):
         """
         Constructor of PassingStatistics class.
 
+        :param play: Type of teams playing in matches.
+        :type play: string
         :param base_uri: Base URI of API.
         :type base_uri: string
         :param auth: Authentication credential.
@@ -223,10 +237,10 @@ class PassingStatistics(object):
 
         statistic = "passes"
 
-        self.directions = MatchStatisticsResource(statistic, "directions", base_uri, auth)
-        self.lengths = MatchStatisticsResource(statistic, "lengths", base_uri, auth)
-        self.locations = MatchStatisticsResource(statistic, "locations", base_uri, auth)
-        self.totals = MatchStatisticsResource(statistic, "totals", base_uri, auth)
+        self.directions = MatchStatisticsResource(play, statistic, "directions", base_uri, auth)
+        self.lengths = MatchStatisticsResource(play, statistic, "lengths", base_uri, auth)
+        self.locations = MatchStatisticsResource(play, statistic, "locations", base_uri, auth)
+        self.totals = MatchStatisticsResource(play, statistic, "totals", base_uri, auth)
 
 
 class SetPieceStatistics(object):
@@ -243,10 +257,12 @@ class SetPieceStatistics(object):
     | throwins       | Throw-in stats             |
     +----------------+----------------------------+
     """
-    def __init__(self, base_uri, auth):
+    def __init__(self, play, base_uri, auth):
         """
         Constructor of SetPieceStatistics class.
 
+        :param play: Type of teams playing in matches.
+        :type play: string
         :param base_uri: Base URI of API.
         :type base_uri: string
         :param auth: Authentication credential.
@@ -256,9 +272,9 @@ class SetPieceStatistics(object):
 
         statistic = "setpieces"
 
-        self.corners = MatchStatisticsResource(statistic, "corners", base_uri, auth)
-        self.freekicks = MatchStatisticsResource(statistic, "freekicks", base_uri, auth)
-        self.throwins = MatchStatisticsResource(statistic, "throwins", base_uri, auth)
+        self.corners = MatchStatisticsResource(play, statistic, "corners", base_uri, auth)
+        self.freekicks = MatchStatisticsResource(play, statistic, "freekicks", base_uri, auth)
+        self.throwins = MatchStatisticsResource(play, statistic, "throwins", base_uri, auth)
 
 
 class ShotStatistics(object):
@@ -277,10 +293,12 @@ class ShotStatistics(object):
     | totals         | Total shot stats           |
     +----------------+----------------------------+
     """
-    def __init__(self, base_uri, auth):
+    def __init__(self, play, base_uri, auth):
         """
         Constructor of ShotStatistics class.
 
+        :param play: Type of teams playing in matches.
+        :type play: string
         :param base_uri: Base URI of API.
         :type base_uri: string
         :param auth: Authentication credential.
@@ -290,10 +308,10 @@ class ShotStatistics(object):
 
         statistic = "shots"
 
-        self.bodyparts = MatchStatisticsResource(statistic, "bodyparts", base_uri, auth)
-        self.locations = MatchStatisticsResource(statistic, "locations", base_uri, auth)
-        self.plays = MatchStatisticsResource(statistic, "plays", base_uri, auth)
-        self.totals = MatchStatisticsResource(statistic, "totals", base_uri, auth)
+        self.bodyparts = MatchStatisticsResource(play, statistic, "bodyparts", base_uri, auth)
+        self.locations = MatchStatisticsResource(play, statistic, "locations", base_uri, auth)
+        self.plays = MatchStatisticsResource(play, statistic, "plays", base_uri, auth)
+        self.totals = MatchStatisticsResource(play, statistic, "totals", base_uri, auth)
 
 
 class TouchStatistics(object):
@@ -310,10 +328,12 @@ class TouchStatistics(object):
     | totals         | Total ball touch stats     |
     +----------------+----------------------------+
     """
-    def __init__(self, base_uri, auth):
+    def __init__(self, play, base_uri, auth):
         """
         Constructor of TouchStatistics class.
 
+        :param play: Type of teams playing in matches.
+        :type play: string
         :param base_uri: Base URI of API.
         :type base_uri: string
         :param auth: Authentication credential.
@@ -323,9 +343,9 @@ class TouchStatistics(object):
 
         statistic = "touches"
 
-        self.duels = MatchStatisticsResource(statistic, "duels", base_uri, auth)
-        self.locations = MatchStatisticsResource(statistic, "locations", base_uri, auth)
-        self.totals = MatchStatisticsResource(statistic, "totals", base_uri, auth)
+        self.duels = MatchStatisticsResource(play, statistic, "duels", base_uri, auth)
+        self.locations = MatchStatisticsResource(play, statistic, "locations", base_uri, auth)
+        self.totals = MatchStatisticsResource(play, statistic, "totals", base_uri, auth)
 
 
 class MatchStatistics(object):
@@ -354,22 +374,24 @@ class MatchStatistics(object):
     | touches        | Ball touch statistics      |
     +----------------+----------------------------+
     """
-    def __init__(self, base_uri, auth):
+    def __init__(self, play, base_uri, auth):
         """
         Constructor of MatchStatistics class.
 
+        :param play: Type of teams playing in matches.
+        :type play: string
         :param base_uri: Base URI of API.
         :type base_uri: string
         :param auth: Authentication credential.
         :type auth: tuple
         """
 
-        self.crosses = CrossingStatistics(base_uri, auth)
-        self.defense = DefensiveStatistics(base_uri, auth)
-        self.fouls = FoulingStatistics(base_uri, auth)
-        self.goals = GoalStatistics(base_uri, auth)
-        self.goalkeeper = GoalkeepingStatistics(base_uri, auth)
-        self.passes = PassingStatistics(base_uri, auth)
-        self.setpieces = SetPieceStatistics(base_uri, auth)
-        self.shots = ShotStatistics(base_uri, auth)
-        self.touches = TouchStatistics(base_uri, auth)
+        self.crosses = CrossingStatistics(play, base_uri, auth)
+        self.defense = DefensiveStatistics(play, base_uri, auth)
+        self.fouls = FoulingStatistics(play, base_uri, auth)
+        self.goals = GoalStatistics(play, base_uri, auth)
+        self.goalkeeper = GoalkeepingStatistics(play, base_uri, auth)
+        self.passes = PassingStatistics(play, base_uri, auth)
+        self.setpieces = SetPieceStatistics(play, base_uri, auth)
+        self.shots = ShotStatistics(play, base_uri, auth)
+        self.touches = TouchStatistics(play, base_uri, auth)
