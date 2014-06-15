@@ -23,7 +23,13 @@ We recommend installing `soccermetrics-client-py` within a virtual environment
 using `virtualenv`.  That way you can run different versions of Python
 installations and libraries without dealing with conflicting dependencies.
 
-Here is a link to [a nice tutorial on Virtualenv](http://simononsoftware.com/virtualenv-tutorial/).
+We also recommend installing [virtualenvwrapper](http://virtualenvwrapper.readthedocs.org/en/latest/).
+As it says on the label, it is a wrapper around `virtualenv` that manages the virtual
+environments on your machine and allows you to customize pre- and post-activation
+(and deactivation) behavior, such as setting environment variables or opening your text editor.
+
+Here is a link to [a nice tutorial on Virtualenv](http://sccr.mx/TXAL2F).
+And [a tutorial on virtualenvwrapper](http://sccr.mx/1pZ5Xtx) as well.
 
 To install `virtualenv` on MacOS or Linux, create a folder and run one of these
 two commands as `sudo`:
@@ -94,10 +100,18 @@ appID = "f53baabb"
 appKey = "demo1234567890demo1234567890"
 client = SoccermetricsRestClient()
 
-match = client.match.information.get(home_team_name="Everton",
+# club teams
+match = client.club.match.information.get(home_team_name="Everton",
                                      away_team_name="Liverpool").data[0]
-print match.matchday, match.matchDate, match.kickoffTime
+print match.matchDate, match.kickoffTime
 
+lineup_data = client.link.get(match.link.lineups, is_starting=True).all()
+for datum in lineup_data:
+    print datum.playerName, datum.playerTeamName
+
+# national teams
+natl_match = client.natl.match.information.get(
+                home_team_name="Brazil", away_team_name="Croatia",phase="Group").data[0]
 lineup_data = client.link.get(match.link.lineups, is_starting=True).all()
 for datum in lineup_data:
     print datum.playerName, datum.playerTeamName
@@ -113,8 +127,12 @@ appKey = "demo1234567890demo1234567890"
 client = SoccermetricsRestClient()
 
 player = client.players.get(full_name=u'Robin van Persie').data[0]
-goals = client.link.get(player.link.events.goals)
-penalties = client.link.get(player.link.events.penalties,outcome_type="Goal")
+# goals at club level
+goals = client.link.get(player.link.club.match.goals)
+penalties = client.link.get(player.link.club.match.penalties,outcome_type="Goal")
+# goals at national team level
+natl_team_goals = client.link.get(player.link.natl.match.goals)
+natl_team_pens = client.link.get(player.link.natl.match.penalties,outcome_type="Goal")
 ```
 
 ## Get Advanced Analytics
@@ -123,7 +141,7 @@ penalties = client.link.get(player.link.events.penalties,outcome_type="Goal")
 from soccermetrics.rest import SoccermetricsRestClient
 client = SoccermetricsRestClient()
 
-match = client.match.information.get(home_team_name='Manchester United', away_team_name='Stoke City').data[0]
+match = client.club.match.information.get(home_team_name='Manchester United', away_team_name='Stoke City').data[0]
 
 match_state_46 = client.link.get(match.link.analytics.state,time_mins=46)
 match_state_75 = client.link.get(match.link.analytics.state,time_mins=75)
@@ -133,5 +151,5 @@ match_segments = client.link.get(match.link.analytics.segment)
 
 # Learn More
 
-* [Link to API documentation](http://soccermetrics.github.io/fmrd-summary-api).
+* [Link to API documentation](http://soccermetrics.github.io/connect-api).
 * [Link to full client documentation here](http://soccermetrics.github.io/soccermetrics-client-py).
