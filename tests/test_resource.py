@@ -8,7 +8,7 @@ from soccermetrics.rest.resources import Resource
 class ResourceTest(unittest.TestCase):
 
     def setUp(self):
-        base_url = "http://api-summary.soccermetrics.net"
+        base_url = "https://api-connect.soccermetrics.net"
         auth = dict(account="APP_ID",api_key="APP_KEY")
         self.resource = Resource(base_url, auth)
 

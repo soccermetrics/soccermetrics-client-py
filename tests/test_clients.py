@@ -86,34 +86,34 @@ class RestClientAttributeTest(unittest.TestCase):
         self.assertIsInstance(self.client.link, soccermetrics.rest.resources.Link)
 
     def test_validation(self):
-        self.assertIsInstance(self.client.confederations,
-            soccermetrics.rest.resources.Validation)
-        self.assertIsInstance(self.client.countries,
-            soccermetrics.rest.resources.Validation)
-        self.assertIsInstance(self.client.seasons,
-            soccermetrics.rest.resources.Validation)
-        self.assertIsInstance(self.client.teams,
-            soccermetrics.rest.resources.Validation)
-        self.assertIsInstance(self.client.venues,
-            soccermetrics.rest.resources.Validation)
-        self.assertIsInstance(self.client.persons,
-            soccermetrics.rest.resources.Validation)
-        self.assertIsInstance(self.client.positions,
-            soccermetrics.rest.resources.Validation)
-        self.assertIsInstance(self.client.fouls,
-            soccermetrics.rest.resources.Validation)
-        self.assertIsInstance(self.client.cards,
-            soccermetrics.rest.resources.Validation)
-        self.assertIsInstance(self.client.bodyparts,
-            soccermetrics.rest.resources.Validation)
-        self.assertIsInstance(self.client.shotevents,
-            soccermetrics.rest.resources.Validation)
-        self.assertIsInstance(self.client.penaltyOutcomes,
-            soccermetrics.rest.resources.Validation)
-        self.assertIsInstance(self.client.weather,
-            soccermetrics.rest.resources.Validation)
-        self.assertIsInstance(self.client.surfaces,
-            soccermetrics.rest.resources.Validation)
+        self.assertIsInstance(self.client.validation.confederations,
+            soccermetrics.rest.resources.validation.ValidationResource)
+        self.assertIsInstance(self.client.validation.countries,
+            soccermetrics.rest.resources.validation.ValidationResource)
+        self.assertIsInstance(self.client.validation.seasons,
+            soccermetrics.rest.resources.validation.ValidationResource)
+        self.assertIsInstance(self.client.validation.teams,
+            soccermetrics.rest.resources.validation.ValidationResource)
+        self.assertIsInstance(self.client.validation.venues,
+            soccermetrics.rest.resources.validation.ValidationResource)
+        self.assertIsInstance(self.client.validation.persons,
+            soccermetrics.rest.resources.validation.ValidationResource)
+        self.assertIsInstance(self.client.validation.positions,
+            soccermetrics.rest.resources.validation.ValidationResource)
+        self.assertIsInstance(self.client.validation.fouls,
+            soccermetrics.rest.resources.validation.ValidationResource)
+        self.assertIsInstance(self.client.validation.cards,
+            soccermetrics.rest.resources.validation.ValidationResource)
+        self.assertIsInstance(self.client.validation.bodyparts,
+            soccermetrics.rest.resources.validation.ValidationResource)
+        self.assertIsInstance(self.client.validation.shotevents,
+            soccermetrics.rest.resources.validation.ValidationResource)
+        self.assertIsInstance(self.client.validation.penaltyOutcomes,
+            soccermetrics.rest.resources.validation.ValidationResource)
+        self.assertIsInstance(self.client.validation.weather,
+            soccermetrics.rest.resources.validation.ValidationResource)
+        self.assertIsInstance(self.client.validation.surfaces,
+            soccermetrics.rest.resources.validation.ValidationResource)
 
 
     def test_personnel(self):
@@ -124,15 +124,72 @@ class RestClientAttributeTest(unittest.TestCase):
         self.assertIsInstance(self.client.referees,
             soccermetrics.rest.resources.Personnel)
 
-    def test_match(self):
-        self.assertIsInstance(self.client.match,
-            soccermetrics.rest.resources.Match)
+    def test_club(self):
 
-    def test_events(self):
-        self.assertIsInstance(self.client.events,
-            soccermetrics.rest.resources.MatchEvents)
+        self.assertIsInstance(self.client.club,
+            soccermetrics.rest.resources.MatchPlay)
 
-    def test_stats(self):
-        self.assertIsInstance(self.client.stats,
-            soccermetrics.rest.resources.MatchStatistics)
+        self.assertIsInstance(self.client.club.information,
+            soccermetrics.rest.resources.match.MatchInformation)
+
+        self.assertIsInstance(self.client.club.lineups,
+            soccermetrics.rest.resources.match.MatchLineups)
+
+        self.assertIsInstance(self.client.club.conditions,
+            soccermetrics.rest.resources.match.MatchConditions)
+
+        self.assertIsInstance(self.client.club.goals,
+            soccermetrics.rest.resources.match.MatchGoals)
+
+        self.assertIsInstance(self.client.club.penalties,
+            soccermetrics.rest.resources.match.MatchPenalties)
+
+        self.assertIsInstance(self.client.club.offenses,
+            soccermetrics.rest.resources.match.MatchOffenses)
+
+        self.assertIsInstance(self.client.club.substitutions,
+            soccermetrics.rest.resources.match.MatchSubstitutions)
+
+        self.assertIsInstance(self.client.club.stats,
+            soccermetrics.rest.resources.statistics.MatchStatistics)
+
+        self.assertIsInstance(self.client.club.events,
+            soccermetrics.rest.resources.events.MatchEvents)
+
+    def test_natl(self):
+
+        self.assertIsInstance(self.client.natl,
+            soccermetrics.rest.resources.MatchPlay)
+
+        self.assertIsInstance(self.client.natl.information,
+            soccermetrics.rest.resources.match.MatchInformation)
+
+        self.assertIsInstance(self.client.natl.lineups,
+            soccermetrics.rest.resources.match.MatchLineups)
+
+        self.assertIsInstance(self.client.natl.conditions,
+            soccermetrics.rest.resources.match.MatchConditions)
+
+        self.assertIsInstance(self.client.natl.goals,
+            soccermetrics.rest.resources.match.MatchGoals)
+
+        self.assertIsInstance(self.client.natl.penalties,
+            soccermetrics.rest.resources.match.MatchPenalties)
+
+        self.assertIsInstance(self.client.natl.offenses,
+            soccermetrics.rest.resources.match.MatchOffenses)
+
+        self.assertIsInstance(self.client.natl.substitutions,
+            soccermetrics.rest.resources.match.MatchSubstitutions)
+
+        self.assertIsInstance(self.client.natl.stats,
+            soccermetrics.rest.resources.statistics.MatchStatistics)
+
+        self.assertIsInstance(self.client.natl.events,
+            soccermetrics.rest.resources.events.MatchEvents)
+
+    def test_analytics(self):
+        self.assertIsInstance(self.client.analytics,
+            soccermetrics.rest.resources.MatchAnalytics)
+
 
