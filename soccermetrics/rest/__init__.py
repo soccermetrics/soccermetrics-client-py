@@ -5,9 +5,7 @@ from soccermetrics.rest.resources import Root
 from soccermetrics.rest.resources import Link
 from soccermetrics.rest.resources import Validation
 from soccermetrics.rest.resources import Personnel
-from soccermetrics.rest.resources import Match
-from soccermetrics.rest.resources import MatchEvents
-from soccermetrics.rest.resources import MatchStatistics
+from soccermetrics.rest.resources import MatchPlay
 from soccermetrics.rest.resources import MatchAnalytics
 
 def find_credentials():
@@ -37,33 +35,7 @@ class SoccermetricsRestClient(object):
     +------------------+----------------------------+
     | link             | Link to resources          |
     +------------------+----------------------------+
-    | confederations   | Confederations             |
-    +------------------+----------------------------+
-    | countries        | Countries                  |
-    +------------------+----------------------------+
-    | seasons          | Seasons                    |
-    +------------------+----------------------------+
-    | teams            | Teams                      |
-    +------------------+----------------------------+
-    | venues           | Venues                     |
-    +------------------+----------------------------+
-    | persons          | Persons                    |
-    +------------------+----------------------------+
-    | positions        | Positions                  |
-    +------------------+----------------------------+
-    | fouls            | Fouls                      |
-    +------------------+----------------------------+
-    | cards            | Cards                      |
-    +------------------+----------------------------+
-    | bodyparts        | Body parts                 |
-    +------------------+----------------------------+
-    | shotevents       | Shot events                |
-    +------------------+----------------------------+
-    | penaltyOutcomes  | Penalty outcomes           |
-    +------------------+----------------------------+
-    | weather          | Weather conditions         |
-    +------------------+----------------------------+
-    | surfaces         | Surfaces                   |
+    | validation       | Validation resources       |
     +------------------+----------------------------+
     | players          | Players                    |
     +------------------+----------------------------+
@@ -71,11 +43,9 @@ class SoccermetricsRestClient(object):
     +------------------+----------------------------+
     | referees         | Referees                   |
     +------------------+----------------------------+
-    | match            | Match resources            |
+    | club             | Club match resources       |
     +------------------+----------------------------+
-    | events           | Match event resources      |
-    +------------------+----------------------------+
-    | stats            | Match stat resources       |
+    | natl             | Nat'l team match resources |
     +------------------+----------------------------+
     | analytics        | Match analytics resources  |
     +------------------+----------------------------+
@@ -105,7 +75,7 @@ Or, add your credentials to your shell environment. From the terminal, run
     echo "export SOCCERMETRICS_APP_KEY=yyyyyyyyyyyyyyyyy" >> ~/.bashrc
 
 and be sure to replace the values for the application ID and auth key with the
-values from your Soccermetrics API Account at http://soccermetrics.3scale.net.
+values from your Soccermetrics API Account at https://developer.soccermetrics.net.
 """)
 
         auth = {'app_id': account, 'app_key': api_key}
@@ -117,34 +87,16 @@ values from your Soccermetrics API Account at http://soccermetrics.3scale.net.
         self.link = Link(base_uri, auth)
 
         # Validation objects
-        self.confederations = Validation("confederations", base_uri, auth)
-        self.countries = Validation("countries", base_uri, auth)
-        self.seasons = Validation("seasons", base_uri, auth)
-        self.teams = Validation("teams", base_uri, auth)
-        self.venues = Validation("venues", base_uri, auth)
-        self.persons = Validation("persons", base_uri, auth)
-        self.positions = Validation("positions", base_uri, auth)
-        self.fouls = Validation("fouls", base_uri, auth)
-        self.cards = Validation("cards", base_uri, auth)
-        self.bodyparts = Validation("bodyparts", base_uri, auth)
-        self.shotevents = Validation("shotevents", base_uri, auth)
-        self.penaltyOutcomes = Validation("penalty_outcomes", base_uri, auth)
-        self.weather = Validation("weather", base_uri, auth)
-        self.surfaces = Validation("surfaces", base_uri, auth)
+        self.validation = Validation(base_uri, auth)
 
         # Personnel objects
         self.players = Personnel("players", base_uri, auth)
         self.managers = Personnel("managers", base_uri, auth)
         self.referees = Personnel("referees", base_uri, auth)
 
-        # Match objects
-        self.match = Match(base_uri, auth)
-
-        # Match Event objects
-        self.events = MatchEvents(base_uri, auth)
-
-        # Match Statistics objects
-        self.stats = MatchStatistics(base_uri, auth)
+        # Match objects for club/national team play
+        self.club = MatchPlay("club", base_uri, auth)
+        self.natl = MatchPlay("natl", base_uri, auth)
 
         # Match Analytics objects
         self.analytics = MatchAnalytics(base_uri, auth)
