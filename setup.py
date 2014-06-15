@@ -23,7 +23,7 @@ setup(
     author = "Soccermetrics Research",
     author_email = "api-support@soccermetrics.net",
     url = "http://github.com/soccermetrics/soccermetrics-client-py",
-    keywords = ["soccermetrics", "soccer analytics", "API client"],
+    keywords = ["soccer", "football", "soccermetrics", "soccer analytics", "API client"],
     install_requires = REQUIRES,
     packages = find_packages(),
     classifiers = [
