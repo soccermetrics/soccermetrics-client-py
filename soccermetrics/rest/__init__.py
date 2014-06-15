@@ -86,7 +86,7 @@ class SoccermetricsRestClient(object):
     :type api_key: string or None
     """
     def __init__(self, account=None, api_key=None,
-        base_uri="https://api-summary.soccermetrics.net"):
+        base_uri="https://api-connect.soccermetrics.net"):
         super(SoccermetricsRestClient, self).__init__()
 
         if not (account or api_key):
