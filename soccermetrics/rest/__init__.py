@@ -95,8 +95,8 @@ values from your Soccermetrics API Account at https://developer.soccermetrics.ne
         self.referees = Personnel("referees", base_uri, auth)
 
         # Match objects for club/national team play
-        self.club = MatchPlay("club", base_uri, auth)
-        self.natl = MatchPlay("natl", base_uri, auth)
+        self.club = MatchPlay("clubs", base_uri, auth)
+        self.natl = MatchPlay("national", base_uri, auth)
 
         # Match Analytics objects
         self.analytics = MatchAnalytics(base_uri, auth)
