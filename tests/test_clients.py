@@ -5,6 +5,15 @@ import soccermetrics
 from soccermetrics import SoccermetricsException
 from soccermetrics.rest import SoccermetricsRestClient, find_credentials
 
+if hasattr(unittest.TestCase, 'assertIsInstance'):
+    class _Compat: pass
+else:
+    class _Compat:
+        def assertIsInstance(self, obj, cls, msg=None):
+            if not isinstance(obj, cls):
+                standardMsg = '%s is not an instance of %r' % (safe_repr(obj), cls)
+                self.fail(self._formatMessage(msg, standardMsg))
+
 class NoCredentialsTest(unittest.TestCase):
     """
     Test outcome of find_credentials() given absence of environment variables.
@@ -50,7 +59,7 @@ class FullCredentialsTest(unittest.TestCase):
         self.assertEqual(account, 'APP_ID')
         self.assertEqual(api_key,'AUTH_TOKEN')
 
-class RestClientTest(unittest.TestCase):
+class RestClientTest(unittest.TestCase, _Compat):
     """
     Test for successful connection to SoccermetricsRestClient.
     """
@@ -68,7 +77,7 @@ class RestClientTest(unittest.TestCase):
         self.client = SoccermetricsRestClient(account="APP_ID",api_key="APP_KEY")
         self.assertIsInstance(self.client, SoccermetricsRestClient)
 
-class RestClientAttributeTest(unittest.TestCase):
+class RestClientAttributeTest(unittest.TestCase, _Compat):
     """
     Test for presence of attributes in SoccermetricsRestClient object.
     """
