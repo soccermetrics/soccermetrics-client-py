@@ -1,3 +1,2 @@
-distribute>=0.6.24
 easydict>=1.4
 requests>=1.2.3
