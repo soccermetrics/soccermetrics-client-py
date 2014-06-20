@@ -3,6 +3,11 @@ Soccermetrics API Python Client
 
 This is a Python module for using the Soccermetrics REST API.
 
+# Build Status
+
+[![Build Status](https://travis-ci.org/soccermetrics/soccermetrics-client-py.svg?branch=master)]
+(https://travis-ci.org/soccermetrics/soccermetrics-client-py)
+
 # Installation
 
 The Soccermetrics API Python client library depends on the
