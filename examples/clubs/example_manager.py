@@ -20,8 +20,8 @@ if __name__ == "__main__":
     # Get lists of home and away matches in which manager was involved, using
     # the hyperlinks in the manager representation.  Combine both lists and
     # sort by match date.
-    hmatches = client.link.get(manager.link.home_matches,sort="match_date").all()
-    amatches = client.link.get(manager.link.away_matches,sort="match_date").all()
+    hmatches = client.link.get(manager.link.club.homeMatches,sort="match_date").all()
+    amatches = client.link.get(manager.link.club.awayMatches,sort="match_date").all()
     matches = sorted(hmatches + amatches,key=lambda k: k.matchDate)
 
     # Create a list of match substitution timings
@@ -36,7 +36,7 @@ if __name__ == "__main__":
         # We use the hyperlinks in the match representation to retrieve all
         # substitution data for one of the two teams involved, sorted by match time
         # and then stoppage time.
-        subs = client.link.get(match.link.events.substitutions,
+        subs = client.link.get(match.link.substitutions,
             team_name=getattr(match,team_key),sort="time_mins,stoppage_mins").data
 
         # Create a dictionary of substitution times in order.  Fortunately

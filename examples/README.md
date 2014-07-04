@@ -1,5 +1,5 @@
-FMRD-Summary API Client: Examples
-=================================
+Soccermetrics Connect API Client: Examples
+==========================================
 
 This directory contains examples of tasks and analyses conducted with the API client library.
 
