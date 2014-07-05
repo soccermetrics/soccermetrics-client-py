@@ -135,8 +135,12 @@ Get Player Statistical Data
     client = SoccermetricsRestClient()
 
     player = client.players.get(full_name=u'Robin van Persie').data[0]
-    goals = client.link.get(player.link.events.goals)
-    penalties = client.link.get(player.link.events.penalties,outcome_type="Goal")
+    # goals at club level
+    goals = client.link.get(player.link.club.goals)
+    penalties = client.link.get(player.link.club.penalties,outcome_type="Goal")
+    # goals at national team level
+    natl_team_goals = client.link.get(player.link.natl.goals)
+    natl_team_pens = client.link.get(player.link.natl.penalties,outcome_type="Goal")
 
 Get Advanced Analytics
 ----------------------
@@ -146,12 +150,12 @@ Get Advanced Analytics
     from soccermetrics.rest import SoccermetricsRestClient
     client = SoccermetricsRestClient()
 
-    match = client.match.information.get(home_team_name='Manchester United', away_team_name='Stoke City').data[0]
+    match = client.club.match.information.get(home_team_name='Manchester United', away_team_name='Stoke City').data[0]
 
-    match_state_46 = client.link.get(match.link.analytics.state,time_mins=46)
-    match_state_75 = client.link.get(match.link.analytics.state,time_mins=75)
-    match_state_final = client.link.get(match.link.analytics.state)
-    match_segments = client.link.get(match.link.analytics.segment)
+    match_state_46 = client.link.get(match.link.analytics.club.state,time_mins=46)
+    match_state_75 = client.link.get(match.link.analytics.club.state,time_mins=75)
+    match_state_final = client.link.get(match.link.analytics.club.state)
+    match_segments = client.link.get(match.link.analytics.club.segment)
 
 Learn More
 ==========
