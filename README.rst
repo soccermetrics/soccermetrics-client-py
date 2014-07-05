@@ -115,7 +115,7 @@ Get Match Information
     appKey = "demo1234567890demo1234567890"
     client = SoccermetricsRestClient()
 
-    match = client.match.information.get(home_team_name="Everton",
+    match = client.club.information.get(home_team_name="Everton",
                                          away_team_name="Liverpool").data[0]
     print match.matchday, match.matchDate, match.kickoffTime
 
@@ -150,7 +150,7 @@ Get Advanced Analytics
     from soccermetrics.rest import SoccermetricsRestClient
     client = SoccermetricsRestClient()
 
-    match = client.club.match.information.get(home_team_name='Manchester United', away_team_name='Stoke City').data[0]
+    match = client.club.information.get(home_team_name='Manchester United', away_team_name='Stoke City').data[0]
 
     match_state_46 = client.link.get(match.link.analytics.club.state,time_mins=46)
     match_state_75 = client.link.get(match.link.analytics.club.state,time_mins=75)

@@ -26,7 +26,7 @@ if __name__ == "__main__":
 
         # Get match info data from all matches associated with a matchday.  We
         # will make use of the sorting functionality in the Soccermetrics API.
-        matches = client.match.information.get(matchday=day,
+        matches = client.club.information.get(matchday=day,
                     sort='match_date,kickoff_time').all()
 
         # Now we can iterate over the sorted match list and we grab goal and
@@ -36,8 +36,8 @@ if __name__ == "__main__":
             # We use the hyperlinks in the match representation to retrieve goal and
             # penalty kick events under certain conditions.
             for team in [match.homeTeamName,match.awayTeamName]:
-                goals = client.link.get(match.link.events.goals,scoring_team_name=team).all()
-                pens = client.link.get(match.link.events.penalties,player_team_name=team,
+                goals = client.link.get(match.link.goals,scoring_team_name=team).all()
+                pens = client.link.get(match.link.penalties,player_team_name=team,
                                        outcome_type="Goal").all()
 
                 match_goals.append(len(goals)+len(pens))

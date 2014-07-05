@@ -9,7 +9,7 @@ from soccermetrics.rest import SoccermetricsRestClient
 if __name__ == "__main__":
     client = SoccermetricsRestClient()
 
-    match = client.club.match.information.get(home_team_name="Arsenal",
+    match = client.club.information.get(home_team_name="Arsenal",
         away_team_name="Tottenham Hotspur")
 
     for datum in match.data:

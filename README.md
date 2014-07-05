@@ -106,7 +106,7 @@ appKey = "demo1234567890demo1234567890"
 client = SoccermetricsRestClient()
 
 # club teams
-match = client.club.match.information.get(home_team_name="Everton",
+match = client.club.information.get(home_team_name="Everton",
                                      away_team_name="Liverpool").data[0]
 print match.matchDate, match.kickoffTime
 
@@ -115,7 +115,7 @@ for datum in lineup_data:
     print datum.playerName, datum.playerTeamName
 
 # national teams
-natl_match = client.natl.match.information.get(
+natl_match = client.natl.information.get(
                 home_team_name="Brazil", away_team_name="Croatia",phase="Group").data[0]
 lineup_data = client.link.get(match.link.lineups, is_starting=True).all()
 for datum in lineup_data:
@@ -146,7 +146,7 @@ natl_team_pens = client.link.get(player.link.natl.penalties,outcome_type="Goal")
 from soccermetrics.rest import SoccermetricsRestClient
 client = SoccermetricsRestClient()
 
-match = client.club.match.information.get(home_team_name='Manchester United', away_team_name='Stoke City').data[0]
+match = client.club.information.get(home_team_name='Manchester United', away_team_name='Stoke City').data[0]
 
 match_state_46 = client.link.get(match.link.analytics.match.state,time_mins=46)
 match_state_75 = client.link.get(match.link.analytics.match.state,time_mins=75)

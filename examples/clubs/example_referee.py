@@ -17,7 +17,7 @@ if __name__ == "__main__":
     referee = client.referees.get(full_name="Howard Webb").data[0]
 
     # Get list of matches that referee directed
-    matches = client.link.get(referee.link.matches,sort="match_date").all()
+    matches = client.link.get(referee.link.club.matches,sort="match_date").all()
 
     # Use lengths of match halves to create list of time added on by referee
     timeon = [dict(first=45-match.firsthalfLength,second=45-match.secondhalfLength)
@@ -30,10 +30,10 @@ if __name__ == "__main__":
     yellows = []
     reds = []
     for match in matches:
-        match_pens = client.link.get(match.link.events.penalties).all()
-        match_yellows = client.link.get(match.link.events.offenses,card_type="Yellow").all()
-        match_2ndyellows = client.link.get(match.link.events.offenses,card_type="Yellow/Red").all()
-        match_reds = client.link.get(match.link.events.offenses,card_type="Red").all()
+        match_pens = client.link.get(match.link.penalties).all()
+        match_yellows = client.link.get(match.link.offenses,card_type="Yellow").all()
+        match_2ndyellows = client.link.get(match.link.offenses,card_type="Yellow/Red").all()
+        match_reds = client.link.get(match.link.offenses,card_type="Red").all()
 
         penalties.extend(match_pens)
         yellows.extend(match_yellows)

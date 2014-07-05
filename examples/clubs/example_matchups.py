@@ -27,7 +27,7 @@ if __name__ == "__main__":
 
         # Get match info data from all matches associated with a matchday.  We
         # will make use of the sorting functionality in the Soccermetrics API.
-        matches = client.club.match.information.get(matchday=day,
+        matches = client.club.information.get(matchday=day,
                     sort='match_date,kickoff_time').all()
 
         # Now we can iterate over the sorted match list and print information

@@ -8,12 +8,12 @@ from soccermetrics.rest import SoccermetricsRestClient
 
 client = SoccermetricsRestClient()
 
-home_club = "Liverpool"
-away_club = "Everton"
+home_club = "Brazil"
+away_club = "Croatia"
 
 # get match information
-match = client.match.information.get(home_team_name=home_club,
-                                     away_team_name=away_club).all()
+match = client.natl.information.get(home_team_name=home_club,
+                                    away_team_name=away_club).all()
 
 # collect name and ID of all players in lineups
 lineup = client.link.get(match[0].link.lineups).all()

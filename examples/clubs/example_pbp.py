@@ -12,15 +12,15 @@ home_club = "Liverpool"
 away_club = "Everton"
 
 # get match information
-match = client.match.information.get(home_team_name=home_club,
-                                     away_team_name=away_club).all()
+match = client.club.information.get(home_team_name=home_club,
+                                    away_team_name=away_club).all()
 
 # collect name and ID of all players in lineups
 lineup = client.link.get(match[0].link.lineups).all()
 players = {x.player:x.playerName for x in lineup}
 
 # get all segments of the match
-segments = client.link.get(match[0].link.analytics.segments).all()
+segments = client.link.get(match[0].link.analytics.match.segments).all()
 
 # loop over all segments
 # return players in each segment

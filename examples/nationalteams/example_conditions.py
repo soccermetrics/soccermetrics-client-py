@@ -25,7 +25,7 @@ if __name__ == "__main__":
     matches = []
     for key in ['home_team_name','away_team_name']:
         param = {key: selection_name}
-        matches.extend(client.natl.match.information.get(**param).all())
+        matches.extend(client.natl.information.get(**param).all())
 
     # Results from the API are unsorted, so sort the results by match date.
     # You can also sort by matchday but not all matches are played in order.
