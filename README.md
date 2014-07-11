@@ -117,7 +117,7 @@ for datum in lineup_data:
 # national teams
 natl_match = client.natl.information.get(
                 home_team_name="Brazil", away_team_name="Croatia",phase="Group").data[0]
-lineup_data = client.link.get(match.link.lineups, is_starting=True).all()
+lineup_data = client.link.get(natl_match.link.lineups, is_starting=True).all()
 for datum in lineup_data:
     print datum.playerName, datum.playerTeamName
 ```
