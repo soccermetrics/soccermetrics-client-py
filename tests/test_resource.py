@@ -13,6 +13,7 @@ class ResourceTest(unittest.TestCase):
         self.resource = Resource(base_url, auth)
 
     def test_initialization(self):
+        """Verify auth dictionary and versioning."""
         self.assertEqual(self.resource.auth['account'],"APP_ID")
         self.assertEqual(self.resource.auth['api_key'],"APP_KEY")
         self.assertEqual(self.resource.endpoint,'/%s' % __api_version__)

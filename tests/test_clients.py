@@ -26,6 +26,7 @@ class NoCredentialsTest(unittest.TestCase):
             del environ['SOCCERMETRICS_APP_ID']
 
     def test_no_credentials(self):
+        """Verify find_credentials() returns pair of Nones if no env variables."""
         account, api_key = find_credentials()
         self.assertEqual(account, None)
         self.assertEqual(api_key,None)
@@ -41,6 +42,7 @@ class PartialCredentialsTest(unittest.TestCase):
             del environ['SOCCERMETRICS_APP_ID']
 
     def test_partial_credentials(self):
+        """Verify outcome of partial credentials sent to client initialization."""
         account, api_key = find_credentials()
         self.assertEqual(account, None)
         self.assertEqual(api_key,None)
@@ -55,6 +57,7 @@ class FullCredentialsTest(unittest.TestCase):
         environ['SOCCERMETRICS_APP_ID'] = 'APP_ID'
 
     def test_full_credentials(self):
+        """Verify outcome of full credentials sent to client initialization."""
         account, api_key = find_credentials()
         self.assertEqual(account, 'APP_ID')
         self.assertEqual(api_key,'AUTH_TOKEN')
@@ -71,9 +74,11 @@ class RestClientTest(unittest.TestCase):
             del environ['SOCCERMETRICS_APP_ID']
 
     def test_fail_connect(self):
+        """Verify exception raised if partial credentials sent."""
         self.assertRaises(SoccermetricsException, SoccermetricsRestClient)
 
     def test_connect(self):
+        """Verify client object created upon full credentials sent."""
         self.client = SoccermetricsRestClient(account="APP_ID",api_key="APP_KEY")
         self.assertIsInstance(self.client, SoccermetricsRestClient)
 
@@ -86,24 +91,36 @@ class RestClientAttributeTest(unittest.TestCase):
         self.client = SoccermetricsRestClient(account="APP_ID",api_key="APP_KEY")
 
     def test_https_endpoint(self):
+        """Verify HTTPS endpoint."""
         self.assertTrue(self.client.root.base_uri.startswith("https"))
 
     def test_service_root(self):
+        """Verify existence of service root object."""
         self.assertIsInstance(self.client.root, soccermetrics.rest.resources.Root)
 
     def test_link(self):
+        """Verify existence of link object."""
         self.assertIsInstance(self.client.link, soccermetrics.rest.resources.Link)
 
     def test_validation(self):
+        """Verify existence of validation objects."""
         self.assertIsInstance(self.client.validation.confederations,
             soccermetrics.rest.resources.validation.ValidationResource)
         self.assertIsInstance(self.client.validation.countries,
+            soccermetrics.rest.resources.validation.ValidationResource)
+        self.assertIsInstance(self.client.validation.competitions,
+            soccermetrics.rest.resources.validation.ValidationResource)
+        self.assertIsInstance(self.client.validation.domesticCompetitions,
+            soccermetrics.rest.resources.validation.ValidationResource)
+        self.assertIsInstance(self.client.validation.intlCompetitions,
             soccermetrics.rest.resources.validation.ValidationResource)
         self.assertIsInstance(self.client.validation.seasons,
             soccermetrics.rest.resources.validation.ValidationResource)
         self.assertIsInstance(self.client.validation.teams,
             soccermetrics.rest.resources.validation.ValidationResource)
         self.assertIsInstance(self.client.validation.venues,
+            soccermetrics.rest.resources.validation.ValidationResource)
+        self.assertIsInstance(self.client.validation.nameOrder,
             soccermetrics.rest.resources.validation.ValidationResource)
         self.assertIsInstance(self.client.validation.persons,
             soccermetrics.rest.resources.validation.ValidationResource)
@@ -119,6 +136,12 @@ class RestClientAttributeTest(unittest.TestCase):
             soccermetrics.rest.resources.validation.ValidationResource)
         self.assertIsInstance(self.client.validation.penaltyOutcomes,
             soccermetrics.rest.resources.validation.ValidationResource)
+        self.assertIsInstance(self.client.validation.actions,
+            soccermetrics.rest.resources.validation.ValidationResource)
+        self.assertIsInstance(self.client.validation.modifiers,
+            soccermetrics.rest.resources.validation.ValidationResource)
+        self.assertIsInstance(self.client.validation.modifierCategories,
+            soccermetrics.rest.resources.validation.ValidationResource)
         self.assertIsInstance(self.client.validation.weather,
             soccermetrics.rest.resources.validation.ValidationResource)
         self.assertIsInstance(self.client.validation.surfaces,
@@ -126,6 +149,7 @@ class RestClientAttributeTest(unittest.TestCase):
 
 
     def test_personnel(self):
+        """Verify existence of personnel resource objects."""
         self.assertIsInstance(self.client.players,
             soccermetrics.rest.resources.Personnel)
         self.assertIsInstance(self.client.managers,
@@ -134,7 +158,7 @@ class RestClientAttributeTest(unittest.TestCase):
             soccermetrics.rest.resources.Personnel)
 
     def test_club(self):
-
+        """Verify existence of club match resource objects."""
         self.assertIsInstance(self.client.club,
             soccermetrics.rest.resources.MatchPlay)
 
@@ -159,6 +183,9 @@ class RestClientAttributeTest(unittest.TestCase):
         self.assertIsInstance(self.client.club.substitutions,
             soccermetrics.rest.resources.match.MatchSubstitutions)
 
+        self.assertIsInstance(self.client.club.shootouts,
+            soccermetrics.rest.resources.match.MatchShootouts)
+
         self.assertIsInstance(self.client.club.stats,
             soccermetrics.rest.resources.statistics.MatchStatistics)
 
@@ -166,6 +193,7 @@ class RestClientAttributeTest(unittest.TestCase):
             soccermetrics.rest.resources.events.MatchEvents)
 
     def test_natl(self):
+        """Verify existence of national team match resource objects."""
 
         self.assertIsInstance(self.client.natl,
             soccermetrics.rest.resources.MatchPlay)
@@ -191,6 +219,9 @@ class RestClientAttributeTest(unittest.TestCase):
         self.assertIsInstance(self.client.natl.substitutions,
             soccermetrics.rest.resources.match.MatchSubstitutions)
 
+        self.assertIsInstance(self.client.natl.shootouts,
+            soccermetrics.rest.resources.match.MatchShootouts)
+
         self.assertIsInstance(self.client.natl.stats,
             soccermetrics.rest.resources.statistics.MatchStatistics)
 
@@ -198,6 +229,7 @@ class RestClientAttributeTest(unittest.TestCase):
             soccermetrics.rest.resources.events.MatchEvents)
 
     def test_analytics(self):
+        """Verify existence of analytics resource objects."""
         self.assertIsInstance(self.client.analytics,
             soccermetrics.rest.resources.MatchAnalytics)
 
