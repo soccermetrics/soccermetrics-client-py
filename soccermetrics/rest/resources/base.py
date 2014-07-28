@@ -1,4 +1,3 @@
-from itertools import chain
 from easydict import EasyDict
 import requests
 
@@ -43,7 +42,7 @@ class Resource(object):
         :returns: Resource representation.
         :rtype: ``EasyDict`` object.
         """
-        uri = "%s%s/%d" % (self.base_uri, self.endpoint, uid) if uid else \
+        uri = "%s%s/%s" % (self.base_uri, self.endpoint, str(uid)) if uid else \
             "%s%s" % (self.base_uri, self.endpoint)
 
         full_param_dict = dict(kwargs, **self.auth)
