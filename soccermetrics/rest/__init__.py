@@ -37,11 +37,11 @@ class SoccermetricsRestClient(object):
     +------------------+----------------------------+
     | validation       | Validation resources       |
     +------------------+----------------------------+
-    | players          | Players                    |
+    | players          | Players resource           |
     +------------------+----------------------------+
-    | managers         | Managers                   |
+    | managers         | Managers resource          |
     +------------------+----------------------------+
-    | referees         | Referees                   |
+    | referees         | Referees resource          |
     +------------------+----------------------------+
     | club             | Club match resources       |
     +------------------+----------------------------+

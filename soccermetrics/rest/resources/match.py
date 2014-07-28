@@ -88,7 +88,7 @@ class MatchInformation(MatchResource):
     Derived from :class:`MatchResource`.
     """
     def __init__(self, play, base_uri, auth):
-        super(MatchInformation, self).__init__(play, base_uri,auth)
+        super(MatchInformation, self).__init__(play, base_uri, auth)
         self.resource = "info"
 
 
@@ -99,7 +99,7 @@ class MatchConditions(MatchResource):
     Derived from :class:`MatchResource`.
     """
     def __init__(self, play, base_uri, auth):
-        super(MatchConditions, self).__init__(play, base_uri,auth)
+        super(MatchConditions, self).__init__(play, base_uri, auth)
         self.resource = "conditions"
 
 
@@ -110,7 +110,7 @@ class MatchLineups(MatchResource):
     Derived from :class:`MatchResource`.
     """
     def __init__(self, play, base_uri, auth):
-        super(MatchLineups, self).__init__(play, base_uri,auth)
+        super(MatchLineups, self).__init__(play, base_uri, auth)
         self.resource = "lineups"
 
 
@@ -121,7 +121,7 @@ class MatchGoals(MatchResource):
     Derived from :class:`MatchResource`.
     """
     def __init__(self, play, base_uri, auth):
-        super(MatchGoals, self).__init__(play, base_uri,auth)
+        super(MatchGoals, self).__init__(play, base_uri, auth)
         self.resource = "goals"
 
 class MatchPenalties(MatchResource):
@@ -131,7 +131,7 @@ class MatchPenalties(MatchResource):
     Derived from :class:`MatchResource`.
     """
     def __init__(self, play, base_uri, auth):
-        super(MatchPenalties, self).__init__(play, base_uri,auth)
+        super(MatchPenalties, self).__init__(play, base_uri, auth)
         self.resource = "penalties"
 
 
@@ -142,7 +142,7 @@ class MatchOffenses(MatchResource):
     Derived from :class:`MatchResource`.
     """
     def __init__(self, play, base_uri, auth):
-        super(MatchOffenses, self).__init__(play, base_uri,auth)
+        super(MatchOffenses, self).__init__(play, base_uri, auth)
         self.resource = "offenses"
 
 
@@ -153,31 +153,44 @@ class MatchSubstitutions(MatchResource):
     Derived from :class:`MatchResource`.
     """
     def __init__(self, play, base_uri, auth):
-        super(MatchSubstitutions, self).__init__(play, base_uri,auth)
+        super(MatchSubstitutions, self).__init__(play, base_uri, auth)
         self.resource = "substitutions"
+
+
+class MatchShootouts(MatchResource):
+    """
+    Access to Match Shootouts resources (/matches/shootouts resource).
+
+    Derived from :class:`MatchResource`.
+    """
+    def __init__(self, play, base_uri, auth):
+        super(MatchShootouts, self).__init__(play, base_uri, auth)
+        self.resource = "shootouts"
 
 
 class MatchPlay(object):
     """
     Access to Match objects.
 
-    +----------------+-----------------------+
-    | Attribute      | Description           |
-    +================+=======================+
-    | information    | Match information     |
-    +----------------+-----------------------+
-    | lineups        | Match lineups         |
-    +----------------+-----------------------+
-    | conditions     | Match conditions      |
-    +----------------+-----------------------+
-    | goals          | Goal events           |
-    +----------------+-----------------------+
-    | penalties      | Penalty kick events   |
-    +----------------+-----------------------+
-    | offenses       | Disciplinary events   |
-    +----------------+-----------------------+
-    | substitutions  | Substitution events   |
-    +----------------+-----------------------+
+    +----------------+---------------------------+
+    | Attribute      | Description               |
+    +================+===========================+
+    | information    | Match information         |
+    +----------------+---------------------------+
+    | lineups        | Match lineups             |
+    +----------------+---------------------------+
+    | conditions     | Match conditions          |
+    +----------------+---------------------------+
+    | goals          | Goal events               |
+    +----------------+---------------------------+
+    | penalties      | Penalty kick events       |
+    +----------------+---------------------------+
+    | offenses       | Disciplinary events       |
+    +----------------+---------------------------+
+    | substitutions  | Substitution events       |
+    +----------------+---------------------------+
+    | shootouts      | Penalty shootout events   |
+    +----------------+---------------------------+
     """
     def __init__(self, play, base_uri, auth):
         self.information = MatchInformation(play, base_uri, auth)
@@ -187,6 +200,7 @@ class MatchPlay(object):
         self.penalties = MatchPenalties(play, base_uri, auth)
         self.offenses = MatchOffenses(play, base_uri, auth)
         self.substitutions = MatchSubstitutions(play, base_uri, auth)
+        self.shootouts = MatchShootouts(play, base_uri, auth)
 
         self.stats = MatchStatistics(play, base_uri, auth)
         self.events = MatchEvents(play, base_uri, auth)
