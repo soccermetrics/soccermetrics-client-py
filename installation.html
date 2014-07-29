@@ -24,7 +24,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '0.7',
+        VERSION:     '0.8',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -58,7 +58,7 @@
           <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="index.html">API Python Client</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.7</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.8</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -156,8 +156,7 @@
 <a class="reference external" href="http://pypi.python.org/pypi/easydict/">easydict</a> libraries.  You can install
 the client library within a virtual environment on your computer, or install
 it system-wide.</p>
-<p>Python 2.6+ is required.  The module <em>might</em> work with Python 3, but we
-haven&#8217;t tested it and give no guarantees.</p>
+<p>Python 2.6+ is required.</p>
 <p>It&#8217;s not required, but <a class="reference external" href="https://github.com/kennethreitz/autoenv">autoenv</a> is
 very nice to have.</p>
 <div class="section" id="virtual-environment-install">
@@ -165,7 +164,12 @@ very nice to have.</p>
 <p>We recommend installing <tt class="docutils literal"><span class="pre">soccermetrics-client-py</span></tt> within a virtual environment
 using <tt class="docutils literal"><span class="pre">virtualenv</span></tt>.  That way you can run different versions of Python
 installations and libraries without dealing with conflicting dependencies.</p>
-<p>Here is a link to <a class="reference external" href="http://simononsoftware.com/virtualenv-tutorial/">a nice tutorial on Virtualenv</a>.</p>
+<p>We also recommend installing <a class="reference external" href="http://virtualenvwrapper.readthedocs.org/en/latest/">virtualenvwrapper</a>.
+As it says on the label, it is a wrapper around <cite>virtualenv</cite> that manages the virtual
+environments on your machine and allows you to customize pre- and post-activation
+(and deactivation) behavior, such as setting environment variables or opening your text editor.</p>
+<p>Here is a link to <a class="reference external" href="http://simononsoftware.com/virtualenv-tutorial/">a nice tutorial on Virtualenv</a>.
+And <a class="reference external" href="http://sccr.mx/1pZ5Xtx">a tutorial on virtualenvwrapper</a> as well.</p>
 <p>To install <tt class="docutils literal"><span class="pre">virtualenv</span></tt> on MacOS or Linux, create a folder and run one of these
 two commands as <tt class="docutils literal"><span class="pre">sudo</span></tt>:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>sudo easy_install virtualenv
@@ -209,7 +213,7 @@ folder and run:</p>
     </p>
     <p>
         &copy; Copyright 2013-2014, Soccermetrics Research, LLC.<br/>
-      Last updated on Feb 26, 2014.<br/>
+      Last updated on Jul 29, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2b1.<br/>
     </p>
   </div>

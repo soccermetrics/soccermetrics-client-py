@@ -46,8 +46,8 @@ Match Resources
 .. automodule:: soccermetrics.rest.resources.match
     :members:
 
-Match Event Resources
-^^^^^^^^^^^^^^^^^^^^^
+Match Micro Event Resources
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. automodule:: soccermetrics.rest.resources.events
     :members:

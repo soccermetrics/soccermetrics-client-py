@@ -21,8 +21,9 @@ These get passed to the constructor or via environment variables.
 
 .. warning::
 
-    This is a fictitious API ID and key. We ask all interested users to request
-    access to the API in order to receive credentials.
+    This is a fictitious API ID and key. We ask all interested users to go to the
+    `Soccermetrics Connect API website <https://developer.soccermetrics.net>`_ in order
+    to receive credentials.
 
 If you call ``SoccermetricsRestClient`` without any parameters, the constructor
 will look for ``SOCCERMETRICS_APP_ID`` and ``SOCCERMETRICS_APP_KEY`` variables
@@ -35,21 +36,45 @@ in a public place.
 Match Information
 -----------------
 
-Let's get information from all matches for a specific matchday.  We'll use it to
-access lineups and eventually match statistics.
+Let's get information from all matches for a specific matchday in a league competition.
+We'll use it to access lineups and eventually match statistics.
 ::
 
-    matches = client.match.information.get(matchday=10)
+    matches = client.club.match.information.get(matchday=10)
     for match in matches:
         print "%s: %s vs %s" % (match.match_date, match.home_team_name,
                                 match.away_team_name)
 
-Almost all of the resources have hyperlinks that refer to related resources, so
-we can use those to access lineup data for each match.  We revise the above
-code so that we can get starting lineups:
+.. warning::
+
+    In reality, you would pass the name of the competition in the call.  Otherwise,
+    you would receive all of the league matches for that matchday, over *all* of the
+    competitions in the Soccermetrics database.
+
+To access matches from the group stage of a competition, we need to include *at minimum* the
+group round and group name:
 ::
 
-    matches = client.match.information.get(matchday=10)
+    matches = client.natl.match.information.get(round_name='Group Stage', group=A, matchday=2)
+    for match in matches:
+        print "%s: %s vs %s" % (match.match_date, match.home_team_name,
+                                match.away_team_name)
+
+If we want to retrieve match from the knockout phase of a competition, we must pass
+the round name:
+::
+
+    matches = client.club.match.information.get(round_name="Third Round")
+    for match in matches:
+        print "%s: %s vs %s" % (match.match_date, match.home_team_name,
+                                match.away_team_name)
+
+Almost all of the resources have hyperlinks that refer to related resources.  In this
+case we use the hyperlinks to access lineup data related to each match.  We revise the
+above code so that we can get starting lineups:
+::
+
+    matches = client.club.match.information.get(matchday=10)
     for match in matches:
         for team_name in [match.home_team_name, match.away_team_name]:
             lineup_data = client.link.get(
@@ -68,7 +93,7 @@ with each match to access the statistical data.  Revising the above code once mo
 ::
 
     ratio = []
-    matches = client.match.information.get(matchday=10)
+    matches = client.club.match.information.get(matchday=10)
     for match in matches:
         total_shots = []
         for team_name in [match.home_team_name, match.away_team_name]:

@@ -24,7 +24,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '0.7',
+        VERSION:     '0.8',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -59,7 +59,7 @@
           <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="../index.html">API Python Client</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.7</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.8</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -163,7 +163,7 @@ to access linked data, such as match appearances and actions.</p>
 
 <span class="n">rvp</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">players</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">last_name</span><span class="o">=</span><span class="s">&#39;Van Persie&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
 <span class="n">rvp_matches</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">link</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">rvp</span><span class="o">.</span><span class="n">link</span><span class="o">.</span><span class="n">matches</span><span class="p">)</span>
-<span class="n">rvp_goals</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">link</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">rvp</span><span class="o">.</span><span class="n">link</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">goals</span><span class="p">)</span>
+<span class="n">rvp_goals</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">link</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">rvp</span><span class="o">.</span><span class="n">link</span><span class="o">.</span><span class="n">goals</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Some players have nicknames:</p>
@@ -185,7 +185,7 @@ that&#8217;s very rare.</p>
 
 <span class="n">saf</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">managers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">first_name</span><span class="o">=</span><span class="s">&#39;Alex&#39;</span><span class="p">,</span><span class="n">last_name</span><span class="o">=</span><span class="s">&#39;Ferguson&#39;</span><span class="p">)</span>
 <span class="n">saf_scotland</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">link</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">saf</span><span class="o">.</span><span class="n">link</span><span class="o">.</span><span class="n">country</span><span class="p">)</span>
-<span class="n">saf_home_matches</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">link</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">saf</span><span class="o">.</span><span class="n">link</span><span class="o">.</span><span class="n">home_matches</span><span class="p">)</span>
+<span class="n">saf_home_matches</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">link</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">saf</span><span class="o">.</span><span class="n">link</span><span class="o">.</span><span class="n">homeMatches</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -219,7 +219,7 @@ anyway).</p>
     </p>
     <p>
         &copy; Copyright 2013-2014, Soccermetrics Research, LLC.<br/>
-      Last updated on Feb 26, 2014.<br/>
+      Last updated on Jul 29, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2b1.<br/>
     </p>
   </div>

@@ -24,7 +24,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '0.7',
+        VERSION:     '0.8',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -57,7 +57,7 @@
           <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="../../index.html">API Python Client</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.7</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.8</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -145,9 +145,7 @@
 <span class="kn">from</span> <span class="nn">soccermetrics.rest.resources</span> <span class="kn">import</span> <span class="n">Link</span>
 <span class="kn">from</span> <span class="nn">soccermetrics.rest.resources</span> <span class="kn">import</span> <span class="n">Validation</span>
 <span class="kn">from</span> <span class="nn">soccermetrics.rest.resources</span> <span class="kn">import</span> <span class="n">Personnel</span>
-<span class="kn">from</span> <span class="nn">soccermetrics.rest.resources</span> <span class="kn">import</span> <span class="n">Match</span>
-<span class="kn">from</span> <span class="nn">soccermetrics.rest.resources</span> <span class="kn">import</span> <span class="n">MatchEvents</span>
-<span class="kn">from</span> <span class="nn">soccermetrics.rest.resources</span> <span class="kn">import</span> <span class="n">MatchStatistics</span>
+<span class="kn">from</span> <span class="nn">soccermetrics.rest.resources</span> <span class="kn">import</span> <span class="n">MatchPlay</span>
 <span class="kn">from</span> <span class="nn">soccermetrics.rest.resources</span> <span class="kn">import</span> <span class="n">MatchAnalytics</span>
 
 <div class="viewcode-block" id="find_credentials"><a class="viewcode-back" href="../../reference.html#soccermetrics.rest.find_credentials">[docs]</a><span class="k">def</span> <span class="nf">find_credentials</span><span class="p">():</span>
@@ -177,45 +175,17 @@
 <span class="sd">    +------------------+----------------------------+</span>
 <span class="sd">    | link             | Link to resources          |</span>
 <span class="sd">    +------------------+----------------------------+</span>
-<span class="sd">    | confederations   | Confederations             |</span>
+<span class="sd">    | validation       | Validation resources       |</span>
 <span class="sd">    +------------------+----------------------------+</span>
-<span class="sd">    | countries        | Countries                  |</span>
+<span class="sd">    | players          | Players resource           |</span>
 <span class="sd">    +------------------+----------------------------+</span>
-<span class="sd">    | seasons          | Seasons                    |</span>
+<span class="sd">    | managers         | Managers resource          |</span>
 <span class="sd">    +------------------+----------------------------+</span>
-<span class="sd">    | teams            | Teams                      |</span>
+<span class="sd">    | referees         | Referees resource          |</span>
 <span class="sd">    +------------------+----------------------------+</span>
-<span class="sd">    | venues           | Venues                     |</span>
+<span class="sd">    | club             | Club match resources       |</span>
 <span class="sd">    +------------------+----------------------------+</span>
-<span class="sd">    | persons          | Persons                    |</span>
-<span class="sd">    +------------------+----------------------------+</span>
-<span class="sd">    | positions        | Positions                  |</span>
-<span class="sd">    +------------------+----------------------------+</span>
-<span class="sd">    | fouls            | Fouls                      |</span>
-<span class="sd">    +------------------+----------------------------+</span>
-<span class="sd">    | cards            | Cards                      |</span>
-<span class="sd">    +------------------+----------------------------+</span>
-<span class="sd">    | bodyparts        | Body parts                 |</span>
-<span class="sd">    +------------------+----------------------------+</span>
-<span class="sd">    | shotevents       | Shot events                |</span>
-<span class="sd">    +------------------+----------------------------+</span>
-<span class="sd">    | penalty_outcomes | Penalty outcomes           |</span>
-<span class="sd">    +------------------+----------------------------+</span>
-<span class="sd">    | weather          | Weather conditions         |</span>
-<span class="sd">    +------------------+----------------------------+</span>
-<span class="sd">    | surfaces         | Surfaces                   |</span>
-<span class="sd">    +------------------+----------------------------+</span>
-<span class="sd">    | players          | Players                    |</span>
-<span class="sd">    +------------------+----------------------------+</span>
-<span class="sd">    | managers         | Managers                   |</span>
-<span class="sd">    +------------------+----------------------------+</span>
-<span class="sd">    | referees         | Referees                   |</span>
-<span class="sd">    +------------------+----------------------------+</span>
-<span class="sd">    | match            | Match resources            |</span>
-<span class="sd">    +------------------+----------------------------+</span>
-<span class="sd">    | events           | Match event resources      |</span>
-<span class="sd">    +------------------+----------------------------+</span>
-<span class="sd">    | stats            | Match stat resources       |</span>
+<span class="sd">    | natl             | Nat&#39;l team match resources |</span>
 <span class="sd">    +------------------+----------------------------+</span>
 <span class="sd">    | analytics        | Match analytics resources  |</span>
 <span class="sd">    +------------------+----------------------------+</span>
@@ -226,7 +196,7 @@
 <span class="sd">    :type api_key: string or None</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">account</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_key</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
-        <span class="n">base_uri</span><span class="o">=</span><span class="s">&quot;http://api-summary.soccermetrics.net&quot;</span><span class="p">):</span>
+        <span class="n">base_uri</span><span class="o">=</span><span class="s">&quot;https://api-connect.soccermetrics.net&quot;</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">SoccermetricsRestClient</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">account</span> <span class="ow">or</span> <span class="n">api_key</span><span class="p">):</span>
@@ -245,7 +215,7 @@
 <span class="s">    echo &quot;export SOCCERMETRICS_APP_KEY=yyyyyyyyyyyyyyyyy&quot; &gt;&gt; ~/.bashrc</span>
 
 <span class="s">and be sure to replace the values for the application ID and auth key with the</span>
-<span class="s">values from your Soccermetrics API Account at http://soccermetrics.3scale.net.</span>
+<span class="s">values from your Soccermetrics API Account at https://developer.soccermetrics.net.</span>
 <span class="s">&quot;&quot;&quot;</span><span class="p">)</span>
 
         <span class="n">auth</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;app_id&#39;</span><span class="p">:</span> <span class="n">account</span><span class="p">,</span> <span class="s">&#39;app_key&#39;</span><span class="p">:</span> <span class="n">api_key</span><span class="p">}</span>
@@ -257,34 +227,16 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">link</span> <span class="o">=</span> <span class="n">Link</span><span class="p">(</span><span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
 
         <span class="c"># Validation objects</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">confederations</span> <span class="o">=</span> <span class="n">Validation</span><span class="p">(</span><span class="s">&quot;confederations&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">countries</span> <span class="o">=</span> <span class="n">Validation</span><span class="p">(</span><span class="s">&quot;countries&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">seasons</span> <span class="o">=</span> <span class="n">Validation</span><span class="p">(</span><span class="s">&quot;seasons&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">teams</span> <span class="o">=</span> <span class="n">Validation</span><span class="p">(</span><span class="s">&quot;teams&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">venues</span> <span class="o">=</span> <span class="n">Validation</span><span class="p">(</span><span class="s">&quot;venues&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">persons</span> <span class="o">=</span> <span class="n">Validation</span><span class="p">(</span><span class="s">&quot;persons&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">positions</span> <span class="o">=</span> <span class="n">Validation</span><span class="p">(</span><span class="s">&quot;positions&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">fouls</span> <span class="o">=</span> <span class="n">Validation</span><span class="p">(</span><span class="s">&quot;fouls&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">cards</span> <span class="o">=</span> <span class="n">Validation</span><span class="p">(</span><span class="s">&quot;cards&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">bodyparts</span> <span class="o">=</span> <span class="n">Validation</span><span class="p">(</span><span class="s">&quot;bodyparts&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">shotevents</span> <span class="o">=</span> <span class="n">Validation</span><span class="p">(</span><span class="s">&quot;shotevents&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">penalty_outcomes</span> <span class="o">=</span> <span class="n">Validation</span><span class="p">(</span><span class="s">&quot;penalty_outcomes&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">weather</span> <span class="o">=</span> <span class="n">Validation</span><span class="p">(</span><span class="s">&quot;weather&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">surfaces</span> <span class="o">=</span> <span class="n">Validation</span><span class="p">(</span><span class="s">&quot;surfaces&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">validation</span> <span class="o">=</span> <span class="n">Validation</span><span class="p">(</span><span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
 
         <span class="c"># Personnel objects</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">players</span> <span class="o">=</span> <span class="n">Personnel</span><span class="p">(</span><span class="s">&quot;players&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">managers</span> <span class="o">=</span> <span class="n">Personnel</span><span class="p">(</span><span class="s">&quot;managers&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">referees</span> <span class="o">=</span> <span class="n">Personnel</span><span class="p">(</span><span class="s">&quot;referees&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
 
-        <span class="c"># Match objects</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">match</span> <span class="o">=</span> <span class="n">Match</span><span class="p">(</span><span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
-
-        <span class="c"># Match Event objects</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">events</span> <span class="o">=</span> <span class="n">MatchEvents</span><span class="p">(</span><span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
-
-        <span class="c"># Match Statistics objects</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">stats</span> <span class="o">=</span> <span class="n">MatchStatistics</span><span class="p">(</span><span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+        <span class="c"># Match objects for club/national team play</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">club</span> <span class="o">=</span> <span class="n">MatchPlay</span><span class="p">(</span><span class="s">&quot;clubs&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">natl</span> <span class="o">=</span> <span class="n">MatchPlay</span><span class="p">(</span><span class="s">&quot;national&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
 
         <span class="c"># Match Analytics objects</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">analytics</span> <span class="o">=</span> <span class="n">MatchAnalytics</span><span class="p">(</span><span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span></div>
@@ -302,7 +254,7 @@
     </p>
     <p>
         &copy; Copyright 2013-2014, Soccermetrics Research, LLC.<br/>
-      Last updated on Feb 26, 2014.<br/>
+      Last updated on Jul 29, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2b1.<br/>
     </p>
   </div>

@@ -9,8 +9,7 @@ The Soccermetrics API Python client library depends on the
 the client library within a virtual environment on your computer, or install
 it system-wide.
 
-Python 2.6+ is required.  The module *might* work with Python 3, but we
-haven't tested it and give no guarantees.
+Python 2.6+ is required.
 
 It's not required, but `autoenv <https://github.com/kennethreitz/autoenv>`_ is
 very nice to have.
@@ -22,7 +21,13 @@ We recommend installing ``soccermetrics-client-py`` within a virtual environment
 using ``virtualenv``.  That way you can run different versions of Python
 installations and libraries without dealing with conflicting dependencies.
 
+We also recommend installing `virtualenvwrapper <http://virtualenvwrapper.readthedocs.org/en/latest/>`_.
+As it says on the label, it is a wrapper around `virtualenv` that manages the virtual
+environments on your machine and allows you to customize pre- and post-activation
+(and deactivation) behavior, such as setting environment variables or opening your text editor.
+
 Here is a link to `a nice tutorial on Virtualenv <http://simononsoftware.com/virtualenv-tutorial/>`_.
+And `a tutorial on virtualenvwrapper <http://sccr.mx/1pZ5Xtx>`_ as well.
 
 To install ``virtualenv`` on MacOS or Linux, create a folder and run one of these
 two commands as ``sudo``:

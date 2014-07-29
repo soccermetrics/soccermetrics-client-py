@@ -24,7 +24,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '0.7',
+        VERSION:     '0.8',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -57,7 +57,7 @@
           <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="index.html">API Python Client</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.7</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.8</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -112,7 +112,7 @@
 <li><a class="reference internal" href="#module-soccermetrics.rest.resources.validation">Validation Resources</a></li>
 <li><a class="reference internal" href="#module-soccermetrics.rest.resources.personnel">Personnel Resources</a></li>
 <li><a class="reference internal" href="#module-soccermetrics.rest.resources.match">Match Resources</a></li>
-<li><a class="reference internal" href="#module-soccermetrics.rest.resources.events">Match Event Resources</a></li>
+<li><a class="reference internal" href="#module-soccermetrics.rest.resources.events">Match Micro Event Resources</a></li>
 <li><a class="reference internal" href="#module-soccermetrics.rest.resources.statistics">Match Statistic Resources</a></li>
 <li><a class="reference internal" href="#module-soccermetrics.rest.resources.analytics">Match Analytics Resources</a></li>
 </ul>
@@ -163,7 +163,7 @@
 <span id="client-object"></span><span id="ref-client-obj"></span><h2>Client Object<a class="headerlink" href="#module-soccermetrics.rest" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="soccermetrics.rest.SoccermetricsRestClient">
-<em class="property">class </em><tt class="descclassname">soccermetrics.rest.</tt><tt class="descname">SoccermetricsRestClient</tt><big>(</big><em>account=None</em>, <em>api_key=None</em>, <em>base_uri='http://api-summary.soccermetrics.net'</em><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest.html#SoccermetricsRestClient"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.SoccermetricsRestClient" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">soccermetrics.rest.</tt><tt class="descname">SoccermetricsRestClient</tt><big>(</big><em>account=None</em>, <em>api_key=None</em>, <em>base_uri='https://api-connect.soccermetrics.net'</em><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest.html#SoccermetricsRestClient"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.SoccermetricsRestClient" title="Permalink to this definition">¶</a></dt>
 <dd><p>A client object for accessing the Soccermetrics REST API.</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -182,65 +182,23 @@
 <tr class="row-odd"><td>link</td>
 <td>Link to resources</td>
 </tr>
-<tr class="row-even"><td>confederations</td>
-<td>Confederations</td>
+<tr class="row-even"><td>validation</td>
+<td>Validation resources</td>
 </tr>
-<tr class="row-odd"><td>countries</td>
-<td>Countries</td>
+<tr class="row-odd"><td>players</td>
+<td>Players resource</td>
 </tr>
-<tr class="row-even"><td>seasons</td>
-<td>Seasons</td>
+<tr class="row-even"><td>managers</td>
+<td>Managers resource</td>
 </tr>
-<tr class="row-odd"><td>teams</td>
-<td>Teams</td>
+<tr class="row-odd"><td>referees</td>
+<td>Referees resource</td>
 </tr>
-<tr class="row-even"><td>venues</td>
-<td>Venues</td>
+<tr class="row-even"><td>club</td>
+<td>Club match resources</td>
 </tr>
-<tr class="row-odd"><td>persons</td>
-<td>Persons</td>
-</tr>
-<tr class="row-even"><td>positions</td>
-<td>Positions</td>
-</tr>
-<tr class="row-odd"><td>fouls</td>
-<td>Fouls</td>
-</tr>
-<tr class="row-even"><td>cards</td>
-<td>Cards</td>
-</tr>
-<tr class="row-odd"><td>bodyparts</td>
-<td>Body parts</td>
-</tr>
-<tr class="row-even"><td>shotevents</td>
-<td>Shot events</td>
-</tr>
-<tr class="row-odd"><td>penalty_outcomes</td>
-<td>Penalty outcomes</td>
-</tr>
-<tr class="row-even"><td>weather</td>
-<td>Weather conditions</td>
-</tr>
-<tr class="row-odd"><td>surfaces</td>
-<td>Surfaces</td>
-</tr>
-<tr class="row-even"><td>players</td>
-<td>Players</td>
-</tr>
-<tr class="row-odd"><td>managers</td>
-<td>Managers</td>
-</tr>
-<tr class="row-even"><td>referees</td>
-<td>Referees</td>
-</tr>
-<tr class="row-odd"><td>match</td>
-<td>Match resources</td>
-</tr>
-<tr class="row-even"><td>events</td>
-<td>Match event resources</td>
-</tr>
-<tr class="row-odd"><td>stats</td>
-<td>Match stat resources</td>
+<tr class="row-odd"><td>natl</td>
+<td>Nat&#8217;l team match resources</td>
 </tr>
 <tr class="row-even"><td>analytics</td>
 <td>Match analytics resources</td>
@@ -566,7 +524,101 @@ returns an error.</p>
 <span id="validation-resources"></span><h3>Validation Resources<a class="headerlink" href="#module-soccermetrics.rest.resources.validation" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="soccermetrics.rest.resources.validation.Validation">
-<em class="property">class </em><tt class="descclassname">soccermetrics.rest.resources.validation.</tt><tt class="descname">Validation</tt><big>(</big><em>resource</em>, <em>base_uri</em>, <em>auth</em><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/validation.html#Validation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.validation.Validation" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">soccermetrics.rest.resources.validation.</tt><tt class="descname">Validation</tt><big>(</big><em>base_uri</em>, <em>auth</em><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/validation.html#Validation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.validation.Validation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Access to Validation objects.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="44%" />
+<col width="56%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Attribute</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>phases</td>
+<td>Competition Phases</td>
+</tr>
+<tr class="row-odd"><td>groupRounds</td>
+<td>Group Rounds</td>
+</tr>
+<tr class="row-even"><td>knockoutRounds</td>
+<td>Knockout Rounds</td>
+</tr>
+<tr class="row-odd"><td>confederations</td>
+<td>Confederations</td>
+</tr>
+<tr class="row-even"><td>countries</td>
+<td>Countries</td>
+</tr>
+<tr class="row-odd"><td>competitions</td>
+<td>Competitions</td>
+</tr>
+<tr class="row-even"><td>domesticCompetitions</td>
+<td>Domestic Competitions</td>
+</tr>
+<tr class="row-odd"><td>intlCompetitions</td>
+<td>International Competitions</td>
+</tr>
+<tr class="row-even"><td>seasons</td>
+<td>Seasons</td>
+</tr>
+<tr class="row-odd"><td>teams</td>
+<td>Teams</td>
+</tr>
+<tr class="row-even"><td>venues</td>
+<td>Match Venues</td>
+</tr>
+<tr class="row-odd"><td>timezones</td>
+<td>Time Zones</td>
+</tr>
+<tr class="row-even"><td>nameOrder</td>
+<td>Name Order</td>
+</tr>
+<tr class="row-odd"><td>persons</td>
+<td>Persons</td>
+</tr>
+<tr class="row-even"><td>positions</td>
+<td>Positions</td>
+</tr>
+<tr class="row-odd"><td>fouls</td>
+<td>Fouls</td>
+</tr>
+<tr class="row-even"><td>cards</td>
+<td>Cards</td>
+</tr>
+<tr class="row-odd"><td>bodyparts</td>
+<td>Body parts</td>
+</tr>
+<tr class="row-even"><td>shotevents</td>
+<td>Shot events</td>
+</tr>
+<tr class="row-odd"><td>penaltyOutcomes</td>
+<td>Penalty Outcomes</td>
+</tr>
+<tr class="row-even"><td>actions</td>
+<td>Event Actions</td>
+</tr>
+<tr class="row-odd"><td>modifiers</td>
+<td>Action Modifiers</td>
+</tr>
+<tr class="row-even"><td>modifierCategories</td>
+<td>Action Modifier Categories</td>
+</tr>
+<tr class="row-odd"><td>weather</td>
+<td>Weather Conditions</td>
+</tr>
+<tr class="row-even"><td>surfaces</td>
+<td>Surfaces</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="soccermetrics.rest.resources.validation.ValidationResource">
+<em class="property">class </em><tt class="descclassname">soccermetrics.rest.resources.validation.</tt><tt class="descname">ValidationResource</tt><big>(</big><em>resource</em>, <em>base_uri</em>, <em>auth</em><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/validation.html#ValidationResource"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.validation.ValidationResource" title="Permalink to this definition">¶</a></dt>
 <dd><p>Establish access to Validation resources (/ endpoint).</p>
 <p>Derived from <tt class="xref py py-class docutils literal"><span class="pre">base.Resource</span></tt>.</p>
 </dd></dl>
@@ -585,13 +637,55 @@ returns an error.</p>
 <div class="section" id="module-soccermetrics.rest.resources.match">
 <span id="match-resources"></span><h3>Match Resources<a class="headerlink" href="#module-soccermetrics.rest.resources.match" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
-<dt id="soccermetrics.rest.resources.match.Match">
-<em class="property">class </em><tt class="descclassname">soccermetrics.rest.resources.match.</tt><tt class="descname">Match</tt><big>(</big><em>base_uri</em>, <em>auth</em><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/match.html#Match"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.match.Match" title="Permalink to this definition">¶</a></dt>
+<dt id="soccermetrics.rest.resources.match.MatchConditions">
+<em class="property">class </em><tt class="descclassname">soccermetrics.rest.resources.match.</tt><tt class="descname">MatchConditions</tt><big>(</big><em>play</em>, <em>base_uri</em>, <em>auth</em><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/match.html#MatchConditions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.match.MatchConditions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Access to Match Conditions resources (/matches/conditions resource).</p>
+<p>Derived from <a class="reference internal" href="#soccermetrics.rest.resources.match.MatchResource" title="soccermetrics.rest.resources.match.MatchResource"><tt class="xref py py-class docutils literal"><span class="pre">MatchResource</span></tt></a>.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="soccermetrics.rest.resources.match.MatchGoals">
+<em class="property">class </em><tt class="descclassname">soccermetrics.rest.resources.match.</tt><tt class="descname">MatchGoals</tt><big>(</big><em>play</em>, <em>base_uri</em>, <em>auth</em><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/match.html#MatchGoals"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.match.MatchGoals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Access to Match Goals resources (/matches/goals resource).</p>
+<p>Derived from <a class="reference internal" href="#soccermetrics.rest.resources.match.MatchResource" title="soccermetrics.rest.resources.match.MatchResource"><tt class="xref py py-class docutils literal"><span class="pre">MatchResource</span></tt></a>.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="soccermetrics.rest.resources.match.MatchInformation">
+<em class="property">class </em><tt class="descclassname">soccermetrics.rest.resources.match.</tt><tt class="descname">MatchInformation</tt><big>(</big><em>play</em>, <em>base_uri</em>, <em>auth</em><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/match.html#MatchInformation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.match.MatchInformation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Access to Match Information resources (/matches/info resource).</p>
+<p>Derived from <a class="reference internal" href="#soccermetrics.rest.resources.match.MatchResource" title="soccermetrics.rest.resources.match.MatchResource"><tt class="xref py py-class docutils literal"><span class="pre">MatchResource</span></tt></a>.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="soccermetrics.rest.resources.match.MatchLineups">
+<em class="property">class </em><tt class="descclassname">soccermetrics.rest.resources.match.</tt><tt class="descname">MatchLineups</tt><big>(</big><em>play</em>, <em>base_uri</em>, <em>auth</em><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/match.html#MatchLineups"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.match.MatchLineups" title="Permalink to this definition">¶</a></dt>
+<dd><p>Access to Match Lineups resources (/matches/lineups resource).</p>
+<p>Derived from <a class="reference internal" href="#soccermetrics.rest.resources.match.MatchResource" title="soccermetrics.rest.resources.match.MatchResource"><tt class="xref py py-class docutils literal"><span class="pre">MatchResource</span></tt></a>.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="soccermetrics.rest.resources.match.MatchOffenses">
+<em class="property">class </em><tt class="descclassname">soccermetrics.rest.resources.match.</tt><tt class="descname">MatchOffenses</tt><big>(</big><em>play</em>, <em>base_uri</em>, <em>auth</em><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/match.html#MatchOffenses"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.match.MatchOffenses" title="Permalink to this definition">¶</a></dt>
+<dd><p>Access to Match Offenses resources (/matches/offenses resource).</p>
+<p>Derived from <a class="reference internal" href="#soccermetrics.rest.resources.match.MatchResource" title="soccermetrics.rest.resources.match.MatchResource"><tt class="xref py py-class docutils literal"><span class="pre">MatchResource</span></tt></a>.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="soccermetrics.rest.resources.match.MatchPenalties">
+<em class="property">class </em><tt class="descclassname">soccermetrics.rest.resources.match.</tt><tt class="descname">MatchPenalties</tt><big>(</big><em>play</em>, <em>base_uri</em>, <em>auth</em><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/match.html#MatchPenalties"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.match.MatchPenalties" title="Permalink to this definition">¶</a></dt>
+<dd><p>Access to Match Penalties resources (/matches/penalties resource).</p>
+<p>Derived from <a class="reference internal" href="#soccermetrics.rest.resources.match.MatchResource" title="soccermetrics.rest.resources.match.MatchResource"><tt class="xref py py-class docutils literal"><span class="pre">MatchResource</span></tt></a>.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="soccermetrics.rest.resources.match.MatchPlay">
+<em class="property">class </em><tt class="descclassname">soccermetrics.rest.resources.match.</tt><tt class="descname">MatchPlay</tt><big>(</big><em>play</em>, <em>base_uri</em>, <em>auth</em><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/match.html#MatchPlay"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.match.MatchPlay" title="Permalink to this definition">¶</a></dt>
 <dd><p>Access to Match objects.</p>
 <table border="1" class="docutils">
 <colgroup>
-<col width="41%" />
-<col width="59%" />
+<col width="37%" />
+<col width="63%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Attribute</th>
@@ -608,34 +702,34 @@ returns an error.</p>
 <tr class="row-even"><td>conditions</td>
 <td>Match conditions</td>
 </tr>
+<tr class="row-odd"><td>goals</td>
+<td>Goal events</td>
+</tr>
+<tr class="row-even"><td>penalties</td>
+<td>Penalty kick events</td>
+</tr>
+<tr class="row-odd"><td>offenses</td>
+<td>Disciplinary events</td>
+</tr>
+<tr class="row-even"><td>substitutions</td>
+<td>Substitution events</td>
+</tr>
+<tr class="row-odd"><td>shootouts</td>
+<td>Penalty shootout events</td>
+</tr>
+<tr class="row-even"><td>stats</td>
+<td>Match statistics</td>
+</tr>
+<tr class="row-odd"><td>events</td>
+<td>Match micro-events</td>
+</tr>
 </tbody>
 </table>
 </dd></dl>
 
 <dl class="class">
-<dt id="soccermetrics.rest.resources.match.MatchConditions">
-<em class="property">class </em><tt class="descclassname">soccermetrics.rest.resources.match.</tt><tt class="descname">MatchConditions</tt><big>(</big><em>base_uri</em>, <em>auth</em><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/match.html#MatchConditions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.match.MatchConditions" title="Permalink to this definition">¶</a></dt>
-<dd><p>Access to Match Conditions resources (/matches/conditions resource).</p>
-<p>Derived from <a class="reference internal" href="#soccermetrics.rest.resources.match.MatchResource" title="soccermetrics.rest.resources.match.MatchResource"><tt class="xref py py-class docutils literal"><span class="pre">MatchResource</span></tt></a>.</p>
-</dd></dl>
-
-<dl class="class">
-<dt id="soccermetrics.rest.resources.match.MatchInformation">
-<em class="property">class </em><tt class="descclassname">soccermetrics.rest.resources.match.</tt><tt class="descname">MatchInformation</tt><big>(</big><em>base_uri</em>, <em>auth</em><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/match.html#MatchInformation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.match.MatchInformation" title="Permalink to this definition">¶</a></dt>
-<dd><p>Access to Match Information resources (/matches/info resource).</p>
-<p>Derived from <a class="reference internal" href="#soccermetrics.rest.resources.match.MatchResource" title="soccermetrics.rest.resources.match.MatchResource"><tt class="xref py py-class docutils literal"><span class="pre">MatchResource</span></tt></a>.</p>
-</dd></dl>
-
-<dl class="class">
-<dt id="soccermetrics.rest.resources.match.MatchLineups">
-<em class="property">class </em><tt class="descclassname">soccermetrics.rest.resources.match.</tt><tt class="descname">MatchLineups</tt><big>(</big><em>base_uri</em>, <em>auth</em><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/match.html#MatchLineups"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.match.MatchLineups" title="Permalink to this definition">¶</a></dt>
-<dd><p>Access to Match Lineups resources (/matches/lineups resource).</p>
-<p>Derived from <a class="reference internal" href="#soccermetrics.rest.resources.match.MatchResource" title="soccermetrics.rest.resources.match.MatchResource"><tt class="xref py py-class docutils literal"><span class="pre">MatchResource</span></tt></a>.</p>
-</dd></dl>
-
-<dl class="class">
 <dt id="soccermetrics.rest.resources.match.MatchResource">
-<em class="property">class </em><tt class="descclassname">soccermetrics.rest.resources.match.</tt><tt class="descname">MatchResource</tt><big>(</big><em>base_uri</em>, <em>auth</em><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/match.html#MatchResource"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.match.MatchResource" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">soccermetrics.rest.resources.match.</tt><tt class="descname">MatchResource</tt><big>(</big><em>play</em>, <em>base_uri</em>, <em>auth</em><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/match.html#MatchResource"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.match.MatchResource" title="Permalink to this definition">¶</a></dt>
 <dd><p>Represents a Match REST resource (/matches endpoints).</p>
 <p>Derived from <tt class="xref py py-class docutils literal"><span class="pre">resources.Resource</span></tt>.</p>
 <dl class="method">
@@ -717,24 +811,38 @@ returns an error.</p>
 
 </dd></dl>
 
+<dl class="class">
+<dt id="soccermetrics.rest.resources.match.MatchShootouts">
+<em class="property">class </em><tt class="descclassname">soccermetrics.rest.resources.match.</tt><tt class="descname">MatchShootouts</tt><big>(</big><em>play</em>, <em>base_uri</em>, <em>auth</em><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/match.html#MatchShootouts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.match.MatchShootouts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Access to Match Shootouts resources (/matches/shootouts resource).</p>
+<p>Derived from <a class="reference internal" href="#soccermetrics.rest.resources.match.MatchResource" title="soccermetrics.rest.resources.match.MatchResource"><tt class="xref py py-class docutils literal"><span class="pre">MatchResource</span></tt></a>.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="soccermetrics.rest.resources.match.MatchSubstitutions">
+<em class="property">class </em><tt class="descclassname">soccermetrics.rest.resources.match.</tt><tt class="descname">MatchSubstitutions</tt><big>(</big><em>play</em>, <em>base_uri</em>, <em>auth</em><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/match.html#MatchSubstitutions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.match.MatchSubstitutions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Access to Match Substitutions resources (/matches/substitutions resource).</p>
+<p>Derived from <a class="reference internal" href="#soccermetrics.rest.resources.match.MatchResource" title="soccermetrics.rest.resources.match.MatchResource"><tt class="xref py py-class docutils literal"><span class="pre">MatchResource</span></tt></a>.</p>
+</dd></dl>
+
 </div>
 <div class="section" id="module-soccermetrics.rest.resources.events">
-<span id="match-event-resources"></span><h3>Match Event Resources<a class="headerlink" href="#module-soccermetrics.rest.resources.events" title="Permalink to this headline">¶</a></h3>
+<span id="match-micro-event-resources"></span><h3>Match Micro Event Resources<a class="headerlink" href="#module-soccermetrics.rest.resources.events" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="soccermetrics.rest.resources.events.MatchEventResource">
-<em class="property">class </em><tt class="descclassname">soccermetrics.rest.resources.events.</tt><tt class="descname">MatchEventResource</tt><big>(</big><em>resource</em>, <em>base_uri</em>, <em>auth</em><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/events.html#MatchEventResource"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.events.MatchEventResource" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">soccermetrics.rest.resources.events.</tt><tt class="descname">MatchEventResource</tt><big>(</big><em>play</em>, <em>resource</em>, <em>base_uri</em>, <em>auth</em><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/events.html#MatchEventResource"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.events.MatchEventResource" title="Permalink to this definition">¶</a></dt>
 <dd><p>Represents a Match Event REST resource (/events/<tt class="docutils literal"><span class="pre">resource</span></tt> endpoints).</p>
 <p>Derived from <tt class="xref py py-class docutils literal"><span class="pre">base.Resource</span></tt>.</p>
 </dd></dl>
 
 <dl class="class">
 <dt id="soccermetrics.rest.resources.events.MatchEvents">
-<em class="property">class </em><tt class="descclassname">soccermetrics.rest.resources.events.</tt><tt class="descname">MatchEvents</tt><big>(</big><em>base_uri</em>, <em>auth</em><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/events.html#MatchEvents"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.events.MatchEvents" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">soccermetrics.rest.resources.events.</tt><tt class="descname">MatchEvents</tt><big>(</big><em>play</em>, <em>base_uri</em>, <em>auth</em><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/events.html#MatchEvents"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.events.MatchEvents" title="Permalink to this definition">¶</a></dt>
 <dd><p>Establish access to Match Event objects (/events endpoint).</p>
 <table border="1" class="docutils">
 <colgroup>
-<col width="41%" />
-<col width="59%" />
+<col width="38%" />
+<col width="62%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Attribute</th>
@@ -742,17 +850,14 @@ returns an error.</p>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td>goals</td>
-<td>Goal events</td>
+<tr class="row-even"><td>all</td>
+<td>All micro events</td>
 </tr>
-<tr class="row-odd"><td>penalties</td>
-<td>Penalty kick events</td>
+<tr class="row-odd"><td>touches</td>
+<td>All touch events</td>
 </tr>
-<tr class="row-even"><td>offenses</td>
-<td>Disciplinary events</td>
-</tr>
-<tr class="row-odd"><td>substitutions</td>
-<td>Substitution events</td>
+<tr class="row-even"><td>actions</td>
+<td>All event actions</td>
 </tr>
 </tbody>
 </table>
@@ -763,7 +868,7 @@ returns an error.</p>
 <span id="match-statistic-resources"></span><h3>Match Statistic Resources<a class="headerlink" href="#module-soccermetrics.rest.resources.statistics" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="soccermetrics.rest.resources.statistics.CrossingStatistics">
-<em class="property">class </em><tt class="descclassname">soccermetrics.rest.resources.statistics.</tt><tt class="descname">CrossingStatistics</tt><big>(</big><em>base_uri</em>, <em>auth</em><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/statistics.html#CrossingStatistics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.statistics.CrossingStatistics" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">soccermetrics.rest.resources.statistics.</tt><tt class="descname">CrossingStatistics</tt><big>(</big><em>play</em>, <em>base_uri</em>, <em>auth</em><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/statistics.html#CrossingStatistics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.statistics.CrossingStatistics" title="Permalink to this definition">¶</a></dt>
 <dd><p>Establish access to Cross statistical resources (/stats/crosses endpoint).</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -788,7 +893,7 @@ returns an error.</p>
 
 <dl class="class">
 <dt id="soccermetrics.rest.resources.statistics.DefensiveStatistics">
-<em class="property">class </em><tt class="descclassname">soccermetrics.rest.resources.statistics.</tt><tt class="descname">DefensiveStatistics</tt><big>(</big><em>base_uri</em>, <em>auth</em><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/statistics.html#DefensiveStatistics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.statistics.DefensiveStatistics" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">soccermetrics.rest.resources.statistics.</tt><tt class="descname">DefensiveStatistics</tt><big>(</big><em>play</em>, <em>base_uri</em>, <em>auth</em><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/statistics.html#DefensiveStatistics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.statistics.DefensiveStatistics" title="Permalink to this definition">¶</a></dt>
 <dd><p>Establish access to Defensive statistical resources (/stats/defense endpoint).</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -822,7 +927,7 @@ returns an error.</p>
 
 <dl class="class">
 <dt id="soccermetrics.rest.resources.statistics.FoulingStatistics">
-<em class="property">class </em><tt class="descclassname">soccermetrics.rest.resources.statistics.</tt><tt class="descname">FoulingStatistics</tt><big>(</big><em>base_uri</em>, <em>auth</em><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/statistics.html#FoulingStatistics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.statistics.FoulingStatistics" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">soccermetrics.rest.resources.statistics.</tt><tt class="descname">FoulingStatistics</tt><big>(</big><em>play</em>, <em>base_uri</em>, <em>auth</em><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/statistics.html#FoulingStatistics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.statistics.FoulingStatistics" title="Permalink to this definition">¶</a></dt>
 <dd><p>Access to Foul statistical resources (/stats/fouls endpoint).</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -847,7 +952,7 @@ returns an error.</p>
 
 <dl class="class">
 <dt id="soccermetrics.rest.resources.statistics.GoalStatistics">
-<em class="property">class </em><tt class="descclassname">soccermetrics.rest.resources.statistics.</tt><tt class="descname">GoalStatistics</tt><big>(</big><em>base_uri</em>, <em>auth</em><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/statistics.html#GoalStatistics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.statistics.GoalStatistics" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">soccermetrics.rest.resources.statistics.</tt><tt class="descname">GoalStatistics</tt><big>(</big><em>play</em>, <em>base_uri</em>, <em>auth</em><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/statistics.html#GoalStatistics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.statistics.GoalStatistics" title="Permalink to this definition">¶</a></dt>
 <dd><p>Access to Goal statistical resources (/stats/goals endpoint).</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -881,7 +986,7 @@ returns an error.</p>
 
 <dl class="class">
 <dt id="soccermetrics.rest.resources.statistics.GoalkeepingStatistics">
-<em class="property">class </em><tt class="descclassname">soccermetrics.rest.resources.statistics.</tt><tt class="descname">GoalkeepingStatistics</tt><big>(</big><em>base_uri</em>, <em>auth</em><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/statistics.html#GoalkeepingStatistics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.statistics.GoalkeepingStatistics" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">soccermetrics.rest.resources.statistics.</tt><tt class="descname">GoalkeepingStatistics</tt><big>(</big><em>play</em>, <em>base_uri</em>, <em>auth</em><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/statistics.html#GoalkeepingStatistics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.statistics.GoalkeepingStatistics" title="Permalink to this definition">¶</a></dt>
 <dd><p>Access to Goalkeeper statistical resources (/stats/goalkeeper endpoint).</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -912,7 +1017,7 @@ returns an error.</p>
 
 <dl class="class">
 <dt id="soccermetrics.rest.resources.statistics.MatchStatistics">
-<em class="property">class </em><tt class="descclassname">soccermetrics.rest.resources.statistics.</tt><tt class="descname">MatchStatistics</tt><big>(</big><em>base_uri</em>, <em>auth</em><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/statistics.html#MatchStatistics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.statistics.MatchStatistics" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">soccermetrics.rest.resources.statistics.</tt><tt class="descname">MatchStatistics</tt><big>(</big><em>play</em>, <em>base_uri</em>, <em>auth</em><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/statistics.html#MatchStatistics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.statistics.MatchStatistics" title="Permalink to this definition">¶</a></dt>
 <dd><p>Establish access to Match Statistics objects (/stats endpoints).</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -958,14 +1063,14 @@ returns an error.</p>
 
 <dl class="class">
 <dt id="soccermetrics.rest.resources.statistics.MatchStatisticsResource">
-<em class="property">class </em><tt class="descclassname">soccermetrics.rest.resources.statistics.</tt><tt class="descname">MatchStatisticsResource</tt><big>(</big><em>statistic</em>, <em>resource</em>, <em>base_uri</em>, <em>auth</em><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/statistics.html#MatchStatisticsResource"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.statistics.MatchStatisticsResource" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">soccermetrics.rest.resources.statistics.</tt><tt class="descname">MatchStatisticsResource</tt><big>(</big><em>play</em>, <em>statistic</em>, <em>resource</em>, <em>base_uri</em>, <em>auth</em><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/statistics.html#MatchStatisticsResource"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.statistics.MatchStatisticsResource" title="Permalink to this definition">¶</a></dt>
 <dd><p>Represents a Match Statistics REST resource (/stats/&lt;statistic&gt;/&lt;resource&gt; endpoints).</p>
 <p>Derived from <tt class="xref py py-class docutils literal"><span class="pre">base.Resource</span></tt>.</p>
 </dd></dl>
 
 <dl class="class">
 <dt id="soccermetrics.rest.resources.statistics.PassingStatistics">
-<em class="property">class </em><tt class="descclassname">soccermetrics.rest.resources.statistics.</tt><tt class="descname">PassingStatistics</tt><big>(</big><em>base_uri</em>, <em>auth</em><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/statistics.html#PassingStatistics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.statistics.PassingStatistics" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">soccermetrics.rest.resources.statistics.</tt><tt class="descname">PassingStatistics</tt><big>(</big><em>play</em>, <em>base_uri</em>, <em>auth</em><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/statistics.html#PassingStatistics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.statistics.PassingStatistics" title="Permalink to this definition">¶</a></dt>
 <dd><p>Access to Passing statistical resources (/stats/passes endpoint).</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -996,7 +1101,7 @@ returns an error.</p>
 
 <dl class="class">
 <dt id="soccermetrics.rest.resources.statistics.SetPieceStatistics">
-<em class="property">class </em><tt class="descclassname">soccermetrics.rest.resources.statistics.</tt><tt class="descname">SetPieceStatistics</tt><big>(</big><em>base_uri</em>, <em>auth</em><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/statistics.html#SetPieceStatistics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.statistics.SetPieceStatistics" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">soccermetrics.rest.resources.statistics.</tt><tt class="descname">SetPieceStatistics</tt><big>(</big><em>play</em>, <em>base_uri</em>, <em>auth</em><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/statistics.html#SetPieceStatistics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.statistics.SetPieceStatistics" title="Permalink to this definition">¶</a></dt>
 <dd><p>Access to Set-Piece statistical resources (/stats/setpieces endpoint).</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -1024,7 +1129,7 @@ returns an error.</p>
 
 <dl class="class">
 <dt id="soccermetrics.rest.resources.statistics.ShotStatistics">
-<em class="property">class </em><tt class="descclassname">soccermetrics.rest.resources.statistics.</tt><tt class="descname">ShotStatistics</tt><big>(</big><em>base_uri</em>, <em>auth</em><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/statistics.html#ShotStatistics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.statistics.ShotStatistics" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">soccermetrics.rest.resources.statistics.</tt><tt class="descname">ShotStatistics</tt><big>(</big><em>play</em>, <em>base_uri</em>, <em>auth</em><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/statistics.html#ShotStatistics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.statistics.ShotStatistics" title="Permalink to this definition">¶</a></dt>
 <dd><p>Access to Shot statistical resources (/stats/shots endpoint).</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -1055,7 +1160,7 @@ returns an error.</p>
 
 <dl class="class">
 <dt id="soccermetrics.rest.resources.statistics.TouchStatistics">
-<em class="property">class </em><tt class="descclassname">soccermetrics.rest.resources.statistics.</tt><tt class="descname">TouchStatistics</tt><big>(</big><em>base_uri</em>, <em>auth</em><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/statistics.html#TouchStatistics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.statistics.TouchStatistics" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">soccermetrics.rest.resources.statistics.</tt><tt class="descname">TouchStatistics</tt><big>(</big><em>play</em>, <em>base_uri</em>, <em>auth</em><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/statistics.html#TouchStatistics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.statistics.TouchStatistics" title="Permalink to this definition">¶</a></dt>
 <dd><p>Access to Touch statistical resources (/stats/touches endpoint).</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -1173,8 +1278,8 @@ returns an error.</p>
 <dd><p>Represents a Match Analytics REST resource (/analytics/match endpoints).</p>
 <table border="1" class="docutils">
 <colgroup>
-<col width="41%" />
-<col width="59%" />
+<col width="38%" />
+<col width="62%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Attribute</th>
@@ -1187,6 +1292,9 @@ returns an error.</p>
 </tr>
 <tr class="row-odd"><td>segment</td>
 <td>Match segments</td>
+</tr>
+<tr class="row-even"><td>tsr</td>
+<td>Match Total Shots Ratio</td>
 </tr>
 </tbody>
 </table>
@@ -1224,7 +1332,7 @@ returns an error.</p>
     </p>
     <p>
         &copy; Copyright 2013-2014, Soccermetrics Research, LLC.<br/>
-      Last updated on Feb 26, 2014.<br/>
+      Last updated on Jul 29, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2b1.<br/>
     </p>
   </div>

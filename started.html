@@ -24,7 +24,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '0.7',
+        VERSION:     '0.8',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -58,7 +58,7 @@
           <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="index.html">API Python Client</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.7</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.8</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -167,8 +167,9 @@ These get passed to the constructor or via environment variables.</p>
 </div>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
-<p class="last">This is a fictitious API ID and key. We ask all interested users to request
-access to the API in order to receive credentials.</p>
+<p class="last">This is a fictitious API ID and key. We ask all interested users to go to the
+<a class="reference external" href="https://developer.soccermetrics.net">Soccermetrics Connect API website</a> in order
+to receive credentials.</p>
 </div>
 <p>If you call <tt class="docutils literal"><span class="pre">SoccermetricsRestClient</span></tt> without any parameters, the constructor
 will look for <tt class="docutils literal"><span class="pre">SOCCERMETRICS_APP_ID</span></tt> and <tt class="docutils literal"><span class="pre">SOCCERMETRICS_APP_KEY</span></tt> variables
@@ -179,18 +180,40 @@ in a public place.</p>
 </div>
 <div class="section" id="match-information">
 <h2>Match Information<a class="headerlink" href="#match-information" title="Permalink to this headline">¶</a></h2>
-<p>Let&#8217;s get information from all matches for a specific matchday.  We&#8217;ll use it to
-access lineups and eventually match statistics.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">matches</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">match</span><span class="o">.</span><span class="n">information</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">matchday</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<p>Let&#8217;s get information from all matches for a specific matchday in a league competition.
+We&#8217;ll use it to access lineups and eventually match statistics.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">matches</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">club</span><span class="o">.</span><span class="n">match</span><span class="o">.</span><span class="n">information</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">matchday</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">match</span> <span class="ow">in</span> <span class="n">matches</span><span class="p">:</span>
     <span class="k">print</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s">: </span><span class="si">%s</span><span class="s"> vs </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">match_date</span><span class="p">,</span> <span class="n">match</span><span class="o">.</span><span class="n">home_team_name</span><span class="p">,</span>
                             <span class="n">match</span><span class="o">.</span><span class="n">away_team_name</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Almost all of the resources have hyperlinks that refer to related resources, so
-we can use those to access lineup data for each match.  We revise the above
-code so that we can get starting lineups:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">matches</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">match</span><span class="o">.</span><span class="n">information</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">matchday</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">In reality, you would pass the name of the competition in the call.  Otherwise,
+you would receive all of the league matches for that matchday, over <em>all</em> of the
+competitions in the Soccermetrics database.</p>
+</div>
+<p>To access matches from the group stage of a competition, we need to include <em>at minimum</em> the
+group round and group name:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">matches</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">natl</span><span class="o">.</span><span class="n">match</span><span class="o">.</span><span class="n">information</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">round_name</span><span class="o">=</span><span class="s">&#39;Group Stage&#39;</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="n">A</span><span class="p">,</span> <span class="n">matchday</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">match</span> <span class="ow">in</span> <span class="n">matches</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s">: </span><span class="si">%s</span><span class="s"> vs </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">match_date</span><span class="p">,</span> <span class="n">match</span><span class="o">.</span><span class="n">home_team_name</span><span class="p">,</span>
+                            <span class="n">match</span><span class="o">.</span><span class="n">away_team_name</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If we want to retrieve match from the knockout phase of a competition, we must pass
+the round name:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">matches</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">club</span><span class="o">.</span><span class="n">match</span><span class="o">.</span><span class="n">information</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">round_name</span><span class="o">=</span><span class="s">&quot;Third Round&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">match</span> <span class="ow">in</span> <span class="n">matches</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s">: </span><span class="si">%s</span><span class="s"> vs </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">match_date</span><span class="p">,</span> <span class="n">match</span><span class="o">.</span><span class="n">home_team_name</span><span class="p">,</span>
+                            <span class="n">match</span><span class="o">.</span><span class="n">away_team_name</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Almost all of the resources have hyperlinks that refer to related resources.  In this
+case we use the hyperlinks to access lineup data related to each match.  We revise the
+above code so that we can get starting lineups:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">matches</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">club</span><span class="o">.</span><span class="n">match</span><span class="o">.</span><span class="n">information</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">matchday</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">match</span> <span class="ow">in</span> <span class="n">matches</span><span class="p">:</span>
     <span class="k">for</span> <span class="n">team_name</span> <span class="ow">in</span> <span class="p">[</span><span class="n">match</span><span class="o">.</span><span class="n">home_team_name</span><span class="p">,</span> <span class="n">match</span><span class="o">.</span><span class="n">away_team_name</span><span class="p">]:</span>
         <span class="n">lineup_data</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">link</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
@@ -208,7 +231,7 @@ types of statistics from those.  Let&#8217;s collect total shot data to develop
 Total Shot Ratios for each team.  Again we use the hyperlinks associated
 with each match to access the statistical data.  Revising the above code once more:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">ratio</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">matches</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">match</span><span class="o">.</span><span class="n">information</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">matchday</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">matches</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">club</span><span class="o">.</span><span class="n">match</span><span class="o">.</span><span class="n">information</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">matchday</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">match</span> <span class="ow">in</span> <span class="n">matches</span><span class="p">:</span>
     <span class="n">total_shots</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">team_name</span> <span class="ow">in</span> <span class="p">[</span><span class="n">match</span><span class="o">.</span><span class="n">home_team_name</span><span class="p">,</span> <span class="n">match</span><span class="o">.</span><span class="n">away_team_name</span><span class="p">]:</span>
@@ -239,7 +262,7 @@ with each match to access the statistical data.  Revising the above code once mo
     </p>
     <p>
         &copy; Copyright 2013-2014, Soccermetrics Research, LLC.<br/>
-      Last updated on Feb 26, 2014.<br/>
+      Last updated on Jul 29, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2b1.<br/>
     </p>
   </div>

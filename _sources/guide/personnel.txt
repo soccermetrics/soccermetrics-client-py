@@ -18,7 +18,7 @@ to access linked data, such as match appearances and actions.
 
     rvp = client.players.get(last_name='Van Persie').all()
     rvp_matches = client.link.get(rvp.link.matches)
-    rvp_goals = client.link.get(rvp.link.events.goals)
+    rvp_goals = client.link.get(rvp.link.goals)
 
 Some players have nicknames:
 ::
@@ -43,7 +43,7 @@ that's very rare.
 
     saf = client.managers.get(first_name='Alex',last_name='Ferguson')
     saf_scotland = client.link.get(saf.link.country)
-    saf_home_matches = client.link.get(saf.link.home_matches)
+    saf_home_matches = client.link.get(saf.link.homeMatches)
 
 
 Retrieving a Referee Record

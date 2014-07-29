@@ -24,7 +24,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../../',
-        VERSION:     '0.7',
+        VERSION:     '0.8',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -57,7 +57,7 @@
           <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="../../../../index.html">API Python Client</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.7</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.8</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -218,17 +218,20 @@
 <div class="viewcode-block" id="MatchAnalytics"><a class="viewcode-back" href="../../../../reference.html#soccermetrics.rest.resources.analytics.MatchAnalytics">[docs]</a><span class="k">class</span> <span class="nc">MatchAnalytics</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Represents a Match Analytics REST resource (/analytics/match endpoints).</span>
 
-<span class="sd">    +----------------+-----------------------+</span>
-<span class="sd">    | Attribute      | Description           |</span>
-<span class="sd">    +================+=======================+</span>
-<span class="sd">    | state          | Match state           |</span>
-<span class="sd">    +----------------+-----------------------+</span>
-<span class="sd">    | segment        | Match segments        |</span>
-<span class="sd">    +----------------+-----------------------+</span>
+<span class="sd">    +----------------+--------------------------+</span>
+<span class="sd">    | Attribute      | Description              |</span>
+<span class="sd">    +================+==========================+</span>
+<span class="sd">    | state          | Match state              |</span>
+<span class="sd">    +----------------+--------------------------+</span>
+<span class="sd">    | segment        | Match segments           |</span>
+<span class="sd">    +----------------+--------------------------+</span>
+<span class="sd">    | tsr            | Match Total Shots Ratio  |</span>
+<span class="sd">    +----------------+--------------------------+</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="n">AnalyticsResource</span><span class="p">(</span><span class="s">&quot;state&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">segment</span> <span class="o">=</span> <span class="n">AnalyticsResource</span><span class="p">(</span><span class="s">&quot;segment&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">segment</span> <span class="o">=</span> <span class="n">AnalyticsResource</span><span class="p">(</span><span class="s">&quot;segment&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tsr</span> <span class="o">=</span> <span class="n">AnalyticsResource</span><span class="p">(</span><span class="s">&quot;tsr&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span></div>
 </pre></div>
 
     </div>
@@ -243,7 +246,7 @@
     </p>
     <p>
         &copy; Copyright 2013-2014, Soccermetrics Research, LLC.<br/>
-      Last updated on Feb 26, 2014.<br/>
+      Last updated on Jul 29, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2b1.<br/>
     </p>
   </div>

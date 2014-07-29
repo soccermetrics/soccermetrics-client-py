@@ -24,7 +24,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '0.7',
+        VERSION:     '0.8',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -59,7 +59,7 @@
           <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="../index.html">API Python Client</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.7</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.8</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -201,7 +201,7 @@ To do so, send keyword arguments to the <tt class="docutils literal"><span class
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">soccermetrics.rest</span> <span class="kn">import</span> <span class="n">SoccermetricsRestClient</span>
 <span class="n">client</span> <span class="o">=</span> <span class="n">SoccermetricsRestClient</span><span class="p">()</span>
 
-<span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">match</span><span class="o">.</span><span class="n">information</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">home_team_name</span><span class="o">=</span><span class="s">&quot;Liverpool&quot;</span><span class="p">,</span><span class="n">away_team_name</span><span class="o">=</span><span class="s">&quot;Everton&quot;</span><span class="p">)</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">club</span><span class="o">.</span><span class="n">match</span><span class="o">.</span><span class="n">information</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">home_team_name</span><span class="o">=</span><span class="s">&quot;Liverpool&quot;</span><span class="p">,</span><span class="n">away_team_name</span><span class="o">=</span><span class="s">&quot;Everton&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>GET requests also accept paging arguments.  The following example will return
@@ -209,7 +209,7 @@ page 4 of the match information resource with 20 matches per page.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">soccermetrics.rest</span> <span class="kn">import</span> <span class="n">SoccermetricsRestClient</span>
 <span class="n">client</span> <span class="o">=</span> <span class="n">SoccermetricsRestClient</span><span class="p">()</span>
 
-<span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">match</span><span class="o">.</span><span class="n">information</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">page</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span><span class="n">records</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">club</span><span class="o">.</span><span class="n">match</span><span class="o">.</span><span class="n">information</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">page</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span><span class="n">records</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -219,7 +219,7 @@ page 4 of the match information resource with 20 matches per page.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">soccermetrics.rest</span> <span class="kn">import</span> <span class="n">SoccermetricsRestClient</span>
 <span class="n">client</span> <span class="o">=</span> <span class="n">SoccermetricsRestClient</span><span class="p">()</span>
 
-<span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">teams</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">validation</span><span class="o">.</span><span class="n">teams</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -229,7 +229,7 @@ page 4 of the match information resource with 20 matches per page.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">soccermetrics.rest</span> <span class="kn">import</span> <span class="n">SoccermetricsRestClient</span>
 <span class="n">client</span> <span class="o">=</span> <span class="n">SoccermetricsRestClient</span><span class="p">()</span>
 
-<span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">match</span><span class="o">.</span><span class="n">information</span><span class="o">.</span><span class="n">options</span><span class="p">()</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">natl</span><span class="o">.</span><span class="n">match</span><span class="o">.</span><span class="n">information</span><span class="o">.</span><span class="n">options</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -264,7 +264,7 @@ This object returns the following attributes:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">soccermetrics.rest</span> <span class="kn">import</span> <span class="n">SoccermetricsRestClient</span>
 <span class="n">client</span> <span class="o">=</span> <span class="n">SoccermetricsRestClient</span><span class="p">()</span>
 
-<span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">match</span><span class="o">.</span><span class="n">information</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">home_team_name</span><span class="o">=</span><span class="s">&quot;Liverpool&quot;</span><span class="p">,</span><span class="n">away_team_name</span><span class="o">=</span><span class="s">&quot;Everton&quot;</span><span class="p">)</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">natl</span><span class="o">.</span><span class="n">match</span><span class="o">.</span><span class="n">information</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">home_team_name</span><span class="o">=</span><span class="s">&quot;Brazil&quot;</span><span class="p">,</span><span class="n">away_team_name</span><span class="o">=</span><span class="s">&quot;Germany&quot;</span><span class="p">)</span>
 
 <span class="n">status_code</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">status</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">headers</span>
@@ -327,7 +327,7 @@ This object returns the following attributes:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">soccermetrics.rest</span> <span class="kn">import</span> <span class="n">SoccermetricsRestClient</span>
 <span class="n">client</span> <span class="o">=</span> <span class="n">SoccermetricsRestClient</span><span class="p">()</span>
 
-<span class="n">goals</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">goals</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">matchday</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+<span class="n">goals</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">club</span><span class="o">.</span><span class="n">goals</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">matchday</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -340,10 +340,10 @@ and <tt class="docutils literal"><span class="pre">options()</span></tt> calls j
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">soccermetrics.rest</span> <span class="kn">import</span> <span class="n">SoccermetricsRestClient</span>
 <span class="n">client</span> <span class="o">=</span> <span class="n">SoccermetricsRestClient</span><span class="p">()</span>
 
-<span class="n">match</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">match</span><span class="o">.</span><span class="n">information</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">home_team_name</span><span class="o">=</span><span class="s">&quot;Liverpool&quot;</span><span class="p">,</span><span class="n">away_team_name</span><span class="o">=</span><span class="s">&quot;Everton&quot;</span><span class="p">)</span>
+<span class="n">match</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">club</span><span class="o">.</span><span class="n">information</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">home_team_name</span><span class="o">=</span><span class="s">&quot;Liverpool&quot;</span><span class="p">,</span><span class="n">away_team_name</span><span class="o">=</span><span class="s">&quot;Everton&quot;</span><span class="p">)</span>
 
-<span class="n">goals</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">link</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">link</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">goals</span><span class="p">)</span>
-<span class="n">pens</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">link</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">link</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">penalties</span><span class="p">,</span><span class="n">outcome_type</span><span class="o">=</span><span class="s">&quot;Goal&quot;</span><span class="p">)</span>
+<span class="n">goals</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">link</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">link</span><span class="o">.</span><span class="n">goals</span><span class="p">)</span>
+<span class="n">pens</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">link</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">link</span><span class="o">.</span><span class="n">penalties</span><span class="p">,</span><span class="n">outcome_type</span><span class="o">=</span><span class="s">&quot;Goal&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -362,7 +362,7 @@ and <tt class="docutils literal"><span class="pre">options()</span></tt> calls j
     </p>
     <p>
         &copy; Copyright 2013-2014, Soccermetrics Research, LLC.<br/>
-      Last updated on Feb 26, 2014.<br/>
+      Last updated on Jul 29, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2b1.<br/>
     </p>
   </div>

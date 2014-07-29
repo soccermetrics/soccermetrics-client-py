@@ -55,7 +55,7 @@ To do so, send keyword arguments to the ``get()`` method.
     from soccermetrics.rest import SoccermetricsRestClient
     client = SoccermetricsRestClient()
 
-    response = client.match.information.get(home_team_name="Liverpool",away_team_name="Everton")
+    response = client.club.match.information.get(home_team_name="Liverpool",away_team_name="Everton")
 
 GET requests also accept paging arguments.  The following example will return
 page 4 of the match information resource with 20 matches per page.
@@ -64,7 +64,7 @@ page 4 of the match information resource with 20 matches per page.
     from soccermetrics.rest import SoccermetricsRestClient
     client = SoccermetricsRestClient()
 
-    response = client.match.information.get(page=4,records=20)
+    response = client.club.match.information.get(page=4,records=20)
 
 
 HEAD Requests
@@ -76,7 +76,7 @@ To make a HEAD request, use the ``head()`` method associated with each resource.
     from soccermetrics.rest import SoccermetricsRestClient
     client = SoccermetricsRestClient()
 
-    response = client.teams.head()
+    response = client.validation.teams.head()
 
 OPTIONS Requests
 ^^^^^^^^^^^^^^^^
@@ -87,7 +87,7 @@ To make an OPTIONS request, use the ``options()`` method associated with each re
     from soccermetrics.rest import SoccermetricsRestClient
     client = SoccermetricsRestClient()
 
-    response = client.match.information.options()
+    response = client.natl.match.information.options()
 
 
 Processing Responses
@@ -112,7 +112,7 @@ The following example handles the response from a resource request:
     from soccermetrics.rest import SoccermetricsRestClient
     client = SoccermetricsRestClient()
 
-    response = client.match.information.get(home_team_name="Liverpool",away_team_name="Everton")
+    response = client.natl.match.information.get(home_team_name="Brazil",away_team_name="Germany")
 
     status_code = response.status
     headers = response.headers
@@ -152,7 +152,7 @@ If you wish to retrieve all of the records at once, use the ``all()`` method.
     from soccermetrics.rest import SoccermetricsRestClient
     client = SoccermetricsRestClient()
 
-    goals = client.events.goals.get(matchday=5).all()
+    goals = client.club.goals.get(matchday=5).all()
 
 
 Accessing Hyperlinked Resources
@@ -167,7 +167,7 @@ and ``options()`` calls just as you would for any other resource.
     from soccermetrics.rest import SoccermetricsRestClient
     client = SoccermetricsRestClient()
 
-    match = client.match.information.get(home_team_name="Liverpool",away_team_name="Everton")
+    match = client.club.information.get(home_team_name="Liverpool",away_team_name="Everton")
 
-    goals = client.link.get(match.link.events.goals)
-    pens = client.link.get(match.link.events.penalties,outcome_type="Goal")
+    goals = client.link.get(match.link.goals)
+    pens = client.link.get(match.link.penalties,outcome_type="Goal")

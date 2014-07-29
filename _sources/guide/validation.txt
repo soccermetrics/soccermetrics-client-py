@@ -50,8 +50,8 @@ You can also use the keyword ``uid`` in the function call.
     from soccermetrics.rest import SoccermetricsRestClient
     client = SoccermetricsRestClient()
 
-    england = client.countries.get(280)
-    brazil = client.countries.get(uid=243)
+    england = client.validation.countries.get("70570246789640e2a629d9b668df4c17")
+    brazil = client.validation.countries.get(uid="70ce7b6218a24e1d94c21ed8b5cd070c")
 
 You can also use the query parameters associated with each resource to search
 for a specific record.
@@ -60,12 +60,12 @@ for a specific record.
     from soccermetrics.rest import SoccermetricsRestClient
     client = SoccermetricsRestClient()
 
-    cloudy_wx = client.weather.get(desc='Cloudy')
-    grass = client.surfaces.get(name='Natural Grass')
-    left_foot = client.bodyparts.get(name='Left Foot')
-    red_card = client.cards.get(desc='Red')
-    saved_penalty = client.penalty_outcomes.get(desc='Saved')
-    rooney = client.persons.get(first_name='Wayne', last_name='Rooney')
+    cloudy_wx = client.validation.weather.get(desc='Cloudy')
+    grass = client.validation.surfaces.get(name='Natural Grass')
+    left_foot = client.validation.bodyparts.get(name='Left Foot')
+    red_card = client.validation.cards.get(desc='Red')
+    saved_penalty = client.validation.penalty_outcomes.get(desc='Saved')
+    rooney = client.validation.persons.get(first_name='Wayne', last_name='Rooney')
 
 .. warning::
 
@@ -90,8 +90,8 @@ the ``nickname`` field, which is sometimes ``null``.
     from soccermetrics.rest import SoccermetricsRestClient
     client = SoccermetricsRestClient()
 
-    argentina = client.countries.get(name='Argentina').data
-    argentines = client.persons.get(country=argentina[0].id)
+    argentina = client.validation.countries.get(name='Argentina').data
+    argentines = client.validations.persons.get(country=argentina[0].id)
 
 If you search by string, it must match **exactly**, including any diacritical
 markings.  So a search for ``Arsène Wenger``
@@ -100,7 +100,7 @@ markings.  So a search for ``Arsène Wenger``
     from soccermetrics.rest import SoccermetricsRestClient
     client = SoccermetricsRestClient()
 
-    wenger_ok = client.persons.get(first_name=u'Arsène',last_name=u'Wenger')
+    wenger_ok = client.validation.persons.get(first_name=u'Arsène',last_name=u'Wenger')
 
 will create a match, but a search for ``Arsene Wenger``
 ::
@@ -108,7 +108,7 @@ will create a match, but a search for ``Arsene Wenger``
     from soccermetrics.rest import SoccermetricsRestClient
     client = SoccermetricsRestClient()
 
-    wenger_err = client.persons.get(first_name=u'Arsene',last_name=u'Wenger')
+    wenger_err = client.validation.persons.get(first_name=u'Arsene',last_name=u'Wenger')
 
 will result in an ``SoccermetricsRestException``.
 

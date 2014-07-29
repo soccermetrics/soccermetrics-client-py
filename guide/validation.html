@@ -24,7 +24,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '0.7',
+        VERSION:     '0.8',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -59,7 +59,7 @@
           <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="../index.html">API Python Client</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.7</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.8</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -190,8 +190,8 @@ You can also use the keyword <tt class="docutils literal"><span class="pre">uid<
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">soccermetrics.rest</span> <span class="kn">import</span> <span class="n">SoccermetricsRestClient</span>
 <span class="n">client</span> <span class="o">=</span> <span class="n">SoccermetricsRestClient</span><span class="p">()</span>
 
-<span class="n">england</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">countries</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">280</span><span class="p">)</span>
-<span class="n">brazil</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">countries</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">uid</span><span class="o">=</span><span class="mi">243</span><span class="p">)</span>
+<span class="n">england</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">validation</span><span class="o">.</span><span class="n">countries</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&quot;70570246789640e2a629d9b668df4c17&quot;</span><span class="p">)</span>
+<span class="n">brazil</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">validation</span><span class="o">.</span><span class="n">countries</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">uid</span><span class="o">=</span><span class="s">&quot;70ce7b6218a24e1d94c21ed8b5cd070c&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>You can also use the query parameters associated with each resource to search
@@ -199,12 +199,12 @@ for a specific record.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">soccermetrics.rest</span> <span class="kn">import</span> <span class="n">SoccermetricsRestClient</span>
 <span class="n">client</span> <span class="o">=</span> <span class="n">SoccermetricsRestClient</span><span class="p">()</span>
 
-<span class="n">cloudy_wx</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">weather</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">desc</span><span class="o">=</span><span class="s">&#39;Cloudy&#39;</span><span class="p">)</span>
-<span class="n">grass</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">surfaces</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;Natural Grass&#39;</span><span class="p">)</span>
-<span class="n">left_foot</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">bodyparts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;Left Foot&#39;</span><span class="p">)</span>
-<span class="n">red_card</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">cards</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">desc</span><span class="o">=</span><span class="s">&#39;Red&#39;</span><span class="p">)</span>
-<span class="n">saved_penalty</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">penalty_outcomes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">desc</span><span class="o">=</span><span class="s">&#39;Saved&#39;</span><span class="p">)</span>
-<span class="n">rooney</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">persons</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">first_name</span><span class="o">=</span><span class="s">&#39;Wayne&#39;</span><span class="p">,</span> <span class="n">last_name</span><span class="o">=</span><span class="s">&#39;Rooney&#39;</span><span class="p">)</span>
+<span class="n">cloudy_wx</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">validation</span><span class="o">.</span><span class="n">weather</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">desc</span><span class="o">=</span><span class="s">&#39;Cloudy&#39;</span><span class="p">)</span>
+<span class="n">grass</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">validation</span><span class="o">.</span><span class="n">surfaces</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;Natural Grass&#39;</span><span class="p">)</span>
+<span class="n">left_foot</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">validation</span><span class="o">.</span><span class="n">bodyparts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;Left Foot&#39;</span><span class="p">)</span>
+<span class="n">red_card</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">validation</span><span class="o">.</span><span class="n">cards</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">desc</span><span class="o">=</span><span class="s">&#39;Red&#39;</span><span class="p">)</span>
+<span class="n">saved_penalty</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">validation</span><span class="o">.</span><span class="n">penalty_outcomes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">desc</span><span class="o">=</span><span class="s">&#39;Saved&#39;</span><span class="p">)</span>
+<span class="n">rooney</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">validation</span><span class="o">.</span><span class="n">persons</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">first_name</span><span class="o">=</span><span class="s">&#39;Wayne&#39;</span><span class="p">,</span> <span class="n">last_name</span><span class="o">=</span><span class="s">&#39;Rooney&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="admonition warning">
@@ -226,8 +226,8 @@ the <tt class="docutils literal"><span class="pre">nickname</span></tt> field, w
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">soccermetrics.rest</span> <span class="kn">import</span> <span class="n">SoccermetricsRestClient</span>
 <span class="n">client</span> <span class="o">=</span> <span class="n">SoccermetricsRestClient</span><span class="p">()</span>
 
-<span class="n">argentina</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">countries</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;Argentina&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">data</span>
-<span class="n">argentines</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">persons</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">country</span><span class="o">=</span><span class="n">argentina</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+<span class="n">argentina</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">validation</span><span class="o">.</span><span class="n">countries</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;Argentina&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">data</span>
+<span class="n">argentines</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">validations</span><span class="o">.</span><span class="n">persons</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">country</span><span class="o">=</span><span class="n">argentina</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>If you search by string, it must match <strong>exactly</strong>, including any diacritical
@@ -235,14 +235,14 @@ markings.  So a search for <tt class="docutils literal"><span class="pre">Arsèn
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">soccermetrics.rest</span> <span class="kn">import</span> <span class="n">SoccermetricsRestClient</span>
 <span class="n">client</span> <span class="o">=</span> <span class="n">SoccermetricsRestClient</span><span class="p">()</span>
 
-<span class="n">wenger_ok</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">persons</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">first_name</span><span class="o">=</span><span class="s">u&#39;Arsène&#39;</span><span class="p">,</span><span class="n">last_name</span><span class="o">=</span><span class="s">u&#39;Wenger&#39;</span><span class="p">)</span>
+<span class="n">wenger_ok</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">validation</span><span class="o">.</span><span class="n">persons</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">first_name</span><span class="o">=</span><span class="s">u&#39;Arsène&#39;</span><span class="p">,</span><span class="n">last_name</span><span class="o">=</span><span class="s">u&#39;Wenger&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>will create a match, but a search for <tt class="docutils literal"><span class="pre">Arsene</span> <span class="pre">Wenger</span></tt></p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">soccermetrics.rest</span> <span class="kn">import</span> <span class="n">SoccermetricsRestClient</span>
 <span class="n">client</span> <span class="o">=</span> <span class="n">SoccermetricsRestClient</span><span class="p">()</span>
 
-<span class="n">wenger_err</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">persons</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">first_name</span><span class="o">=</span><span class="s">u&#39;Arsene&#39;</span><span class="p">,</span><span class="n">last_name</span><span class="o">=</span><span class="s">u&#39;Wenger&#39;</span><span class="p">)</span>
+<span class="n">wenger_err</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">validation</span><span class="o">.</span><span class="n">persons</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">first_name</span><span class="o">=</span><span class="s">u&#39;Arsene&#39;</span><span class="p">,</span><span class="n">last_name</span><span class="o">=</span><span class="s">u&#39;Wenger&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>will result in an <tt class="docutils literal"><span class="pre">SoccermetricsRestException</span></tt>.</p>
@@ -262,7 +262,7 @@ markings.  So a search for <tt class="docutils literal"><span class="pre">Arsèn
     </p>
     <p>
         &copy; Copyright 2013-2014, Soccermetrics Research, LLC.<br/>
-      Last updated on Feb 26, 2014.<br/>
+      Last updated on Jul 29, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2b1.<br/>
     </p>
   </div>

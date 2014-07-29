@@ -24,7 +24,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../../',
-        VERSION:     '0.7',
+        VERSION:     '0.8',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -57,7 +57,7 @@
           <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="../../../../index.html">API Python Client</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.7</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.8</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -146,10 +146,12 @@
 
 <span class="sd">    Derived from :class:`base.Resource`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">resource</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">play</span><span class="p">,</span> <span class="n">resource</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Constructor of MatchEventResource class.</span>
 
+<span class="sd">        :param play: Type of teams playing in matches.</span>
+<span class="sd">        :type play: string</span>
 <span class="sd">        :param resource: Name of resource.</span>
 <span class="sd">        :type resource: string</span>
 <span class="sd">        :param base_uri: Base URI of API.</span>
@@ -159,40 +161,37 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">MatchEventResource</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">base_uri</span><span class="p">,</span><span class="n">auth</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">endpoint</span> <span class="o">+=</span> <span class="s">&quot;/events/</span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">resource</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">endpoint</span> <span class="o">+=</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s">/events/</span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">play</span><span class="p">,</span> <span class="n">resource</span><span class="p">)</span>
 
 </div>
 <div class="viewcode-block" id="MatchEvents"><a class="viewcode-back" href="../../../../reference.html#soccermetrics.rest.resources.events.MatchEvents">[docs]</a><span class="k">class</span> <span class="nc">MatchEvents</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Establish access to Match Event objects (/events endpoint).</span>
 
-<span class="sd">    +----------------+-----------------------+</span>
-<span class="sd">    | Attribute      | Description           |</span>
-<span class="sd">    +================+=======================+</span>
-<span class="sd">    | goals          | Goal events           |</span>
-<span class="sd">    +----------------+-----------------------+</span>
-<span class="sd">    | penalties      | Penalty kick events   |</span>
-<span class="sd">    +----------------+-----------------------+</span>
-<span class="sd">    | offenses       | Disciplinary events   |</span>
-<span class="sd">    +----------------+-----------------------+</span>
-<span class="sd">    | substitutions  | Substitution events   |</span>
-<span class="sd">    +----------------+-----------------------+</span>
+<span class="sd">    +--------------+-----------------------+</span>
+<span class="sd">    | Attribute    | Description           |</span>
+<span class="sd">    +==============+=======================+</span>
+<span class="sd">    | all          | All micro events      |</span>
+<span class="sd">    +--------------+-----------------------+</span>
+<span class="sd">    | touches      | All touch events      |</span>
+<span class="sd">    +--------------+-----------------------+</span>
+<span class="sd">    | actions      | All event actions     |</span>
+<span class="sd">    +--------------+-----------------------+</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">play</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Constructor of MatchEvents class.</span>
 
-<span class="sd">        :param resource: Name of resource.</span>
-<span class="sd">        :type resource: string</span>
+<span class="sd">        :param play: Type of teams playing in matches.</span>
+<span class="sd">        :type play: string</span>
 <span class="sd">        :param base_uri: Base URI of API.</span>
 <span class="sd">        :type base_uri: string</span>
 <span class="sd">        :param auth: Authentication credential.</span>
 <span class="sd">        :type auth: tuple</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">goals</span> <span class="o">=</span> <span class="n">MatchEventResource</span><span class="p">(</span><span class="s">&quot;goals&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">penalties</span> <span class="o">=</span> <span class="n">MatchEventResource</span><span class="p">(</span><span class="s">&quot;penalties&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">offenses</span> <span class="o">=</span> <span class="n">MatchEventResource</span><span class="p">(</span><span class="s">&quot;offenses&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">substitutions</span> <span class="o">=</span> <span class="n">MatchEventResource</span><span class="p">(</span><span class="s">&quot;substitutions&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">all</span> <span class="o">=</span> <span class="n">MatchEventResource</span><span class="p">(</span><span class="n">play</span><span class="p">,</span> <span class="s">&quot;all&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">touches</span> <span class="o">=</span> <span class="n">MatchEventResource</span><span class="p">(</span><span class="n">play</span><span class="p">,</span> <span class="s">&quot;touches&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">actions</span> <span class="o">=</span> <span class="n">MatchEventResource</span><span class="p">(</span><span class="n">play</span><span class="p">,</span> <span class="s">&quot;actions&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span></div>
 </pre></div>
 
     </div>
@@ -207,7 +206,7 @@
     </p>
     <p>
         &copy; Copyright 2013-2014, Soccermetrics Research, LLC.<br/>
-      Last updated on Feb 26, 2014.<br/>
+      Last updated on Jul 29, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2b1.<br/>
     </p>
   </div>

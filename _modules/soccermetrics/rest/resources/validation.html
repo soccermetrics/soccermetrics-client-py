@@ -24,7 +24,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../../',
-        VERSION:     '0.7',
+        VERSION:     '0.8',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -57,7 +57,7 @@
           <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="../../../../index.html">API Python Client</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.7</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.8</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -140,7 +140,7 @@
   <h1>Source code for soccermetrics.rest.resources.validation</h1><div class="highlight"><pre>
 <span class="kn">from</span> <span class="nn">soccermetrics.rest.resources</span> <span class="kn">import</span> <span class="n">Resource</span>
 
-<div class="viewcode-block" id="Validation"><a class="viewcode-back" href="../../../../reference.html#soccermetrics.rest.resources.validation.Validation">[docs]</a><span class="k">class</span> <span class="nc">Validation</span><span class="p">(</span><span class="n">Resource</span><span class="p">):</span>
+<div class="viewcode-block" id="ValidationResource"><a class="viewcode-back" href="../../../../reference.html#soccermetrics.rest.resources.validation.ValidationResource">[docs]</a><span class="k">class</span> <span class="nc">ValidationResource</span><span class="p">(</span><span class="n">Resource</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Establish access to Validation resources (/ endpoint).</span>
 
@@ -149,7 +149,7 @@
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">resource</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Constructor of Validation class.</span>
+<span class="sd">        Constructor of ValidationResource class.</span>
 
 <span class="sd">        :param resource: Name of resource.</span>
 <span class="sd">        :type resource: string</span>
@@ -158,9 +158,94 @@
 <span class="sd">        :param auth: Authentication credential.</span>
 <span class="sd">        :type auth: tuple</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">Validation</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">base_uri</span><span class="p">,</span><span class="n">auth</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">ValidationResource</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">base_uri</span><span class="p">,</span><span class="n">auth</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">endpoint</span> <span class="o">+=</span> <span class="s">&quot;/</span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">resource</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">endpoint</span> <span class="o">+=</span> <span class="s">&quot;/</span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">resource</span>
+</div>
+<div class="viewcode-block" id="Validation"><a class="viewcode-back" href="../../../../reference.html#soccermetrics.rest.resources.validation.Validation">[docs]</a><span class="k">class</span> <span class="nc">Validation</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Access to Validation objects.</span>
+
+<span class="sd">    +----------------------+----------------------------+</span>
+<span class="sd">    | Attribute            | Description                |</span>
+<span class="sd">    +======================+============================+</span>
+<span class="sd">    | phases               | Competition Phases         |</span>
+<span class="sd">    +----------------------+----------------------------+</span>
+<span class="sd">    | groupRounds          | Group Rounds               |</span>
+<span class="sd">    +----------------------+----------------------------+</span>
+<span class="sd">    | knockoutRounds       | Knockout Rounds            |</span>
+<span class="sd">    +----------------------+----------------------------+</span>
+<span class="sd">    | confederations       | Confederations             |</span>
+<span class="sd">    +----------------------+----------------------------+</span>
+<span class="sd">    | countries            | Countries                  |</span>
+<span class="sd">    +----------------------+----------------------------+</span>
+<span class="sd">    | competitions         | Competitions               |</span>
+<span class="sd">    +----------------------+----------------------------+</span>
+<span class="sd">    | domesticCompetitions | Domestic Competitions      |</span>
+<span class="sd">    +----------------------+----------------------------+</span>
+<span class="sd">    | intlCompetitions     | International Competitions |</span>
+<span class="sd">    +----------------------+----------------------------+</span>
+<span class="sd">    | seasons              | Seasons                    |</span>
+<span class="sd">    +----------------------+----------------------------+</span>
+<span class="sd">    | teams                | Teams                      |</span>
+<span class="sd">    +----------------------+----------------------------+</span>
+<span class="sd">    | venues               | Match Venues               |</span>
+<span class="sd">    +----------------------+----------------------------+</span>
+<span class="sd">    | timezones            | Time Zones                 |</span>
+<span class="sd">    +----------------------+----------------------------+</span>
+<span class="sd">    | nameOrder            | Name Order                 |</span>
+<span class="sd">    +----------------------+----------------------------+</span>
+<span class="sd">    | persons              | Persons                    |</span>
+<span class="sd">    +----------------------+----------------------------+</span>
+<span class="sd">    | positions            | Positions                  |</span>
+<span class="sd">    +----------------------+----------------------------+</span>
+<span class="sd">    | fouls                | Fouls                      |</span>
+<span class="sd">    +----------------------+----------------------------+</span>
+<span class="sd">    | cards                | Cards                      |</span>
+<span class="sd">    +----------------------+----------------------------+</span>
+<span class="sd">    | bodyparts            | Body parts                 |</span>
+<span class="sd">    +----------------------+----------------------------+</span>
+<span class="sd">    | shotevents           | Shot events                |</span>
+<span class="sd">    +----------------------+----------------------------+</span>
+<span class="sd">    | penaltyOutcomes      | Penalty Outcomes           |</span>
+<span class="sd">    +----------------------+----------------------------+</span>
+<span class="sd">    | actions              | Event Actions              |</span>
+<span class="sd">    +----------------------+----------------------------+</span>
+<span class="sd">    | modifiers            | Action Modifiers           |</span>
+<span class="sd">    +----------------------+----------------------------+</span>
+<span class="sd">    | modifierCategories   | Action Modifier Categories |</span>
+<span class="sd">    +----------------------+----------------------------+</span>
+<span class="sd">    | weather              | Weather Conditions         |</span>
+<span class="sd">    +----------------------+----------------------------+</span>
+<span class="sd">    | surfaces             | Surfaces                   |</span>
+<span class="sd">    +----------------------+----------------------------+</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">phases</span> <span class="o">=</span> <span class="n">ValidationResource</span><span class="p">(</span><span class="s">&quot;phases&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">groupRounds</span> <span class="o">=</span> <span class="n">ValidationResource</span><span class="p">(</span><span class="s">&quot;grouprounds&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">knockoutRounds</span> <span class="o">=</span> <span class="n">ValidationResource</span><span class="p">(</span><span class="s">&quot;knockoutrounds&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">confederations</span> <span class="o">=</span> <span class="n">ValidationResource</span><span class="p">(</span><span class="s">&quot;confederations&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">countries</span> <span class="o">=</span> <span class="n">ValidationResource</span><span class="p">(</span><span class="s">&quot;countries&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">competitions</span> <span class="o">=</span> <span class="n">ValidationResource</span><span class="p">(</span><span class="s">&quot;competitions&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">domesticCompetitions</span> <span class="o">=</span> <span class="n">ValidationResource</span><span class="p">(</span><span class="s">&quot;domestic_competitions&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">intlCompetitions</span> <span class="o">=</span> <span class="n">ValidationResource</span><span class="p">(</span><span class="s">&quot;intl_competitions&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">seasons</span> <span class="o">=</span> <span class="n">ValidationResource</span><span class="p">(</span><span class="s">&quot;seasons&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">teams</span> <span class="o">=</span> <span class="n">ValidationResource</span><span class="p">(</span><span class="s">&quot;teams&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">venues</span> <span class="o">=</span> <span class="n">ValidationResource</span><span class="p">(</span><span class="s">&quot;venues&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">timezones</span> <span class="o">=</span> <span class="n">ValidationResource</span><span class="p">(</span><span class="s">&quot;timezones&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nameOrder</span> <span class="o">=</span> <span class="n">ValidationResource</span><span class="p">(</span><span class="s">&quot;name_order&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">persons</span> <span class="o">=</span> <span class="n">ValidationResource</span><span class="p">(</span><span class="s">&quot;persons&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">positions</span> <span class="o">=</span> <span class="n">ValidationResource</span><span class="p">(</span><span class="s">&quot;positions&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fouls</span> <span class="o">=</span> <span class="n">ValidationResource</span><span class="p">(</span><span class="s">&quot;fouls&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cards</span> <span class="o">=</span> <span class="n">ValidationResource</span><span class="p">(</span><span class="s">&quot;cards&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bodyparts</span> <span class="o">=</span> <span class="n">ValidationResource</span><span class="p">(</span><span class="s">&quot;bodyparts&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">shotevents</span> <span class="o">=</span> <span class="n">ValidationResource</span><span class="p">(</span><span class="s">&quot;shotevents&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">penaltyOutcomes</span> <span class="o">=</span> <span class="n">ValidationResource</span><span class="p">(</span><span class="s">&quot;penalty_outcomes&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">actions</span> <span class="o">=</span> <span class="n">ValidationResource</span><span class="p">(</span><span class="s">&quot;actions&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">modifiers</span> <span class="o">=</span> <span class="n">ValidationResource</span><span class="p">(</span><span class="s">&quot;modifiers&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">modifierCategories</span> <span class="o">=</span> <span class="n">ValidationResource</span><span class="p">(</span><span class="s">&quot;modifier_categories&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">weather</span> <span class="o">=</span> <span class="n">ValidationResource</span><span class="p">(</span><span class="s">&quot;weather&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">surfaces</span> <span class="o">=</span> <span class="n">ValidationResource</span><span class="p">(</span><span class="s">&quot;surfaces&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span></div>
 </pre></div>
 
     </div>
@@ -175,7 +260,7 @@
     </p>
     <p>
         &copy; Copyright 2013-2014, Soccermetrics Research, LLC.<br/>
-      Last updated on Feb 26, 2014.<br/>
+      Last updated on Jul 29, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2b1.<br/>
     </p>
   </div>

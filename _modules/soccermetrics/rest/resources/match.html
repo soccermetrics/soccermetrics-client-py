@@ -24,7 +24,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../../',
-        VERSION:     '0.7',
+        VERSION:     '0.8',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -57,7 +57,7 @@
           <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="../../../../index.html">API Python Client</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.7</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.8</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -139,6 +139,8 @@
       
   <h1>Source code for soccermetrics.rest.resources.match</h1><div class="highlight"><pre>
 <span class="kn">from</span> <span class="nn">soccermetrics.rest.resources</span> <span class="kn">import</span> <span class="n">Resource</span>
+<span class="kn">from</span> <span class="nn">soccermetrics.rest.resources.events</span> <span class="kn">import</span> <span class="n">MatchEvents</span>
+<span class="kn">from</span> <span class="nn">soccermetrics.rest.resources.statistics</span> <span class="kn">import</span> <span class="n">MatchStatistics</span>
 
 <div class="viewcode-block" id="MatchResource"><a class="viewcode-back" href="../../../../reference.html#soccermetrics.rest.resources.match.MatchResource">[docs]</a><span class="k">class</span> <span class="nc">MatchResource</span><span class="p">(</span><span class="n">Resource</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
@@ -146,10 +148,12 @@
 
 <span class="sd">    Derived from :class:`resources.Resource`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">play</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Constructor of MatchResource class.</span>
 
+<span class="sd">        :param play: Type of teams playing in matches.</span>
+<span class="sd">        :type play: string</span>
 <span class="sd">        :param base_uri: Base URI of API.</span>
 <span class="sd">        :type base_uri: string</span>
 <span class="sd">        :param auth: Authentication credential.</span>
@@ -157,7 +161,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">MatchResource</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">base_uri</span><span class="p">,</span><span class="n">auth</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">base_endpoint</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">endpoint</span> <span class="o">+</span> <span class="s">&quot;/matches&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">base_endpoint</span> <span class="o">=</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s">/</span><span class="si">%s</span><span class="s">/matches&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">play</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">match</span> <span class="o">=</span> <span class="bp">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">resource</span> <span class="o">=</span> <span class="bp">None</span>
 
@@ -223,8 +227,8 @@
 
 <span class="sd">    Derived from :class:`MatchResource`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">MatchInformation</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">base_uri</span><span class="p">,</span><span class="n">auth</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">play</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">MatchInformation</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">play</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">resource</span> <span class="o">=</span> <span class="s">&quot;info&quot;</span>
 
 </div>
@@ -234,8 +238,8 @@
 
 <span class="sd">    Derived from :class:`MatchResource`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">MatchConditions</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">base_uri</span><span class="p">,</span><span class="n">auth</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">play</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">MatchConditions</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">play</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">resource</span> <span class="o">=</span> <span class="s">&quot;conditions&quot;</span>
 
 </div>
@@ -245,29 +249,105 @@
 
 <span class="sd">    Derived from :class:`MatchResource`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">MatchLineups</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">base_uri</span><span class="p">,</span><span class="n">auth</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">play</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">MatchLineups</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">play</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">resource</span> <span class="o">=</span> <span class="s">&quot;lineups&quot;</span>
 
 </div>
-<div class="viewcode-block" id="Match"><a class="viewcode-back" href="../../../../reference.html#soccermetrics.rest.resources.match.Match">[docs]</a><span class="k">class</span> <span class="nc">Match</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="MatchGoals"><a class="viewcode-back" href="../../../../reference.html#soccermetrics.rest.resources.match.MatchGoals">[docs]</a><span class="k">class</span> <span class="nc">MatchGoals</span><span class="p">(</span><span class="n">MatchResource</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Access to Match Goals resources (/matches/goals resource).</span>
+
+<span class="sd">    Derived from :class:`MatchResource`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">play</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">MatchGoals</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">play</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">resource</span> <span class="o">=</span> <span class="s">&quot;goals&quot;</span>
+</div>
+<div class="viewcode-block" id="MatchPenalties"><a class="viewcode-back" href="../../../../reference.html#soccermetrics.rest.resources.match.MatchPenalties">[docs]</a><span class="k">class</span> <span class="nc">MatchPenalties</span><span class="p">(</span><span class="n">MatchResource</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Access to Match Penalties resources (/matches/penalties resource).</span>
+
+<span class="sd">    Derived from :class:`MatchResource`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">play</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">MatchPenalties</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">play</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">resource</span> <span class="o">=</span> <span class="s">&quot;penalties&quot;</span>
+
+</div>
+<div class="viewcode-block" id="MatchOffenses"><a class="viewcode-back" href="../../../../reference.html#soccermetrics.rest.resources.match.MatchOffenses">[docs]</a><span class="k">class</span> <span class="nc">MatchOffenses</span><span class="p">(</span><span class="n">MatchResource</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Access to Match Offenses resources (/matches/offenses resource).</span>
+
+<span class="sd">    Derived from :class:`MatchResource`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">play</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">MatchOffenses</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">play</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">resource</span> <span class="o">=</span> <span class="s">&quot;offenses&quot;</span>
+
+</div>
+<div class="viewcode-block" id="MatchSubstitutions"><a class="viewcode-back" href="../../../../reference.html#soccermetrics.rest.resources.match.MatchSubstitutions">[docs]</a><span class="k">class</span> <span class="nc">MatchSubstitutions</span><span class="p">(</span><span class="n">MatchResource</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Access to Match Substitutions resources (/matches/substitutions resource).</span>
+
+<span class="sd">    Derived from :class:`MatchResource`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">play</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">MatchSubstitutions</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">play</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">resource</span> <span class="o">=</span> <span class="s">&quot;substitutions&quot;</span>
+
+</div>
+<div class="viewcode-block" id="MatchShootouts"><a class="viewcode-back" href="../../../../reference.html#soccermetrics.rest.resources.match.MatchShootouts">[docs]</a><span class="k">class</span> <span class="nc">MatchShootouts</span><span class="p">(</span><span class="n">MatchResource</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Access to Match Shootouts resources (/matches/shootouts resource).</span>
+
+<span class="sd">    Derived from :class:`MatchResource`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">play</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">MatchShootouts</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">play</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">resource</span> <span class="o">=</span> <span class="s">&quot;shootouts&quot;</span>
+
+</div>
+<div class="viewcode-block" id="MatchPlay"><a class="viewcode-back" href="../../../../reference.html#soccermetrics.rest.resources.match.MatchPlay">[docs]</a><span class="k">class</span> <span class="nc">MatchPlay</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Access to Match objects.</span>
 
-<span class="sd">    +----------------+-----------------------+</span>
-<span class="sd">    | Attribute      | Description           |</span>
-<span class="sd">    +================+=======================+</span>
-<span class="sd">    | information    | Match information     |</span>
-<span class="sd">    +----------------+-----------------------+</span>
-<span class="sd">    | lineups        | Match lineups         |</span>
-<span class="sd">    +----------------+-----------------------+</span>
-<span class="sd">    | conditions     | Match conditions      |</span>
-<span class="sd">    +----------------+-----------------------+</span>
+<span class="sd">    +----------------+---------------------------+</span>
+<span class="sd">    | Attribute      | Description               |</span>
+<span class="sd">    +================+===========================+</span>
+<span class="sd">    | information    | Match information         |</span>
+<span class="sd">    +----------------+---------------------------+</span>
+<span class="sd">    | lineups        | Match lineups             |</span>
+<span class="sd">    +----------------+---------------------------+</span>
+<span class="sd">    | conditions     | Match conditions          |</span>
+<span class="sd">    +----------------+---------------------------+</span>
+<span class="sd">    | goals          | Goal events               |</span>
+<span class="sd">    +----------------+---------------------------+</span>
+<span class="sd">    | penalties      | Penalty kick events       |</span>
+<span class="sd">    +----------------+---------------------------+</span>
+<span class="sd">    | offenses       | Disciplinary events       |</span>
+<span class="sd">    +----------------+---------------------------+</span>
+<span class="sd">    | substitutions  | Substitution events       |</span>
+<span class="sd">    +----------------+---------------------------+</span>
+<span class="sd">    | shootouts      | Penalty shootout events   |</span>
+<span class="sd">    +----------------+---------------------------+</span>
+<span class="sd">    | stats          | Match statistics          |</span>
+<span class="sd">    +----------------+---------------------------+</span>
+<span class="sd">    | events         | Match micro-events        |</span>
+<span class="sd">    +----------------+---------------------------+</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">information</span> <span class="o">=</span> <span class="n">MatchInformation</span><span class="p">(</span><span class="n">base_uri</span><span class="p">,</span><span class="n">auth</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">lineups</span> <span class="o">=</span> <span class="n">MatchLineups</span><span class="p">(</span><span class="n">base_uri</span><span class="p">,</span><span class="n">auth</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">conditions</span> <span class="o">=</span> <span class="n">MatchConditions</span><span class="p">(</span><span class="n">base_uri</span><span class="p">,</span><span class="n">auth</span><span class="p">)</span></div>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">play</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">information</span> <span class="o">=</span> <span class="n">MatchInformation</span><span class="p">(</span><span class="n">play</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lineups</span> <span class="o">=</span> <span class="n">MatchLineups</span><span class="p">(</span><span class="n">play</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conditions</span> <span class="o">=</span> <span class="n">MatchConditions</span><span class="p">(</span><span class="n">play</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">goals</span> <span class="o">=</span> <span class="n">MatchGoals</span><span class="p">(</span><span class="n">play</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">penalties</span> <span class="o">=</span> <span class="n">MatchPenalties</span><span class="p">(</span><span class="n">play</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">offenses</span> <span class="o">=</span> <span class="n">MatchOffenses</span><span class="p">(</span><span class="n">play</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">substitutions</span> <span class="o">=</span> <span class="n">MatchSubstitutions</span><span class="p">(</span><span class="n">play</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">shootouts</span> <span class="o">=</span> <span class="n">MatchShootouts</span><span class="p">(</span><span class="n">play</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">stats</span> <span class="o">=</span> <span class="n">MatchStatistics</span><span class="p">(</span><span class="n">play</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">events</span> <span class="o">=</span> <span class="n">MatchEvents</span><span class="p">(</span><span class="n">play</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span></div>
 </pre></div>
 
     </div>
@@ -282,7 +362,7 @@
     </p>
     <p>
         &copy; Copyright 2013-2014, Soccermetrics Research, LLC.<br/>
-      Last updated on Feb 26, 2014.<br/>
+      Last updated on Jul 29, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2b1.<br/>
     </p>
   </div>
