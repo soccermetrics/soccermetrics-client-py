@@ -16,8 +16,7 @@ The Soccermetrics API Python client library depends on the
 the client library within a virtual environment on your computer, or install
 it system-wide.
 
-Python 2.6+ is required.  The module *might* work with Python 3, but we
-haven't tested it and give no guarantees.
+Python 2.6+ is required.
 
 It's not required, but [autoenv](https://github.com/kennethreitz/autoenv) is
 very nice to have.

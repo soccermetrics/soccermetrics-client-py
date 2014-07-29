@@ -20,7 +20,7 @@ REST API.
 Support and Development
 =======================
 
-All development occurs at `Github <https://github.com/soccermetrics/soccermetrics-client-py/>`_.
+All development occurs at `GitHub <https://github.com/soccermetrics/soccermetrics-client-py/>`_.
 To checkout the source:
 
 .. sourcecode:: bash
@@ -29,6 +29,12 @@ To checkout the source:
 
 Report bugs with the
 `GitHub issue tracker <https://github.com/soccermetrics/soccermetrics-client-py/issues>`_.
+
+We welcome pull requests if you spot a bug or would like to see some additional functionality
+in the Client.  To do so, please use the
+`GitHub pull request button <https://github.com/soccermetrics/soccermetrics-client-py/pulls>`_.
+Unless it is an extremely simple bugfix (e.g. a typo), you must include unit or functional
+tests.
 
 If you have any questions that couldn't be solved by the documentation,
 please email api-support@soccermetrics.net.

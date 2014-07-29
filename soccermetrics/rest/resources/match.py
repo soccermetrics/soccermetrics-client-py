@@ -191,6 +191,10 @@ class MatchPlay(object):
     +----------------+---------------------------+
     | shootouts      | Penalty shootout events   |
     +----------------+---------------------------+
+    | stats          | Match statistics          |
+    +----------------+---------------------------+
+    | events         | Match micro-events        |
+    +----------------+---------------------------+
     """
     def __init__(self, play, base_uri, auth):
         self.information = MatchInformation(play, base_uri, auth)

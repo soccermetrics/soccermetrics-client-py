@@ -43,8 +43,7 @@ setup(
 
     DESCRIPTION
     The Soccermetrics API Client simplifies the process of makes calls to the
-    Soccermetrics REST APIs.  Currently the API allows access to datasets
-    formatted in our FMRD-Summary data schema.
+    Soccermetrics REST APIs.
 
     The Soccermetrics REST API are sports modeling and analytics layers on top
     of in-match soccer (football) data sources at varying levels of complexity.
