@@ -13,6 +13,7 @@ to specific resources.
    resources
    validation
    personnel
+   match
    events
    statistics
    analytics
