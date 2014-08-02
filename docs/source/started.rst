@@ -5,6 +5,18 @@ Getting Started
 
 To start using the Soccermetrics API, create a ``SoccermetricsRestClient``.
 
+Get Your API Credentials
+------------------------
+
+In order to use the Soccermetrics API Client, you must have a Soccermetrics API account.
+
+To get an account, go to the
+`Soccermetrics Connect API website <https://developer.soccermetrics.net>`_
+where you will fill in your contact information and select a usage plan.
+
+You will receive your API ID and secret key in a few minutes, unless you signed up
+for one of our student plans which require approval.
+
 API Credentials
 ---------------
 
@@ -19,11 +31,7 @@ These get passed to the constructor or via environment variables.
 
     client = SoccermetricsRestClient(account=appID,api_key=appKey)
 
-.. warning::
-
-    This is a fictitious API ID and key. We ask all interested users to go to the
-    `Soccermetrics Connect API website <https://developer.soccermetrics.net>`_ in order
-    to receive credentials.
+.. warning:: This is a fictitious API ID and key.  DO NOT USE IT!!
 
 If you call ``SoccermetricsRestClient`` without any parameters, the constructor
 will look for ``SOCCERMETRICS_APP_ID`` and ``SOCCERMETRICS_APP_KEY`` variables
