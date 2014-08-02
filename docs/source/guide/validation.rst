@@ -110,6 +110,6 @@ will create a match, but a search for ``Arsene Wenger``
 
     wenger_err = client.validation.persons.get(first_name=u'Arsene',last_name=u'Wenger')
 
-will result in an ``SoccermetricsRestException``.
+will result in a ``SoccermetricsRestException``.
 
-.. _`Validation Resource`: http://soccermetrics.github.io/fmrd-summary-api/resources/validation/main.html
+.. _`Validation Resource`: http://soccermetrics.github.io/connect-api/resources/validation/main.html

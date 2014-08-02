@@ -166,7 +166,7 @@ Learn More
 ==========
 
 -  `Link to API
-   documentation <http://soccermetrics.github.io/fmrd-summary-api>`_.
+   documentation <http://soccermetrics.github.io/connect-api>`_.
 -  `Link to full client documentation
    here <http://soccermetrics.github.io/soccermetrics-client-py>`_.
 
