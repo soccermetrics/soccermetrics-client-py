@@ -76,6 +76,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../started.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../started.html#get-your-api-credentials">Get Your API Credentials</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../started.html#api-credentials">API Credentials</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../started.html#match-information">Match Information</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../started.html#match-statistics">Match Statistics</a></li>
@@ -103,7 +104,14 @@
                 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Page <b class="caret"></b></a>
   <ul class="dropdown-menu localtoc"><ul>
-<li><a class="reference internal" href="#">Match Resources</a></li>
+<li><a class="reference internal" href="#">Match Resources</a><ul>
+<li><a class="reference internal" href="#clubs-or-national-teams">Clubs or National Teams?</a></li>
+<li><a class="reference internal" href="#retrieving-match-resources">Retrieving Match Resources</a></li>
+<li><a class="reference internal" href="#using-phase-detail-information-to-retrieve-match-data">Using Phase Detail Information to Retrieve Match Data</a></li>
+<li><a class="reference internal" href="#retrieving-match-information-and-conditions">Retrieving Match Information and Conditions</a></li>
+<li><a class="reference internal" href="#retrieving-match-macro-events">Retrieving Match Macro-Events</a></li>
+</ul>
+</li>
 </ul>
 </ul>
 </li>
@@ -141,6 +149,152 @@
       
   <div class="section" id="match-resources">
 <span id="id1"></span><h1>Match Resources<a class="headerlink" href="#match-resources" title="Permalink to this headline">¶</a></h1>
+<p>The Match Resources are a collection of macro-events, micro-events, and summary
+statistics resources in the Connect API.</p>
+<p>For more information, consult the <a class="reference external" href="http://soccermetrics.github.io/connect-api/resources/match/main.html">Match Resource</a> documentation for the API.</p>
+<div class="section" id="clubs-or-national-teams">
+<h2>Clubs or National Teams?<a class="headerlink" href="#clubs-or-national-teams" title="Permalink to this headline">¶</a></h2>
+<p>The Connect API client divides Match resources into club and national team matches.  The
+fact that countries are the &#8220;teams&#8221; in national team play introduces subtle but ultimately
+significant differences to match modeling, in particular match lineups.</p>
+<p>You can access club match data through the <tt class="docutils literal"><span class="pre">club</span></tt> object of the client:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">soccermetrics.rest</span> <span class="kn">import</span> <span class="n">SoccermetricsRestClient</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">SoccermetricsRestClient</span><span class="p">()</span>
+
+<span class="n">club_matches</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">club</span>
+</pre></div>
+</div>
+<p>National team match data are accessed through the <tt class="docutils literal"><span class="pre">natl</span></tt> object of the client:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">soccermetrics.rest</span> <span class="kn">import</span> <span class="n">SoccermetricsRestClient</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">SoccermetricsRestClient</span><span class="p">()</span>
+
+<span class="n">natl_matches</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">natl</span>
+</pre></div>
+</div>
+<p>Within the <tt class="docutils literal"><span class="pre">club</span></tt> and <tt class="docutils literal"><span class="pre">natl</span></tt> objects are sub-objects that permit access to macro-event,
+micro-event, and statistical resources of the API.</p>
+</div>
+<div class="section" id="retrieving-match-resources">
+<h2>Retrieving Match Resources<a class="headerlink" href="#retrieving-match-resources" title="Permalink to this headline">¶</a></h2>
+<p>As with other resources you can <tt class="docutils literal"><span class="pre">get()</span></tt> match records, but in the case of match
+records you can also use the unique ID of the football match to get data.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">soccermetrics.rest</span> <span class="kn">import</span> <span class="n">SoccermetricsRestClient</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">SoccermetricsRestClient</span><span class="p">()</span>
+
+<span class="n">match_info</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">natl</span><span class="o">.</span><span class="n">information</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;420aa27ce815499c85ec0301aff61ec4&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If only one variable is passed to <tt class="docutils literal"><span class="pre">get()</span></tt>, it is assumed to be the unique match ID.  If
+two variables are passed without keywords, the first variable is assumed to be the
+unique match ID and the second the unique record ID.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">soccermetrics.rest</span> <span class="kn">import</span> <span class="n">SoccermetricsRestClient</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">SoccermetricsRestClient</span><span class="p">()</span>
+
+<span class="n">match_goal</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">natl</span><span class="o">.</span><span class="n">information</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;420aa27ce815499c85ec0301aff61ec4&#39;</span><span class="p">,</span>
+                                         <span class="s">&#39;807f2a61bcea4a1bb98d66fface88b44&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="using-phase-detail-information-to-retrieve-match-data">
+<h2>Using Phase Detail Information to Retrieve Match Data<a class="headerlink" href="#using-phase-detail-information-to-retrieve-match-data" title="Permalink to this headline">¶</a></h2>
+<p>In addition to using the match and record IDs to retrieve match records, you can use
+information on a match&#8217;s <a class="reference external" href="http://soccermetrics.github.io/connect-api/resources/match/macros.html">phase details</a> to perform similar retrievals.  To do so,
+perform the search as keyword arguments in the <tt class="docutils literal"><span class="pre">get()</span></tt> call.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">soccermetrics.rest</span> <span class="kn">import</span> <span class="n">SoccermetricsRestClient</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">SoccermetricsRestClient</span><span class="p">()</span>
+
+<span class="c"># league matches -- use matchday</span>
+<span class="n">matches</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">club</span><span class="o">.</span><span class="n">information</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">competition_name</span><span class="o">=</span><span class="s">&quot;Premier League&quot;</span><span class="p">,</span>
+                                      <span class="n">season_name</span><span class="o">=</span><span class="s">&quot;2011-12&quot;</span><span class="p">,</span> <span class="n">matchday</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="c"># group matches -- use round_name and group</span>
+<span class="n">matches</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">natl</span><span class="o">.</span><span class="n">goals</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">competition_name</span><span class="o">=</span><span class="s">&quot;FIFA World Cup&quot;</span><span class="p">,</span> <span class="n">season_name</span><span class="o">=</span><span class="s">&quot;2014&quot;</span><span class="p">,</span>
+                                <span class="n">round_name</span><span class="o">=</span><span class="s">&quot;Group Stage&quot;</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="s">&#39;B&#39;</span><span class="p">,</span> <span class="n">matchday</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c"># knockout matches -- use round_name</span>
+<span class="n">matches</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">club</span><span class="o">.</span><span class="n">offenses</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">competition_name</span><span class="o">=</span><span class="s">&quot;UEFA Champions League&quot;</span><span class="p">,</span> <span class="n">season_name</span><span class="o">=</span><span class="s">&quot;2010&quot;</span><span class="p">,</span>
+                                   <span class="n">round_name</span><span class="o">=</span><span class="s">&quot;Second Qualifying Round&quot;</span><span class="p">,</span> <span class="n">matchday</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Unique to other query parameters, you can insert an &#8220;*&#8221; to retrieve partial matches of
+<tt class="docutils literal"><span class="pre">round_name</span></tt>.  This is beneficial for knockout round names such as <tt class="docutils literal"><span class="pre">Round</span> <span class="pre">of</span> <span class="pre">32</span> <span class="pre">(1/16)</span></tt>,
+<tt class="docutils literal"><span class="pre">Quarterfinal</span> <span class="pre">(1/4)</span></tt>, or <tt class="docutils literal"><span class="pre">Semi-Final</span> <span class="pre">(1/2)</span></tt>, where alternate descriptions of the
+round appear between parentheses.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">soccermetrics.rest</span> <span class="kn">import</span> <span class="n">SoccermetricsRestClient</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">SoccermetricsRestClient</span><span class="p">()</span>
+
+<span class="c"># knockout matches -- quarterfinal round</span>
+<span class="n">matches</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">natl</span><span class="o">.</span><span class="n">information</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">competition_name</span><span class="o">=</span><span class="s">&quot;FIFA World Cup&quot;</span><span class="p">,</span> <span class="n">season_name</span><span class="o">=</span><span class="s">&quot;2014&quot;</span><span class="p">,</span>
+                                      <span class="n">round_name</span><span class="o">=</span><span class="s">&quot;*1/4*&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">You cannot use phase details to filter Match Micro-Events or Statistics resources.</p>
+</div>
+</div>
+<div class="section" id="retrieving-match-information-and-conditions">
+<h2>Retrieving Match Information and Conditions<a class="headerlink" href="#retrieving-match-information-and-conditions" title="Permalink to this headline">¶</a></h2>
+<p>To access high-level data on a specific match or its environmental conditions, pass the
+unique ID through the <tt class="docutils literal"><span class="pre">match</span></tt> parameter in the <tt class="docutils literal"><span class="pre">get()</span></tt> call.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">soccermetrics.rest</span> <span class="kn">import</span> <span class="n">SoccermetricsRestClient</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">SoccermetricsRestClient</span><span class="p">()</span>
+
+<span class="n">match</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">natl</span><span class="o">.</span><span class="n">information</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;6b063a7370ee438da8a36a79ab10c9b7&#39;</span><span class="p">)</span>
+<span class="n">conditions</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">natl</span><span class="o">.</span><span class="n">conditions</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;6b063a7370ee438da8a36a79ab10c9b7&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>There is only one <tt class="docutils literal"><span class="pre">information</span></tt> and <tt class="docutils literal"><span class="pre">conditions</span></tt> record per match ID, so a unique
+record ID is redundant.  In fact, passing a record ID will result in a <tt class="docutils literal"><span class="pre">SoccermetricsRestException</span></tt>.</p>
+</div>
+<div class="section" id="retrieving-match-macro-events">
+<h2>Retrieving Match Macro-Events<a class="headerlink" href="#retrieving-match-macro-events" title="Permalink to this headline">¶</a></h2>
+<p>Match macro-events are the following:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Goals</li>
+<li>Penalties</li>
+<li>Disciplinary offenses</li>
+<li>Substitutions</li>
+<li>Penalty shootouts</li>
+</ul>
+</div></blockquote>
+<p>If you want to access all of a specific type of micro-event that occurs in a match,
+pass the match ID to the <tt class="docutils literal"><span class="pre">get()</span></tt> call:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">soccermetrics.rest</span> <span class="kn">import</span> <span class="n">SoccermetricsRestClient</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">SoccermetricsRestClient</span><span class="p">()</span>
+
+<span class="n">match_goals</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">natl</span><span class="o">.</span><span class="n">goals</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;6b063a7370ee438da8a36a79ab10c9b7&#39;</span><span class="p">)</span>
+<span class="n">match_subs</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">natl</span><span class="o">.</span><span class="n">substitutions</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;6b063a7370ee438da8a36a79ab10c9b7&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If you want to access a <em>specific</em> micro-event from a match, pass the match ID <strong>and</strong>
+the record ID to the <tt class="docutils literal"><span class="pre">get()</span></tt> call:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">soccermetrics.rest</span> <span class="kn">import</span> <span class="n">SoccermetricsRestClient</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">SoccermetricsRestClient</span><span class="p">()</span>
+
+<span class="n">match_goal</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">natl</span><span class="o">.</span><span class="n">goals</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;6b063a7370ee438da8a36a79ab10c9b7&#39;</span><span class="p">,</span>
+                                   <span class="s">&#39;23d29e0d107f47068d8b85231b7f21c9&#39;</span><span class="p">)</span>
+<span class="n">match_subs</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">natl</span><span class="o">.</span><span class="n">substitutions</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;6b063a7370ee438da8a36a79ab10c9b7&#39;</span><span class="p">,</span>
+                                           <span class="s">&#39;05c62a4ceafb4dcd83d5a95a6b77baee&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Of course, you don&#8217;t have to use the match IDs to retrieve data &#8211; you can also use
+query parameters such as <tt class="docutils literal"><span class="pre">home_team_name</span></tt>, <tt class="docutils literal"><span class="pre">away_team_name</span></tt>, or <tt class="docutils literal"><span class="pre">match_date</span></tt>.
+Check the API documentation to find out which query parameters apply for the resource
+you&#8217;re interested in.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">soccermetrics.rest</span> <span class="kn">import</span> <span class="n">SoccermetricsRestClient</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">SoccermetricsRestClient</span><span class="p">()</span>
+
+<span class="n">usa_goals</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">natl</span><span class="o">.</span><span class="n">goals</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">home_team_name</span><span class="o">=</span><span class="s">&quot;USA&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span> <span class="o">+</span> \
+            <span class="n">client</span><span class="o">.</span><span class="n">natl</span><span class="o">.</span><span class="n">goals</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">away_team_name</span><span class="o">=</span><span class="s">&quot;USA&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+
+<span class="n">june_25_matches</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">natl</span><span class="o">.</span><span class="n">information</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">match_date</span><span class="o">=</span><span class="s">&quot;2014-06-25&quot;</span><span class="p">)</span>
+
+<span class="n">successful_pens</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">natl</span><span class="o">.</span><span class="n">penalties</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">outcome_type</span><span class="o">=</span><span class="s">&quot;Goal&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -156,7 +310,7 @@
     </p>
     <p>
         &copy; Copyright 2013-2014, Soccermetrics Research, LLC.<br/>
-      Last updated on Jul 29, 2014.<br/>
+      Last updated on Aug 02, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2b1.<br/>
     </p>
   </div>

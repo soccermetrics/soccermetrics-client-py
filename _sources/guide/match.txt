@@ -3,3 +3,162 @@
 Match Resources
 ===============
 
+The Match Resources are a collection of macro-events, micro-events, and summary
+statistics resources in the Connect API.
+
+For more information, consult the `Match Resource`_ documentation for the API.
+
+Clubs or National Teams?
+------------------------
+
+The Connect API client divides Match resources into club and national team matches.  The
+fact that countries are the "teams" in national team play introduces subtle but ultimately
+significant differences to match modeling, in particular match lineups.
+
+You can access club match data through the ``club`` object of the client:
+::
+
+    from soccermetrics.rest import SoccermetricsRestClient
+    client = SoccermetricsRestClient()
+
+    club_matches = client.club
+
+National team match data are accessed through the ``natl`` object of the client:
+::
+
+    from soccermetrics.rest import SoccermetricsRestClient
+    client = SoccermetricsRestClient()
+
+    natl_matches = client.natl
+
+Within the ``club`` and ``natl`` objects are sub-objects that permit access to macro-event,
+micro-event, and statistical resources of the API.
+
+Retrieving Match Resources
+--------------------------
+
+As with other resources you can ``get()`` match records, but in the case of match
+records you can also use the unique ID of the football match to get data.
+::
+
+    from soccermetrics.rest import SoccermetricsRestClient
+    client = SoccermetricsRestClient()
+
+    match_info = client.natl.information.get('420aa27ce815499c85ec0301aff61ec4')
+
+If only one variable is passed to ``get()``, it is assumed to be the unique match ID.  If
+two variables are passed without keywords, the first variable is assumed to be the
+unique match ID and the second the unique record ID.
+::
+
+    from soccermetrics.rest import SoccermetricsRestClient
+    client = SoccermetricsRestClient()
+
+    match_goal = client.natl.information.get('420aa27ce815499c85ec0301aff61ec4',
+                                             '807f2a61bcea4a1bb98d66fface88b44')
+
+Using Phase Detail Information to Retrieve Match Data
+-----------------------------------------------------
+
+In addition to using the match and record IDs to retrieve match records, you can use
+information on a match's `phase details`_ to perform similar retrievals.  To do so,
+perform the search as keyword arguments in the ``get()`` call.
+::
+
+    from soccermetrics.rest import SoccermetricsRestClient
+    client = SoccermetricsRestClient()
+
+    # league matches -- use matchday
+    matches = client.club.information.get(competition_name="Premier League",
+                                          season_name="2011-12", matchday=5)
+
+    # group matches -- use round_name and group
+    matches = client.natl.goals.get(competition_name="FIFA World Cup", season_name="2014",
+                                    round_name="Group Stage", group='B', matchday=1)
+
+    # knockout matches -- use round_name
+    matches = client.club.offenses.get(competition_name="UEFA Champions League", season_name="2010",
+                                       round_name="Second Qualifying Round", matchday=1)
+
+Unique to other query parameters, you can insert an "*" to retrieve partial matches of
+``round_name``.  This is beneficial for knockout round names such as ``Round of 32 (1/16)``,
+``Quarterfinal (1/4)``, or ``Semi-Final (1/2)``, where alternate descriptions of the
+round appear between parentheses.
+::
+
+    from soccermetrics.rest import SoccermetricsRestClient
+    client = SoccermetricsRestClient()
+
+    # knockout matches -- quarterfinal round
+    matches = client.natl.information.get(competition_name="FIFA World Cup", season_name="2014",
+                                          round_name="*1/4*")
+
+.. warning:: You cannot use phase details to filter Match Micro-Events or Statistics resources.
+
+Retrieving Match Information and Conditions
+-------------------------------------------
+
+To access high-level data on a specific match or its environmental conditions, pass the
+unique ID through the ``match`` parameter in the ``get()`` call.
+::
+
+    from soccermetrics.rest import SoccermetricsRestClient
+    client = SoccermetricsRestClient()
+
+    match = client.natl.information.get('6b063a7370ee438da8a36a79ab10c9b7')
+    conditions = client.natl.conditions.get('6b063a7370ee438da8a36a79ab10c9b7')
+
+There is only one ``information`` and ``conditions`` record per match ID, so a unique
+record ID is redundant.  In fact, passing a record ID will result in a ``SoccermetricsRestException``.
+
+Retrieving Match Macro-Events
+-----------------------------
+
+Match macro-events are the following:
+
+    * Goals
+    * Penalties
+    * Disciplinary offenses
+    * Substitutions
+    * Penalty shootouts
+
+If you want to access all of a specific type of micro-event that occurs in a match,
+pass the match ID to the ``get()`` call:
+::
+
+    from soccermetrics.rest import SoccermetricsRestClient
+    client = SoccermetricsRestClient()
+
+    match_goals = client.natl.goals.get('6b063a7370ee438da8a36a79ab10c9b7')
+    match_subs = client.natl.substitutions.get('6b063a7370ee438da8a36a79ab10c9b7')
+
+If you want to access a *specific* micro-event from a match, pass the match ID **and**
+the record ID to the ``get()`` call:
+::
+
+    from soccermetrics.rest import SoccermetricsRestClient
+    client = SoccermetricsRestClient()
+
+    match_goal = client.natl.goals.get('6b063a7370ee438da8a36a79ab10c9b7',
+                                       '23d29e0d107f47068d8b85231b7f21c9')
+    match_subs = client.natl.substitutions.get('6b063a7370ee438da8a36a79ab10c9b7',
+                                               '05c62a4ceafb4dcd83d5a95a6b77baee')
+
+Of course, you don't have to use the match IDs to retrieve data -- you can also use
+query parameters such as ``home_team_name``, ``away_team_name``, or ``match_date``.
+Check the API documentation to find out which query parameters apply for the resource
+you're interested in.
+::
+
+    from soccermetrics.rest import SoccermetricsRestClient
+    client = SoccermetricsRestClient()
+
+    usa_goals = client.natl.goals.get(home_team_name="USA").all() + \
+                client.natl.goals.get(away_team_name="USA").all()
+
+    june_25_matches = client.natl.information.get(match_date="2014-06-25")
+
+    successful_pens = client.natl.penalties.get(outcome_type="Goal").all()
+
+.. _`phase details`: http://soccermetrics.github.io/connect-api/resources/match/macros.html
+.. _`Match Resource`: http://soccermetrics.github.io/connect-api/resources/match/main.html

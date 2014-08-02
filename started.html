@@ -78,6 +78,7 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#get-your-api-credentials">Get Your API Credentials</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#api-credentials">API Credentials</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#match-information">Match Information</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#match-statistics">Match Statistics</a></li>
@@ -106,6 +107,7 @@
   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Page <b class="caret"></b></a>
   <ul class="dropdown-menu localtoc"><ul>
 <li><a class="reference internal" href="#">Getting Started</a><ul>
+<li><a class="reference internal" href="#get-your-api-credentials">Get Your API Credentials</a></li>
 <li><a class="reference internal" href="#api-credentials">API Credentials</a></li>
 <li><a class="reference internal" href="#match-information">Match Information</a></li>
 <li><a class="reference internal" href="#match-statistics">Match Statistics</a></li>
@@ -153,6 +155,15 @@
   <div class="section" id="getting-started">
 <span id="gettingstarted"></span><h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
 <p>To start using the Soccermetrics API, create a <tt class="docutils literal"><span class="pre">SoccermetricsRestClient</span></tt>.</p>
+<div class="section" id="get-your-api-credentials">
+<h2>Get Your API Credentials<a class="headerlink" href="#get-your-api-credentials" title="Permalink to this headline">¶</a></h2>
+<p>In order to use the Soccermetrics API Client, you must have a Soccermetrics API account.</p>
+<p>To get an account, go to the
+<a class="reference external" href="https://developer.soccermetrics.net">Soccermetrics Connect API website</a>
+where you will fill in your contact information and select a usage plan.</p>
+<p>You will receive your API ID and secret key in a few minutes, unless you signed up
+for one of our student plans which require approval.</p>
+</div>
 <div class="section" id="api-credentials">
 <h2>API Credentials<a class="headerlink" href="#api-credentials" title="Permalink to this headline">¶</a></h2>
 <p>You&#8217;ll need your Soccermetrics API credentials to use the <tt class="docutils literal"><span class="pre">SoccermetricsRestClient</span></tt>.
@@ -167,9 +178,7 @@ These get passed to the constructor or via environment variables.</p>
 </div>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
-<p class="last">This is a fictitious API ID and key. We ask all interested users to go to the
-<a class="reference external" href="https://developer.soccermetrics.net">Soccermetrics Connect API website</a> in order
-to receive credentials.</p>
+<p class="last">This is a fictitious API ID and key.  DO NOT USE IT!!</p>
 </div>
 <p>If you call <tt class="docutils literal"><span class="pre">SoccermetricsRestClient</span></tt> without any parameters, the constructor
 will look for <tt class="docutils literal"><span class="pre">SOCCERMETRICS_APP_ID</span></tt> and <tt class="docutils literal"><span class="pre">SOCCERMETRICS_APP_KEY</span></tt> variables
@@ -262,7 +271,7 @@ with each match to access the statistical data.  Revising the above code once mo
     </p>
     <p>
         &copy; Copyright 2013-2014, Soccermetrics Research, LLC.<br/>
-      Last updated on Jul 29, 2014.<br/>
+      Last updated on Aug 02, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2b1.<br/>
     </p>
   </div>

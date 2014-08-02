@@ -62,4 +62,4 @@ anyway).
     webb_england = client.link.get(webb.link.country)
     webb_matches = client.link.get(webb.link.matches)
 
-.. _`Personnel Resource`: http://soccermetrics.github.io/fmrd-summary-api/resources/personnel.html
+.. _`Personnel Resource`: http://soccermetrics.github.io/connect-api/resources/personnel.html
