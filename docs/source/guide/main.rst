@@ -14,7 +14,5 @@ to specific resources.
    validation
    personnel
    match
-   events
-   statistics
    analytics
 
