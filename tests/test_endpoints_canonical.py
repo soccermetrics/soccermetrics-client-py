@@ -255,6 +255,74 @@ class ClientCanonicalEndpointTest(unittest.TestCase):
             'https://foo.uri/v1/national/matches/420aa27ce815499c85ec0301aff61ec4/shootouts/807f2a61bcea4a1bb98d66fface88b44',
             params={'app_id': 'ID', 'app_key': 'KEY'})
 
+    def test_club_events_endpoints_canonical_get(self, mock_resp, resp_obj, mock_dict):
+        """Verify club match micro-event resource endpoints with ID passed to GET."""
+
+        mock_resp.get.return_value.status_code = 200
+
+        uid = "807f2a61bcea4a1bb98d66fface88b44"
+
+        value = self.client.club.events.all.get(uid)
+        mock_resp.get.assert_called_with(
+            'https://foo.uri/v1/clubs/events/all/807f2a61bcea4a1bb98d66fface88b44',
+            params={'app_id': 'ID', 'app_key': 'KEY'})
+
+        value = self.client.club.events.touches.get(uid)
+        mock_resp.get.assert_called_with(
+            'https://foo.uri/v1/clubs/events/touches/807f2a61bcea4a1bb98d66fface88b44',
+            params={'app_id': 'ID', 'app_key': 'KEY'})
+
+        value = self.client.club.events.actions.get(uid)
+        mock_resp.get.assert_called_with(
+            'https://foo.uri/v1/clubs/events/actions/807f2a61bcea4a1bb98d66fface88b44',
+            params={'app_id': 'ID', 'app_key': 'KEY'})
+
+    def test_natl_events_endpoints_canonical_get(self, mock_resp, resp_obj, mock_dict):
+        """Verify national team match micro-event resource endpoints with ID passed to GET."""
+
+        mock_resp.get.return_value.status_code = 200
+
+        uid = "807f2a61bcea4a1bb98d66fface88b44"
+
+        value = self.client.natl.events.all.get(uid)
+        mock_resp.get.assert_called_with(
+            'https://foo.uri/v1/national/events/all/807f2a61bcea4a1bb98d66fface88b44',
+            params={'app_id': 'ID', 'app_key': 'KEY'})
+
+        value = self.client.natl.events.touches.get(uid)
+        mock_resp.get.assert_called_with(
+            'https://foo.uri/v1/national/events/touches/807f2a61bcea4a1bb98d66fface88b44',
+            params={'app_id': 'ID', 'app_key': 'KEY'})
+
+        value = self.client.natl.events.actions.get(uid)
+        mock_resp.get.assert_called_with(
+            'https://foo.uri/v1/national/events/actions/807f2a61bcea4a1bb98d66fface88b44',
+            params={'app_id': 'ID', 'app_key': 'KEY'})
+
+    def test_club_stats_endpoints_canonical_get(self, mock_resp, resp_obj, mock_dict):
+        """Verify club match statistical resource endpoints with ID passed to GET."""
+
+        mock_resp.get.return_value.status_code = 200
+
+        uid = "807f2a61bcea4a1bb98d66fface88b44"
+
+        value = self.client.club.stats.crosses.corners.get(uid)
+        mock_resp.get.assert_called_with(
+            'https://foo.uri/v1/clubs/stats/crosses/corners/807f2a61bcea4a1bb98d66fface88b44',
+            params={'app_id': 'ID', 'app_key': 'KEY'})
+
+    def test_natl_stats_endpoints_canonical_get(self, mock_resp, resp_obj, mock_dict):
+        """Verify national team match statistical resource endpoints with ID passed to GET."""
+
+        mock_resp.get.return_value.status_code = 200
+
+        uid = "807f2a61bcea4a1bb98d66fface88b44"
+
+        value = self.client.natl.stats.crosses.corners.get(uid)
+        mock_resp.get.assert_called_with(
+            'https://foo.uri/v1/national/stats/crosses/corners/807f2a61bcea4a1bb98d66fface88b44',
+            params={'app_id': 'ID', 'app_key': 'KEY'})
+
     def test_analytics_endpoints_canonical_get(self, mock_resp, resp_obj, mock_dict):
         """Verify match analytics resource endpoints with ID passed to GET."""
 

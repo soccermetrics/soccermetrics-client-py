@@ -70,6 +70,104 @@ class ClientEndpointTest(unittest.TestCase):
         self.assertEqual(self.client.natl.substitutions.EndpointURI(), '/v1/national/matches/substitutions')
         self.assertEqual(self.client.natl.shootouts.EndpointURI(), '/v1/national/matches/shootouts')
 
+    def test_club_events_endpoints(self):
+        """Verify club match micro-event endpoints without match or record IDs."""
+        self.assertEqual(self.client.club.events.all.endpoint, '/v1/clubs/events/all')
+        self.assertEqual(self.client.club.events.touches.endpoint, '/v1/clubs/events/touches')
+        self.assertEqual(self.client.club.events.actions.endpoint, '/v1/clubs/events/actions')
+
+    def test_natl_events_endpoints(self):
+        """Verify national team match micro-event endpoints without match or record IDs."""
+        self.assertEqual(self.client.natl.events.all.endpoint, '/v1/national/events/all')
+        self.assertEqual(self.client.natl.events.touches.endpoint, '/v1/national/events/touches')
+        self.assertEqual(self.client.natl.events.actions.endpoint, '/v1/national/events/actions')
+
+    def test_club_statistics_endpoints(self):
+        """Verify club match statistics endpoints without match or record IDs."""
+        self.assertEqual(self.client.club.stats.crosses.corners.endpoint, '/v1/clubs/stats/crosses/corners')
+        self.assertEqual(self.client.club.stats.crosses.totals.endpoint, '/v1/clubs/stats/crosses/totals')
+
+        self.assertEqual(self.client.club.stats.defense.actions.endpoint, '/v1/clubs/stats/defense/actions')
+        self.assertEqual(self.client.club.stats.defense.blocks.endpoint, '/v1/clubs/stats/defense/blocks')
+        self.assertEqual(self.client.club.stats.defense.clearances.endpoint, '/v1/clubs/stats/defense/clearances')
+        self.assertEqual(self.client.club.stats.defense.goalline.endpoint, '/v1/clubs/stats/defense/goalline')
+        self.assertEqual(self.client.club.stats.defense.tackles.endpoint, '/v1/clubs/stats/defense/tackles')
+
+        self.assertEqual(self.client.club.stats.fouls.cards.endpoint, '/v1/clubs/stats/fouls/cards')
+        self.assertEqual(self.client.club.stats.fouls.wins.endpoint, '/v1/clubs/stats/fouls/wins')
+
+        self.assertEqual(self.client.club.stats.goals.assists.endpoint, '/v1/clubs/stats/goals/assists')
+        self.assertEqual(self.client.club.stats.goals.bodyparts.endpoint, '/v1/clubs/stats/goals/bodyparts')
+        self.assertEqual(self.client.club.stats.goals.locations.endpoint, '/v1/clubs/stats/goals/locations')
+        self.assertEqual(self.client.club.stats.goals.penalties.endpoint, '/v1/clubs/stats/goals/penalties')
+        self.assertEqual(self.client.club.stats.goals.totals.endpoint, '/v1/clubs/stats/goals/totals')
+
+        self.assertEqual(self.client.club.stats.goalkeeper.actions.endpoint, '/v1/clubs/stats/goalkeeper/actions')
+        self.assertEqual(self.client.club.stats.goalkeeper.goals.endpoint, '/v1/clubs/stats/goalkeeper/goals')
+        self.assertEqual(self.client.club.stats.goalkeeper.shots.endpoint, '/v1/clubs/stats/goalkeeper/shots')
+        self.assertEqual(self.client.club.stats.goalkeeper.saves.endpoint, '/v1/clubs/stats/goalkeeper/saves')
+
+        self.assertEqual(self.client.club.stats.passes.directions.endpoint, '/v1/clubs/stats/passes/directions')
+        self.assertEqual(self.client.club.stats.passes.lengths.endpoint, '/v1/clubs/stats/passes/lengths')
+        self.assertEqual(self.client.club.stats.passes.locations.endpoint, '/v1/clubs/stats/passes/locations')
+        self.assertEqual(self.client.club.stats.passes.totals.endpoint, '/v1/clubs/stats/passes/totals')
+
+        self.assertEqual(self.client.club.stats.setpieces.corners.endpoint, '/v1/clubs/stats/setpieces/corners')
+        self.assertEqual(self.client.club.stats.setpieces.freekicks.endpoint, '/v1/clubs/stats/setpieces/freekicks')
+        self.assertEqual(self.client.club.stats.setpieces.throwins.endpoint, '/v1/clubs/stats/setpieces/throwins')
+
+        self.assertEqual(self.client.club.stats.shots.bodyparts.endpoint, '/v1/clubs/stats/shots/bodyparts')
+        self.assertEqual(self.client.club.stats.shots.locations.endpoint, '/v1/clubs/stats/shots/locations')
+        self.assertEqual(self.client.club.stats.shots.plays.endpoint, '/v1/clubs/stats/shots/plays')
+        self.assertEqual(self.client.club.stats.shots.totals.endpoint, '/v1/clubs/stats/shots/totals')
+
+        self.assertEqual(self.client.club.stats.touches.duels.endpoint, '/v1/clubs/stats/touches/duels')
+        self.assertEqual(self.client.club.stats.touches.locations.endpoint, '/v1/clubs/stats/touches/locations')
+        self.assertEqual(self.client.club.stats.touches.totals.endpoint, '/v1/clubs/stats/touches/totals')
+
+    def test_natl_statistics_endpoints(self):
+        """Verify national team match statistics endpoints without match or record IDs."""
+        self.assertEqual(self.client.natl.stats.crosses.corners.endpoint, '/v1/national/stats/crosses/corners')
+        self.assertEqual(self.client.natl.stats.crosses.totals.endpoint, '/v1/national/stats/crosses/totals')
+
+        self.assertEqual(self.client.natl.stats.defense.actions.endpoint, '/v1/national/stats/defense/actions')
+        self.assertEqual(self.client.natl.stats.defense.blocks.endpoint, '/v1/national/stats/defense/blocks')
+        self.assertEqual(self.client.natl.stats.defense.clearances.endpoint, '/v1/national/stats/defense/clearances')
+        self.assertEqual(self.client.natl.stats.defense.goalline.endpoint, '/v1/national/stats/defense/goalline')
+        self.assertEqual(self.client.natl.stats.defense.tackles.endpoint, '/v1/national/stats/defense/tackles')
+
+        self.assertEqual(self.client.natl.stats.fouls.cards.endpoint, '/v1/national/stats/fouls/cards')
+        self.assertEqual(self.client.natl.stats.fouls.wins.endpoint, '/v1/national/stats/fouls/wins')
+
+        self.assertEqual(self.client.natl.stats.goals.assists.endpoint, '/v1/national/stats/goals/assists')
+        self.assertEqual(self.client.natl.stats.goals.bodyparts.endpoint, '/v1/national/stats/goals/bodyparts')
+        self.assertEqual(self.client.natl.stats.goals.locations.endpoint, '/v1/national/stats/goals/locations')
+        self.assertEqual(self.client.natl.stats.goals.penalties.endpoint, '/v1/national/stats/goals/penalties')
+        self.assertEqual(self.client.natl.stats.goals.totals.endpoint, '/v1/national/stats/goals/totals')
+
+        self.assertEqual(self.client.natl.stats.goalkeeper.actions.endpoint, '/v1/national/stats/goalkeeper/actions')
+        self.assertEqual(self.client.natl.stats.goalkeeper.goals.endpoint, '/v1/national/stats/goalkeeper/goals')
+        self.assertEqual(self.client.natl.stats.goalkeeper.shots.endpoint, '/v1/national/stats/goalkeeper/shots')
+        self.assertEqual(self.client.natl.stats.goalkeeper.saves.endpoint, '/v1/national/stats/goalkeeper/saves')
+
+        self.assertEqual(self.client.natl.stats.passes.directions.endpoint, '/v1/national/stats/passes/directions')
+        self.assertEqual(self.client.natl.stats.passes.lengths.endpoint, '/v1/national/stats/passes/lengths')
+        self.assertEqual(self.client.natl.stats.passes.locations.endpoint, '/v1/national/stats/passes/locations')
+        self.assertEqual(self.client.natl.stats.passes.totals.endpoint, '/v1/national/stats/passes/totals')
+
+        self.assertEqual(self.client.natl.stats.setpieces.corners.endpoint, '/v1/national/stats/setpieces/corners')
+        self.assertEqual(self.client.natl.stats.setpieces.freekicks.endpoint, '/v1/national/stats/setpieces/freekicks')
+        self.assertEqual(self.client.natl.stats.setpieces.throwins.endpoint, '/v1/national/stats/setpieces/throwins')
+
+        self.assertEqual(self.client.natl.stats.shots.bodyparts.endpoint, '/v1/national/stats/shots/bodyparts')
+        self.assertEqual(self.client.natl.stats.shots.locations.endpoint, '/v1/national/stats/shots/locations')
+        self.assertEqual(self.client.natl.stats.shots.plays.endpoint, '/v1/national/stats/shots/plays')
+        self.assertEqual(self.client.natl.stats.shots.totals.endpoint, '/v1/national/stats/shots/totals')
+
+        self.assertEqual(self.client.natl.stats.touches.duels.endpoint, '/v1/national/stats/touches/duels')
+        self.assertEqual(self.client.natl.stats.touches.locations.endpoint, '/v1/national/stats/touches/locations')
+        self.assertEqual(self.client.natl.stats.touches.totals.endpoint, '/v1/national/stats/touches/totals')
+
     def test_analytics_endpoints(self):
         """Verify analytics endpoints without match ID."""
         self.assertEqual(self.client.analytics.state.EndpointURI(), '/v1/analytics/match/state')
