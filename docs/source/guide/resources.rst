@@ -37,6 +37,8 @@ historical match data and advanced analytics.  Several resources have sub-resour
 that reach into the entire API.  You can make GET, HEAD, or OPTIONS
 requests to these resources.
 
+.. _get-request:
+
 GET Requests
 ^^^^^^^^^^^^
 
@@ -66,6 +68,7 @@ page 4 of the match information resource with 20 matches per page.
 
     response = client.club.match.information.get(page=4,records=20)
 
+.. _head-request:
 
 HEAD Requests
 ^^^^^^^^^^^^^
@@ -78,6 +81,8 @@ To make a HEAD request, use the ``head()`` method associated with each resource.
 
     response = client.validation.teams.head()
 
+.. _options-request:
+
 OPTIONS Requests
 ^^^^^^^^^^^^^^^^
 
@@ -89,6 +94,7 @@ To make an OPTIONS request, use the ``options()`` method associated with each re
 
     response = client.natl.match.information.options()
 
+.. response-obj:
 
 Processing Responses
 --------------------
@@ -154,6 +160,7 @@ If you wish to retrieve all of the records at once, use the ``all()`` method.
 
     goals = client.club.goals.get(matchday=5).all()
 
+.. _hyperlink-resources:
 
 Accessing Hyperlinked Resources
 -------------------------------
