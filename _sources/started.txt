@@ -15,10 +15,10 @@ To get an account, go to the
 where you will fill in your contact information and select a usage plan.
 
 You will receive your API ID and secret key in a few minutes, unless you signed up
-for one of our student plans which require approval.
+for one of our student plans that require approval.
 
-API Credentials
----------------
+Using Your API Credentials
+--------------------------
 
 You'll need your Soccermetrics API credentials to use the ``SoccermetricsRestClient``.
 These get passed to the constructor or via environment variables.

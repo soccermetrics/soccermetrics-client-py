@@ -3,7 +3,7 @@
 Match Resources
 ===============
 
-The Match Resources are a collection of macro-events, micro-events, and summary
+The Match resources are a collection of macro-events, micro-events, and summary
 statistics resources in the Connect API.
 
 For more information, consult the `Match Resource`_ documentation for the API.
@@ -111,18 +111,21 @@ unique ID through the ``match`` parameter in the ``get()`` call.
 There is only one ``information`` and ``conditions`` record per match ID, so a unique
 record ID is redundant.  In fact, passing a record ID will result in a ``SoccermetricsRestException``.
 
+.. _match-macro:
+
 Retrieving Match Macro-Events
 -----------------------------
 
 Match macro-events are the following:
 
-    * Goals
-    * Penalties
-    * Disciplinary offenses
-    * Substitutions
-    * Penalty shootouts
+    * ``lineups``: Match lineups
+    * ``goals``: Goals
+    * ``penalties``: Penalties
+    * ``offenses``: Disciplinary offenses
+    * ``substitutions``: Substitutions
+    * ``shootouts``: Penalty shootouts
 
-If you want to access all of a specific type of micro-event that occurs in a match,
+If you want to access all of a specific type of macro-event that occurs in a match,
 pass the match ID to the ``get()`` call:
 ::
 
@@ -132,13 +135,15 @@ pass the match ID to the ``get()`` call:
     match_goals = client.natl.goals.get('6b063a7370ee438da8a36a79ab10c9b7')
     match_subs = client.natl.substitutions.get('6b063a7370ee438da8a36a79ab10c9b7')
 
-If you want to access a *specific* micro-event from a match, pass the match ID **and**
+If you want to access a *specific* macro-event from a match, pass the match ID **and**
 the record ID to the ``get()`` call:
 ::
 
     from soccermetrics.rest import SoccermetricsRestClient
     client = SoccermetricsRestClient()
 
+    match_lineup_record = client.natl.lineups.get('6b063a7370ee438da8a36a79ab10c9b7',
+                                                  'fcd53312a88c4e33b2a932746df0d3a8')
     match_goal = client.natl.goals.get('6b063a7370ee438da8a36a79ab10c9b7',
                                        '23d29e0d107f47068d8b85231b7f21c9')
     match_subs = client.natl.substitutions.get('6b063a7370ee438da8a36a79ab10c9b7',
@@ -160,5 +165,107 @@ you're interested in.
 
     successful_pens = client.natl.penalties.get(outcome_type="Goal").all()
 
+.. _match-micro:
+
+Retrieving Match Micro-Events
+-----------------------------
+
+Match micro-events are data on every event that occurs on the pitch during a match, whether
+non-touch events in which the ball is not touched (e.g. start/end period, injury stoppage,
+offside) or a ball touch event (e.g. pass, tackle, shot).
+
+There are three sub-objects attached to the ``events`` object:
+
+    * ``all``: all micro-events
+    * ``touches``: all touch-events
+    * ``actions``: contextual data for a micro-event
+
+If you want to retrieve all of the micro-events for a match, pass the match ID to the
+``get()`` call as a keyword parameter.
+::
+
+    from soccermetrics.rest import SoccermetricsRestClient
+    client = SoccermetricsRestClient()
+
+    match_events = client.natl.events.all.get(match='6b063a7370ee438da8a36a79ab10c9b7')
+
+To retrieve a specific micro-event, pass the unique record ID.
+::
+
+    from soccermetrics.rest import SoccermetricsRestClient
+    client = SoccermetricsRestClient()
+
+    pass_event = client.natl.events.all.get('1ab8728733454bd7942a5711518e7366')
+
+You can also use the query parameters to filter by specific types of events and match period.
+::
+
+    from soccermetrics.rest import SoccermetricsRestClient
+    client = SoccermetricsRestClient()
+
+    pass_events_2nd_half = client.natl.events.all.get(period=2, action_desc="Pass")
+
+.. warning:: At this time you cannot filter micro-events by time or space intervals.
+
+Almost every micro-event is associated with an event action, which will be included as a
+hyperlink in the response.  We recommend that you use the ``link.get()`` call to access
+the action (for more information see :ref:`hyperlink-resources`).
+::
+
+    from soccermetrics.rest import SoccermetricsRestClient
+    client = SoccermetricsRestClient()
+
+    pass_event = client.natl.events.all.get('1ab8728733454bd7942a5711518e7366')
+    pass_detail = client.link.get(pass_event.link.actions)
+
+Buf if you must, you can use the ``actions`` sub-object and the unique ID of the event action
+to retrieve **all** of the contextual data associated with an event action.
+::
+
+    from soccermetrics.rest import SoccermetricsRestClient
+    client = SoccermetricsRestClient()
+
+    pass_event = client.natl.events.all.get('1ab8728733454bd7942a5711518e7366')
+    pass_detail = client.natl.events.actions.get('453baf79a6a742328e790bf29b01de57')
+
+.. _match-macro:
+
+Retrieving Match Statistics
+---------------------------
+
+`Match Statistics`_ resources provide access to in-match statistical data of participating
+players in soccer matches.  There are nine sub-objects of the ``statistics`` object
+in the client:
+
+    * ``crosses``: Crossing statistics
+    * ``defense``: Defensive statistics
+    * ``fouls``: Foul statistics
+    * ``goals``: Goal statistics
+    * ``goalkeeper``: Goalkeeping statistics
+    * ``passes``: Passing statistics
+    * ``setpieces``: Set-piece statistics
+    * ``shots``: Shot statistics
+    * ``touches``: Ball touch statistics
+
+A specific statistical record is one tied to a player who appears in the match lineup.
+Use the lineup ID to access this record:
+::
+
+    from soccermetrics.rest import SoccermetricsRestClient
+    client = SoccermetricsRestClient()
+
+    total_passes = client.natl.stats.passes.totals.get('5815554e70e24a7cad674cc410f9da82')
+    total_crosses = client.natl.stats.crosses.totals.get('5815554e70e24a7cad674cc410f9da82')
+
+You can also use the list of allowed query parameters to filter the statistics resources:
+::
+
+    from soccermetrics.rest import SoccermetricsRestClient
+    client = SoccermetricsRestClient()
+
+    total_passes = client.natl.stats.passes.totals.get(player_name=u"James Rodríguez").all()
+
+
 .. _`phase details`: http://soccermetrics.github.io/connect-api/resources/match/macros.html
 .. _`Match Resource`: http://soccermetrics.github.io/connect-api/resources/match/main.html
+.. _`Match Statistics`: http://soccermetrics.github.io/connect-api/resources/match/stats/main.html

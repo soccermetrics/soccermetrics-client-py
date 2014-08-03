@@ -80,7 +80,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../started.html">Getting Started</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../started.html#get-your-api-credentials">Get Your API Credentials</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../started.html#api-credentials">API Credentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../started.html#using-your-api-credentials">Using Your API Credentials</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../started.html#match-information">Match Information</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../started.html#match-statistics">Match Statistics</a></li>
 </ul>
@@ -90,8 +90,6 @@
 <li class="toctree-l2"><a class="reference internal" href="validation.html">Validation Resources</a></li>
 <li class="toctree-l2"><a class="reference internal" href="personnel.html">Personnel Resources</a></li>
 <li class="toctree-l2"><a class="reference internal" href="match.html">Match Resources</a></li>
-<li class="toctree-l2"><a class="reference internal" href="events.html">Match Event Resources</a></li>
-<li class="toctree-l2"><a class="reference internal" href="statistics.html">Player Statistical Resources</a></li>
 <li class="toctree-l2"><a class="reference internal" href="analytics.html">Match Analytics Resources</a></li>
 </ul>
 </li>
@@ -190,7 +188,7 @@ historical match data and advanced analytics.  Several resources have sub-resour
 that reach into the entire API.  You can make GET, HEAD, or OPTIONS
 requests to these resources.</p>
 <div class="section" id="get-requests">
-<h3>GET Requests<a class="headerlink" href="#get-requests" title="Permalink to this headline">¶</a></h3>
+<span id="get-request"></span><h3>GET Requests<a class="headerlink" href="#get-requests" title="Permalink to this headline">¶</a></h3>
 <p>To make a GET request, use the <tt class="docutils literal"><span class="pre">get()</span></tt> method associated with each resource.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">soccermetrics.rest</span> <span class="kn">import</span> <span class="n">SoccermetricsRestClient</span>
 <span class="n">client</span> <span class="o">=</span> <span class="n">SoccermetricsRestClient</span><span class="p">()</span>
@@ -216,7 +214,7 @@ page 4 of the match information resource with 20 matches per page.</p>
 </div>
 </div>
 <div class="section" id="head-requests">
-<h3>HEAD Requests<a class="headerlink" href="#head-requests" title="Permalink to this headline">¶</a></h3>
+<span id="head-request"></span><h3>HEAD Requests<a class="headerlink" href="#head-requests" title="Permalink to this headline">¶</a></h3>
 <p>To make a HEAD request, use the <tt class="docutils literal"><span class="pre">head()</span></tt> method associated with each resource.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">soccermetrics.rest</span> <span class="kn">import</span> <span class="n">SoccermetricsRestClient</span>
 <span class="n">client</span> <span class="o">=</span> <span class="n">SoccermetricsRestClient</span><span class="p">()</span>
@@ -226,7 +224,7 @@ page 4 of the match information resource with 20 matches per page.</p>
 </div>
 </div>
 <div class="section" id="options-requests">
-<h3>OPTIONS Requests<a class="headerlink" href="#options-requests" title="Permalink to this headline">¶</a></h3>
+<span id="options-request"></span><h3>OPTIONS Requests<a class="headerlink" href="#options-requests" title="Permalink to this headline">¶</a></h3>
 <p>To make an OPTIONS request, use the <tt class="docutils literal"><span class="pre">options()</span></tt> method associated with each resource.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">soccermetrics.rest</span> <span class="kn">import</span> <span class="n">SoccermetricsRestClient</span>
 <span class="n">client</span> <span class="o">=</span> <span class="n">SoccermetricsRestClient</span><span class="p">()</span>
@@ -334,7 +332,7 @@ This object returns the following attributes:</p>
 </div>
 </div>
 <div class="section" id="accessing-hyperlinked-resources">
-<h2>Accessing Hyperlinked Resources<a class="headerlink" href="#accessing-hyperlinked-resources" title="Permalink to this headline">¶</a></h2>
+<span id="hyperlink-resources"></span><h2>Accessing Hyperlinked Resources<a class="headerlink" href="#accessing-hyperlinked-resources" title="Permalink to this headline">¶</a></h2>
 <p>Many of the resources contain references to other subresources through hyperlinks.
 The client provides a <tt class="docutils literal"><span class="pre">link</span></tt> object to access these hyperlinks without
 having to reconstruct the data manually.  You can then make <tt class="docutils literal"><span class="pre">get()</span></tt>, <tt class="docutils literal"><span class="pre">head()</span></tt>,
@@ -364,7 +362,7 @@ and <tt class="docutils literal"><span class="pre">options()</span></tt> calls j
     </p>
     <p>
         &copy; Copyright 2013-2014, Soccermetrics Research, LLC.<br/>
-      Last updated on Aug 02, 2014.<br/>
+      Last updated on Aug 03, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2b1.<br/>
     </p>
   </div>

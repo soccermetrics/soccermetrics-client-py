@@ -39,7 +39,7 @@
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="Soccermetrics API Python Client Documentation" href="../index.html" />
     <link rel="up" title="User Guide" href="main.html" />
-    <link rel="next" title="Match Event Resources" href="events.html" />
+    <link rel="next" title="Match Analytics Resources" href="analytics.html" />
     <link rel="prev" title="Personnel Resources" href="personnel.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
@@ -80,7 +80,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../started.html">Getting Started</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../started.html#get-your-api-credentials">Get Your API Credentials</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../started.html#api-credentials">API Credentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../started.html#using-your-api-credentials">Using Your API Credentials</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../started.html#match-information">Match Information</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../started.html#match-statistics">Match Statistics</a></li>
 </ul>
@@ -90,8 +90,6 @@
 <li class="toctree-l2"><a class="reference internal" href="validation.html">Validation Resources</a></li>
 <li class="toctree-l2"><a class="reference internal" href="personnel.html">Personnel Resources</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="">Match Resources</a></li>
-<li class="toctree-l2"><a class="reference internal" href="events.html">Match Event Resources</a></li>
-<li class="toctree-l2"><a class="reference internal" href="statistics.html">Player Statistical Resources</a></li>
 <li class="toctree-l2"><a class="reference internal" href="analytics.html">Match Analytics Resources</a></li>
 </ul>
 </li>
@@ -114,6 +112,8 @@
 <li><a class="reference internal" href="#using-phase-detail-information-to-retrieve-match-data">Using Phase Detail Information to Retrieve Match Data</a></li>
 <li><a class="reference internal" href="#retrieving-match-information-and-conditions">Retrieving Match Information and Conditions</a></li>
 <li><a class="reference internal" href="#retrieving-match-macro-events">Retrieving Match Macro-Events</a></li>
+<li><a class="reference internal" href="#retrieving-match-micro-events">Retrieving Match Micro-Events</a></li>
+<li><a class="reference internal" href="#retrieving-match-statistics">Retrieving Match Statistics</a></li>
 </ul>
 </li>
 </ul>
@@ -126,8 +126,8 @@
                 
   <li><a href="personnel.html"
          title="Previous Chapter: Personnel Resources">&laquo; Personnel Resour...</a></li>
-  <li><a href="events.html"
-         title="Next Chapter: Match Event Resources">Match Event Reso... &raquo;</a></li>
+  <li><a href="analytics.html"
+         title="Next Chapter: Match Analytics Resources">Match Analytics ... &raquo;</a></li>
               
             
             
@@ -157,7 +157,7 @@
       
   <div class="section" id="match-resources">
 <span id="id1"></span><h1>Match Resources<a class="headerlink" href="#match-resources" title="Permalink to this headline">¶</a></h1>
-<p>The Match Resources are a collection of macro-events, micro-events, and summary
+<p>The Match resources are a collection of macro-events, micro-events, and summary
 statistics resources in the Connect API.</p>
 <p>For more information, consult the <a class="reference external" href="http://soccermetrics.github.io/connect-api/resources/match/main.html">Match Resource</a> documentation for the API.</p>
 <div class="section" id="clubs-or-national-teams">
@@ -256,18 +256,19 @@ unique ID through the <tt class="docutils literal"><span class="pre">match</span
 record ID is redundant.  In fact, passing a record ID will result in a <tt class="docutils literal"><span class="pre">SoccermetricsRestException</span></tt>.</p>
 </div>
 <div class="section" id="retrieving-match-macro-events">
-<h2>Retrieving Match Macro-Events<a class="headerlink" href="#retrieving-match-macro-events" title="Permalink to this headline">¶</a></h2>
+<span id="match-macro"></span><h2>Retrieving Match Macro-Events<a class="headerlink" href="#retrieving-match-macro-events" title="Permalink to this headline">¶</a></h2>
 <p>Match macro-events are the following:</p>
 <blockquote>
 <div><ul class="simple">
-<li>Goals</li>
-<li>Penalties</li>
-<li>Disciplinary offenses</li>
-<li>Substitutions</li>
-<li>Penalty shootouts</li>
+<li><tt class="docutils literal"><span class="pre">lineups</span></tt>: Match lineups</li>
+<li><tt class="docutils literal"><span class="pre">goals</span></tt>: Goals</li>
+<li><tt class="docutils literal"><span class="pre">penalties</span></tt>: Penalties</li>
+<li><tt class="docutils literal"><span class="pre">offenses</span></tt>: Disciplinary offenses</li>
+<li><tt class="docutils literal"><span class="pre">substitutions</span></tt>: Substitutions</li>
+<li><tt class="docutils literal"><span class="pre">shootouts</span></tt>: Penalty shootouts</li>
 </ul>
 </div></blockquote>
-<p>If you want to access all of a specific type of micro-event that occurs in a match,
+<p>If you want to access all of a specific type of macro-event that occurs in a match,
 pass the match ID to the <tt class="docutils literal"><span class="pre">get()</span></tt> call:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">soccermetrics.rest</span> <span class="kn">import</span> <span class="n">SoccermetricsRestClient</span>
 <span class="n">client</span> <span class="o">=</span> <span class="n">SoccermetricsRestClient</span><span class="p">()</span>
@@ -276,11 +277,13 @@ pass the match ID to the <tt class="docutils literal"><span class="pre">get()</s
 <span class="n">match_subs</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">natl</span><span class="o">.</span><span class="n">substitutions</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;6b063a7370ee438da8a36a79ab10c9b7&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>If you want to access a <em>specific</em> micro-event from a match, pass the match ID <strong>and</strong>
+<p>If you want to access a <em>specific</em> macro-event from a match, pass the match ID <strong>and</strong>
 the record ID to the <tt class="docutils literal"><span class="pre">get()</span></tt> call:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">soccermetrics.rest</span> <span class="kn">import</span> <span class="n">SoccermetricsRestClient</span>
 <span class="n">client</span> <span class="o">=</span> <span class="n">SoccermetricsRestClient</span><span class="p">()</span>
 
+<span class="n">match_lineup_record</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">natl</span><span class="o">.</span><span class="n">lineups</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;6b063a7370ee438da8a36a79ab10c9b7&#39;</span><span class="p">,</span>
+                                              <span class="s">&#39;fcd53312a88c4e33b2a932746df0d3a8&#39;</span><span class="p">)</span>
 <span class="n">match_goal</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">natl</span><span class="o">.</span><span class="n">goals</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;6b063a7370ee438da8a36a79ab10c9b7&#39;</span><span class="p">,</span>
                                    <span class="s">&#39;23d29e0d107f47068d8b85231b7f21c9&#39;</span><span class="p">)</span>
 <span class="n">match_subs</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">natl</span><span class="o">.</span><span class="n">substitutions</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;6b063a7370ee438da8a36a79ab10c9b7&#39;</span><span class="p">,</span>
@@ -303,6 +306,100 @@ you&#8217;re interested in.</p>
 </pre></div>
 </div>
 </div>
+<div class="section" id="retrieving-match-micro-events">
+<span id="match-micro"></span><h2>Retrieving Match Micro-Events<a class="headerlink" href="#retrieving-match-micro-events" title="Permalink to this headline">¶</a></h2>
+<p>Match micro-events are data on every event that occurs on the pitch during a match, whether
+non-touch events in which the ball is not touched (e.g. start/end period, injury stoppage,
+offside) or a ball touch event (e.g. pass, tackle, shot).</p>
+<p>There are three sub-objects attached to the <tt class="docutils literal"><span class="pre">events</span></tt> object:</p>
+<blockquote>
+<div><ul class="simple">
+<li><tt class="docutils literal"><span class="pre">all</span></tt>: all micro-events</li>
+<li><tt class="docutils literal"><span class="pre">touches</span></tt>: all touch-events</li>
+<li><tt class="docutils literal"><span class="pre">actions</span></tt>: contextual data for a micro-event</li>
+</ul>
+</div></blockquote>
+<p>If you want to retrieve all of the micro-events for a match, pass the match ID to the
+<tt class="docutils literal"><span class="pre">get()</span></tt> call as a keyword parameter.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">soccermetrics.rest</span> <span class="kn">import</span> <span class="n">SoccermetricsRestClient</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">SoccermetricsRestClient</span><span class="p">()</span>
+
+<span class="n">match_events</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">natl</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">all</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">match</span><span class="o">=</span><span class="s">&#39;6b063a7370ee438da8a36a79ab10c9b7&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To retrieve a specific micro-event, pass the unique record ID.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">soccermetrics.rest</span> <span class="kn">import</span> <span class="n">SoccermetricsRestClient</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">SoccermetricsRestClient</span><span class="p">()</span>
+
+<span class="n">pass_event</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">natl</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">all</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;1ab8728733454bd7942a5711518e7366&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>You can also use the query parameters to filter by specific types of events and match period.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">soccermetrics.rest</span> <span class="kn">import</span> <span class="n">SoccermetricsRestClient</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">SoccermetricsRestClient</span><span class="p">()</span>
+
+<span class="n">pass_events_2nd_half</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">natl</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">all</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">period</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">action_desc</span><span class="o">=</span><span class="s">&quot;Pass&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">At this time you cannot filter micro-events by time or space intervals.</p>
+</div>
+<p>Almost every micro-event is associated with an event action, which will be included as a
+hyperlink in the response.  We recommend that you use the <tt class="docutils literal"><span class="pre">link.get()</span></tt> call to access
+the action (for more information see <a class="reference internal" href="resources.html#hyperlink-resources"><em>Accessing Hyperlinked Resources</em></a>).</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">soccermetrics.rest</span> <span class="kn">import</span> <span class="n">SoccermetricsRestClient</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">SoccermetricsRestClient</span><span class="p">()</span>
+
+<span class="n">pass_event</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">natl</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">all</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;1ab8728733454bd7942a5711518e7366&#39;</span><span class="p">)</span>
+<span class="n">pass_detail</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">link</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pass_event</span><span class="o">.</span><span class="n">link</span><span class="o">.</span><span class="n">actions</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Buf if you must, you can use the <tt class="docutils literal"><span class="pre">actions</span></tt> sub-object and the unique ID of the event action
+to retrieve <strong>all</strong> of the contextual data associated with an event action.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">soccermetrics.rest</span> <span class="kn">import</span> <span class="n">SoccermetricsRestClient</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">SoccermetricsRestClient</span><span class="p">()</span>
+
+<span class="n">pass_event</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">natl</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">all</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;1ab8728733454bd7942a5711518e7366&#39;</span><span class="p">)</span>
+<span class="n">pass_detail</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">natl</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">actions</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;453baf79a6a742328e790bf29b01de57&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="retrieving-match-statistics">
+<span id="id2"></span><h2>Retrieving Match Statistics<a class="headerlink" href="#retrieving-match-statistics" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="http://soccermetrics.github.io/connect-api/resources/match/stats/main.html">Match Statistics</a> resources provide access to in-match statistical data of participating
+players in soccer matches.  There are nine sub-objects of the <tt class="docutils literal"><span class="pre">statistics</span></tt> object
+in the client:</p>
+<blockquote>
+<div><ul class="simple">
+<li><tt class="docutils literal"><span class="pre">crosses</span></tt>: Crossing statistics</li>
+<li><tt class="docutils literal"><span class="pre">defense</span></tt>: Defensive statistics</li>
+<li><tt class="docutils literal"><span class="pre">fouls</span></tt>: Foul statistics</li>
+<li><tt class="docutils literal"><span class="pre">goals</span></tt>: Goal statistics</li>
+<li><tt class="docutils literal"><span class="pre">goalkeeper</span></tt>: Goalkeeping statistics</li>
+<li><tt class="docutils literal"><span class="pre">passes</span></tt>: Passing statistics</li>
+<li><tt class="docutils literal"><span class="pre">setpieces</span></tt>: Set-piece statistics</li>
+<li><tt class="docutils literal"><span class="pre">shots</span></tt>: Shot statistics</li>
+<li><tt class="docutils literal"><span class="pre">touches</span></tt>: Ball touch statistics</li>
+</ul>
+</div></blockquote>
+<p>A specific statistical record is one tied to a player who appears in the match lineup.
+Use the lineup ID to access this record:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">soccermetrics.rest</span> <span class="kn">import</span> <span class="n">SoccermetricsRestClient</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">SoccermetricsRestClient</span><span class="p">()</span>
+
+<span class="n">total_passes</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">natl</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">passes</span><span class="o">.</span><span class="n">totals</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;5815554e70e24a7cad674cc410f9da82&#39;</span><span class="p">)</span>
+<span class="n">total_crosses</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">natl</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">crosses</span><span class="o">.</span><span class="n">totals</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;5815554e70e24a7cad674cc410f9da82&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>You can also use the list of allowed query parameters to filter the statistics resources:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">soccermetrics.rest</span> <span class="kn">import</span> <span class="n">SoccermetricsRestClient</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">SoccermetricsRestClient</span><span class="p">()</span>
+
+<span class="n">total_passes</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">natl</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">passes</span><span class="o">.</span><span class="n">totals</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">player_name</span><span class="o">=</span><span class="s">u&quot;James Rodríguez&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -318,7 +415,7 @@ you&#8217;re interested in.</p>
     </p>
     <p>
         &copy; Copyright 2013-2014, Soccermetrics Research, LLC.<br/>
-      Last updated on Aug 02, 2014.<br/>
+      Last updated on Aug 03, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2b1.<br/>
     </p>
   </div>
