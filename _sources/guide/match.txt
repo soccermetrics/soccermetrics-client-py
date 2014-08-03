@@ -228,7 +228,7 @@ to retrieve **all** of the contextual data associated with an event action.
     pass_event = client.natl.events.all.get('1ab8728733454bd7942a5711518e7366')
     pass_detail = client.natl.events.actions.get('453baf79a6a742328e790bf29b01de57')
 
-.. _match-macro:
+.. _match-stats:
 
 Retrieving Match Statistics
 ---------------------------
