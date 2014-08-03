@@ -21,7 +21,7 @@ class MatchEventResource(Resource):
         """
         super(MatchEventResource, self).__init__(base_uri,auth)
 
-        self.endpoint += "%s/events/%s" % (play, resource)
+        self.endpoint += "/%s/events/%s" % (play, resource)
 
 
 class MatchEvents(object):

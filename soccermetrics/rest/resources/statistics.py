@@ -23,7 +23,7 @@ class MatchStatisticsResource(Resource):
         """
         super(MatchStatisticsResource, self).__init__(base_uri,auth)
 
-        self.endpoint += "%s/stats/%s/%s" % (play, statistic, resource)
+        self.endpoint += "/%s/stats/%s/%s" % (play, statistic, resource)
 
 
 class CrossingStatistics(object):
