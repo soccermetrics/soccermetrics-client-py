@@ -6,7 +6,9 @@ from soccermetrics import __api_version__ as API_VERSION
 
 class Resource(object):
     """
-    Represents a REST resource.  Sets high-level endpoint for API.
+    Represents interactions with a REST API resource.
+
+    Sets the high-level (versioning) endpoint for the API resource.
 
     :param base_uri: Base URI of API.
     :type base_uri: string
@@ -21,19 +23,19 @@ class Resource(object):
 
     def get(self, uid=None, **kwargs):
         """
-        Retrieves a representation of REST resource.
+        Retrieves a representation of the REST resource.
 
-        The response is an object with the following attributes:
+        If the request is successful, returns an ``EasyDict`` object that
+        uses dot notation for the response contents.
 
-        +------------+-----------------------+
-        | Attribute  | Description           |
-        +============+=======================+
-        | headers    | Response headers      |
-        +------------+-----------------------+
-        | meta       | Response meta-data    |
-        +------------+-----------------------+
-        | data       | Response data         |
-        +------------+-----------------------+
+        A request may be unsuccessful for two reasons:
+
+            * The API returns an error (HTTP code not 200).  In this situation,
+              the client raises a :exc:`~soccermetrics.SoccermetricsRestException` with
+              the HTTP code, the request URI, and a detailed error message.
+            * The ``requests`` module raises an exception.  In this case, the client
+              raises a :exc:`~soccermetrics.SoccermetricsRestException` with HTTP code
+              500, the request URI and a detailed error message from the module.
 
         :param uid: Unique ID of API resource representation.
         :type uid: integer
@@ -59,7 +61,7 @@ class Resource(object):
 
     def head(self):
         """
-        Retrieves header data of REST resource.
+        Retrieves header data of the REST resource.
 
         The response is an object with the following attribute:
 
@@ -68,6 +70,13 @@ class Resource(object):
         +============+=======================+
         | headers    | Response headers      |
         +------------+-----------------------+
+
+        If the request is successful, the client returns an ``EasyDict`` object that
+        uses dot notation for the response contents.
+
+        If the request is unsuccessful (HTTP code 4xx or 5xx), the client raises a
+        :exc:`~soccermetrics.SoccermetricsRestException` that includes the HTTP status
+        code and the request URI.
 
         :returns: Header data.
         :rtype: ``EasyDict`` object.
@@ -83,7 +92,7 @@ class Resource(object):
 
     def options(self):
         """
-        Retrieves documentation of REST resource.
+        Retrieves documentation of the REST resource representation.
 
         If the status code is 200 (OK), returns the documentation.  Otherwise,
         returns an error.
@@ -115,7 +124,10 @@ class Resource(object):
 
 class Link(Resource):
     """
-    Access to linked resources, can also access any API endpoint.
+    Represents interactions with hypertexted resources in the API.
+
+    This class is effectively a client within a client, so it can access any API endpoint
+    if the base URI and authentication pair are defined appropriately.
 
     Derived from :class:`Resource`.
     """
@@ -134,7 +146,7 @@ class Link(Resource):
         """
         Returns a representation of the REST resource.
 
-        Derived from :func:`Resource.get`.
+        Its functionality is derived from :func:`Resource.get`.
 
         :param uri: URI of REST resource, relative to base URI.
         :type uri: string
@@ -148,9 +160,9 @@ class Link(Resource):
 
     def head(self, uri):
         """
-        Retrieves header data of REST resource.
+        Retrieves header data of the REST resource.
 
-        Derived from :func:`Resource.head`.
+        Its functionality is derived from :func:`Resource.head`.
 
         :param uri: URI of REST resource, relative to base URI.
         :type uri: string
@@ -162,9 +174,9 @@ class Link(Resource):
 
     def options(self, uri):
         """
-        Retrieves documentation of REST resource representation.
+        Retrieves documentation of the REST resource representation.
 
-        Derived from :func:`Resource.options`.
+        Its functionality is derived from :func:`Resource.options`.
 
         :param uri: URI of REST resource, relative to base URI.
         :type uri: string
@@ -177,7 +189,52 @@ class Link(Resource):
 
 class Response(Resource):
     """
-    Represents a REST API response object.
+    Represents a REST API response object and its pagination properties and methods.
+
+    The response is an object with the following attributes:
+
+    +------------+-----------------------+
+    | Attribute  | Description           |
+    +============+=======================+
+    | status     | Response status code  |
+    +------------+-----------------------+
+    | headers    | Response headers      |
+    +------------+-----------------------+
+    | _meta      | Response meta-data,   |
+    |            | internal use only     |
+    +------------+-----------------------+
+    | data       | Response data         |
+    +------------+-----------------------+
+
+    The response also contains the following properties:
+
+    +--------------+----------------------------+
+    | Property     | Description                |
+    +==============+============================+
+    | page         | Current page of response   |
+    +--------------+----------------------------+
+    | pages        | Total pages of response    |
+    +--------------+----------------------------+
+    | records_page | Number of records per page |
+    +--------------+----------------------------+
+    | records      | Total records in response  |
+    +--------------+----------------------------+
+
+    You can use the following methods to page through the response:
+
+    +--------------+-------------------------------+
+    | Method       | Description                   |
+    +==============+===============================+
+    | first()      | First page of API response    |
+    +--------------+-------------------------------+
+    | prev()       | Previous page of API response |
+    +--------------+-------------------------------+
+    | next()       | Next page of API response     |
+    +--------------+-------------------------------+
+    | last()       | Last page of API response     |
+    +--------------+-------------------------------+
+
+    If you wish to access all of the data at once, there is the :func:`all` method.
 
     Derived from :class:`Resource`.
     """
@@ -187,7 +244,7 @@ class Response(Resource):
 
         :param base_uri: Base URI of API.
         :type base_uri: string
-        :param auth: Authentication credential.
+        :param auth: Authentication credential pair.
         :type auth: tuple
         :param resp: response object from API request
         :type resp: JSON
@@ -200,7 +257,12 @@ class Response(Resource):
         self.data = [EasyDict(rec) for rec in jresp['result']]
 
     def _iter(self):
-        """Custom iterator to retrieve all data from API response"""
+        """
+        Custom iterator to retrieve all data from API response.
+
+        Not intended for external use; if you wish to page
+        through the response use the pagination methods.
+        """
         resp = self
         while True:
             yield (resp.data)
@@ -211,26 +273,48 @@ class Response(Resource):
 
     @property
     def page(self):
-        """Current page property"""
+        """
+        Current page of API response given pagination settings.
+
+        If meta-data does not exist (i.e. no GET data),
+        the current page is zero.
+        """
         return self._meta.page if self._meta else 0
 
     @property
     def pages(self):
-        """Total pages property"""
+        """
+        Total pages in API response given pagination settings.
+
+        If meta-data does not exist (i.e. no GET data), the total
+        number of pages is zero.
+        """
         return self._meta.total_pages if self._meta else 0
 
     @property
     def records_page(self):
-        """Records per page property"""
+        """
+        Records per page of the API response, either default or set by user's API request.
+
+        If meta-data does not exist (i.e. no GET data), records per page is zero.
+        """
         return self._meta.records if self._meta else 0
 
     @property
     def records(self):
-        """Total records property"""
+        """
+        Total records in the API response.
+
+        If meta-data does not exist (i.e. no GET data), total number of records is zero.
+        """
         return self._meta.total_records if self._meta else 0
 
     def first(self):
-        """Go to first page of API response"""
+        """
+        Go to first page of the API response.
+
+        If meta-data does not exist (i.e. no GET data), return None.
+        """
         if self._meta:
             self.endpoint = self._meta.first
             return super(Response, self).get()
@@ -238,28 +322,42 @@ class Response(Resource):
             return None
 
     def next(self):
-        """Go to next page of API response"""
+        """
+        Go to next page of the API response.
+
+        If meta-data does not exist (i.e. no GET data), return None.
+        """
         if self._meta and self._meta.next:
             self.endpoint = self._meta.next
             return super(Response, self).get()
         return None
 
     def prev(self):
-        """Go to previous page of API response"""
+        """
+        Go to previous page of the API response.
+
+        If meta-data does not exist (i.e. no GET data), return None.
+        """
         if self._meta and self._meta.prev:
             self.endpoint = self._meta.prev
             return super(Response, self).get()
         return None
 
     def last(self):
-        """Go to last page of API response"""
+        """
+        Go to last page of the API response.
+
+        If meta-data does not exist (i.e. no GET data), return None.
+        """
         if self._meta:
             self.endpoint = self._meta.last
             return super(Response, self).get()
         return None
 
     def all(self):
-        """Retrieve all data of API response"""
+        """
+        Retrieve all data of the API response at once.
+        """
         rec = []
         for page in self._iter():
             rec.extend(page)

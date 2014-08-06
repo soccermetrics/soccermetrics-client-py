@@ -13,8 +13,8 @@ def find_credentials():
     Search for API credentials in current environment.
 
     Looks for ``SOCCERMETRICS_APP_ID`` and ``SOCCERMETRICS_APP_KEY``
-    among the environment variables.  Returns a KeyError if
-    either variable is not present in the environment.
+    among the environment variables.  Returns a tuple with two ``None``s
+    if neither variable is not present in the environment.
 
     :returns: (account, api_key) or (None, None)
     """
@@ -50,9 +50,11 @@ class SoccermetricsRestClient(object):
     | analytics        | Match analytics resources  |
     +------------------+----------------------------+
 
-    :param account: Soccermetrics API Application ID.
+    :param account: Soccermetrics API Application ID from `your account
+        dashboard <https://developer.soccermetrics.net/admin/access_details>`_.
     :type account: string or None
-    :param api_key: Soccermetrics API Application key.
+    :param api_key: Soccermetrics API Application key from `your account
+        dashboard <https://developer.soccermetrics.net/admin/access_details>`_.
     :type api_key: string or None
     """
     def __init__(self, account=None, api_key=None,
@@ -75,7 +77,7 @@ Or, add your credentials to your shell environment. From the terminal, run
     echo "export SOCCERMETRICS_APP_KEY=yyyyyyyyyyyyyyyyy" >> ~/.bashrc
 
 and be sure to replace the values for the application ID and auth key with the
-values from your Soccermetrics API Account at https://developer.soccermetrics.net.
+values from your Soccermetrics API Account at https://developer.soccermetrics.net/admin/access_details.
 """)
 
         auth = {'app_id': account, 'app_key': api_key}
