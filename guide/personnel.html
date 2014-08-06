@@ -161,7 +161,7 @@ to access linked data, such as match appearances and actions.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">soccermetrics.rest</span> <span class="kn">import</span> <span class="n">SoccermetricsRestClient</span>
 <span class="n">client</span> <span class="o">=</span> <span class="n">SoccermetricsRestClient</span><span class="p">()</span>
 
-<span class="n">rvp</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">players</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">last_name</span><span class="o">=</span><span class="s">&#39;Van Persie&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+<span class="n">rvp</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">players</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">full_name</span><span class="o">=</span><span class="s">&#39;Robin Van Persie&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
 <span class="n">rvp_matches</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">link</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">rvp</span><span class="o">.</span><span class="n">link</span><span class="o">.</span><span class="n">matches</span><span class="p">)</span>
 <span class="n">rvp_goals</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">link</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">rvp</span><span class="o">.</span><span class="n">link</span><span class="o">.</span><span class="n">goals</span><span class="p">)</span>
 </pre></div>
@@ -170,8 +170,13 @@ to access linked data, such as match appearances and actions.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">soccermetrics.rest</span> <span class="kn">import</span> <span class="n">SoccermetricsRestClient</span>
 <span class="n">client</span> <span class="o">=</span> <span class="n">SoccermetricsRestClient</span><span class="p">()</span>
 
-<span class="n">nani</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">players</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">nickname</span><span class="o">=</span><span class="s">&#39;Nani&#39;</span><span class="p">)</span>
+<span class="n">nani</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">players</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">full_name</span><span class="o">=</span><span class="s">&#39;Nani&#39;</span><span class="p">)</span>
 </pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">We recommend that you pass a Unicode string when searching on names
+or countries.  For example, <tt class="docutils literal"><span class="pre">full_name=u&quot;Roberto</span> <span class="pre">Martínez&quot;</span></tt> .</p>
 </div>
 </div>
 <div class="section" id="retrieving-a-manager-record">
@@ -183,7 +188,7 @@ that&#8217;s very rare.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">soccermetrics.rest</span> <span class="kn">import</span> <span class="n">SoccermetricsRestClient</span>
 <span class="n">client</span> <span class="o">=</span> <span class="n">SoccermetricsRestClient</span><span class="p">()</span>
 
-<span class="n">saf</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">managers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">first_name</span><span class="o">=</span><span class="s">&#39;Alex&#39;</span><span class="p">,</span><span class="n">last_name</span><span class="o">=</span><span class="s">&#39;Ferguson&#39;</span><span class="p">)</span>
+<span class="n">saf</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">managers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">full_name</span><span class="o">=</span><span class="s">&#39;Alex Ferguson&#39;</span><span class="p">)</span>
 <span class="n">saf_scotland</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">link</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">saf</span><span class="o">.</span><span class="n">link</span><span class="o">.</span><span class="n">country</span><span class="p">)</span>
 <span class="n">saf_home_matches</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">link</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">saf</span><span class="o">.</span><span class="n">link</span><span class="o">.</span><span class="n">homeMatches</span><span class="p">)</span>
 </pre></div>
@@ -198,7 +203,7 @@ anyway).</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">soccermetrics.rest</span> <span class="kn">import</span> <span class="n">SoccermetricsRestClient</span>
 <span class="n">client</span> <span class="o">=</span> <span class="n">SoccermetricsRestClient</span><span class="p">()</span>
 
-<span class="n">webb</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">referees</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">first_name</span><span class="o">=</span><span class="s">&#39;Howard&#39;</span><span class="p">,</span><span class="n">last_name</span><span class="o">=</span><span class="s">&#39;Webb&#39;</span><span class="p">)</span>
+<span class="n">webb</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">referees</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">full_name</span><span class="o">=</span><span class="s">&#39;Howard Webb&#39;</span><span class="p">)</span>
 <span class="n">webb_england</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">link</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">webb</span><span class="o">.</span><span class="n">link</span><span class="o">.</span><span class="n">country</span><span class="p">)</span>
 <span class="n">webb_matches</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">link</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">webb</span><span class="o">.</span><span class="n">link</span><span class="o">.</span><span class="n">matches</span><span class="p">)</span>
 </pre></div>
