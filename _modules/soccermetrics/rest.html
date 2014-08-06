@@ -153,8 +153,8 @@
 <span class="sd">    Search for API credentials in current environment.</span>
 
 <span class="sd">    Looks for ``SOCCERMETRICS_APP_ID`` and ``SOCCERMETRICS_APP_KEY``</span>
-<span class="sd">    among the environment variables.  Returns a KeyError if</span>
-<span class="sd">    either variable is not present in the environment.</span>
+<span class="sd">    among the environment variables.  Returns a tuple with two ``None``s</span>
+<span class="sd">    if neither variable is not present in the environment.</span>
 
 <span class="sd">    :returns: (account, api_key) or (None, None)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -190,9 +190,11 @@
 <span class="sd">    | analytics        | Match analytics resources  |</span>
 <span class="sd">    +------------------+----------------------------+</span>
 
-<span class="sd">    :param account: Soccermetrics API Application ID.</span>
+<span class="sd">    :param account: Soccermetrics API Application ID from `your account</span>
+<span class="sd">        dashboard &lt;https://developer.soccermetrics.net/admin/access_details&gt;`_.</span>
 <span class="sd">    :type account: string or None</span>
-<span class="sd">    :param api_key: Soccermetrics API Application key.</span>
+<span class="sd">    :param api_key: Soccermetrics API Application key from `your account</span>
+<span class="sd">        dashboard &lt;https://developer.soccermetrics.net/admin/access_details&gt;`_.</span>
 <span class="sd">    :type api_key: string or None</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">account</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">api_key</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
@@ -215,7 +217,7 @@
 <span class="s">    echo &quot;export SOCCERMETRICS_APP_KEY=yyyyyyyyyyyyyyyyy&quot; &gt;&gt; ~/.bashrc</span>
 
 <span class="s">and be sure to replace the values for the application ID and auth key with the</span>
-<span class="s">values from your Soccermetrics API Account at https://developer.soccermetrics.net.</span>
+<span class="s">values from your Soccermetrics API Account at https://developer.soccermetrics.net/admin/access_details.</span>
 <span class="s">&quot;&quot;&quot;</span><span class="p">)</span>
 
         <span class="n">auth</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;app_id&#39;</span><span class="p">:</span> <span class="n">account</span><span class="p">,</span> <span class="s">&#39;app_key&#39;</span><span class="p">:</span> <span class="n">api_key</span><span class="p">}</span>
@@ -254,7 +256,7 @@
     </p>
     <p>
         &copy; Copyright 2013-2014, Soccermetrics Research, LLC.<br/>
-      Last updated on Aug 03, 2014.<br/>
+      Last updated on Aug 05, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2b1.<br/>
     </p>
   </div>

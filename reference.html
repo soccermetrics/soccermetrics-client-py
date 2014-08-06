@@ -210,8 +210,11 @@
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>account</strong> (<em>string or None</em>) &#8211; Soccermetrics API Application ID.</li>
-<li><strong>api_key</strong> (<em>string or None</em>) &#8211; Soccermetrics API Application key.</li>
+<li><strong>account</strong> (<em>string or None</em>) &#8211; Soccermetrics API Application ID from <a class="reference external" href="https://developer.soccermetrics.net/admin/access_details">your account
+dashboard</a>.</li>
+<li><strong>api_key</strong> (<em>string or None</em>) &#8211; <p>Soccermetrics API Application key from <a class="reference external" href="https://developer.soccermetrics.net/admin/access_details">your account
+dashboard</a>.</p>
+</li>
 </ul>
 </td>
 </tr>
@@ -224,8 +227,8 @@
 <tt class="descclassname">soccermetrics.rest.</tt><tt class="descname">find_credentials</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest.html#find_credentials"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.find_credentials" title="Permalink to this definition">¶</a></dt>
 <dd><p>Search for API credentials in current environment.</p>
 <p>Looks for <tt class="docutils literal"><span class="pre">SOCCERMETRICS_APP_ID</span></tt> and <tt class="docutils literal"><span class="pre">SOCCERMETRICS_APP_KEY</span></tt>
-among the environment variables.  Returns a KeyError if
-either variable is not present in the environment.</p>
+among the environment variables.  Returns a tuple with two <a href="#id2"><span class="problematic" id="id3">``</span></a>None``s
+if neither variable is not present in the environment.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -244,13 +247,15 @@ either variable is not present in the environment.</p>
 <dl class="class">
 <dt id="soccermetrics.rest.resources.base.Link">
 <em class="property">class </em><tt class="descclassname">soccermetrics.rest.resources.base.</tt><tt class="descname">Link</tt><big>(</big><em>base_uri</em>, <em>auth</em><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/base.html#Link"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.base.Link" title="Permalink to this definition">¶</a></dt>
-<dd><p>Access to linked resources, can also access any API endpoint.</p>
+<dd><p>Represents interactions with hypertexted resources in the API.</p>
+<p>This class is effectively a client within a client, so it can access any API endpoint
+if the base URI and authentication pair are defined appropriately.</p>
 <p>Derived from <a class="reference internal" href="#soccermetrics.rest.resources.base.Resource" title="soccermetrics.rest.resources.base.Resource"><tt class="xref py py-class docutils literal"><span class="pre">Resource</span></tt></a>.</p>
 <dl class="method">
 <dt id="soccermetrics.rest.resources.base.Link.get">
 <tt class="descname">get</tt><big>(</big><em>uri</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/base.html#Link.get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.base.Link.get" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns a representation of the REST resource.</p>
-<p>Derived from <a class="reference internal" href="#soccermetrics.rest.resources.base.Resource.get" title="soccermetrics.rest.resources.base.Resource.get"><tt class="xref py py-func docutils literal"><span class="pre">Resource.get()</span></tt></a>.</p>
+<p>Its functionality is derived from <a class="reference internal" href="#soccermetrics.rest.resources.base.Resource.get" title="soccermetrics.rest.resources.base.Resource.get"><tt class="xref py py-func docutils literal"><span class="pre">Resource.get()</span></tt></a>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -274,8 +279,8 @@ either variable is not present in the environment.</p>
 <dl class="method">
 <dt id="soccermetrics.rest.resources.base.Link.head">
 <tt class="descname">head</tt><big>(</big><em>uri</em><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/base.html#Link.head"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.base.Link.head" title="Permalink to this definition">¶</a></dt>
-<dd><p>Retrieves header data of REST resource.</p>
-<p>Derived from <a class="reference internal" href="#soccermetrics.rest.resources.base.Resource.head" title="soccermetrics.rest.resources.base.Resource.head"><tt class="xref py py-func docutils literal"><span class="pre">Resource.head()</span></tt></a>.</p>
+<dd><p>Retrieves header data of the REST resource.</p>
+<p>Its functionality is derived from <a class="reference internal" href="#soccermetrics.rest.resources.base.Resource.head" title="soccermetrics.rest.resources.base.Resource.head"><tt class="xref py py-func docutils literal"><span class="pre">Resource.head()</span></tt></a>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -293,8 +298,8 @@ either variable is not present in the environment.</p>
 <dl class="method">
 <dt id="soccermetrics.rest.resources.base.Link.options">
 <tt class="descname">options</tt><big>(</big><em>uri</em><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/base.html#Link.options"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.base.Link.options" title="Permalink to this definition">¶</a></dt>
-<dd><p>Retrieves documentation of REST resource representation.</p>
-<p>Derived from <a class="reference internal" href="#soccermetrics.rest.resources.base.Resource.options" title="soccermetrics.rest.resources.base.Resource.options"><tt class="xref py py-func docutils literal"><span class="pre">Resource.options()</span></tt></a>.</p>
+<dd><p>Retrieves documentation of the REST resource representation.</p>
+<p>Its functionality is derived from <a class="reference internal" href="#soccermetrics.rest.resources.base.Resource.options" title="soccermetrics.rest.resources.base.Resource.options"><tt class="xref py py-func docutils literal"><span class="pre">Resource.options()</span></tt></a>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -314,7 +319,8 @@ either variable is not present in the environment.</p>
 <dl class="class">
 <dt id="soccermetrics.rest.resources.base.Resource">
 <em class="property">class </em><tt class="descclassname">soccermetrics.rest.resources.base.</tt><tt class="descname">Resource</tt><big>(</big><em>base_uri</em>, <em>auth</em><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/base.html#Resource"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.base.Resource" title="Permalink to this definition">¶</a></dt>
-<dd><p>Represents a REST resource.  Sets high-level endpoint for API.</p>
+<dd><p>Represents interactions with a REST API resource.</p>
+<p>Sets the high-level (versioning) endpoint for the API resource.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -330,30 +336,20 @@ either variable is not present in the environment.</p>
 <dl class="method">
 <dt id="soccermetrics.rest.resources.base.Resource.get">
 <tt class="descname">get</tt><big>(</big><em>uid=None</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/base.html#Resource.get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.base.Resource.get" title="Permalink to this definition">¶</a></dt>
-<dd><p>Retrieves a representation of REST resource.</p>
-<p>The response is an object with the following attributes:</p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="34%" />
-<col width="66%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Attribute</th>
-<th class="head">Description</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td>headers</td>
-<td>Response headers</td>
-</tr>
-<tr class="row-odd"><td>meta</td>
-<td>Response meta-data</td>
-</tr>
-<tr class="row-even"><td>data</td>
-<td>Response data</td>
-</tr>
-</tbody>
-</table>
+<dd><p>Retrieves a representation of the REST resource.</p>
+<p>If the request is successful, returns an <tt class="docutils literal"><span class="pre">EasyDict</span></tt> object that
+uses dot notation for the response contents.</p>
+<p>A request may be unsuccessful for two reasons:</p>
+<blockquote>
+<div><ul class="simple">
+<li>The API returns an error (HTTP code not 200).  In this situation,
+the client raises a <a class="reference internal" href="#soccermetrics.SoccermetricsRestException" title="soccermetrics.SoccermetricsRestException"><tt class="xref py py-exc docutils literal"><span class="pre">SoccermetricsRestException</span></tt></a> with
+the HTTP code, the request URI, and a detailed error message.</li>
+<li>The <tt class="docutils literal"><span class="pre">requests</span></tt> module raises an exception.  In this case, the client
+raises a <a class="reference internal" href="#soccermetrics.SoccermetricsRestException" title="soccermetrics.SoccermetricsRestException"><tt class="xref py py-exc docutils literal"><span class="pre">SoccermetricsRestException</span></tt></a> with HTTP code
+500, the request URI and a detailed error message from the module.</li>
+</ul>
+</div></blockquote>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -377,7 +373,7 @@ either variable is not present in the environment.</p>
 <dl class="method">
 <dt id="soccermetrics.rest.resources.base.Resource.head">
 <tt class="descname">head</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/base.html#Resource.head"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.base.Resource.head" title="Permalink to this definition">¶</a></dt>
-<dd><p>Retrieves header data of REST resource.</p>
+<dd><p>Retrieves header data of the REST resource.</p>
 <p>The response is an object with the following attribute:</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -395,6 +391,11 @@ either variable is not present in the environment.</p>
 </tr>
 </tbody>
 </table>
+<p>If the request is successful, the client returns an <tt class="docutils literal"><span class="pre">EasyDict</span></tt> object that
+uses dot notation for the response contents.</p>
+<p>If the request is unsuccessful (HTTP code 4xx or 5xx), the client raises a
+<a class="reference internal" href="#soccermetrics.SoccermetricsRestException" title="soccermetrics.SoccermetricsRestException"><tt class="xref py py-exc docutils literal"><span class="pre">SoccermetricsRestException</span></tt></a> that includes the HTTP status
+code and the request URI.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -410,7 +411,7 @@ either variable is not present in the environment.</p>
 <dl class="method">
 <dt id="soccermetrics.rest.resources.base.Resource.options">
 <tt class="descname">options</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/base.html#Resource.options"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.base.Resource.options" title="Permalink to this definition">¶</a></dt>
-<dd><p>Retrieves documentation of REST resource.</p>
+<dd><p>Retrieves documentation of the REST resource representation.</p>
 <p>If the status code is 200 (OK), returns the documentation.  Otherwise,
 returns an error.</p>
 <p>The response is an object with the following attributes:</p>
@@ -451,60 +452,150 @@ returns an error.</p>
 <dl class="class">
 <dt id="soccermetrics.rest.resources.base.Response">
 <em class="property">class </em><tt class="descclassname">soccermetrics.rest.resources.base.</tt><tt class="descname">Response</tt><big>(</big><em>base_uri</em>, <em>auth</em>, <em>resp</em><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/base.html#Response"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.base.Response" title="Permalink to this definition">¶</a></dt>
-<dd><p>Represents a REST API response object.</p>
+<dd><p>Represents a REST API response object and its pagination properties and methods.</p>
+<p>The response is an object with the following attributes:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="34%" />
+<col width="66%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Attribute</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>status</td>
+<td>Response status code</td>
+</tr>
+<tr class="row-odd"><td>headers</td>
+<td>Response headers</td>
+</tr>
+<tr class="row-even"><td>_meta</td>
+<td>Response meta-data,
+internal use only</td>
+</tr>
+<tr class="row-odd"><td>data</td>
+<td>Response data</td>
+</tr>
+</tbody>
+</table>
+<p>The response also contains the following properties:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="33%" />
+<col width="67%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Property</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>page</td>
+<td>Current page of response</td>
+</tr>
+<tr class="row-odd"><td>pages</td>
+<td>Total pages of response</td>
+</tr>
+<tr class="row-even"><td>records_page</td>
+<td>Number of records per page</td>
+</tr>
+<tr class="row-odd"><td>records</td>
+<td>Total records in response</td>
+</tr>
+</tbody>
+</table>
+<p>You can use the following methods to page through the response:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="31%" />
+<col width="69%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>first()</td>
+<td>First page of API response</td>
+</tr>
+<tr class="row-odd"><td>prev()</td>
+<td>Previous page of API response</td>
+</tr>
+<tr class="row-even"><td>next()</td>
+<td>Next page of API response</td>
+</tr>
+<tr class="row-odd"><td>last()</td>
+<td>Last page of API response</td>
+</tr>
+</tbody>
+</table>
+<p>If you wish to access all of the data at once, there is the <a class="reference internal" href="#soccermetrics.rest.resources.base.Response.all" title="soccermetrics.rest.resources.base.Response.all"><tt class="xref py py-func docutils literal"><span class="pre">all()</span></tt></a> method.</p>
 <p>Derived from <a class="reference internal" href="#soccermetrics.rest.resources.base.Resource" title="soccermetrics.rest.resources.base.Resource"><tt class="xref py py-class docutils literal"><span class="pre">Resource</span></tt></a>.</p>
 <dl class="method">
 <dt id="soccermetrics.rest.resources.base.Response.all">
 <tt class="descname">all</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/base.html#Response.all"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.base.Response.all" title="Permalink to this definition">¶</a></dt>
-<dd><p>Retrieve all data of API response</p>
+<dd><p>Retrieve all data of the API response at once.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="soccermetrics.rest.resources.base.Response.first">
 <tt class="descname">first</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/base.html#Response.first"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.base.Response.first" title="Permalink to this definition">¶</a></dt>
-<dd><p>Go to first page of API response</p>
+<dd><p>Go to first page of the API response.</p>
+<p>If meta-data does not exist (i.e. no GET data), return None.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="soccermetrics.rest.resources.base.Response.last">
 <tt class="descname">last</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/base.html#Response.last"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.base.Response.last" title="Permalink to this definition">¶</a></dt>
-<dd><p>Go to last page of API response</p>
+<dd><p>Go to last page of the API response.</p>
+<p>If meta-data does not exist (i.e. no GET data), return None.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="soccermetrics.rest.resources.base.Response.next">
 <tt class="descname">next</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/base.html#Response.next"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.base.Response.next" title="Permalink to this definition">¶</a></dt>
-<dd><p>Go to next page of API response</p>
+<dd><p>Go to next page of the API response.</p>
+<p>If meta-data does not exist (i.e. no GET data), return None.</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="soccermetrics.rest.resources.base.Response.page">
 <tt class="descname">page</tt><a class="reference internal" href="_modules/soccermetrics/rest/resources/base.html#Response.page"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.base.Response.page" title="Permalink to this definition">¶</a></dt>
-<dd><p>Current page property</p>
+<dd><p>Current page of API response given pagination settings.</p>
+<p>If meta-data does not exist (i.e. no GET data),
+the current page is zero.</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="soccermetrics.rest.resources.base.Response.pages">
 <tt class="descname">pages</tt><a class="reference internal" href="_modules/soccermetrics/rest/resources/base.html#Response.pages"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.base.Response.pages" title="Permalink to this definition">¶</a></dt>
-<dd><p>Total pages property</p>
+<dd><p>Total pages in API response given pagination settings.</p>
+<p>If meta-data does not exist (i.e. no GET data), the total
+number of pages is zero.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="soccermetrics.rest.resources.base.Response.prev">
 <tt class="descname">prev</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/soccermetrics/rest/resources/base.html#Response.prev"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.base.Response.prev" title="Permalink to this definition">¶</a></dt>
-<dd><p>Go to previous page of API response</p>
+<dd><p>Go to previous page of the API response.</p>
+<p>If meta-data does not exist (i.e. no GET data), return None.</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="soccermetrics.rest.resources.base.Response.records">
 <tt class="descname">records</tt><a class="reference internal" href="_modules/soccermetrics/rest/resources/base.html#Response.records"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.base.Response.records" title="Permalink to this definition">¶</a></dt>
-<dd><p>Total records property</p>
+<dd><p>Total records in the API response.</p>
+<p>If meta-data does not exist (i.e. no GET data), total number of records is zero.</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="soccermetrics.rest.resources.base.Response.records_page">
 <tt class="descname">records_page</tt><a class="reference internal" href="_modules/soccermetrics/rest/resources/base.html#Response.records_page"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.base.Response.records_page" title="Permalink to this definition">¶</a></dt>
-<dd><p>Records per page property</p>
+<dd><p>Records per page of the API response, either default or set by user&#8217;s API request.</p>
+<p>If meta-data does not exist (i.e. no GET data), records per page is zero.</p>
 </dd></dl>
 
 </dd></dl>
@@ -1332,7 +1423,7 @@ returns an error.</p>
     </p>
     <p>
         &copy; Copyright 2013-2014, Soccermetrics Research, LLC.<br/>
-      Last updated on Aug 03, 2014.<br/>
+      Last updated on Aug 05, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2b1.<br/>
     </p>
   </div>
