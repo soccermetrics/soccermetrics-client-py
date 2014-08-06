@@ -13,8 +13,8 @@ def find_credentials():
     Search for API credentials in current environment.
 
     Looks for ``SOCCERMETRICS_APP_ID`` and ``SOCCERMETRICS_APP_KEY``
-    among the environment variables.  Returns a tuple with two ``None``s
-    if neither variable is not present in the environment.
+    among the environment variables.  Returns a ``(None, None)``
+    tuple if neither variable is not present in the environment.
 
     :returns: (account, api_key) or (None, None)
     """
