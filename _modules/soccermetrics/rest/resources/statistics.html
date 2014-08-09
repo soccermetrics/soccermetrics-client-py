@@ -1,0 +1,570 @@
+
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>soccermetrics.rest.resources.statistics &mdash; Soccermetrics API Python Client Documentation</title>
+    
+    <link rel="stylesheet" href="../../../../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../srstatic/css/custom-styles.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/bootswatch-3.1.0/cosmo/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../',
+        VERSION:     '0.8',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../../../../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../../../../_static/bootstrap-3.1.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../../../_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="Soccermetrics API Python Client Documentation" href="../../../../index.html" />
+    <link rel="up" title="soccermetrics.rest" href="../../rest.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body>
+
+  <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../../../index.html"><img src="../../../../_static/Logo.png">
+          API Python Client</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.8</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            <li class="divider-vertical"></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../../../index.html">Docs <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../installation.html#virtual-environment-install">Virtual Environment Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../installation.html#system-wide-install">System-Wide Install</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../started.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../started.html#get-your-api-credentials">Get Your API Credentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../started.html#using-your-api-credentials">Using Your API Credentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../started.html#match-information">Match Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../started.html#match-statistics">Match Statistics</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../guide/main.html">User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../guide/resources.html">Accessing Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../guide/validation.html">Validation Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../guide/personnel.html">Personnel Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../guide/match.html">Match Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../guide/analytics.html">Match Analytics Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reference/main.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../reference/client.html">Client Object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../reference/client.html#module-soccermetrics">Exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../reference/resource.html">Base Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../reference/root.html">API Root</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../reference/validation.html">Validation Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../reference/personnel.html">Personnel Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../reference/match.html">Match Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../reference/analytics.html">Match Analytics Resources</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"></ul>
+</li>
+              
+            
+            
+              
+                
+              
+            
+            
+            
+            
+              <li class="hidden-sm"></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      
+  <h1>Source code for soccermetrics.rest.resources.statistics</h1><div class="highlight"><pre>
+<span class="kn">from</span> <span class="nn">soccermetrics.rest.resources</span> <span class="kn">import</span> <span class="n">Resource</span>
+
+<div class="viewcode-block" id="MatchStatisticsResource"><a class="viewcode-back" href="../../../../reference/match.html#soccermetrics.rest.resources.statistics.MatchStatisticsResource">[docs]</a><span class="k">class</span> <span class="nc">MatchStatisticsResource</span><span class="p">(</span><span class="n">Resource</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Represents a Match Statistics REST resource.</span>
+
+<span class="sd">    The Match Statistics resources controls access to summary in-match</span>
+<span class="sd">    statistical data of players who are in the match lineups of a</span>
+<span class="sd">    football match.</span>
+
+<span class="sd">    Derived from :class:`base.Resource`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">play</span><span class="p">,</span> <span class="n">statistic</span><span class="p">,</span> <span class="n">resource</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Constructor of MatchStatisticsResource class.</span>
+
+<span class="sd">        :param play: Type of teams playing in matches.</span>
+<span class="sd">        :type play: string</span>
+<span class="sd">        :param statistic: Statistic type.</span>
+<span class="sd">        :type statistic: string</span>
+<span class="sd">        :param resource: Name of resource.</span>
+<span class="sd">        :type resource: string</span>
+<span class="sd">        :param base_uri: Base URI of API.</span>
+<span class="sd">        :type base_uri: string</span>
+<span class="sd">        :param auth: Authentication credential.</span>
+<span class="sd">        :type auth: tuple</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">MatchStatisticsResource</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">base_uri</span><span class="p">,</span><span class="n">auth</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">endpoint</span> <span class="o">+=</span> <span class="s">&quot;/</span><span class="si">%s</span><span class="s">/stats/</span><span class="si">%s</span><span class="s">/</span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">play</span><span class="p">,</span> <span class="n">statistic</span><span class="p">,</span> <span class="n">resource</span><span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="CrossingStatistics"><a class="viewcode-back" href="../../../../reference/match.html#soccermetrics.rest.resources.statistics.CrossingStatistics">[docs]</a><span class="k">class</span> <span class="nc">CrossingStatistics</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Establish access to Cross statistical resources (/&lt;play&gt;/stats/crosses endpoint).</span>
+
+<span class="sd">    +----------------+-----------------------+</span>
+<span class="sd">    | Attribute      | Description           |</span>
+<span class="sd">    +================+=======================+</span>
+<span class="sd">    | corners        | Crosses from corners  |</span>
+<span class="sd">    +----------------+-----------------------+</span>
+<span class="sd">    | totals         | Total crossing stats  |</span>
+<span class="sd">    +----------------+-----------------------+</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">play</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Constructor of CrossingStatistics class.</span>
+
+<span class="sd">        :param play: Type of teams playing in matches.</span>
+<span class="sd">        :type play: string</span>
+<span class="sd">        :param base_uri: Base URI of API.</span>
+<span class="sd">        :type base_uri: string</span>
+<span class="sd">        :param auth: Authentication credential.</span>
+<span class="sd">        :type auth: tuple</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">CrossingStatistics</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
+
+        <span class="n">statistic</span> <span class="o">=</span> <span class="s">&quot;crosses&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">corners</span> <span class="o">=</span> <span class="n">MatchStatisticsResource</span><span class="p">(</span><span class="n">play</span><span class="p">,</span> <span class="n">statistic</span><span class="p">,</span> <span class="s">&quot;corners&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">totals</span> <span class="o">=</span> <span class="n">MatchStatisticsResource</span><span class="p">(</span><span class="n">play</span><span class="p">,</span> <span class="n">statistic</span><span class="p">,</span> <span class="s">&quot;totals&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="DefensiveStatistics"><a class="viewcode-back" href="../../../../reference/match.html#soccermetrics.rest.resources.statistics.DefensiveStatistics">[docs]</a><span class="k">class</span> <span class="nc">DefensiveStatistics</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Establish access to Defensive statistical resources (/&lt;play&gt;/stats/defense endpoint).</span>
+
+<span class="sd">    +----------------+----------------------------+</span>
+<span class="sd">    | Attribute      | Description                |</span>
+<span class="sd">    +================+============================+</span>
+<span class="sd">    | actions        | Defensive actions          |</span>
+<span class="sd">    +----------------+----------------------------+</span>
+<span class="sd">    | blocks         | Shot block stats           |</span>
+<span class="sd">    +----------------+----------------------------+</span>
+<span class="sd">    | clearances     | Ball clearance stats       |</span>
+<span class="sd">    +----------------+----------------------------+</span>
+<span class="sd">    | goalline       | Goal-line clearance stats  |</span>
+<span class="sd">    +----------------+----------------------------+</span>
+<span class="sd">    | tackles        | Tackling stats             |</span>
+<span class="sd">    +----------------+----------------------------+</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">play</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Constructor of DefensiveStatistics class.</span>
+
+<span class="sd">        :param play: Type of teams playing in matches.</span>
+<span class="sd">        :type play: string</span>
+<span class="sd">        :param base_uri: Base URI of API.</span>
+<span class="sd">        :type base_uri: string</span>
+<span class="sd">        :param auth: Authentication credential.</span>
+<span class="sd">        :type auth: tuple</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">DefensiveStatistics</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
+
+        <span class="n">statistic</span> <span class="o">=</span> <span class="s">&quot;defense&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">actions</span> <span class="o">=</span> <span class="n">MatchStatisticsResource</span><span class="p">(</span><span class="n">play</span><span class="p">,</span> <span class="n">statistic</span><span class="p">,</span> <span class="s">&quot;actions&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">blocks</span> <span class="o">=</span> <span class="n">MatchStatisticsResource</span><span class="p">(</span><span class="n">play</span><span class="p">,</span> <span class="n">statistic</span><span class="p">,</span> <span class="s">&quot;blocks&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">clearances</span> <span class="o">=</span> <span class="n">MatchStatisticsResource</span><span class="p">(</span><span class="n">play</span><span class="p">,</span> <span class="n">statistic</span><span class="p">,</span> <span class="s">&quot;clearances&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">goalline</span> <span class="o">=</span> <span class="n">MatchStatisticsResource</span><span class="p">(</span><span class="n">play</span><span class="p">,</span> <span class="n">statistic</span><span class="p">,</span> <span class="s">&quot;goalline&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tackles</span> <span class="o">=</span> <span class="n">MatchStatisticsResource</span><span class="p">(</span><span class="n">play</span><span class="p">,</span> <span class="n">statistic</span><span class="p">,</span> <span class="s">&quot;tackles&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="FoulingStatistics"><a class="viewcode-back" href="../../../../reference/match.html#soccermetrics.rest.resources.statistics.FoulingStatistics">[docs]</a><span class="k">class</span> <span class="nc">FoulingStatistics</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Access to Foul statistical resources (/&lt;play&gt;/stats/fouls endpoint).</span>
+
+<span class="sd">    +--------------+-----------------------+</span>
+<span class="sd">    | Attribute    | Description           |</span>
+<span class="sd">    +==============+=======================+</span>
+<span class="sd">    | cards        | Card stats            |</span>
+<span class="sd">    +--------------+-----------------------+</span>
+<span class="sd">    | wins         | Foul suffered stats   |</span>
+<span class="sd">    +--------------+-----------------------+</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">play</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Constructor of FoulingStatistics class.</span>
+
+<span class="sd">        :param play: Type of teams playing in matches.</span>
+<span class="sd">        :type play: string</span>
+<span class="sd">        :param base_uri: Base URI of API.</span>
+<span class="sd">        :type base_uri: string</span>
+<span class="sd">        :param auth: Authentication credential.</span>
+<span class="sd">        :type auth: tuple</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">FoulingStatistics</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
+
+        <span class="n">statistic</span> <span class="o">=</span> <span class="s">&quot;fouls&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">cards</span> <span class="o">=</span> <span class="n">MatchStatisticsResource</span><span class="p">(</span><span class="n">play</span><span class="p">,</span> <span class="n">statistic</span><span class="p">,</span> <span class="s">&quot;cards&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wins</span> <span class="o">=</span> <span class="n">MatchStatisticsResource</span><span class="p">(</span><span class="n">play</span><span class="p">,</span> <span class="n">statistic</span><span class="p">,</span> <span class="s">&quot;wins&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="GoalStatistics"><a class="viewcode-back" href="../../../../reference/match.html#soccermetrics.rest.resources.statistics.GoalStatistics">[docs]</a><span class="k">class</span> <span class="nc">GoalStatistics</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Access to Goal statistical resources (/&lt;play&gt;/stats/goals endpoint).</span>
+
+<span class="sd">    +----------------+----------------------------+</span>
+<span class="sd">    | Attribute      | Description                |</span>
+<span class="sd">    +================+============================+</span>
+<span class="sd">    | assists        | Goal assist stats          |</span>
+<span class="sd">    +----------------+----------------------------+</span>
+<span class="sd">    | bodyparts      | Goalscoring bodypart stats |</span>
+<span class="sd">    +----------------+----------------------------+</span>
+<span class="sd">    | locations      | Goalscoring location stats |</span>
+<span class="sd">    +----------------+----------------------------+</span>
+<span class="sd">    | penalties      | Match penalty stats        |</span>
+<span class="sd">    +----------------+----------------------------+</span>
+<span class="sd">    | totals         | Total goalscoring stats    |</span>
+<span class="sd">    +----------------+----------------------------+</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">play</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Constructor of GoalStatistics class.</span>
+
+<span class="sd">        :param play: Type of teams playing in matches.</span>
+<span class="sd">        :type play: string</span>
+<span class="sd">        :param base_uri: Base URI of API.</span>
+<span class="sd">        :type base_uri: string</span>
+<span class="sd">        :param auth: Authentication credential.</span>
+<span class="sd">        :type auth: tuple</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">GoalStatistics</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
+
+        <span class="n">statistic</span> <span class="o">=</span> <span class="s">&quot;goals&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">assists</span> <span class="o">=</span> <span class="n">MatchStatisticsResource</span><span class="p">(</span><span class="n">play</span><span class="p">,</span> <span class="n">statistic</span><span class="p">,</span> <span class="s">&quot;assists&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bodyparts</span> <span class="o">=</span> <span class="n">MatchStatisticsResource</span><span class="p">(</span><span class="n">play</span><span class="p">,</span> <span class="n">statistic</span><span class="p">,</span> <span class="s">&quot;bodyparts&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">locations</span> <span class="o">=</span> <span class="n">MatchStatisticsResource</span><span class="p">(</span><span class="n">play</span><span class="p">,</span> <span class="n">statistic</span><span class="p">,</span> <span class="s">&quot;locations&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">penalties</span> <span class="o">=</span> <span class="n">MatchStatisticsResource</span><span class="p">(</span><span class="n">play</span><span class="p">,</span> <span class="n">statistic</span><span class="p">,</span> <span class="s">&quot;penalties&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">totals</span> <span class="o">=</span> <span class="n">MatchStatisticsResource</span><span class="p">(</span><span class="n">play</span><span class="p">,</span> <span class="n">statistic</span><span class="p">,</span> <span class="s">&quot;totals&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="GoalkeepingStatistics"><a class="viewcode-back" href="../../../../reference/match.html#soccermetrics.rest.resources.statistics.GoalkeepingStatistics">[docs]</a><span class="k">class</span> <span class="nc">GoalkeepingStatistics</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Access to Goalkeeper statistical resources (/&lt;play&gt;/stats/goalkeeper endpoint).</span>
+
+<span class="sd">    +----------------+----------------------------+</span>
+<span class="sd">    | Attribute      | Description                |</span>
+<span class="sd">    +================+============================+</span>
+<span class="sd">    | actions        | Goalkeeping action stats   |</span>
+<span class="sd">    +----------------+----------------------------+</span>
+<span class="sd">    | goals          | Goals allowed stats        |</span>
+<span class="sd">    +----------------+----------------------------+</span>
+<span class="sd">    | shots          | Shots allowed stats        |</span>
+<span class="sd">    +----------------+----------------------------+</span>
+<span class="sd">    | saves          | Goalkeeper saves stats     |</span>
+<span class="sd">    +----------------+----------------------------+</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">play</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Constructor of GoalkeepingStatistics class.</span>
+
+<span class="sd">        :param play: Type of teams playing in matches.</span>
+<span class="sd">        :type play: string</span>
+<span class="sd">        :param base_uri: Base URI of API.</span>
+<span class="sd">        :type base_uri: string</span>
+<span class="sd">        :param auth: Authentication credential.</span>
+<span class="sd">        :type auth: tuple</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">GoalkeepingStatistics</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
+
+        <span class="n">statistic</span> <span class="o">=</span> <span class="s">&quot;goalkeeper&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">actions</span> <span class="o">=</span> <span class="n">MatchStatisticsResource</span><span class="p">(</span><span class="n">play</span><span class="p">,</span> <span class="n">statistic</span><span class="p">,</span> <span class="s">&quot;actions&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">goals</span> <span class="o">=</span> <span class="n">MatchStatisticsResource</span><span class="p">(</span><span class="n">play</span><span class="p">,</span> <span class="n">statistic</span><span class="p">,</span> <span class="s">&quot;goals&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">shots</span> <span class="o">=</span> <span class="n">MatchStatisticsResource</span><span class="p">(</span><span class="n">play</span><span class="p">,</span> <span class="n">statistic</span><span class="p">,</span> <span class="s">&quot;shots&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">saves</span> <span class="o">=</span> <span class="n">MatchStatisticsResource</span><span class="p">(</span><span class="n">play</span><span class="p">,</span> <span class="n">statistic</span><span class="p">,</span> <span class="s">&quot;saves&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="PassingStatistics"><a class="viewcode-back" href="../../../../reference/match.html#soccermetrics.rest.resources.statistics.PassingStatistics">[docs]</a><span class="k">class</span> <span class="nc">PassingStatistics</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Access to Passing statistical resources (/&lt;play&gt;/stats/passes endpoint).</span>
+
+<span class="sd">    +----------------+----------------------------+</span>
+<span class="sd">    | Attribute      | Description                |</span>
+<span class="sd">    +================+============================+</span>
+<span class="sd">    | directions     | Pass direction stats       |</span>
+<span class="sd">    +----------------+----------------------------+</span>
+<span class="sd">    | lengths        | Pass length stats          |</span>
+<span class="sd">    +----------------+----------------------------+</span>
+<span class="sd">    | locations      | Pass location stats        |</span>
+<span class="sd">    +----------------+----------------------------+</span>
+<span class="sd">    | totals         | Total passing stats        |</span>
+<span class="sd">    +----------------+----------------------------+</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">play</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Constructor of PassingStatistics class.</span>
+
+<span class="sd">        :param play: Type of teams playing in matches.</span>
+<span class="sd">        :type play: string</span>
+<span class="sd">        :param base_uri: Base URI of API.</span>
+<span class="sd">        :type base_uri: string</span>
+<span class="sd">        :param auth: Authentication credential.</span>
+<span class="sd">        :type auth: tuple</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">PassingStatistics</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
+
+        <span class="n">statistic</span> <span class="o">=</span> <span class="s">&quot;passes&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">directions</span> <span class="o">=</span> <span class="n">MatchStatisticsResource</span><span class="p">(</span><span class="n">play</span><span class="p">,</span> <span class="n">statistic</span><span class="p">,</span> <span class="s">&quot;directions&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lengths</span> <span class="o">=</span> <span class="n">MatchStatisticsResource</span><span class="p">(</span><span class="n">play</span><span class="p">,</span> <span class="n">statistic</span><span class="p">,</span> <span class="s">&quot;lengths&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">locations</span> <span class="o">=</span> <span class="n">MatchStatisticsResource</span><span class="p">(</span><span class="n">play</span><span class="p">,</span> <span class="n">statistic</span><span class="p">,</span> <span class="s">&quot;locations&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">totals</span> <span class="o">=</span> <span class="n">MatchStatisticsResource</span><span class="p">(</span><span class="n">play</span><span class="p">,</span> <span class="n">statistic</span><span class="p">,</span> <span class="s">&quot;totals&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="SetPieceStatistics"><a class="viewcode-back" href="../../../../reference/match.html#soccermetrics.rest.resources.statistics.SetPieceStatistics">[docs]</a><span class="k">class</span> <span class="nc">SetPieceStatistics</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Access to Set-Piece statistical resources (/&lt;play&gt;/stats/setpieces endpoint).</span>
+
+<span class="sd">    +----------------+----------------------------+</span>
+<span class="sd">    | Attribute      | Description                |</span>
+<span class="sd">    +================+============================+</span>
+<span class="sd">    | corners        | Corner kick stats          |</span>
+<span class="sd">    +----------------+----------------------------+</span>
+<span class="sd">    | freekicks      | Direct freekick stats      |</span>
+<span class="sd">    +----------------+----------------------------+</span>
+<span class="sd">    | throwins       | Throw-in stats             |</span>
+<span class="sd">    +----------------+----------------------------+</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">play</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Constructor of SetPieceStatistics class.</span>
+
+<span class="sd">        :param play: Type of teams playing in matches.</span>
+<span class="sd">        :type play: string</span>
+<span class="sd">        :param base_uri: Base URI of API.</span>
+<span class="sd">        :type base_uri: string</span>
+<span class="sd">        :param auth: Authentication credential.</span>
+<span class="sd">        :type auth: tuple</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">SetPieceStatistics</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
+
+        <span class="n">statistic</span> <span class="o">=</span> <span class="s">&quot;setpieces&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">corners</span> <span class="o">=</span> <span class="n">MatchStatisticsResource</span><span class="p">(</span><span class="n">play</span><span class="p">,</span> <span class="n">statistic</span><span class="p">,</span> <span class="s">&quot;corners&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">freekicks</span> <span class="o">=</span> <span class="n">MatchStatisticsResource</span><span class="p">(</span><span class="n">play</span><span class="p">,</span> <span class="n">statistic</span><span class="p">,</span> <span class="s">&quot;freekicks&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">throwins</span> <span class="o">=</span> <span class="n">MatchStatisticsResource</span><span class="p">(</span><span class="n">play</span><span class="p">,</span> <span class="n">statistic</span><span class="p">,</span> <span class="s">&quot;throwins&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="ShotStatistics"><a class="viewcode-back" href="../../../../reference/match.html#soccermetrics.rest.resources.statistics.ShotStatistics">[docs]</a><span class="k">class</span> <span class="nc">ShotStatistics</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Access to Shot statistical resources (/&lt;play&gt;/stats/shots endpoint).</span>
+
+<span class="sd">    +----------------+----------------------------+</span>
+<span class="sd">    | Attribute      | Description                |</span>
+<span class="sd">    +================+============================+</span>
+<span class="sd">    | bodyparts      | Shot bodypart stats        |</span>
+<span class="sd">    +----------------+----------------------------+</span>
+<span class="sd">    | locations      | Shot location stats        |</span>
+<span class="sd">    +----------------+----------------------------+</span>
+<span class="sd">    | plays          | Shot play stats            |</span>
+<span class="sd">    +----------------+----------------------------+</span>
+<span class="sd">    | totals         | Total shot stats           |</span>
+<span class="sd">    +----------------+----------------------------+</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">play</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Constructor of ShotStatistics class.</span>
+
+<span class="sd">        :param play: Type of teams playing in matches.</span>
+<span class="sd">        :type play: string</span>
+<span class="sd">        :param base_uri: Base URI of API.</span>
+<span class="sd">        :type base_uri: string</span>
+<span class="sd">        :param auth: Authentication credential.</span>
+<span class="sd">        :type auth: tuple</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">ShotStatistics</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
+
+        <span class="n">statistic</span> <span class="o">=</span> <span class="s">&quot;shots&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">bodyparts</span> <span class="o">=</span> <span class="n">MatchStatisticsResource</span><span class="p">(</span><span class="n">play</span><span class="p">,</span> <span class="n">statistic</span><span class="p">,</span> <span class="s">&quot;bodyparts&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">locations</span> <span class="o">=</span> <span class="n">MatchStatisticsResource</span><span class="p">(</span><span class="n">play</span><span class="p">,</span> <span class="n">statistic</span><span class="p">,</span> <span class="s">&quot;locations&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">plays</span> <span class="o">=</span> <span class="n">MatchStatisticsResource</span><span class="p">(</span><span class="n">play</span><span class="p">,</span> <span class="n">statistic</span><span class="p">,</span> <span class="s">&quot;plays&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">totals</span> <span class="o">=</span> <span class="n">MatchStatisticsResource</span><span class="p">(</span><span class="n">play</span><span class="p">,</span> <span class="n">statistic</span><span class="p">,</span> <span class="s">&quot;totals&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="TouchStatistics"><a class="viewcode-back" href="../../../../reference/match.html#soccermetrics.rest.resources.statistics.TouchStatistics">[docs]</a><span class="k">class</span> <span class="nc">TouchStatistics</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Access to Touch statistical resources (/&lt;play&gt;/stats/touches endpoint).</span>
+
+<span class="sd">    +----------------+----------------------------+</span>
+<span class="sd">    | Attribute      | Description                |</span>
+<span class="sd">    +================+============================+</span>
+<span class="sd">    | duels          | 50/50 dueling stats        |</span>
+<span class="sd">    +----------------+----------------------------+</span>
+<span class="sd">    | locations      | Ball touch location stats  |</span>
+<span class="sd">    +----------------+----------------------------+</span>
+<span class="sd">    | totals         | Total ball touch stats     |</span>
+<span class="sd">    +----------------+----------------------------+</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">play</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Constructor of TouchStatistics class.</span>
+
+<span class="sd">        :param play: Type of teams playing in matches.</span>
+<span class="sd">        :type play: string</span>
+<span class="sd">        :param base_uri: Base URI of API.</span>
+<span class="sd">        :type base_uri: string</span>
+<span class="sd">        :param auth: Authentication credential.</span>
+<span class="sd">        :type auth: tuple</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">TouchStatistics</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
+
+        <span class="n">statistic</span> <span class="o">=</span> <span class="s">&quot;touches&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">duels</span> <span class="o">=</span> <span class="n">MatchStatisticsResource</span><span class="p">(</span><span class="n">play</span><span class="p">,</span> <span class="n">statistic</span><span class="p">,</span> <span class="s">&quot;duels&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">locations</span> <span class="o">=</span> <span class="n">MatchStatisticsResource</span><span class="p">(</span><span class="n">play</span><span class="p">,</span> <span class="n">statistic</span><span class="p">,</span> <span class="s">&quot;locations&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">totals</span> <span class="o">=</span> <span class="n">MatchStatisticsResource</span><span class="p">(</span><span class="n">play</span><span class="p">,</span> <span class="n">statistic</span><span class="p">,</span> <span class="s">&quot;totals&quot;</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="MatchStatistics"><a class="viewcode-back" href="../../../../reference/match.html#soccermetrics.rest.resources.statistics.MatchStatistics">[docs]</a><span class="k">class</span> <span class="nc">MatchStatistics</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Establish access to Match Statistics objects (/&lt;play&gt;/stats endpoints).</span>
+
+<span class="sd">    +----------------+----------------------------+</span>
+<span class="sd">    | Attribute      | Description                |</span>
+<span class="sd">    +================+============================+</span>
+<span class="sd">    | crosses        | Crossing statistics        |</span>
+<span class="sd">    +----------------+----------------------------+</span>
+<span class="sd">    | defense        | Defensive statistics       |</span>
+<span class="sd">    +----------------+----------------------------+</span>
+<span class="sd">    | fouls          | Foul statistics            |</span>
+<span class="sd">    +----------------+----------------------------+</span>
+<span class="sd">    | goals          | Goal statistics            |</span>
+<span class="sd">    +----------------+----------------------------+</span>
+<span class="sd">    | goalkeeper     | Goalkeeping statistics     |</span>
+<span class="sd">    +----------------+----------------------------+</span>
+<span class="sd">    | passes         | Passing statistics         |</span>
+<span class="sd">    +----------------+----------------------------+</span>
+<span class="sd">    | setpieces      | Set-piece statistics       |</span>
+<span class="sd">    +----------------+----------------------------+</span>
+<span class="sd">    | shots          | Shot statistics            |</span>
+<span class="sd">    +----------------+----------------------------+</span>
+<span class="sd">    | touches        | Ball touch statistics      |</span>
+<span class="sd">    +----------------+----------------------------+</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">play</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Constructor of MatchStatistics class.</span>
+
+<span class="sd">        :param play: Type of teams playing in matches.</span>
+<span class="sd">        :type play: string</span>
+<span class="sd">        :param base_uri: Base URI of API.</span>
+<span class="sd">        :type base_uri: string</span>
+<span class="sd">        :param auth: Authentication credential.</span>
+<span class="sd">        :type auth: tuple</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">crosses</span> <span class="o">=</span> <span class="n">CrossingStatistics</span><span class="p">(</span><span class="n">play</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">defense</span> <span class="o">=</span> <span class="n">DefensiveStatistics</span><span class="p">(</span><span class="n">play</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fouls</span> <span class="o">=</span> <span class="n">FoulingStatistics</span><span class="p">(</span><span class="n">play</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">goals</span> <span class="o">=</span> <span class="n">GoalStatistics</span><span class="p">(</span><span class="n">play</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">goalkeeper</span> <span class="o">=</span> <span class="n">GoalkeepingStatistics</span><span class="p">(</span><span class="n">play</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">passes</span> <span class="o">=</span> <span class="n">PassingStatistics</span><span class="p">(</span><span class="n">play</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setpieces</span> <span class="o">=</span> <span class="n">SetPieceStatistics</span><span class="p">(</span><span class="n">play</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">shots</span> <span class="o">=</span> <span class="n">ShotStatistics</span><span class="p">(</span><span class="n">play</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">touches</span> <span class="o">=</span> <span class="n">TouchStatistics</span><span class="p">(</span><span class="n">play</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span></div>
+</pre></div>
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2013-2014, Soccermetrics Research, LLC.<br/>
+      Last updated on Aug 09, 2014.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

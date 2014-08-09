@@ -159,8 +159,86 @@
   <div class="row">
     <div class="col-md-12">
       
-  <div class="section" id="client-object">
-<span id="ref-client-obj"></span><h1>Client Object<a class="headerlink" href="#client-object" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="module-soccermetrics.rest">
+<span id="client-object"></span><span id="ref-client-obj"></span><h1>Client Object<a class="headerlink" href="#module-soccermetrics.rest" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="soccermetrics.rest.SoccermetricsRestClient">
+<em class="property">class </em><tt class="descclassname">soccermetrics.rest.</tt><tt class="descname">SoccermetricsRestClient</tt><big>(</big><em>account=None</em>, <em>api_key=None</em>, <em>base_uri='https://api-connect.soccermetrics.net'</em><big>)</big><a class="reference internal" href="../_modules/soccermetrics/rest.html#SoccermetricsRestClient"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.SoccermetricsRestClient" title="Permalink to this definition">¶</a></dt>
+<dd><p>A client object for accessing the Soccermetrics REST API.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="39%" />
+<col width="61%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Attribute</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>root</td>
+<td>Service root</td>
+</tr>
+<tr class="row-odd"><td>link</td>
+<td>Link to resources</td>
+</tr>
+<tr class="row-even"><td>validation</td>
+<td>Validation resources</td>
+</tr>
+<tr class="row-odd"><td>players</td>
+<td>Players resource</td>
+</tr>
+<tr class="row-even"><td>managers</td>
+<td>Managers resource</td>
+</tr>
+<tr class="row-odd"><td>referees</td>
+<td>Referees resource</td>
+</tr>
+<tr class="row-even"><td>club</td>
+<td>Club match resources</td>
+</tr>
+<tr class="row-odd"><td>natl</td>
+<td>Nat&#8217;l team match resources</td>
+</tr>
+<tr class="row-even"><td>analytics</td>
+<td>Match analytics resources</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>account</strong> (<em>string or None</em>) &#8211; Soccermetrics API Application ID from <a class="reference external" href="https://developer.soccermetrics.net/admin/access_details">your account
+dashboard</a>.</li>
+<li><strong>api_key</strong> (<em>string or None</em>) &#8211; <p>Soccermetrics API Application key from <a class="reference external" href="https://developer.soccermetrics.net/admin/access_details">your account
+dashboard</a>.</p>
+</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="soccermetrics.rest.find_credentials">
+<tt class="descclassname">soccermetrics.rest.</tt><tt class="descname">find_credentials</tt><big>(</big><big>)</big><a class="reference internal" href="../_modules/soccermetrics/rest.html#find_credentials"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.find_credentials" title="Permalink to this definition">¶</a></dt>
+<dd><p>Search for API credentials in current environment.</p>
+<p>Looks for <tt class="docutils literal"><span class="pre">SOCCERMETRICS_APP_ID</span></tt> and <tt class="docutils literal"><span class="pre">SOCCERMETRICS_APP_KEY</span></tt>
+among the environment variables.  Returns a <tt class="docutils literal"><span class="pre">(None,</span> <span class="pre">None)</span></tt>
+tuple if neither variable is not present in the environment.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">(account, api_key) or (None, None)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </div>
 <div class="section" id="module-soccermetrics">
 <span id="exceptions"></span><span id="ref-exceptions"></span><h1>Exceptions<a class="headerlink" href="#module-soccermetrics" title="Permalink to this headline">¶</a></h1>

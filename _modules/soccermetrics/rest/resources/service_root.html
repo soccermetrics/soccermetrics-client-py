@@ -1,0 +1,194 @@
+
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>soccermetrics.rest.resources.service_root &mdash; Soccermetrics API Python Client Documentation</title>
+    
+    <link rel="stylesheet" href="../../../../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../srstatic/css/custom-styles.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/bootswatch-3.1.0/cosmo/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../',
+        VERSION:     '0.8',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../../../../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../../../../_static/bootstrap-3.1.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../../../_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="Soccermetrics API Python Client Documentation" href="../../../../index.html" />
+    <link rel="up" title="soccermetrics.rest" href="../../rest.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body>
+
+  <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../../../index.html"><img src="../../../../_static/Logo.png">
+          API Python Client</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.8</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            <li class="divider-vertical"></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../../../index.html">Docs <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../installation.html#virtual-environment-install">Virtual Environment Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../installation.html#system-wide-install">System-Wide Install</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../started.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../started.html#get-your-api-credentials">Get Your API Credentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../started.html#using-your-api-credentials">Using Your API Credentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../started.html#match-information">Match Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../started.html#match-statistics">Match Statistics</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../guide/main.html">User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../guide/resources.html">Accessing Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../guide/validation.html">Validation Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../guide/personnel.html">Personnel Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../guide/match.html">Match Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../guide/analytics.html">Match Analytics Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reference/main.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../reference/client.html">Client Object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../reference/client.html#module-soccermetrics">Exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../reference/resource.html">Base Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../reference/root.html">API Root</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../reference/validation.html">Validation Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../reference/personnel.html">Personnel Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../reference/match.html">Match Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../reference/analytics.html">Match Analytics Resources</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"></ul>
+</li>
+              
+            
+            
+              
+                
+              
+            
+            
+            
+            
+              <li class="hidden-sm"></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      
+  <h1>Source code for soccermetrics.rest.resources.service_root</h1><div class="highlight"><pre>
+<span class="kn">from</span> <span class="nn">soccermetrics.rest.resources</span> <span class="kn">import</span> <span class="n">Resource</span>
+
+<div class="viewcode-block" id="Root"><a class="viewcode-back" href="../../../../reference/root.html#soccermetrics.rest.resources.service_root.Root">[docs]</a><span class="k">class</span> <span class="nc">Root</span><span class="p">(</span><span class="n">Resource</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Represents the service root of the REST API (/ endpoint).</span>
+
+<span class="sd">    The Service Root is the central resource of the Soccermetrics</span>
+<span class="sd">    API. From this point the user can access all of the publicly-</span>
+<span class="sd">    available resources.</span>
+
+<span class="sd">    Derived from :class:`base.Resource`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Constructor of Root class.</span>
+
+<span class="sd">        :param base_uri: Base URI of API.</span>
+<span class="sd">        :type base_uri: string</span>
+<span class="sd">        :param auth: Authentication credential.</span>
+<span class="sd">        :type auth: tuple</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Root</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">endpoint</span> <span class="o">+=</span> <span class="s">&#39;/&#39;</span></div>
+</pre></div>
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2013-2014, Soccermetrics Research, LLC.<br/>
+      Last updated on Aug 09, 2014.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

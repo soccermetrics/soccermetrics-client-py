@@ -1,0 +1,533 @@
+
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>soccermetrics.rest.resources.base &mdash; Soccermetrics API Python Client Documentation</title>
+    
+    <link rel="stylesheet" href="../../../../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../srstatic/css/custom-styles.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/bootswatch-3.1.0/cosmo/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../',
+        VERSION:     '0.8',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../../../../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../../../../_static/bootstrap-3.1.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../../../_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="Soccermetrics API Python Client Documentation" href="../../../../index.html" />
+    <link rel="up" title="soccermetrics.rest" href="../../rest.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body>
+
+  <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../../../index.html"><img src="../../../../_static/Logo.png">
+          API Python Client</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.8</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            <li class="divider-vertical"></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../../../index.html">Docs <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../installation.html#virtual-environment-install">Virtual Environment Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../installation.html#system-wide-install">System-Wide Install</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../started.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../started.html#get-your-api-credentials">Get Your API Credentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../started.html#using-your-api-credentials">Using Your API Credentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../started.html#match-information">Match Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../started.html#match-statistics">Match Statistics</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../guide/main.html">User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../guide/resources.html">Accessing Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../guide/validation.html">Validation Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../guide/personnel.html">Personnel Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../guide/match.html">Match Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../guide/analytics.html">Match Analytics Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reference/main.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../reference/client.html">Client Object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../reference/client.html#module-soccermetrics">Exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../reference/resource.html">Base Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../reference/root.html">API Root</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../reference/validation.html">Validation Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../reference/personnel.html">Personnel Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../reference/match.html">Match Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../reference/analytics.html">Match Analytics Resources</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"></ul>
+</li>
+              
+            
+            
+              
+                
+              
+            
+            
+            
+            
+              <li class="hidden-sm"></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      
+  <h1>Source code for soccermetrics.rest.resources.base</h1><div class="highlight"><pre>
+<span class="kn">from</span> <span class="nn">easydict</span> <span class="kn">import</span> <span class="n">EasyDict</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="kn">from</span> <span class="nn">soccermetrics</span> <span class="kn">import</span> <span class="n">SoccermetricsRestException</span>
+<span class="kn">from</span> <span class="nn">soccermetrics</span> <span class="kn">import</span> <span class="n">__api_version__</span> <span class="k">as</span> <span class="n">API_VERSION</span>
+
+<div class="viewcode-block" id="Resource"><a class="viewcode-back" href="../../../../reference/resource.html#soccermetrics.rest.resources.base.Resource">[docs]</a><span class="k">class</span> <span class="nc">Resource</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Represents interactions with a REST API resource.</span>
+
+<span class="sd">    Sets the high-level (versioning) endpoint for the API resource.</span>
+
+<span class="sd">    :param base_uri: Base URI of API.</span>
+<span class="sd">    :type base_uri: string</span>
+<span class="sd">    :param auth: Authentication credential.</span>
+<span class="sd">    :type auth: tuple</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">base_uri</span> <span class="o">=</span> <span class="n">base_uri</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">auth</span> <span class="o">=</span> <span class="n">auth</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">endpoint</span> <span class="o">=</span> <span class="s">&quot;/</span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">API_VERSION</span>
+
+<div class="viewcode-block" id="Resource.get"><a class="viewcode-back" href="../../../../reference/resource.html#soccermetrics.rest.resources.base.Resource.get">[docs]</a>    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">uid</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieves a representation of the REST resource.</span>
+
+<span class="sd">        If the request is successful, returns an ``EasyDict`` object that</span>
+<span class="sd">        uses dot notation for the response contents.</span>
+
+<span class="sd">        A request may be unsuccessful for two reasons:</span>
+
+<span class="sd">            * The API returns an error (HTTP code not 200).  In this situation,</span>
+<span class="sd">              the client raises a :exc:`~soccermetrics.SoccermetricsRestException` with</span>
+<span class="sd">              the HTTP code, the request URI, and a detailed error message.</span>
+<span class="sd">            * The ``requests`` module raises an exception.  In this case, the client</span>
+<span class="sd">              raises a :exc:`~soccermetrics.SoccermetricsRestException` with HTTP code</span>
+<span class="sd">              500, the request URI and a detailed error message from the module.</span>
+
+<span class="sd">        :param uid: Unique ID of API resource representation.</span>
+<span class="sd">        :type uid: integer</span>
+<span class="sd">        :param kwargs: Collection of query parameters.</span>
+<span class="sd">        :type kwargs: dict</span>
+<span class="sd">        :returns: Resource representation.</span>
+<span class="sd">        :rtype: ``EasyDict`` object.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">uri</span> <span class="o">=</span> <span class="s">&quot;</span><span class="si">%s%s</span><span class="s">/</span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">base_uri</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">endpoint</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">uid</span><span class="p">))</span> <span class="k">if</span> <span class="n">uid</span> <span class="k">else</span> \
+            <span class="s">&quot;</span><span class="si">%s%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">base_uri</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">endpoint</span><span class="p">)</span>
+
+        <span class="n">full_param_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">kwargs</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">auth</span><span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">uri</span><span class="p">,</span><span class="n">params</span><span class="o">=</span><span class="n">full_param_dict</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">resp</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">base_uri</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">auth</span><span class="p">,</span> <span class="n">resp</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="n">resp</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+                <span class="k">raise</span> <span class="n">SoccermetricsRestException</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span><span class="n">data</span><span class="p">[</span><span class="s">&#39;uri&#39;</span><span class="p">],</span><span class="n">data</span><span class="p">[</span><span class="s">&#39;message&#39;</span><span class="p">])</span>
+        <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">SoccermetricsRestException</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="n">uri</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="n">e</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Resource.head"><a class="viewcode-back" href="../../../../reference/resource.html#soccermetrics.rest.resources.base.Resource.head">[docs]</a>    <span class="k">def</span> <span class="nf">head</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieves header data of the REST resource.</span>
+
+<span class="sd">        The response is an object with the following attribute:</span>
+
+<span class="sd">        +------------+-----------------------+</span>
+<span class="sd">        | Attribute  | Description           |</span>
+<span class="sd">        +============+=======================+</span>
+<span class="sd">        | headers    | Response headers      |</span>
+<span class="sd">        +------------+-----------------------+</span>
+
+<span class="sd">        If the request is successful, the client returns an ``EasyDict`` object that</span>
+<span class="sd">        uses dot notation for the response contents.</span>
+
+<span class="sd">        If the request is unsuccessful (HTTP code 4xx or 5xx), the client raises a</span>
+<span class="sd">        :exc:`~soccermetrics.SoccermetricsRestException` that includes the HTTP status</span>
+<span class="sd">        code and the request URI.</span>
+
+<span class="sd">        :returns: Header data.</span>
+<span class="sd">        :rtype: ``EasyDict`` object.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">uri</span> <span class="o">=</span> <span class="s">&quot;</span><span class="si">%s%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">base_uri</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">endpoint</span><span class="p">)</span>
+
+        <span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">uri</span><span class="p">,</span><span class="n">params</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">auth</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">resp</span><span class="o">.</span><span class="n">status_code</span> <span class="o">&lt;</span> <span class="mi">400</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">EasyDict</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">headers</span><span class="o">=</span><span class="n">resp</span><span class="o">.</span><span class="n">headers</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">SoccermetricsRestException</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span><span class="n">resp</span><span class="o">.</span><span class="n">url</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Resource.options"><a class="viewcode-back" href="../../../../reference/resource.html#soccermetrics.rest.resources.base.Resource.options">[docs]</a>    <span class="k">def</span> <span class="nf">options</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieves documentation of the REST resource representation.</span>
+
+<span class="sd">        If the status code is 200 (OK), returns the documentation.  Otherwise,</span>
+<span class="sd">        returns an error.</span>
+
+<span class="sd">        The response is an object with the following attributes:</span>
+
+<span class="sd">        +------------+------------------------+</span>
+<span class="sd">        | Attribute  | Description            |</span>
+<span class="sd">        +============+========================+</span>
+<span class="sd">        | headers    | Response headers       |</span>
+<span class="sd">        +------------+------------------------+</span>
+<span class="sd">        | data       | Resource documentation |</span>
+<span class="sd">        +------------+------------------------+</span>
+
+<span class="sd">        Link resources are not included in the documentation.</span>
+
+<span class="sd">        :returns: Resource documentation data.</span>
+<span class="sd">        :rtype: ``EasyDict`` object.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">uri</span> <span class="o">=</span> <span class="s">&quot;</span><span class="si">%s%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">base_uri</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">endpoint</span><span class="p">)</span>
+
+        <span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">options</span><span class="p">(</span><span class="n">uri</span><span class="p">,</span><span class="n">params</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">auth</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">resp</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">base_uri</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">auth</span><span class="p">,</span> <span class="n">resp</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">SoccermetricsRestException</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span><span class="n">resp</span><span class="o">.</span><span class="n">url</span><span class="p">)</span>
+
+</div></div>
+<div class="viewcode-block" id="Link"><a class="viewcode-back" href="../../../../reference/resource.html#soccermetrics.rest.resources.base.Link">[docs]</a><span class="k">class</span> <span class="nc">Link</span><span class="p">(</span><span class="n">Resource</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Represents interactions with hypertexted resources in the API.</span>
+
+<span class="sd">    This class is effectively a client within a client, so it can access any API endpoint</span>
+<span class="sd">    if the base URI and authentication pair are defined appropriately.</span>
+
+<span class="sd">    Derived from :class:`Resource`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Constructor of Link class.</span>
+
+<span class="sd">        :param base_uri: Base URI of API.</span>
+<span class="sd">        :type base_uri: string</span>
+<span class="sd">        :param auth: Authentication credential.</span>
+<span class="sd">        :type auth: tuple</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Link</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Link.get"><a class="viewcode-back" href="../../../../reference/resource.html#soccermetrics.rest.resources.base.Link.get">[docs]</a>    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">uri</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns a representation of the REST resource.</span>
+
+<span class="sd">        Its functionality is derived from :func:`Resource.get`.</span>
+
+<span class="sd">        :param uri: URI of REST resource, relative to base URI.</span>
+<span class="sd">        :type uri: string</span>
+<span class="sd">        :param kwargs: Collection of query parameters.</span>
+<span class="sd">        :type kwargs: dict</span>
+<span class="sd">        :returns: Resource representation.</span>
+<span class="sd">        :rtype: ``EasyDict`` object.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">endpoint</span> <span class="o">=</span> <span class="n">uri</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">Link</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Link.head"><a class="viewcode-back" href="../../../../reference/resource.html#soccermetrics.rest.resources.base.Link.head">[docs]</a>    <span class="k">def</span> <span class="nf">head</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">uri</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieves header data of the REST resource.</span>
+
+<span class="sd">        Its functionality is derived from :func:`Resource.head`.</span>
+
+<span class="sd">        :param uri: URI of REST resource, relative to base URI.</span>
+<span class="sd">        :type uri: string</span>
+<span class="sd">        :returns: Header data.</span>
+<span class="sd">        :rtype: ``EasyDict`` object.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">endpoint</span> <span class="o">=</span> <span class="n">uri</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">Link</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</div>
+<div class="viewcode-block" id="Link.options"><a class="viewcode-back" href="../../../../reference/resource.html#soccermetrics.rest.resources.base.Link.options">[docs]</a>    <span class="k">def</span> <span class="nf">options</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">uri</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieves documentation of the REST resource representation.</span>
+
+<span class="sd">        Its functionality is derived from :func:`Resource.options`.</span>
+
+<span class="sd">        :param uri: URI of REST resource, relative to base URI.</span>
+<span class="sd">        :type uri: string</span>
+<span class="sd">        :returns: Resource documentation data.</span>
+<span class="sd">        :rtype: ``EasyDict`` object.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">endpoint</span> <span class="o">=</span> <span class="n">uri</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">Link</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">options</span><span class="p">()</span>
+
+</div></div>
+<div class="viewcode-block" id="Response"><a class="viewcode-back" href="../../../../reference/resource.html#soccermetrics.rest.resources.base.Response">[docs]</a><span class="k">class</span> <span class="nc">Response</span><span class="p">(</span><span class="n">Resource</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Represents a REST API response object and its pagination properties and methods.</span>
+
+<span class="sd">    The response is an object with the following attributes:</span>
+
+<span class="sd">    +------------+-----------------------+</span>
+<span class="sd">    | Attribute  | Description           |</span>
+<span class="sd">    +============+=======================+</span>
+<span class="sd">    | status     | Response status code  |</span>
+<span class="sd">    +------------+-----------------------+</span>
+<span class="sd">    | headers    | Response headers      |</span>
+<span class="sd">    +------------+-----------------------+</span>
+<span class="sd">    | _meta      | Response meta-data,   |</span>
+<span class="sd">    |            | internal use only     |</span>
+<span class="sd">    +------------+-----------------------+</span>
+<span class="sd">    | data       | Response data         |</span>
+<span class="sd">    +------------+-----------------------+</span>
+
+<span class="sd">    The response also contains the following properties:</span>
+
+<span class="sd">    +--------------+----------------------------+</span>
+<span class="sd">    | Property     | Description                |</span>
+<span class="sd">    +==============+============================+</span>
+<span class="sd">    | page         | Current page of response   |</span>
+<span class="sd">    +--------------+----------------------------+</span>
+<span class="sd">    | pages        | Total pages of response    |</span>
+<span class="sd">    +--------------+----------------------------+</span>
+<span class="sd">    | records_page | Number of records per page |</span>
+<span class="sd">    +--------------+----------------------------+</span>
+<span class="sd">    | records      | Total records in response  |</span>
+<span class="sd">    +--------------+----------------------------+</span>
+
+<span class="sd">    You can use the following methods to page through the response:</span>
+
+<span class="sd">    +--------------+-------------------------------+</span>
+<span class="sd">    | Method       | Description                   |</span>
+<span class="sd">    +==============+===============================+</span>
+<span class="sd">    | first()      | First page of API response    |</span>
+<span class="sd">    +--------------+-------------------------------+</span>
+<span class="sd">    | prev()       | Previous page of API response |</span>
+<span class="sd">    +--------------+-------------------------------+</span>
+<span class="sd">    | next()       | Next page of API response     |</span>
+<span class="sd">    +--------------+-------------------------------+</span>
+<span class="sd">    | last()       | Last page of API response     |</span>
+<span class="sd">    +--------------+-------------------------------+</span>
+
+<span class="sd">    If you wish to access all of the data at once, there is the :func:`all` method.</span>
+
+<span class="sd">    Derived from :class:`Resource`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">,</span> <span class="n">resp</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Constructor of Response class.</span>
+
+<span class="sd">        :param base_uri: Base URI of API.</span>
+<span class="sd">        :type base_uri: string</span>
+<span class="sd">        :param auth: Authentication credential pair.</span>
+<span class="sd">        :type auth: tuple</span>
+<span class="sd">        :param resp: response object from API request</span>
+<span class="sd">        :type resp: JSON</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Response</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">base_uri</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span>
+        <span class="n">jresp</span> <span class="o">=</span> <span class="n">resp</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_meta</span> <span class="o">=</span> <span class="n">EasyDict</span><span class="p">(</span><span class="n">jresp</span><span class="p">[</span><span class="s">&#39;meta&#39;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="n">resp</span><span class="o">.</span><span class="n">status_code</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">headers</span> <span class="o">=</span> <span class="n">EasyDict</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">headers</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">EasyDict</span><span class="p">(</span><span class="n">rec</span><span class="p">)</span> <span class="k">for</span> <span class="n">rec</span> <span class="ow">in</span> <span class="n">jresp</span><span class="p">[</span><span class="s">&#39;result&#39;</span><span class="p">]]</span>
+
+    <span class="k">def</span> <span class="nf">_iter</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Custom iterator to retrieve all data from API response.</span>
+
+<span class="sd">        Not intended for external use; if you wish to page</span>
+<span class="sd">        through the response use the pagination methods.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">resp</span> <span class="o">=</span> <span class="bp">self</span>
+        <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">resp</span><span class="o">.</span><span class="n">_meta</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">resp</span><span class="o">.</span><span class="n">_meta</span><span class="o">.</span><span class="n">next</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">StopIteration</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">resp</span> <span class="o">=</span> <span class="n">resp</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+
+    <span class="nd">@property</span>
+<div class="viewcode-block" id="Response.page"><a class="viewcode-back" href="../../../../reference/resource.html#soccermetrics.rest.resources.base.Response.page">[docs]</a>    <span class="k">def</span> <span class="nf">page</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Current page of API response given pagination settings.</span>
+
+<span class="sd">        If meta-data does not exist (i.e. no GET data),</span>
+<span class="sd">        the current page is zero.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_meta</span><span class="o">.</span><span class="n">page</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_meta</span> <span class="k">else</span> <span class="mi">0</span>
+</div>
+    <span class="nd">@property</span>
+<div class="viewcode-block" id="Response.pages"><a class="viewcode-back" href="../../../../reference/resource.html#soccermetrics.rest.resources.base.Response.pages">[docs]</a>    <span class="k">def</span> <span class="nf">pages</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Total pages in API response given pagination settings.</span>
+
+<span class="sd">        If meta-data does not exist (i.e. no GET data), the total</span>
+<span class="sd">        number of pages is zero.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_meta</span><span class="o">.</span><span class="n">total_pages</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_meta</span> <span class="k">else</span> <span class="mi">0</span>
+</div>
+    <span class="nd">@property</span>
+<div class="viewcode-block" id="Response.records_page"><a class="viewcode-back" href="../../../../reference/resource.html#soccermetrics.rest.resources.base.Response.records_page">[docs]</a>    <span class="k">def</span> <span class="nf">records_page</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Records per page of the API response, either default or set by user&#39;s API request.</span>
+
+<span class="sd">        If meta-data does not exist (i.e. no GET data), records per page is zero.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_meta</span><span class="o">.</span><span class="n">records</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_meta</span> <span class="k">else</span> <span class="mi">0</span>
+</div>
+    <span class="nd">@property</span>
+<div class="viewcode-block" id="Response.records"><a class="viewcode-back" href="../../../../reference/resource.html#soccermetrics.rest.resources.base.Response.records">[docs]</a>    <span class="k">def</span> <span class="nf">records</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Total records in the API response.</span>
+
+<span class="sd">        If meta-data does not exist (i.e. no GET data), total number of records is zero.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_meta</span><span class="o">.</span><span class="n">total_records</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_meta</span> <span class="k">else</span> <span class="mi">0</span>
+</div>
+<div class="viewcode-block" id="Response.first"><a class="viewcode-back" href="../../../../reference/resource.html#soccermetrics.rest.resources.base.Response.first">[docs]</a>    <span class="k">def</span> <span class="nf">first</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Go to first page of the API response.</span>
+
+<span class="sd">        If meta-data does not exist (i.e. no GET data), return None.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_meta</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">endpoint</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_meta</span><span class="o">.</span><span class="n">first</span>
+            <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">Response</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">None</span>
+</div>
+<div class="viewcode-block" id="Response.next"><a class="viewcode-back" href="../../../../reference/resource.html#soccermetrics.rest.resources.base.Response.next">[docs]</a>    <span class="k">def</span> <span class="nf">next</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Go to next page of the API response.</span>
+
+<span class="sd">        If meta-data does not exist (i.e. no GET data), return None.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_meta</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_meta</span><span class="o">.</span><span class="n">next</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">endpoint</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_meta</span><span class="o">.</span><span class="n">next</span>
+            <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">Response</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">None</span>
+</div>
+<div class="viewcode-block" id="Response.prev"><a class="viewcode-back" href="../../../../reference/resource.html#soccermetrics.rest.resources.base.Response.prev">[docs]</a>    <span class="k">def</span> <span class="nf">prev</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Go to previous page of the API response.</span>
+
+<span class="sd">        If meta-data does not exist (i.e. no GET data), return None.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_meta</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_meta</span><span class="o">.</span><span class="n">prev</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">endpoint</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_meta</span><span class="o">.</span><span class="n">prev</span>
+            <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">Response</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">None</span>
+</div>
+<div class="viewcode-block" id="Response.last"><a class="viewcode-back" href="../../../../reference/resource.html#soccermetrics.rest.resources.base.Response.last">[docs]</a>    <span class="k">def</span> <span class="nf">last</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Go to last page of the API response.</span>
+
+<span class="sd">        If meta-data does not exist (i.e. no GET data), return None.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_meta</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">endpoint</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_meta</span><span class="o">.</span><span class="n">last</span>
+            <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">Response</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">None</span>
+</div>
+<div class="viewcode-block" id="Response.all"><a class="viewcode-back" href="../../../../reference/resource.html#soccermetrics.rest.resources.base.Response.all">[docs]</a>    <span class="k">def</span> <span class="nf">all</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieve all data of the API response at once.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">rec</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">page</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_iter</span><span class="p">():</span>
+            <span class="n">rec</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">page</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">rec</span></div></div>
+</pre></div>
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2013-2014, Soccermetrics Research, LLC.<br/>
+      Last updated on Aug 09, 2014.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

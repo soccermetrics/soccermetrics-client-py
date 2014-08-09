@@ -153,8 +153,122 @@
   <div class="row">
     <div class="col-md-12">
       
-  <div class="section" id="match-analytics-resources">
-<span id="ref-analytics-obj"></span><h1>Match Analytics Resources<a class="headerlink" href="#match-analytics-resources" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="module-soccermetrics.rest.resources.analytics">
+<span id="match-analytics-resources"></span><span id="ref-analytics-obj"></span><h1>Match Analytics Resources<a class="headerlink" href="#module-soccermetrics.rest.resources.analytics" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="soccermetrics.rest.resources.analytics.AnalyticsResource">
+<em class="property">class </em><tt class="descclassname">soccermetrics.rest.resources.analytics.</tt><tt class="descname">AnalyticsResource</tt><big>(</big><em>resource</em>, <em>base_uri</em>, <em>auth</em><big>)</big><a class="reference internal" href="../_modules/soccermetrics/rest/resources/analytics.html#AnalyticsResource"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.analytics.AnalyticsResource" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represents an Analytics REST resource.</p>
+<p>The Match Analytics resources controls access to advanced player
+and team analytics related to events in a football match and
+derived from basic match data.</p>
+<p>Derived from <tt class="xref py py-class docutils literal"><span class="pre">resources.Resource</span></tt>.</p>
+<dl class="method">
+<dt id="soccermetrics.rest.resources.analytics.AnalyticsResource.EndpointURI">
+<tt class="descname">EndpointURI</tt><big>(</big><big>)</big><a class="reference internal" href="../_modules/soccermetrics/rest/resources/analytics.html#AnalyticsResource.EndpointURI"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.analytics.AnalyticsResource.EndpointURI" title="Permalink to this definition">¶</a></dt>
+<dd><p>Construct URI of Analytics REST resource.</p>
+<p>URI is of format <tt class="docutils literal"><span class="pre">/analytics/match/&lt;match&gt;/&lt;resource&gt;/</span></tt>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">URI of REST resource.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">string</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="soccermetrics.rest.resources.analytics.AnalyticsResource.get">
+<tt class="descname">get</tt><big>(</big><em>match</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="../_modules/soccermetrics/rest/resources/analytics.html#AnalyticsResource.get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.analytics.AnalyticsResource.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieves a representation of Analytics REST resource.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>match</strong> (<em>integer</em>) &#8211; Unique ID associated with football match.</li>
+<li><strong>kwargs</strong> (<em>dict</em>) &#8211; Collection of query parameters.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Resource representation.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">Return value of <tt class="xref py py-func docutils literal"><span class="pre">Resource.get()</span></tt>.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="soccermetrics.rest.resources.analytics.AnalyticsResource.head">
+<tt class="descname">head</tt><big>(</big><big>)</big><a class="reference internal" href="../_modules/soccermetrics/rest/resources/analytics.html#AnalyticsResource.head"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.analytics.AnalyticsResource.head" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieves header data of Analytics REST resource.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Header data.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Return value of <tt class="xref py py-func docutils literal"><span class="pre">Resource.head()</span></tt>.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="soccermetrics.rest.resources.analytics.AnalyticsResource.options">
+<tt class="descname">options</tt><big>(</big><big>)</big><a class="reference internal" href="../_modules/soccermetrics/rest/resources/analytics.html#AnalyticsResource.options"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.analytics.AnalyticsResource.options" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieves documentation of Analytics REST resource.</p>
+<p>If the status code is 200 (OK), returns the documentation.  Otherwise,
+returns an error.</p>
+<p>Link resources are not included in the documentation.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Resource documentation data.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Return value of <tt class="xref py py-func docutils literal"><span class="pre">Resource.options()</span></tt>.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="soccermetrics.rest.resources.analytics.MatchAnalytics">
+<em class="property">class </em><tt class="descclassname">soccermetrics.rest.resources.analytics.</tt><tt class="descname">MatchAnalytics</tt><big>(</big><em>base_uri</em>, <em>auth</em><big>)</big><a class="reference internal" href="../_modules/soccermetrics/rest/resources/analytics.html#MatchAnalytics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#soccermetrics.rest.resources.analytics.MatchAnalytics" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represents a Match Analytics REST resource (/analytics/match endpoints).</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="38%" />
+<col width="62%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Attribute</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>state</td>
+<td>Match state</td>
+</tr>
+<tr class="row-odd"><td>segment</td>
+<td>Match segments</td>
+</tr>
+<tr class="row-even"><td>tsr</td>
+<td>Match Total Shots Ratio</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </div>
 
 
