@@ -1,6 +1,6 @@
-Jinja2==2.7.1
-MarkupSafe==0.18
-Pygments==1.6
-Sphinx==1.2b1
-sphinx-bootstrap-theme==0.3.0
-docutils==0.11
+Jinja2
+MarkupSafe
+Pygments
+Sphinx
+sphinx-bootstrap-theme
+docutils
