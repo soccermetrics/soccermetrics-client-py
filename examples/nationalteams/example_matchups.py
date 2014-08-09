@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 #
 # Create a fixture list by retrieving match dates, kickoff times,
-# and home/away teams, and other info for matches in a matchday.
+# and home/away teams, and other info for matches in a matchday or round.
 #
 
 import sys
