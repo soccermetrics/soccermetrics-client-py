@@ -1,11 +1,4 @@
 
-
-  
- 
-  
- 
-
-
 <!DOCTYPE html>
 
 
@@ -18,8 +11,8 @@
     <link rel="stylesheet" href="_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="srstatic/css/custom-styles.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootswatch-3.1.0/cosmo/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootswatch/3.0.0/cosmo/bootstrap.min.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
@@ -34,14 +27,16 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="_static/searchtools.js"></script>
-    <script type="text/javascript" src="_static/js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
-    <script type="text/javascript" src="_static/bootstrap-3.0.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.1.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="Soccermetrics API Python Client Documentation" href="index.html" />
   <script type="text/javascript">
     jQuery(function() { Search.loadIndex("searchindex.js"); });
   </script>
+  
+  <script type="text/javascript" id="searchindexloader"></script>
   
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
@@ -61,7 +56,8 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.html">API Python Client</a>
+        <a class="navbar-brand" href="index.html"><img src="_static/Logo.png">
+          API Python Client</a>
         <span class="navbar-text navbar-version pull-left"><b>0.8</b></span>
       </div>
 
@@ -71,11 +67,14 @@
             
             
               <li class="dropdown globaltoc-container">
-  <a href="index.html"
-     class="dropdown-toggle"
-     data-toggle="dropdown">Docs <b class="caret"></b></a>
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Docs <b class="caret"></b></a>
   <ul class="dropdown-menu globaltoc"
-    ><ul>
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="installation.html#virtual-environment-install">Virtual Environment Install</a></li>
 <li class="toctree-l2"><a class="reference internal" href="installation.html#system-wide-install">System-Wide Install</a></li>
@@ -96,10 +95,15 @@
 <li class="toctree-l2"><a class="reference internal" href="guide/analytics.html">Match Analytics Resources</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="reference.html">API Reference</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="reference.html#module-soccermetrics.rest">Client Object</a></li>
-<li class="toctree-l2"><a class="reference internal" href="reference.html#resources">Resources</a></li>
-<li class="toctree-l2"><a class="reference internal" href="reference.html#module-soccermetrics">Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference/main.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="reference/client.html">Client Object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference/client.html#module-soccermetrics">Exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference/resource.html">Base Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference/root.html">API Root</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference/validation.html">Validation Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference/personnel.html">Personnel Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference/match.html">Match Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference/analytics.html">Match Analytics Resources</a></li>
 </ul>
 </li>
 </ul>
@@ -107,8 +111,14 @@
 </li>
               
                 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Page <b class="caret"></b></a>
-  <ul class="dropdown-menu localtoc"></ul>
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"></ul>
 </li>
               
             
@@ -120,7 +130,7 @@
             
             
             
-              <li></li>
+              <li class="hidden-sm"></li>
             
           </ul>
 
@@ -133,7 +143,7 @@
 
 <div class="container">
   <div class="row">
-    <div class="span12">
+    <div class="col-md-12">
       
   <h1 id="search-documentation">Search</h1>
   <div id="fallback" class="admonition warning">
@@ -150,12 +160,16 @@
     containing fewer words won't appear in the result list.
   </p>
 
-  <form class="form-search" action="" method="get">
-    <input type="text" name="q" class="input-medium search-query">
-    <button type="submit" class="btn">search</button>
+  
+  <form class="form-inline" action="" method="get">
+    <div class="form-group">
+      <input type="text" class="form-control" name="q" value="" />
+    </div>
+    <input type="submit" class="btn btn-default" value="search" />
     <span id="search-progress" style="padding-left: 10px"></span>
-  </form>
-
+  </form>  
+  
+  
   
   <div id="search-results">
   
@@ -173,8 +187,8 @@
     </p>
     <p>
         &copy; Copyright 2013-2014, Soccermetrics Research, LLC.<br/>
-      Last updated on Aug 05, 2014.<br/>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2b1.<br/>
+      Last updated on Aug 09, 2014.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>
 </footer>

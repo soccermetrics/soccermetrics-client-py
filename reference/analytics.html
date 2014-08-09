@@ -1,0 +1,179 @@
+
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Match Analytics Resources &mdash; Soccermetrics API Python Client Documentation</title>
+    
+    <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../srstatic/css/custom-styles.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootswatch-3.1.0/cosmo/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.8',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.1.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="Soccermetrics API Python Client Documentation" href="../index.html" />
+    <link rel="up" title="API Reference" href="main.html" />
+    <link rel="prev" title="Match Resources" href="match.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body>
+
+  <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../index.html"><img src="../_static/Logo.png">
+          API Python Client</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.8</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            <li class="divider-vertical"></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../index.html">Docs <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#virtual-environment-install">Virtual Environment Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#system-wide-install">System-Wide Install</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../started.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../started.html#get-your-api-credentials">Get Your API Credentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../started.html#using-your-api-credentials">Using Your API Credentials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../started.html#match-information">Match Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../started.html#match-statistics">Match Statistics</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../guide/main.html">User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../guide/resources.html">Accessing Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guide/validation.html">Validation Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guide/personnel.html">Personnel Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guide/match.html">Match Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guide/analytics.html">Match Analytics Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="main.html">API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="client.html">Client Object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="client.html#module-soccermetrics">Exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resource.html">Base Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="root.html">API Root</a></li>
+<li class="toctree-l2"><a class="reference internal" href="validation.html">Validation Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="personnel.html">Personnel Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="match.html">Match Resources</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Match Analytics Resources</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Match Analytics Resources</a></li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="match.html" title="Previous Chapter: Match Resources"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; Match Resources</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+              <li class="hidden-sm"></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      
+  <div class="section" id="match-analytics-resources">
+<span id="ref-analytics-obj"></span><h1>Match Analytics Resources<a class="headerlink" href="#match-analytics-resources" title="Permalink to this headline">¶</a></h1>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2013-2014, Soccermetrics Research, LLC.<br/>
+      Last updated on Aug 09, 2014.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
