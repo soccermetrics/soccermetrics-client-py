@@ -4,11 +4,21 @@ __version__ = '.'.join(__version_info__)
 __api_version__ = 'v1'
 
 class SoccermetricsException(Exception):
-    """Custom exception for errors in Soccermetrics applications."""
+    """Base class for exceptions in Soccermetrics applications.
+
+    Derived from :class:`Exception`.
+    """
     pass
 
 class SoccermetricsRestException(SoccermetricsException):
-    """Custom exception for Soccermetrics REST API errors."""
+    """Custom exception for Soccermetrics REST API errors.
+
+    The exception is raised with the following message::
+
+        **HTTP ERROR** <error code>: <error message>
+        <URI>
+
+    """
 
     def __init__(self,status,uri,msg=""):
         """Constructor of SoccermetricsRestException.

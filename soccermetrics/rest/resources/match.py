@@ -4,7 +4,10 @@ from soccermetrics.rest.resources.statistics import MatchStatistics
 
 class MatchResource(Resource):
     """
-    Represents a Match REST resource (/matches endpoints).
+    Represents a Match REST resource (<play>/matches/<resource> endpoints).
+
+    The Match Resources are a collection of macro-events, micro-events, and
+    summary statistics resources in the Soccermetrics Connect API.
 
     Derived from :class:`resources.Resource`.
     """
@@ -39,6 +42,9 @@ class MatchResource(Resource):
     def get(self, match=None, uid=None, **kwargs):
         """
         Retrieves a representation of Match REST resource.
+
+        If the status code is 200 (OK), returns the representation.  Otherwise,
+        returns an error.
 
         :param match: Unique ID associated with football match.
         :type match: integer
@@ -83,7 +89,7 @@ class MatchResource(Resource):
 
 class MatchInformation(MatchResource):
     """
-    Access to Match Information resources (/matches/info resource).
+    Access to Match Information resources (/<play>/matches/info resource).
 
     Derived from :class:`MatchResource`.
     """
@@ -94,7 +100,7 @@ class MatchInformation(MatchResource):
 
 class MatchConditions(MatchResource):
     """
-    Access to Match Conditions resources (/matches/conditions resource).
+    Access to Match Conditions resources (/<play>/matches/conditions resource).
 
     Derived from :class:`MatchResource`.
     """
@@ -105,7 +111,7 @@ class MatchConditions(MatchResource):
 
 class MatchLineups(MatchResource):
     """
-    Access to Match Lineups resources (/matches/lineups resource).
+    Access to Match Lineups resources (/<play>/matches/lineups resource).
 
     Derived from :class:`MatchResource`.
     """
@@ -116,7 +122,7 @@ class MatchLineups(MatchResource):
 
 class MatchGoals(MatchResource):
     """
-    Access to Match Goals resources (/matches/goals resource).
+    Access to Match Goals resources (/<play>/matches/goals resource).
 
     Derived from :class:`MatchResource`.
     """
@@ -126,7 +132,7 @@ class MatchGoals(MatchResource):
 
 class MatchPenalties(MatchResource):
     """
-    Access to Match Penalties resources (/matches/penalties resource).
+    Access to Match Penalties resources (/<play>/matches/penalties resource).
 
     Derived from :class:`MatchResource`.
     """
@@ -137,7 +143,7 @@ class MatchPenalties(MatchResource):
 
 class MatchOffenses(MatchResource):
     """
-    Access to Match Offenses resources (/matches/offenses resource).
+    Access to Match Offenses resources (/<play>/matches/offenses resource).
 
     Derived from :class:`MatchResource`.
     """
@@ -148,7 +154,7 @@ class MatchOffenses(MatchResource):
 
 class MatchSubstitutions(MatchResource):
     """
-    Access to Match Substitutions resources (/matches/substitutions resource).
+    Access to Match Substitutions resources (/<play>/matches/substitutions resource).
 
     Derived from :class:`MatchResource`.
     """
@@ -159,7 +165,7 @@ class MatchSubstitutions(MatchResource):
 
 class MatchShootouts(MatchResource):
     """
-    Access to Match Shootouts resources (/matches/shootouts resource).
+    Access to Match Shootouts resources (/<play>/matches/shootouts resource).
 
     Derived from :class:`MatchResource`.
     """
@@ -170,7 +176,8 @@ class MatchShootouts(MatchResource):
 
 class MatchPlay(object):
     """
-    Access to Match objects.
+    Access to Match objects for a specific type of match (club,
+    national team).
 
     +----------------+---------------------------+
     | Attribute      | Description               |

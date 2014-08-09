@@ -2,7 +2,11 @@ from soccermetrics.rest.resources import Resource
 
 class MatchStatisticsResource(Resource):
     """
-    Represents a Match Statistics REST resource (/stats/<statistic>/<resource> endpoints).
+    Represents a Match Statistics REST resource.
+
+    The Match Statistics resources controls access to summary in-match
+    statistical data of players who are in the match lineups of a
+    football match.
 
     Derived from :class:`base.Resource`.
     """
@@ -28,7 +32,7 @@ class MatchStatisticsResource(Resource):
 
 class CrossingStatistics(object):
     """
-    Establish access to Cross statistical resources (/stats/crosses endpoint).
+    Establish access to Cross statistical resources (/<play>/stats/crosses endpoint).
 
     +----------------+-----------------------+
     | Attribute      | Description           |
@@ -60,7 +64,7 @@ class CrossingStatistics(object):
 
 class DefensiveStatistics(object):
     """
-    Establish access to Defensive statistical resources (/stats/defense endpoint).
+    Establish access to Defensive statistical resources (/<play>/stats/defense endpoint).
 
     +----------------+----------------------------+
     | Attribute      | Description                |
@@ -100,7 +104,7 @@ class DefensiveStatistics(object):
 
 class FoulingStatistics(object):
     """
-    Access to Foul statistical resources (/stats/fouls endpoint).
+    Access to Foul statistical resources (/<play>/stats/fouls endpoint).
 
     +--------------+-----------------------+
     | Attribute    | Description           |
@@ -131,7 +135,7 @@ class FoulingStatistics(object):
 
 class GoalStatistics(object):
     """
-    Access to Goal statistical resources (/stats/goals endpoint).
+    Access to Goal statistical resources (/<play>/stats/goals endpoint).
 
     +----------------+----------------------------+
     | Attribute      | Description                |
@@ -171,7 +175,7 @@ class GoalStatistics(object):
 
 class GoalkeepingStatistics(object):
     """
-    Access to Goalkeeper statistical resources (/stats/goalkeeper endpoint).
+    Access to Goalkeeper statistical resources (/<play>/stats/goalkeeper endpoint).
 
     +----------------+----------------------------+
     | Attribute      | Description                |
@@ -208,7 +212,7 @@ class GoalkeepingStatistics(object):
 
 class PassingStatistics(object):
     """
-    Access to Passing statistical resources (/stats/passes endpoint).
+    Access to Passing statistical resources (/<play>/stats/passes endpoint).
 
     +----------------+----------------------------+
     | Attribute      | Description                |
@@ -245,7 +249,7 @@ class PassingStatistics(object):
 
 class SetPieceStatistics(object):
     """
-    Access to Set-Piece statistical resources (/stats/setpieces endpoint).
+    Access to Set-Piece statistical resources (/<play>/stats/setpieces endpoint).
 
     +----------------+----------------------------+
     | Attribute      | Description                |
@@ -279,7 +283,7 @@ class SetPieceStatistics(object):
 
 class ShotStatistics(object):
     """
-    Access to Shot statistical resources (/stats/shots endpoint).
+    Access to Shot statistical resources (/<play>/stats/shots endpoint).
 
     +----------------+----------------------------+
     | Attribute      | Description                |
@@ -316,7 +320,7 @@ class ShotStatistics(object):
 
 class TouchStatistics(object):
     """
-    Access to Touch statistical resources (/stats/touches endpoint).
+    Access to Touch statistical resources (/<play>/stats/touches endpoint).
 
     +----------------+----------------------------+
     | Attribute      | Description                |
@@ -350,7 +354,7 @@ class TouchStatistics(object):
 
 class MatchStatistics(object):
     """
-    Establish access to Match Statistics objects (/stats endpoints).
+    Establish access to Match Statistics objects (/<play>/stats endpoints).
 
     +----------------+----------------------------+
     | Attribute      | Description                |

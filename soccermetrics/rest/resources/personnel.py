@@ -2,7 +2,11 @@ from soccermetrics.rest.resources import Resource
 
 class Personnel(Resource):
     """
-    Represents a Personnel REST resource (/personnel endpoint).
+    Represents a Personnel REST resource (/personnel/<resource> endpoint).
+
+    The Personnel resources let you access biographic and demographic
+    data on all personnel involved in a football match – players,
+    managers, and match referees.
 
     Derived from :class:`Resource`.
     """

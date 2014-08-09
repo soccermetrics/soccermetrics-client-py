@@ -1,7 +1,11 @@
 from soccermetrics.rest.resources import Resource
 
 class AnalyticsResource(Resource):
-    """Represents an Analytics REST resource (/analytics endpoints).
+    """Represents an Analytics REST resource.
+
+    The Match Analytics resources controls access to advanced player
+    and team analytics related to events in a football match and
+    derived from basic match data.
 
     Derived from :class:`resources.Resource`.
     """
@@ -78,15 +82,15 @@ class AnalyticsResource(Resource):
 class MatchAnalytics(object):
     """Represents a Match Analytics REST resource (/analytics/match endpoints).
 
-    +----------------+--------------------------+
-    | Attribute      | Description              |
-    +================+==========================+
-    | state          | Match state              |
-    +----------------+--------------------------+
-    | segment        | Match segments           |
-    +----------------+--------------------------+
-    | tsr            | Match Total Shots Ratio  |
-    +----------------+--------------------------+
+        +----------------+--------------------------+
+        | Attribute      | Description              |
+        +================+==========================+
+        | state          | Match state              |
+        +----------------+--------------------------+
+        | segment        | Match segments           |
+        +----------------+--------------------------+
+        | tsr            | Match Total Shots Ratio  |
+        +----------------+--------------------------+
     """
     def __init__(self, base_uri, auth):
         self.state = AnalyticsResource("state", base_uri, auth)

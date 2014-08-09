@@ -4,6 +4,10 @@ class Root(Resource):
     """
     Represents the service root of the REST API (/ endpoint).
 
+    The Service Root is the central resource of the Soccermetrics
+    API. From this point the user can access all of the publicly-
+    available resources.
+
     Derived from :class:`base.Resource`.
     """
 

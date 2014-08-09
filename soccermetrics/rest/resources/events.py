@@ -2,7 +2,14 @@ from soccermetrics.rest.resources import Resource
 
 class MatchEventResource(Resource):
     """
-    Represents a Match Event REST resource (/events/``resource`` endpoints).
+    Represents a Match Event REST resource.
+
+    The Match Event resource controls access to data about the micro-events in a
+    football match, such as ball touches, non-touch events, positional data,
+    and explanatory data related to touch events.
+
+    Micro-events are modelled as a combination of three components: events,
+    actions, and modifiers.
 
     Derived from :class:`base.Resource`.
     """
@@ -26,7 +33,7 @@ class MatchEventResource(Resource):
 
 class MatchEvents(object):
     """
-    Establish access to Match Event objects (/events endpoint).
+    Establish access to Match Event objects (/<play>/events/<resource> endpoint).
 
     +--------------+-----------------------+
     | Attribute    | Description           |

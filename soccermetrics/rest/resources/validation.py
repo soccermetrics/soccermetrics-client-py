@@ -2,7 +2,11 @@ from soccermetrics.rest.resources import Resource
 
 class ValidationResource(Resource):
     """
-    Establish access to Validation resources (/ endpoint).
+    Establish access to Validation resources (/<resource> endpoint).
+
+    The Validation resources provide access to data that are used
+    to ensure consistency and integrity in personnel and match
+    records in the database.
 
     Derived from :class:`base.Resource`.
     """
