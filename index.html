@@ -1,4 +1,11 @@
 
+
+  
+ 
+  
+ 
+
+
 <!DOCTYPE html>
 
 
@@ -11,8 +18,8 @@
     <link rel="stylesheet" href="_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="srstatic/css/custom-styles.css" type="text/css" />
-    <link rel="stylesheet" href="_static/bootswatch-3.1.0/cosmo/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootswatch/3.0.0/cosmo/bootstrap.min.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
@@ -26,9 +33,9 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
-    <script type="text/javascript" src="_static/bootstrap-3.1.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.0.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="Soccermetrics API Python Client Documentation" href="#" />
     <link rel="next" title="Installation" href="installation.html" />
@@ -49,8 +56,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#"><img src="_static/Logo.png">
-          API Python Client</a>
+        <a class="navbar-brand" href="#">API Python Client</a>
         <span class="navbar-text navbar-version pull-left"><b>0.8</b></span>
       </div>
 
@@ -60,14 +66,11 @@
             
             
               <li class="dropdown globaltoc-container">
-  <a role="button"
-     id="dLabelGlobalToc"
-     data-toggle="dropdown"
-     data-target="#"
-     href="#">Docs <b class="caret"></b></a>
+  <a href="#"
+     class="dropdown-toggle"
+     data-toggle="dropdown">Docs <b class="caret"></b></a>
   <ul class="dropdown-menu globaltoc"
-      role="menu"
-      aria-labelledby="dLabelGlobalToc"><ul>
+    ><ul>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="installation.html#virtual-environment-install">Virtual Environment Install</a></li>
 <li class="toctree-l2"><a class="reference internal" href="installation.html#system-wide-install">System-Wide Install</a></li>
@@ -104,16 +107,13 @@
 </li>
               
                 <li class="dropdown">
-  <a role="button"
-     id="dLabelLocalToc"
-     data-toggle="dropdown"
-     data-target="#"
-     href="#">Page <b class="caret"></b></a>
-  <ul class="dropdown-menu localtoc"
-      role="menu"
-      aria-labelledby="dLabelLocalToc"><ul>
-<li><a class="reference internal" href="#">Soccermetrics API Python Client</a></li>
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"><ul>
+<li><a class="reference internal" href="#">Soccermetrics API Python Client</a><ul>
+</ul>
+</li>
 <li><a class="reference internal" href="#support-and-development">Support and Development</a></li>
+<li><a class="reference internal" href="#license">License</a></li>
 <li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
 </ul>
 </ul>
@@ -123,16 +123,14 @@
             
               
                 
-  <li>
-    <a href="installation.html" title="Next Chapter: Installation"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Installation &raquo;</span>
-    </a>
-  </li>
+  <li><a href="installation.html"
+         title="Next Chapter: Installation">Installation &raquo;</a></li>
               
             
             
             
             
-              <li class="hidden-sm"></li>
+              <li></li>
             
           </ul>
 
@@ -152,7 +150,7 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-md-12">
+    <div class="span12">
       
   <div class="section" id="soccermetrics-api-python-client">
 <h1>Soccermetrics API Python Client<a class="headerlink" href="#soccermetrics-api-python-client" title="Permalink to this headline">¶</a></h1>
@@ -204,13 +202,37 @@ To checkout the source:</p>
 </div>
 <p>Report bugs with the
 <a class="reference external" href="https://github.com/soccermetrics/soccermetrics-client-py/issues">GitHub issue tracker</a>.</p>
-<p>We welcome pull requests if you spot a bug or would like to see some additional functionality
-in the Client.  To do so, please use the
-<a class="reference external" href="https://github.com/soccermetrics/soccermetrics-client-py/pulls">GitHub pull request button</a>.
-Unless it is an extremely simple bugfix (e.g. a typo), you must include unit or functional
-tests.</p>
-<p>If you have any questions that couldn&#8217;t be solved by the documentation,
-please email <a class="reference external" href="mailto:api-support&#37;&#52;&#48;soccermetrics&#46;net">api-support<span>&#64;</span>soccermetrics<span>&#46;</span>net</a>.</p>
+<p>We welcome all contributions to this project.  Before you do contribute, please read our
+<a class="reference external" href="https://github.com/soccermetrics/soccermetrics-client-py/blob/master/CONTRIBUTING.rst">contribution guidelines</a> first.</p>
+<p>If you have any questions about the client and its use in your applications, please seek help in the following order:</p>
+<ul class="simple">
+<li>The documentation for the <a class="reference external" href="http://soccermetrics.github.io/soccermetrics-client-py&gt;`">API client</a> and the <a class="reference external" href="http://soccermetrics.github.io/connect-api`">API</a> itself.</li>
+<li>The <a class="reference external" href="https://developer.soccermetrics.net/forum">Developer Forum</a> at the Soccermetrics API Developer Portal.</li>
+<li>Message to our <a class="reference external" href="http://twitter.com/sccrmetricsapi">Twitter feed</a></li>
+<li>Message to our support email address (<a class="reference external" href="mailto:api-support&#37;&#52;&#48;soccermetrics&#46;net">api-support<span>&#64;</span>soccermetrics<span>&#46;</span>net</a>).</li>
+</ul>
+</div>
+<div class="section" id="license">
+<h1>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h1>
+<p>Copyright (c) 2011-2014 Soccermetrics Research, LLC.</p>
+<p>Permission is hereby granted, free of charge, to any person
+obtaining a copy of this software and associated documentation
+files (the &#8220;Software&#8221;), to deal in the Software without
+restriction, including without limitation the rights to use,
+copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the
+Software is furnished to do so, subject to the following
+conditions:</p>
+<p>The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.</p>
+<p>THE SOFTWARE IS PROVIDED &#8220;AS IS&#8221;, WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+OTHER DEALINGS IN THE SOFTWARE.</p>
 </div>
 <div class="section" id="indices-and-tables">
 <h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
@@ -234,8 +256,8 @@ please email <a class="reference external" href="mailto:api-support&#37;&#52;&#4
     </p>
     <p>
         &copy; Copyright 2013-2014, Soccermetrics Research, LLC.<br/>
-      Last updated on Aug 09, 2014.<br/>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
+      Last updated on Aug 10, 2014.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2b1.<br/>
     </p>
   </div>
 </footer>

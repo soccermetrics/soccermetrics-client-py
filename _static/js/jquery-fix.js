@@ -1,2 +1,2 @@
 // No Conflict in later (our) version of jQuery
-window.$jqTheme = jQuery.noConflict(true);
+var $jqTheme = jQuery.noConflict(true);
